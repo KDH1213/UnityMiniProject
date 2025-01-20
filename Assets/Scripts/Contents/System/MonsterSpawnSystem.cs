@@ -9,11 +9,11 @@ public class MonsterSpawnSystem : MonoBehaviour
     [SerializeField]
     public List<MonsterSpawnInfo> spawnDataByLevelList;
 
+    [SerializeField] private bool useAutoStart = false;
+
     private int currentWaveLevel = 0;
     private bool isActive = false;
 
-    [SerializeField]
-    private bool useAutoStart = false;
 
     private int activeSpawnerCount;
 

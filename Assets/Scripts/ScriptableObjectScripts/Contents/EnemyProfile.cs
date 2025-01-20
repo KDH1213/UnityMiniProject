@@ -5,10 +5,6 @@ using UnityEngine;
 public class EnemyProfile : ScriptableObject
 {
     [SerializeField]
-    private MoveType moveType;
-    public MoveType MoveType { get { return moveType; } }
-
-    [SerializeField]
     private StatusInfoData enemyStatusInfoData;
     [SerializeField]
     public StatusInfoData EnemyStatusInfoData { get { return enemyStatusInfoData; } }
