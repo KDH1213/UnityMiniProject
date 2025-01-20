@@ -9,8 +9,6 @@ public abstract class SaveData
 
 public class SaveDataV1 : SaveData
 {
-    public string PlayerName = "TEST";
-
     public SaveDataV1()
     {
         Version = 1;
@@ -18,38 +16,7 @@ public class SaveDataV1 : SaveData
 
     public override SaveData VersionUp()
     {
-        var data = new SaveDataV2();
+        var data = new SaveDataV1();
         return data;
     }
-}
-public class SaveDataV2 : SaveData
-{
-    public string PlayerName = "TEST";
-
-    public SaveDataV2()
-    {
-        Version = 2;
-    }
-
-    public override SaveData VersionUp()
-    {
-        var data = new SaveDataV3();
-        return data;
-    }
-}
-
-public class SaveDataV3 : SaveDataV2
-{
-    public List<SaveItemData> itemList = new List<SaveItemData>();
-
-    public SaveDataV3()
-    {
-        Version = 3;
-    }
-    public override SaveData VersionUp()
-    {
-        var data = new SaveDataV3();
-        return data;
-    }
-
 }

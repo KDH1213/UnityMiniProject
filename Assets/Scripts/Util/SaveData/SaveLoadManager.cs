@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
-using SaveDataVC = SaveDataV3;
+using SaveDataVC = SaveData;
 
 public static class SaveLoadManager
 {
@@ -38,11 +38,11 @@ public static class SaveLoadManager
 
     static SaveLoadManager()
     {
-        if (!Load())
-        {
-            Data = new SaveDataVC();
-            Save();
-        }
+        //if (!Load())
+        //{
+        //    Data = new SaveDataVC();
+        //    Save();
+        //}
     }
 
     public static bool Save(int slot = 0)
