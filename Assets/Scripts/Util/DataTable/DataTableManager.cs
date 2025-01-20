@@ -9,16 +9,30 @@ public static class DataTableManager
     {
 
 #if UNITY_EDITOR
-        foreach(var id in DataTableIds.String)
-        { 
-            var table = new StringTable();
-            table.Load(id);
-            tables.Add(id, table);
-        }
+        //foreach(var id in DataTableIds.String)
+        //{ 
+        //    var table = new StringTable();
+        //    table.Load(id);
+        //    tables.Add(id, table);
+        //}
 
-        foreach (var id in ItemTableIds.String)
+        //foreach (var id in ItemTableIds.String)
+        //{
+        //    var table = new ItemTable();
+        //    table.Load(id);
+        //    tables.Add(id, table);
+        //}
+
+        //foreach (var id in WaveDataTableIds.String)
+        //{
+        //    var table = new WaveDataTable();
+        //    table.Load(id);
+        //    tables.Add(id, table);
+        //}
+
+        foreach (var id in CoinDrawTableIds.String)
         {
-            var table = new ItemTable();
+            var table = new CoinDrawTable();
             table.Load(id);
             tables.Add(id, table);
         }
@@ -50,6 +64,21 @@ public static class DataTableManager
         get
         {
             return Get<ItemTable>(ItemTableIds.String[0]);
+        }
+    }
+
+    public static WaveDataTable WaveDataTable
+    {
+        get
+        {
+            return Get<WaveDataTable>(WaveDataTableIds.String[0]);
+        }
+    }
+    public static CoinDrawTable CoinDrawTable
+    {
+        get
+        {
+            return Get<CoinDrawTable>(CoinDrawTableIds.String[0]);
         }
     }
 

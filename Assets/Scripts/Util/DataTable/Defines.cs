@@ -27,6 +27,30 @@ public static class ItemTableIds
     };
 }
 
+public static class MonsterTableIds
+{
+    public static readonly string[] String =
+    {
+        "MonsterTable",
+    };
+}
+
+public static class WaveDataTableIds
+{
+    public static readonly string[] String =
+    {
+        "WaveTable",
+    };
+}
+
+public static class CoinDrawTableIds
+{
+    public static readonly string[] String =
+    {
+        "CoinDrawTable",
+    };
+}
+
 public static class Varibalbes
 {
     public static Languages currentLanguage = Languages.Korea;
