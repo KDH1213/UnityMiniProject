@@ -16,6 +16,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     public UnityEvent hitEvent;
     public UnityEvent deathEvent;
+    public UnityEvent damegedEvent;
     public UnityEvent DeathEvent { get { return deathEvent; } }
     public UnityEvent<float> debuffEvent;
 
@@ -64,6 +65,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         {
             debuffEvent?.Invoke(inoutDamageInfo.debuffTime);
         }
+        else
+            damegedEvent?.Invoke();
 
         return true;
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,9 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     public MonsterSpawner MonsterSpawner { get { return monsterSpawner; } }
     [SerializeField] private SpriteRenderer[] spriteRenderers;
     public SpriteRenderer[] SpriteRenderers { get { return spriteRenderers; } }
+    [SerializeField] private Color hitEffectColor;
+    [SerializeField] private float hitEffectTime;
+    private Coroutine hitEffectCoroutine;
 
     private bool isMove = false;
     private bool isDestination = false;
@@ -21,6 +25,13 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
             => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(1f));
+
+        monsterStatus.damegedEvent.AddListener( () =>
+            {
+                if (hitEffectCoroutine != null)
+                    StopCoroutine(hitEffectCoroutine);
+                hitEffectCoroutine = StartCoroutine(CoHitEffect());
+            });
     }
 
     protected void Start()
@@ -53,5 +64,25 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     public float GetStatValue(StatType statType)
     {
         return monsterStatus.GetStatValue(statType);
+    }
+
+    private IEnumerator CoHitEffect()
+    {
+        var originalColor = spriteRenderers[0].color;
+
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = hitEffectColor;
+        }
+
+        yield return new WaitForSeconds(hitEffectTime);
+
+        if(currentStateType == MonsterStateType.Move)
+        {
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.color = originalColor;
+            }
+        }     
     }
 }

@@ -436,6 +436,9 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
+  damegedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   debuffEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -468,6 +471,8 @@ MonoBehaviour:
   - {fileID: 9004148123338886051}
   - {fileID: 9004148122923463615}
   - {fileID: 9004148123724671367}
+  hitEffectColor: {r: 1, g: 0, b: 0, a: 0.54901963}
+  hitEffectTime: 0.1
 --- !u!114 &7046968231521444347
 MonoBehaviour:
   m_ObjectHideFlags: 0
