@@ -11,7 +11,6 @@ public enum EnemyAttackType
 public enum AttackType
 {
     Single,
-    Multiple,
-    All,
+    Multiple
 }
 

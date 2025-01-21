@@ -10,6 +10,8 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     private MonsterSpawner monsterSpawner;
     public MonsterSpawner MonsterSpawner { get { return monsterSpawner; } }
+    [SerializeField] private SpriteRenderer[] spriteRenderers;
+    public SpriteRenderer[] SpriteRenderers { get { return spriteRenderers; } }
 
     private bool isMove = false;
     private bool isDestination = false;
@@ -18,7 +20,7 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     {
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
-            => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
+            => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(1f));
     }
 
     protected void Start()

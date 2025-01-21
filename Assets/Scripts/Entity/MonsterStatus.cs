@@ -58,7 +58,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             inoutDamageInfo.targetDeath = IsDead;
             // GameController.Instance.AddMoney(enemyProfile.Money);
             deathEvent?.Invoke();
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
         else if (inoutDamageInfo.debuffType != DebuffType.None)
         {

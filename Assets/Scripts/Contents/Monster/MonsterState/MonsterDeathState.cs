@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class MonsterDeathState : MonsterBaseState
 {
-    private SpriteRenderer spriteRenderer;
     [SerializeField] private float deathEffectTime;
     protected override void Awake()
     {
         base.Awake();
         stateType = MonsterStateType.Death;
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public override void Enter()
@@ -32,15 +30,22 @@ public class MonsterDeathState : MonsterBaseState
 
     private IEnumerator CoDeathEffectTime()
     {
+        var spriteRenderers = MonsterFSM.SpriteRenderers;
+        var currentColor = spriteRenderers[0].color;
         float currentTime = 0f;
-        var currentColor = spriteRenderer.color;
-        while (currentTime <= deathEffectTime)
+        while (currentTime < deathEffectTime)
         {
             currentTime += Time.deltaTime;
             currentColor.a = (deathEffectTime - currentTime) / deathEffectTime;
 
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.color = currentColor;
+            }
+
             yield return new WaitForEndOfFrame();
         }
+
         Destroy(gameObject);
     }
 }

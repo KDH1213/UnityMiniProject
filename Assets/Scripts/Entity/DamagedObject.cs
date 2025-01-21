@@ -5,80 +5,82 @@ using UnityEngine.Events;
 
 public class DamagedObject : MonoBehaviour
 {
-    [SerializeField]
-    protected bool isOwnerFollow;
+    [SerializeField] protected OverlapCollider overlapCollider;
+    [SerializeField] protected UnityEvent hitEvent;
+    [SerializeField] protected UnityEvent startHitEvent;
+    [SerializeField] protected UnityEvent destoryEvent;
+    [SerializeField] protected List<GameObject> hitObjectList;
+    [SerializeField] private bool autoDestory;
+    [SerializeField] protected LayerMask hitLayerMasks;
 
-    [SerializeField]
-    protected bool isLifeTime;
-    [SerializeField]
-    protected float lifeTime;
+    // private AttackInfoData AttackInfoData;
 
-    [SerializeField]
-    protected Transform ownerTransform;
+    [SerializeField] private AttackData attackData = new AttackData();
 
-    [SerializeField]
-    protected OverlapCollider overlapCollider;
+    [SerializeField] private float time = 0.5f;
+    private float currentTime = 0f;
 
-    [SerializeField]
-    protected UnityEvent hitEvent;
-
-    [SerializeField]
-    protected UnityEvent startHitEvent;
-
-    [SerializeField]
-    protected UnityEvent destoryEvent;
-
-    [SerializeField]
-    protected List<GameObject> hitObjectList;
-
-    [SerializeField]
-    private bool autoDestory;
-
-    [SerializeField]
-    protected LayerMask hitLayerMasks;
-
-    protected float currentLifeTime;
-    private int currentHitCount;
-
-    protected virtual void Awake()
+    private void Start()
     {
+        StartAttack();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
-        if (isLifeTime)
-        {
-            currentLifeTime += Time.deltaTime;
+        currentTime += Time.deltaTime;
 
-            if (lifeTime < currentLifeTime)
-            {
-                gameObject.SetActive(false);
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
-    protected virtual void FixedUpdate()
-    {
-        if (isOwnerFollow)
+        if (currentTime >= time)
         {
-            transform.position = ownerTransform.position;
+            StartAttack();
+            currentTime = 0f;
         }
     }
 
     protected virtual void AttackHit()
     {
-        var hitColliderList = overlapCollider.ColliderList;
+        int count = overlapCollider.StartOverlapCircle(attackData.AttackRange);
 
-        foreach (var hit in hitObjectList)
+        if (count == 0)
+            return;
+
+        var hitColliders = overlapCollider.HitColliders;
+        GameObject? hitObject;
+
+        for (int i = 0; i < count; ++i)
         {
+            hitObject = hitColliders[i].gameObject;
+            var test1 = (1 << hitObject.layer) & hitLayerMasks;
+            Debug.Log(test1);
+            bool test = ((1 << hitObject.layer) & hitLayerMasks) != 0;
+            Debug.Log(test);
+            //if (((1 << hitObject.layer) & hitLayerMasks) == 0 || hitObjectList.Contains(hitObject))
+            //    continue;
 
-            if ((hit.gameObject.layer & hitLayerMasks) == 0 || !hitObjectList.Contains(hit.gameObject))
+            var damageable = hitObject.GetComponent<IDamageable>();
+            
+            if(damageable == null)
                 continue;
 
-            hitObjectList.Add(hit.gameObject);
+            hitObjectList.Add(hitObject);
+            DamageInfo damageInfo = new DamageInfo();
+            damageInfo.damage = attackData.Damage;
+            damageInfo.debuffType = attackData.DebuffType;
+            damageInfo.debuffType = attackData.DebuffType;
+
+            hitObject.GetComponent<IDamageable>().OnDamage(ref damageInfo);
             hitEvent?.Invoke();
         }
+
+
+        //foreach (var hit in hitObjectList)
+        //{
+        //    if ((hit.gameObject.layer & hitLayerMasks) == 0 || !hitObjectList.Contains(hit.gameObject))
+        //        continue;
+
+        //    hitObjectList.Add(hit.gameObject);
+        //    // hit.GetComponent<IDamageable>().OnDamage()
+        //    hitEvent?.Invoke();
+        //}
     }
 
     public virtual void StartAttack()
@@ -86,14 +88,15 @@ public class DamagedObject : MonoBehaviour
         startHitEvent?.Invoke();
 
         AttackHit();
+
+        //if(autoDestory)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     protected virtual void OnDestroy()
     {
         destoryEvent?.Invoke();
     }
-
-    //public void SetAttackInfo()
-    //[SerializeField]
-    //private 
 }

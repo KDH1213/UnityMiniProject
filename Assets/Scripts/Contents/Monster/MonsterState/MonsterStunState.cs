@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class MonsterStunState : MonsterBaseState
 {
     private float stunTime;
     private Coroutine stunCoroutine;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    private Color originalColor;
 
     protected override void Awake()
     {
         base.Awake();
         stateType = MonsterStateType.Stun;
-        originalColor = spriteRenderer.color;
     }
 
     public override void Enter()
@@ -48,13 +46,21 @@ public class MonsterStunState : MonsterBaseState
 
     private IEnumerator CoStunTime()
     {
+        var spriteRenderers = MonsterFSM.SpriteRenderers;
+        var originalColor = spriteRenderers[0].color;
         var effectColor = originalColor;
         effectColor.a = 0.5f;
-        spriteRenderer.color = effectColor;
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = effectColor;
+        }
 
-         yield return stunTime;
+        yield return new WaitForSeconds(stunTime);
 
-        spriteRenderer.color = originalColor;
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = originalColor;
+        }
         MonsterFSM.ChangeState(MonsterStateType.Move);
     }
 }
