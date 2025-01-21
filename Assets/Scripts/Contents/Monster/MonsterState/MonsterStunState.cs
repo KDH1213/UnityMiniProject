@@ -5,6 +5,7 @@ using UnityEngine.U2D;
 
 public class MonsterStunState : MonsterBaseState
 {
+    [SerializeField] private Color stunColor;
     private float stunTime;
     private Coroutine stunCoroutine;
 
@@ -48,11 +49,10 @@ public class MonsterStunState : MonsterBaseState
     {
         var spriteRenderers = MonsterFSM.SpriteRenderers;
         var originalColor = spriteRenderers[0].color;
-        var effectColor = originalColor;
-        effectColor.a = 0.5f;
+
         foreach (var sprite in spriteRenderers)
         {
-            sprite.color = effectColor;
+            sprite.color = stunColor;
         }
 
         yield return new WaitForSeconds(stunTime);

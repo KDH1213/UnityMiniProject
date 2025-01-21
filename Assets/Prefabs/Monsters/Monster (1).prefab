@@ -195,7 +195,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9004148123338886052}
@@ -373,7 +373,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9004148123409344355}
@@ -429,7 +429,7 @@ MonoBehaviour:
         minValue: 0
   monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 3815283013490541712}
-  hpbar: {fileID: 9155401362809315319}
+  hpbar: {fileID: 4760332707001580480}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -518,6 +518,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   movePoint: {x: 0, y: 0}
+  monsterSpriteTransform: {fileID: 9004148123409344355}
 --- !u!114 &2079054035802763640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +543,7 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
+  stunColor: {r: 1, g: 1, b: 1, a: 0.50980395}
 --- !u!58 &2291690917921404166
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -704,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HpBar
       objectReference: {fileID: 0}
+    - target: {fileID: 8558233754728851075, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9030719575399271791, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 3
@@ -713,19 +719,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
---- !u!224 &8211496506693522374 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
-  m_PrefabInstance: {fileID: 3806928313354444099}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9155401362809315319 stripped
+--- !u!114 &4760332707001580480 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5465795626237035188, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8558233754728851075, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
   m_PrefabInstance: {fileID: 3806928313354444099}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8211496506693522374 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+  m_PrefabInstance: {fileID: 3806928313354444099}
+  m_PrefabAsset: {fileID: 0}

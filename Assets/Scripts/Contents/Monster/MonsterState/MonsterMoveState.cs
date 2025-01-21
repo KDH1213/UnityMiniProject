@@ -8,6 +8,7 @@ public class MonsterMoveState : MonsterBaseState
     [SerializeField] private Vector2 movePoint;
 
     private Transform monsterTransform;
+    [SerializeField] Transform monsterSpriteTransform;
     private Vector2 moveDirection;
     private Vector2 currentPosition;
     private float moveSpeed;
@@ -65,20 +66,20 @@ public class MonsterMoveState : MonsterBaseState
     {
         if(moveDirection.y < 0f)
         {
-            if(monsterTransform.localScale.x > 0f)
+            if(monsterSpriteTransform.localScale.x > 0f)
             {
-                var scale = monsterTransform.localScale;
+                var scale = monsterSpriteTransform.localScale;
                 scale.x = -1f;
-                monsterTransform.localScale = scale;
+                monsterSpriteTransform.localScale = scale;
             }
         }
         else
         {
-            if (monsterTransform.localScale.x < 0f)
+            if (monsterSpriteTransform.localScale.x < 0f)
             {
-                var scale = monsterTransform.localScale;
+                var scale = monsterSpriteTransform.localScale;
                 scale.x = 1f;
-                monsterTransform.localScale = scale;
+                monsterSpriteTransform.localScale = scale;
             }
         }
     }
