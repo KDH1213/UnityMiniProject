@@ -26,6 +26,11 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         StartState();
     }
 
+    private void Update()
+    {
+        ExcuteUpdate();
+    }
+
     protected virtual void ExcuteUpdate()
     {
         stateTable[currentStateType]?.ExcuteUpdate();

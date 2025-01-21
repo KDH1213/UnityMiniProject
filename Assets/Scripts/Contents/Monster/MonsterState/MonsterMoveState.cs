@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class MonsterMoveState : MonsterBaseState
 {
     [SerializeField] private Vector2 movePoint;
+
+    private Transform monsterTransform;
     private Vector2 moveDirection;
     private Vector2 currentPosition;
     private float moveSpeed;
@@ -15,14 +17,20 @@ public class MonsterMoveState : MonsterBaseState
     {
         base.Awake();
         stateType = MonsterStateType.Move;
+        monsterTransform = gameObject.transform;
     }
 
     public override void Enter()
     {
-        currentPosition = transform.position;
+        currentPosition = monsterTransform.position;
         moveSpeed = monsterFSM.GetStatValue(StatType.MovementSpeed);
         GetMovePoint();
         MonsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
+    }
+
+    public override void ExcuteUpdate()
+    {
+        Move();
     }
 
     public override void Exit()
@@ -38,12 +46,40 @@ public class MonsterMoveState : MonsterBaseState
     public void Move()
     {
         currentPosition += moveDirection * (moveSpeed * Time.deltaTime);
-        transform.position = (Vector3)currentPosition;
+        monsterTransform.position = (Vector3)currentPosition;
 
-        if ((currentPosition - movePoint).sqrMagnitude < 1f)
+        if ((currentPosition - movePoint).sqrMagnitude < 0.1f)
         {
+            monsterTransform.position = (Vector3)movePoint;
             ++moveIndex;
             GetMovePoint();
+
+            if(moveDirection.y != 0f)
+            {
+                OnFilp();
+            }
+        }
+    }
+
+    private void OnFilp()
+    {
+        if(moveDirection.y < 0f)
+        {
+            if(monsterTransform.localScale.x > 0f)
+            {
+                var scale = monsterTransform.localScale;
+                scale.x = -1f;
+                monsterTransform.localScale = scale;
+            }
+        }
+        else
+        {
+            if (monsterTransform.localScale.x < 0f)
+            {
+                var scale = monsterTransform.localScale;
+                scale.x = 1f;
+                monsterTransform.localScale = scale;
+            }
         }
     }
 }
