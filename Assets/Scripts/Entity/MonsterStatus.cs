@@ -11,18 +11,13 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     [SerializeField] private MonsterProfile monsterProfile;
     [SerializeField] private MonsterFSMController monsterFSMController;
 
-    [SerializeField]
-    private Image hpbar;
+    [SerializeField] private Image hpbar;
     public bool IsDead { get; private set; } = false;
-
 
     public UnityEvent hitEvent;
     public UnityEvent deathEvent;
     public UnityEvent DeathEvent { get { return deathEvent; } }
     public UnityEvent<float> debuffEvent;
-
-    [SerializeField] private float Hp;
-    private float currentHp;
 
     private void Awake()
     {
@@ -37,7 +32,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         //    currentValues[item.Key].ValueCopy(item.Value);
         //}
 
-        currentHp = Hp;
         hpbar.fillAmount = 1f;
     }
 
@@ -52,10 +46,9 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             return false;
         }
 
-        currentHp -= damage;
-        //  currentHp = currentValues[StatType.HP].AddValue(-damage);
-        // hpbar.fillAmount = currentHp / currentValues[StatType.HP].MaxValue;
-        hpbar.fillAmount = currentHp / Hp;
+        var currentHp = currentValues[StatType.HP].AddValue(-damage);
+        hpbar.fillAmount = currentHp / currentValues[StatType.HP].MaxValue;
+        // hpbar.fillAmount = currentHp / Hp;
 
         hitEvent?.Invoke();
 

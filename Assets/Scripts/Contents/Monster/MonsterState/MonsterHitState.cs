@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MonsterHitState : MonsterBaseState
 {
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         stateType = MonsterStateType.Hit;
     }
 }

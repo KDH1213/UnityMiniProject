@@ -11,8 +11,9 @@ public class MonsterMoveState : MonsterBaseState
     private float moveSpeed;
     private int moveIndex = 0;
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         stateType = MonsterStateType.Move;
     }
 

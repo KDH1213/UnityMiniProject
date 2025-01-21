@@ -6,13 +6,13 @@ public class MonsterStunState : MonsterBaseState
 {
     private float stunTime;
     private Coroutine stunCoroutine;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         stateType = MonsterStateType.Stun;
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
 

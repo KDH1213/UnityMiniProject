@@ -16,10 +16,14 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     protected override void Awake()
     {
-        StartState();
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
             => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
+    }
+
+    protected void Start()
+    {
+        StartState();
     }
 
     protected virtual void ExcuteUpdate()

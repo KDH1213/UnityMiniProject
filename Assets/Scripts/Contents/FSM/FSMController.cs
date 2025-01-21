@@ -16,19 +16,11 @@ public class FSMController<T> : MonoBehaviour
     protected T previousStateType;
     public T PreviousStateType { get { return previousStateType; } }
 
-    [SerializeField]
-    protected Transform bottomCenterPoint;
-    public Transform BottomCenterPoint { get { return bottomCenterPoint; } }    
-
     [SerializedDictionary("StateType", "State"), SerializeField] protected SerializedDictionary<T, BaseState<T>> stateTable = new SerializedDictionary<T, BaseState<T>>();
     public SerializedDictionary<T, BaseState<T>> StateTable { get { return stateTable; } }
 
-    protected UnityEvent destroyEvent;
-    public UnityEvent DestroyEvent { get { return destroyEvent; } }
-
     protected virtual void Awake()
     {
-        StartState();
     }
 
     public void StartState()
@@ -86,10 +78,5 @@ public class FSMController<T> : MonoBehaviour
 
         DestroyImmediate(stateTable[stateType]);
         stateTable.Remove(stateType);
-    }
-
-    protected virtual void OnDestroy()
-    {
-        destroyEvent?.Invoke();
     }
 }

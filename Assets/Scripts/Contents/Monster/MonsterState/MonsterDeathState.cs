@@ -5,8 +5,9 @@ public class MonsterDeathState : MonsterBaseState
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float deathEffectTime;
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         stateType = MonsterStateType.Death;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
