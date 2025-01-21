@@ -117,7 +117,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         GameObject monster = Instantiate(monsterSpawnInfo.MonsterPrefab);
         monster.transform.position = startPoint.transform.position;
 
-        var enemyController = monster.GetComponent<EnemyController>();
+        var enemyController = monster.GetComponent<MonsterController>();
         enemyController.OnSpawn(this);
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 

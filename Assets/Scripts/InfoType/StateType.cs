@@ -24,15 +24,12 @@ public enum PlayerStateType
     End
 }
 
-public enum EnemyStateType
+public enum MonsterStateType
 {
     None,
     Idle,
-    Alert,
-    Trace,
-    Revert,
-    Attack, 
-    AttackWait,
+    Hit,
+    Stun,
     Death,
     End
 }

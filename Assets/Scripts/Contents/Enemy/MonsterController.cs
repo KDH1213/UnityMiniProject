@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour
+public class MonsterController : MonoBehaviour
 {
-    [SerializeField] private EnemyStatus enemyStatus;
+    [SerializeField] private MonsterStatus enemyStatus;
 
     [SerializeField] private Vector2 movePoint;
     private Vector2 moveDirection;

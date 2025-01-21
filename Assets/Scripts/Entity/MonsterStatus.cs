@@ -3,13 +3,13 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
-public class EnemyStatus : MonoBehaviour, IDamageable
+public class MonsterStatus : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private SerializedDictionary<StatType, StatusValue> currentValues = new SerializedDictionary<StatType, StatusValue>();
 
     [SerializeField]
-    private EnemyProfile enemyProfile;
+    private MonsterProfile monsterProfile;
 
     [SerializeField]
     private Image hpbar;
