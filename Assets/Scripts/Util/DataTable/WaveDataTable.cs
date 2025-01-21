@@ -4,6 +4,7 @@ using UnityEngine;
 public class WaveData
 {
     public string Id { get; set; }
+    public string PrefabId { get; set; }
 
     public int WaveLevel { get; set; }
 
