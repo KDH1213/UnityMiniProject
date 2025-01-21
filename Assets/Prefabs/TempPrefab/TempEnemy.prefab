@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8559175581111045568}
   - component: {fileID: 8315636758077257718}
-  - component: {fileID: 2883009144731928810}
   - component: {fileID: -5263779659928024029}
+  - component: {fileID: 5334043415019873732}
   m_Layer: 7
   m_Name: TempEnemy
   m_TagString: Enemy
@@ -87,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2883009144731928810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608018089232435200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96595de4005fb7c42824610257ecdae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyStatus: {fileID: 0}
-  movePoint: {x: 0, y: 0}
-  moveSpeed: 10
 --- !u!114 &-5263779659928024029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +111,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Hp: 100
+--- !u!114 &5334043415019873732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608018089232435200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f80ee001bac3504cb1ed13b93949471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStatus: {fileID: 0}
+  movePoint: {x: 0, y: 0}
+  moveSpeed: 10
 --- !u!1001 &8249034419099536091
 PrefabInstance:
   m_ObjectHideFlags: 0
