@@ -28,6 +28,7 @@ public enum MonsterStateType
 {
     None,
     Idle,
+    Move,
     Hit,
     Stun,
     Death,

@@ -70,15 +70,6 @@ public class EntityStatus : MonoBehaviour, IDamageable
         }
         else
         {
-            if (damageInfo.debuffData != null)
-            {
-                debuffEvent?.Invoke(damageInfo.debuffData.debuffLayer);
-            }
-
-            if (damageInfo.knockbackData != null)
-            {
-
-            }
         }
 
         return true;

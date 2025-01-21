@@ -1,4 +1,6 @@
+using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +8,7 @@ using UnityEngine.Events;
 public class FSMController<T> : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("Use Start State")]
     protected T currentStateType;
     public T CurrentStateType { get { return currentStateType; } }
 
@@ -17,12 +20,21 @@ public class FSMController<T> : MonoBehaviour
     protected Transform bottomCenterPoint;
     public Transform BottomCenterPoint { get { return bottomCenterPoint; } }    
 
-    [SerializeField]
-    protected Dictionary<T, BaseState<T>> stateTable = new Dictionary<T, BaseState<T>>();
-    public Dictionary<T, BaseState<T>> StateTable { get { return stateTable; } }
+    [SerializedDictionary("StateType", "State"), SerializeField] protected SerializedDictionary<T, BaseState<T>> stateTable = new SerializedDictionary<T, BaseState<T>>();
+    public SerializedDictionary<T, BaseState<T>> StateTable { get { return stateTable; } }
 
     protected UnityEvent destroyEvent;
     public UnityEvent DestroyEvent { get { return destroyEvent; } }
+
+    protected virtual void Awake()
+    {
+        StartState();
+    }
+
+    public void StartState()
+    {
+        stateTable[currentStateType]?.Enter();
+    }
 
     public void ChangeState(T stateType)
     {
@@ -37,15 +49,15 @@ public class FSMController<T> : MonoBehaviour
         stateTable[currentStateType]?.Enter();
     }
 
-    protected virtual void Update()
-    {
-        stateTable[currentStateType]?.ExcuteUpdate();
-    }
+    //protected virtual void Update()
+    //{
+    //    stateTable[currentStateType]?.ExcuteUpdate();
+    //}
 
-    protected virtual void FixedUpdate()
-    {
-        stateTable[currentStateType]?.ExcuteFixedUpdate();
-    }
+    //protected virtual void FixedUpdate()
+    //{
+    //    stateTable[currentStateType]?.ExcuteFixedUpdate();
+    //}
 
     public virtual void AddState(T stateType, BaseState<T> state)
     {

@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
+using AYellowpaper.SerializedCollections;
 
 public class MonsterStatus : MonoBehaviour, IDamageable
 {
-    [SerializeField]
+    [SerializedDictionary, SerializeField]
     private SerializedDictionary<StatType, StatusValue> currentValues = new SerializedDictionary<StatType, StatusValue>();
 
-    [SerializeField]
-    private MonsterProfile monsterProfile;
+    [SerializeField] private MonsterProfile monsterProfile;
+    [SerializeField] private MonsterFSMController monsterFSMController;
 
     [SerializeField]
     private Image hpbar;
@@ -19,6 +19,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public UnityEvent hitEvent;
     public UnityEvent deathEvent;
     public UnityEvent DeathEvent { get { return deathEvent; } }
+    public UnityEvent<float> debuffEvent;
 
     [SerializeField] private float Hp;
     private float currentHp;
@@ -65,6 +66,10 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             // GameController.Instance.AddMoney(enemyProfile.Money);
             deathEvent?.Invoke();
             Destroy(gameObject);
+        }
+        else if (inoutDamageInfo.debuffType != DebuffType.None)
+        {
+            debuffEvent?.Invoke(inoutDamageInfo.debuffTime);
         }
 
         return true;

@@ -1,12 +1,11 @@
 public class MonsterBaseState : BaseState<MonsterStateType>
 {
-    // protected EnemyFSM enemyFSM;
-    // public EnemyFSM EnemyFSM { get { return enemyFSM; } }
+    protected MonsterFSMController monsterFSM;
+    public MonsterFSMController MonsterFSM { get { return monsterFSM; } }
 
     public override void Enter() 
     {
         enterStateEvent?.Invoke();
-        this.enabled = true;
     }
     public override void ExcuteUpdate()
     {
@@ -20,6 +19,5 @@ public class MonsterBaseState : BaseState<MonsterStateType>
     public override void Exit() 
     {
         exitStateEvent?.Invoke();
-        this.enabled = false;
     }
 }

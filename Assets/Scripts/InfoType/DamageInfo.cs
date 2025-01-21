@@ -11,7 +11,8 @@ public struct DamageInfo
     public float            damage;
     public bool             targetDeath;
 
-    public DebuffData       debuffData;
-
-    public KnockbackData    knockbackData;
+    // public DebuffData       debuffData;
+    // public KnockbackData    knockbackData;
+    public DebuffType       debuffType;
+    public float            debuffTime;
 }
