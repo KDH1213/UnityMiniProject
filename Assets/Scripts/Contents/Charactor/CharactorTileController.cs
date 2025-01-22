@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class CharactorTileController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int charactorCount = 0;
+    [SerializeField] private int maxCharactorCount = 3;
+
+    [SerializeField] private List<CharactorFSM> characterControllers;
+    public List<CharactorFSM> CharacterControllers { get { return characterControllers; } }
+
+
+    public int CharactorCount { get { return charactorCount; } }
+
+    public void AddCharactor(CharactorFSM characterController)
     {
-        
+        characterControllers.Add(characterController);
+        characterController.transform.position = transform.position;
+        ++charactorCount;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnChangeCharactorCount()
     {
-        
+
     }
+
 }
