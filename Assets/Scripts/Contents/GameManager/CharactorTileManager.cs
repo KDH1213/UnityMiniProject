@@ -5,8 +5,10 @@ using UnityEngine;
 public class CharactorTileManager : MonoBehaviour
 {
     [SerializeField]
-    private List<Transform> charactorTileObjects = new List<Transform>();
-    public List<Transform> CharactorTileObjects { get { return charactorTileObjects; } }
+    private List<CharactorTileController> charactorTileObjects = new List<CharactorTileController>();
+    public List<CharactorTileController> CharactorTileObjects { get { return charactorTileObjects; } }
+
+    private int useCharactorTileCount = 0;
 
     private void Awake()
     {
@@ -15,16 +17,34 @@ public class CharactorTileManager : MonoBehaviour
 
     public void StartSortcharactorTiles()
     {
-        charactorTileObjects.Sort((Transform left, Transform right) =>
+        charactorTileObjects.Sort((CharactorTileController left, CharactorTileController right) =>
         {
-            if (left.position.x == right.position.x)
+            if (left.transform.position.x == right.transform.position.x)
             {
-                return left.position.y < right.position.y ? -1 : 1;
+                return left.transform.position.y < right.transform.position.y ? -1 : 1;
             }
             else
             {
-                return left.position.x < right.position.x ? -1 : 1;
+                return left.transform.position.x < right.transform.position.x ? -1 : 1;
             }
         });
+    }
+
+    public void CreateCharactor(CharactorFSM createCharactor)
+    {
+        foreach (var tile in charactorTileObjects)
+        {
+            if(tile.CharactorCount == 0)
+            {
+                tile.AddCharactor(createCharactor);
+                ++useCharactorTileCount;
+                break;
+            }
+        }
+    }
+
+    public bool IsCreateCharactor()
+    {
+        return useCharactorTileCount == CharactorTileObjects.Count;
     }
 }

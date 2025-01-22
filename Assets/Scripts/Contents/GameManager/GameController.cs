@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-
+    [SerializeField] private CharactorTileManager charactorTileManager;
+    [SerializeField] private CharactorFSM characterPrefabs;
     [SerializeField] private MonsterManager monsterManager;
     [SerializeField] private MonsterSpawnSystem spawnSystem;
     [SerializeField] private int createMoney = 20;
     [SerializeField] private int currentMoney = 500;
-    [SerializeField] private int currentCreateCount = 0;
     [SerializeField] private int maxWave = 80;
 
     private int                     currentWave = 0;
@@ -30,8 +30,11 @@ public class GameController : MonoBehaviour
 
     private readonly string waveFomat = "{0}/{1}";
     private readonly string monsterCountFomat = "{0}/{1}";
-
     #endregion
+
+
+    [SerializeField] private GameObject gameoverObject;
+    [SerializeField] private GameObject clearObject;
 
     private void Awake()
     {
@@ -51,25 +54,20 @@ public class GameController : MonoBehaviour
         moneyChangeEvent.Invoke(currentMoney);
     }
 
-    public bool UseMoney(int price)
-    {
-        if(currentMoney < price)
-            return false;
-
-        currentMoney -= price;
-        moneyText.text = currentMoney.ToString();
-        moneyChangeEvent.Invoke(currentMoney);
-
-        return true;
-    }
-
     public void OnCreateCharactor()
     {
-        if(createMoney > currentMoney)
+        if(createMoney > currentMoney || charactorTileManager.IsCreateCharactor())
         {
             createFailEvenet?.Invoke();
             return;
         }
+
+        currentMoney -= createMoney;
+        moneyText.text = currentMoney.ToString();
+        createMoney += 2;
+
+        var createCharactor = Instantiate(characterPrefabs);
+        charactorTileManager.CreateCharactor(createCharactor);
     }
 
     public void SetCurrentWave(int wave)
@@ -91,11 +89,15 @@ public class GameController : MonoBehaviour
     private void GameClear()
     {
         Time.timeScale = 0f;
+
+        clearObject.SetActive(true);
         gameClearEvent?.Invoke();
     }
     private void GameOver()
     {
         Time.timeScale = 0f;
+
+        gameoverObject.SetActive(true);
         gameoverEvent?.Invoke();
     }
 
