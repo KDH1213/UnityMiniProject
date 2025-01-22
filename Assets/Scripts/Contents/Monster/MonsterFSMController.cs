@@ -24,7 +24,7 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     {
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
-            => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(1f));
+            => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
 
         monsterStatus.damegedEvent.AddListener( () =>
             {
@@ -39,17 +39,12 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         StartState();
     }
 
-    private void Update()
-    {
-        ExcuteUpdate();
-    }
-
-    protected virtual void ExcuteUpdate()
+    public virtual void ExcuteUpdate()
     {
         stateTable[currentStateType]?.ExcuteUpdate();
     }
 
-    protected virtual void ExcuteFixedUpdate()
+    public virtual void ExcuteFixedUpdate()
     {
         stateTable[currentStateType]?.ExcuteFixedUpdate();
     }

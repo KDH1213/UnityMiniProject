@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform[] movePoints;
+
+    public UnityEvent<MonsterFSMController> spawnEvent;
+    public UnityAction<MonsterFSMController> deathMonsterAction;
     private Vector2[] moveDirections;
 
     public MonsterSpawnSystem monsterSpawnSystem;
@@ -119,6 +124,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
         var enemyController = monster.GetComponent<MonsterFSMController>();
         enemyController.OnSpawn(this);
+        spawnEvent?.Invoke(enemyController);
+        enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 
         ++currentSpawnCount;
@@ -161,5 +168,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             moveDirections[i] = moveDirection.normalized;
             ++startPointIndex;
         }
+    }
+
+    public void SetMonsterDeathAction(UnityAction<MonsterFSMController> onDeathMonster)
+    {
+        deathMonsterAction = onDeathMonster;
     }
 }

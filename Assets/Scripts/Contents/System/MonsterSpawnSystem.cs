@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class MonsterSpawnSystem : MonoBehaviour
 {
-    [SerializeField]
-    public List<MonsterSpawner> monsterSpawnerList;
+    [SerializeField] public List<MonsterSpawner> monsterSpawnerList;
 
-    [SerializeField]
-    public List<MonsterSpawnInfo> spawnDataByLevelList;
+    [SerializeField] public List<MonsterSpawnInfo> spawnDataByLevelList;
+    [SerializeField] private MonsterManager monsterManager;
 
     [SerializeField] private bool useAutoStart = false;
 
@@ -20,6 +19,12 @@ public class MonsterSpawnSystem : MonoBehaviour
     private void Start()
     {
         // GameController.Instance.SetCurrentWave(currentWaveLevel);
+
+        foreach (var spawner in monsterSpawnerList)
+        {
+            spawner.spawnEvent.AddListener(monsterManager.OnAddMonster);
+            spawner.SetMonsterDeathAction(monsterManager.OnDeathMonster);
+        }
 
         if (useAutoStart)
         {

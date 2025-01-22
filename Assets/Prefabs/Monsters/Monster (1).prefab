@@ -503,8 +503,8 @@ MonoBehaviour:
   - {fileID: 9004148123338886051}
   - {fileID: 9004148122923463615}
   - {fileID: 9004148123724671367}
-  hitEffectColor: {r: 1, g: 0, b: 0, a: 0.54901963}
-  hitEffectTime: 0.1
+  hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
+  hitEffectTime: 0.3
 --- !u!114 &7046968231521444347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  stunColor: {r: 1, g: 1, b: 1, a: 0.50980395}
+  stunColor: {r: 1, g: 0.9128059, b: 0, a: 1}
 --- !u!58 &2291690917921404166
 CircleCollider2D:
   m_ObjectHideFlags: 0
