@@ -49,12 +49,9 @@ public class DamagedObject : MonoBehaviour
         for (int i = 0; i < count; ++i)
         {
             hitObject = hitColliders[i].gameObject;
-            var test1 = (1 << hitObject.layer) & hitLayerMasks;
-            Debug.Log(test1);
-            bool test = ((1 << hitObject.layer) & hitLayerMasks) != 0;
-            Debug.Log(test);
-            //if (((1 << hitObject.layer) & hitLayerMasks) == 0 || hitObjectList.Contains(hitObject))
-            //    continue;
+
+            if (((1 << hitObject.layer) & hitLayerMasks) == 0 || hitObjectList.Contains(hitObject))
+                continue;
 
             var damageable = hitObject.GetComponent<IDamageable>();
             
@@ -65,9 +62,9 @@ public class DamagedObject : MonoBehaviour
             DamageInfo damageInfo = new DamageInfo();
             damageInfo.damage = attackData.Damage;
             damageInfo.debuffType = attackData.DebuffType;
-            damageInfo.debuffType = attackData.DebuffType;
+            damageInfo.debuffTime = attackData.DebuffTime;
 
-            hitObject.GetComponent<IDamageable>().OnDamage(ref damageInfo);
+            damageable.OnDamage(ref damageInfo);
             hitEvent?.Invoke();
         }
 
