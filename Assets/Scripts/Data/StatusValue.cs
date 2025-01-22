@@ -64,6 +64,7 @@ public class StatusValue
     public void SetValue(float _value)
     {
         this.value = System.Math.Max(_value, maxValue);
+        this.maxValue = System.Math.Max(_value, maxValue);
     }
 
     public StatusValue(StatType statusInfoType, float value = 0f, float maxValue = 0f, float minValue = 0f)

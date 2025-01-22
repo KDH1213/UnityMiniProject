@@ -20,6 +20,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
 
     private WaveData waveData;
+    private MonsterData monsterData;
 
     private Coroutine spawnCoroutine;
 
@@ -44,6 +45,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     {
         waveData = monsterSpawnInfo;
         spawnTime = waveData.SpawnInterval;
+        monsterData = DataTableManager.MonsterDataTable.Get(waveData.MonsterID);
+        monsterPrefab = monsterData.PrefabObject;
     }
 
     public virtual void StartSpawn()
@@ -138,6 +141,11 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         var enemyController = monster.GetComponent<MonsterFSMController>();
         enemyController.OnSpawn(this);
         spawnEvent?.Invoke(enemyController);
+
+        var monsterStatus = monster.GetComponent<MonsterStatus>();
+        monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
+        monsterStatus.CurrentValueTable[StatType.HP].SetValue(monsterData.Hp);
+
         enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 

@@ -27,14 +27,6 @@ public static class ItemTableIds
     };
 }
 
-public static class MonsterTableIds
-{
-    public static readonly string[] String =
-    {
-        "MonsterTable",
-    };
-}
-
 public static class WaveDataTableIds
 {
     public static readonly string[] String =
@@ -42,7 +34,13 @@ public static class WaveDataTableIds
         "WaveTable",
     };
 }
-
+public static class MonsterDataTableIds
+{
+    public static readonly string[] String =
+    {
+        "MonsterTable",
+    };
+}
 public static class CoinDrawTableIds
 {
     public static readonly string[] String =

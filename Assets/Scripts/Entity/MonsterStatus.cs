@@ -7,6 +7,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 {
     [SerializedDictionary, SerializeField]
     private SerializedDictionary<StatType, StatusValue> currentValues = new SerializedDictionary<StatType, StatusValue>();
+    public SerializedDictionary<StatType, StatusValue> CurrentValueTable { get {  return currentValues; } }
 
     [SerializeField] private MonsterProfile monsterProfile;
     [SerializeField] private MonsterFSMController monsterFSMController;

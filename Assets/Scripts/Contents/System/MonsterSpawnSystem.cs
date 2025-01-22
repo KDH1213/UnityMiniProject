@@ -54,10 +54,8 @@ public class MonsterSpawnSystem : MonoBehaviour
         {
             spawner.SetMonsterWaveData(waveDataList[currentWaveLevel]);
             spawner.StartSpawn();
-            ++activeSpawnerCount;
+            ++activeSpawnerCount; 
         }
-
-        currentWaveLevel = Unity.Mathematics.math.min(currentWaveLevel + 1, spawnDataByLevelList.Count - 1);
         // GameController.Instance.SetCurrentWave(currentWaveLevel);
     }
 

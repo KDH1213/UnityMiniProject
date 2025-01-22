@@ -43,6 +43,14 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+
+
+        foreach (var id in MonsterDataTableIds.String)
+        {
+            var table = new MonsterDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 #else
         var table = new StringTable();
         var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
@@ -88,7 +96,13 @@ public static class DataTableManager
             return Get<CoinDrawTable>(CoinDrawTableIds.String[0]);
         }
     }
-
+    public static MonsterDataTable MonsterDataTable
+    {
+        get
+        {
+            return Get<MonsterDataTable>(MonsterDataTableIds.String[0]);
+        }
+    }
     public static T Get<T>(string id) where T : DataTable
     {
         if(!tables.ContainsKey(id))
