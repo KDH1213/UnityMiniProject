@@ -7,6 +7,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform[] movePoints;
+    [SerializeField]
+    private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;
@@ -15,6 +17,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     public MonsterSpawnSystem monsterSpawnSystem;
 
     protected MonsterSpawnInfo monsterSpawnInfo;
+
+
+    private WaveData waveData;
 
     private Coroutine spawnCoroutine;
 
@@ -35,12 +40,20 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         spawnTime = this.monsterSpawnInfo.SpawnTime;
     }
 
+    public virtual void SetMonsterWaveData(WaveData monsterSpawnInfo)
+    {
+        waveData = monsterSpawnInfo;
+        spawnTime = waveData.SpawnInterval;
+    }
+
     public virtual void StartSpawn()
     {
-        if (monsterSpawnInfo.IsRepeat)
-            spawnCoroutine = StartCoroutine(StartSpawnRepeatCoroutine());
-        else
-            spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
+
+        spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
+        //if (monsterSpawnInfo.IsRepeat)
+        //    spawnCoroutine = StartCoroutine(StartSpawnRepeatCoroutine());
+        //else
+        //    spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
 
         isActive = true;
         enabled = true;
@@ -79,7 +92,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         currentSpawnCount = 0; 
         ISpawn();
 
-        while (currentSpawnCount < monsterSpawnInfo.SpawnCount)
+        while (currentSpawnCount < waveData.SpawnCount)
         {
             currentSpawnTime += Time.deltaTime;
 
@@ -119,7 +132,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
     public virtual void ISpawn()
     {
-        GameObject monster = Instantiate(monsterSpawnInfo.MonsterPrefab);
+        GameObject monster = Instantiate(monsterPrefab);
         monster.transform.position = startPoint.transform.position;
 
         var enemyController = monster.GetComponent<MonsterFSMController>();

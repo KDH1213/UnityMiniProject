@@ -4,23 +4,20 @@ using UnityEngine;
 public class WaveData
 {
     public string Id { get; set; }
-    public string PrefabId { get; set; }
+    public string MonsterID { get; set; }
 
     public int WaveLevel { get; set; }
-
-    public MonsterType MonsterType { get; set; }
 
     public int SpawnCount { get; set; }
     public float SpawnTime { get; set; }
 
-
-    public int ExtraGoldValue { get; set; }
-    public float MoveSpeed { get; set; }
-    public float HP { get; set; }
+    public float SpawnWaitTime { get; set; }
+    public float SpawnInterval { get; set; }
+    
 
     //public override string ToString()
     //{
-    //    return $"Type : {Type}\nName : {Name}\nDesc : {Desc}\nValue : {Value}\nCost : {Cost}\nIcon : {Icon}\n";
+    //    return $"Type : {Type}\nName : {Name}\nDesc : {Desc}\nVa9lue : {Value}\nCost : {Cost}\nIcon : {Icon}\n";
     //}
 
     public string StringName
@@ -43,6 +40,7 @@ public class WaveData
 public class WaveDataTable : DataTable
 {
     private List<WaveData> list = new List<WaveData>();
+    public List<WaveData> List { get { return list; } }
 
     public override void Load(string filename)
     {

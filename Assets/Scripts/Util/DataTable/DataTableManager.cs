@@ -36,6 +36,13 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+
+        foreach (var id in WaveDataTableIds.String)
+        {
+            var table = new WaveDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 #else
         var table = new StringTable();
         var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
