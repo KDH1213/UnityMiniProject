@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharactorController : MonoBehaviour
+public class CharactorFSM : FSMController<CharactorFSM>
 {
     // private OverlapCollider attackCollider;
 

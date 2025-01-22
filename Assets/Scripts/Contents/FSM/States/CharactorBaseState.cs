@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBaseState : BaseState<PlayerStateType>
+public class CharactorBaseState : BaseState<CharactorStateType>
 {
-    // protected PlayerFSM playerFSM;
-    // public PlayerFSM PlayerFSM { get { return playerFSM; } }
+    protected CharactorFSM charactorFSM;
+    public CharactorFSM CharactorFSM { get { return charactorFSM; } }
 
     protected virtual void Awake()
     {
-        // playerFSM = GetComponent<PlayerFSM>();
+        charactorFSM = GetComponent<CharactorFSM>();
     }
     public override void Enter()
     {
