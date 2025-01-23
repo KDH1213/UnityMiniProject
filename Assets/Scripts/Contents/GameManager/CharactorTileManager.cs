@@ -8,6 +8,8 @@ public class CharactorTileManager : MonoBehaviour
     private List<CharactorTileController> charactorTileObjects = new List<CharactorTileController>();
     public List<CharactorTileController> CharactorTileObjects { get { return charactorTileObjects; } }
 
+    private Dictionary<string, int> charactorCountTable = new Dictionary<string, int>();
+
     [SerializeField] private int maxCharactorTileCount = 3;
     private int useCharactorTileCount = 0;
 
@@ -39,6 +41,13 @@ public class CharactorTileManager : MonoBehaviour
                 && tile.CharactorID == createCharactor.CharactorData.Id && tile.CharactorCount < maxCharactorTileCount))
             {
                 tile.AddCharactor(createCharactor);
+
+                var charactorID = createCharactor.CharactorData.Id;
+                if (charactorCountTable.ContainsKey(charactorID))
+                    ++charactorCountTable[charactorID];
+                else
+                    charactorCountTable.Add(charactorID, 1);
+
                 ++useCharactorTileCount;
                 break;
             }
