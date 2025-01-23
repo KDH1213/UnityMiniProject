@@ -10,6 +10,7 @@ public class MonsterSpawnSystem : MonoBehaviour
 
     [SerializeField] public List<MonsterSpawnInfo> spawnDataByLevelList;
     [SerializeField] private MonsterManager monsterManager;
+    [field: SerializeField] public GameController GameController { get; private set; }
 
     [SerializeField] private bool useAutoStart = false;
 

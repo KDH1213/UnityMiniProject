@@ -7,8 +7,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform[] movePoints;
-    [SerializeField]
-    private GameObject monsterPrefab;
+    [SerializeField] private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;
@@ -17,10 +16,11 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     public MonsterSpawnSystem monsterSpawnSystem;
 
     protected MonsterSpawnInfo monsterSpawnInfo;
+    public GameController GameController { get; private set; }
 
 
     private WaveData waveData;
-    private MonsterData monsterData;
+    [SerializeField] private MonsterData monsterData;
 
     private Coroutine spawnCoroutine;
 
@@ -35,6 +35,12 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     {
         CreateMoveDirection();
     }
+
+    private void Start()
+    {
+        GameController = monsterSpawnSystem.GameController;
+    }
+
     public virtual void SetMonsterSpawnInfo(MonsterSpawnInfo monsterSpawnInfo)
     {
         this.monsterSpawnInfo = monsterSpawnInfo;
@@ -145,8 +151,12 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         var monsterStatus = monster.GetComponent<MonsterStatus>();
         monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
         monsterStatus.CurrentValueTable[StatType.HP].SetValue(monsterData.Hp);
+        int monsterCoinQty = monsterData.CoinQty;
+        int jewelQty = monsterData.JewelQty;
 
-        enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
+        monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
+        monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.AddCoin(monsterCoinQty); if(jewelQty != 0) GameController.AddJewel(jewelQty); });
+        // enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 
         ++currentSpawnCount;

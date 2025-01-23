@@ -1026,9 +1026,9 @@ MonoBehaviour:
   characterPrefabs: {fileID: 3003128997139978558, guid: fbe686667d8db424d8539e8033daaf11, type: 3}
   monsterManager: {fileID: 1558926975}
   spawnSystem: {fileID: 340588165}
-  createMoney: 40
-  currentMoney: 500
   maxWave: 80
+  createCoin: 20
+  currentCoin: 500
   maxMonsterCount: 80
   changeMonsterEvnet:
     m_PersistentCalls:
@@ -1440,6 +1440,7 @@ MonoBehaviour:
   spawnDataByLevelList:
   - {fileID: 11400000, guid: ba71d0d942075fc45ba73ae6fa2ea86a, type: 2}
   monsterManager: {fileID: 1558926975}
+  <GameController>k__BackingField: {fileID: 213184030}
   useAutoStart: 1
 --- !u!4 &340588166
 Transform:
@@ -3456,7 +3457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2995144878401815616, guid: db768c7be306b8f4fbae9b1152ba73a0, type: 3}
       propertyPath: attackData.<Damage>k__BackingField
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7919080240681997631, guid: db768c7be306b8f4fbae9b1152ba73a0, type: 3}
       propertyPath: m_Name
@@ -4201,6 +4202,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   monsterSpawnSystem: {fileID: 340588165}
+  monsterData:
+    <Id>k__BackingField: 
+    <MonsterPrefabId>k__BackingField: 
+    <MonsterType>k__BackingField: 0
+    <MoveSpeed>k__BackingField: 0
+    <Hp>k__BackingField: 0
+    <CoinQty>k__BackingField: 0
+    <JewelQty>k__BackingField: 0
+    PrefabObject: {fileID: 0}
 --- !u!1 &1122914076
 GameObject:
   m_ObjectHideFlags: 0

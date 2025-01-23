@@ -10,7 +10,8 @@ public class MonsterData
     [field: SerializeField] public MonsterType MonsterType { get; set; }
     [field: SerializeField] public float MoveSpeed { get; set; }
     [field: SerializeField] public float Hp { get; set; }
-    [field: SerializeField] public float MonsterItemQty { get; set; }
+    [field: SerializeField] public int CoinQty { get; set; }
+    [field: SerializeField] public int JewelQty { get; set; }
 
     public GameObject PrefabObject;
     //public override string ToString()

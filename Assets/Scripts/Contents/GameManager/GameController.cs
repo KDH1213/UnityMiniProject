@@ -9,9 +9,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private CharactorFSM characterPrefabs;
     [SerializeField] private MonsterManager monsterManager;
     [SerializeField] private MonsterSpawnSystem spawnSystem;
-    [SerializeField] private int createMoney = 20;
-    [SerializeField] private int currentMoney = 500;
     [SerializeField] private int maxWave = 80;
+
+    [SerializeField] private int createCoin = 20;
+    [SerializeField] private int currentCoin = 500;
+    private int currentJewel = 0;
 
     private int                     currentWave = 0;
     [SerializeField] private int maxMonsterCount;
@@ -43,28 +45,33 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        moneyText.text = currentMoney.ToString();
+        moneyText.text = currentCoin.ToString();
         monsterText.text = string.Format(monsterCountFomat, currentMonsterCount, maxMonsterCount);
     }
 
-    public void AddMoney(int money)
+    public void AddCoin(int coin)
     {
-        currentMoney += money;
-        moneyText.text = currentMoney.ToString();
-        moneyChangeEvent.Invoke(currentMoney);
+        currentCoin += coin;
+        moneyText.text = currentCoin.ToString();
+        moneyChangeEvent.Invoke(currentCoin);
+    }
+
+    public void AddJewel(int jewel)
+    {
+        currentJewel += jewel;
     }
 
     public void OnCreateCharactor()
     {
-        if(createMoney > currentMoney || charactorTileManager.IsCreateCharactor())
+        if(createCoin > currentCoin || charactorTileManager.IsCreateCharactor())
         {
             createFailEvenet?.Invoke();
             return;
         }
 
-        currentMoney -= createMoney;
-        moneyText.text = currentMoney.ToString();
-        createMoney += 2;
+        currentCoin -= createCoin;
+        moneyText.text = currentCoin.ToString();
+        createCoin += 2;
 
         var createCharactor = Instantiate(characterPrefabs);
         charactorTileManager.CreateCharactor(createCharactor);
