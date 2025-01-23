@@ -33,4 +33,14 @@ public class OverlapCollider : MonoBehaviour
     {
         return Physics2D.OverlapBoxNonAlloc(transform.position, scale, 0f, hitColliders);
     }
+
+    public int StartOverlapCircle(Vector2 position, float radin, LayerMask layerMask)
+    {
+        return Physics2D.OverlapCircleNonAlloc(position, radin, hitColliders, layerMask);
+    }
+
+    public int StartOverlapBox(Vector2 position, Vector2 scale, LayerMask layerMask)
+    {
+        return Physics2D.OverlapBoxNonAlloc(position, scale, 0f, hitColliders, layerMask);
+    }
 }

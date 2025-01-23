@@ -57,15 +57,10 @@ public static class Varibalbes
 public static class Tags
 {
     public static readonly string Player = "Player";
+    public static readonly string OverlapCollider = "OverlapCollider";
 }
 
 public static class SortingLayer
 {
     public static readonly string Defalyle = "Default";
-}
-
-public static class Layers
-{
-    public static readonly string Default = "Default";
-    public static readonly string Ui = "Ui";
 }
