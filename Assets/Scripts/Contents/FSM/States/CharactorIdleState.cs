@@ -9,8 +9,6 @@ public class CharactorIdleState : CharactorBaseState
 
     private bool isAttack = true;
 
-    private float reloadTime = 0f;
-
     protected override void Awake()
     {
         base.Awake();
@@ -52,7 +50,7 @@ public class CharactorIdleState : CharactorBaseState
     private IEnumerator CoAttackReload()
     {
         isAttack = false;
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(CharactorFSM.CharactorProfile.AttackSpeed);
         isAttack = true;
     }
 

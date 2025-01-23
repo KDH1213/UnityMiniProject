@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3321067870981193761}
   - component: {fileID: 1726627634544680443}
   - component: {fileID: 3003128997139978558}
+  - component: {fileID: 2728541537493807711}
+  - component: {fileID: 7792984319600947407}
+  - component: {fileID: 1530696369558786754}
   m_Layer: 6
   m_Name: TestCharactor
   m_TagString: Untagged
@@ -97,8 +100,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912bc7cb9b552464f9c9d873a6286918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactorProfile: {fileID: 11400000, guid: 23721d512eff65c4a9dc52b260f65d0c, type: 2}
+  currentStateType: 0
+  previousStateType: 0
+  stateTable:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 2728541537493807711}
+    - Key: 1
+      Value: {fileID: 7792984319600947407}
+    - Key: 2
+      Value: {fileID: 1530696369558786754}
+  <Animator>k__BackingField: {fileID: 0}
+  <CharactorProfile>k__BackingField: {fileID: 11400000, guid: 23721d512eff65c4a9dc52b260f65d0c, type: 2}
+--- !u!114 &2728541537493807711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860372612678021130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a44bda87234d544b1e084e4bb54b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteFixedUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hitLayerMasks:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &7792984319600947407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860372612678021130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ec0a772c472c343a82cdac40885f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteFixedUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  movePoint: {x: 0, y: 0}
+--- !u!114 &1530696369558786754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860372612678021130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44fdf35c3678f14e8c750336e3b60e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  excuteFixedUpdateStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   attackInfoData: {fileID: 11400000, guid: 3123f6c9edd397247bfb3f923d598067, type: 2}
   attackType: 0
-  currentPosition: {x: 0, y: 0}
-  targetColliderSize: 10

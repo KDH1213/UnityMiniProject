@@ -23,22 +23,25 @@ public class DamagedObject : MonoBehaviour
     private void Start()
     {
         StartAttack();
+
+        if(autoDestory)
+            Destroy(gameObject, time);
     }
 
-    private void Update()
-    {
-        currentTime += Time.deltaTime;
+    //private void Update()
+    //{
+    //    currentTime += Time.deltaTime;
 
-        if (currentTime >= time)
-        {
-            StartAttack();
-            currentTime = 0f;
-        }
-    }
+    //    if (currentTime >= time)
+    //    {
+    //        StartAttack();
+    //        currentTime = 0f;
+    //    }
+    //}
 
     protected virtual void AttackHit()
     {
-        int count = overlapCollider.StartOverlapCircle(attackData.AttackRange);
+        int count = overlapCollider.StartOverlapCircle(attackData.AttackRange * 0.5f);
 
         if (count == 0)
             return;
@@ -95,5 +98,9 @@ public class DamagedObject : MonoBehaviour
     protected virtual void OnDestroy()
     {
         destoryEvent?.Invoke();
+    }
+
+    private void OnDrawGizmos()
+    {
     }
 }
