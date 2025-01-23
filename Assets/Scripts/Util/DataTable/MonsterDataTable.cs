@@ -23,7 +23,7 @@ public class MonsterData
 public class MonsterDataTable : DataTable
 {
     private Dictionary<string, MonsterData> monsterTable = new Dictionary<string, MonsterData>();
-    private readonly string assetPath = "Assets/Prefabs/Monsters/{0}.prefab";
+    private readonly string assetPath = "Prefabs/Monsters/{0}";
 
     public override void Load(string filename)
     {
@@ -40,7 +40,7 @@ public class MonsterDataTable : DataTable
             //    continue;
 
 
-            item.PrefabObject = (GameObject)(AssetDatabase.LoadAssetAtPath(string.Format(assetPath, item.MonsterPrefabId), typeof(GameObject)));
+            item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.MonsterPrefabId), typeof(GameObject)));
             //var monsterStatus = item.PrefabObject.GetComponent<MonsterStatus>();
             //monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(item.MoveSpeed);
             //monsterStatus.CurrentValueTable[StatType.HP].SetValue(item.Hp);
