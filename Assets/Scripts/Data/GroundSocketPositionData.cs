@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "GroundSocketPosition", menuName = "GHH/System/GroundSocketPosition", order = 0)]
 public class GroundSocketPositionData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [field: SerializeField] public List<List<Vector3>> OffsetList {  get; private set; }
 }
