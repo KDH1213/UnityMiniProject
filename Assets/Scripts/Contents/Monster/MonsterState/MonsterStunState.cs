@@ -61,6 +61,8 @@ public class MonsterStunState : MonsterBaseState
         {
             sprite.color = originalColor;
         }
-        MonsterFSM.ChangeState(MonsterStateType.Move);
+
+        if(MonsterFSM.CurrentStateType != MonsterStateType.Death)
+            MonsterFSM.ChangeState(MonsterStateType.Move);
     }
 }

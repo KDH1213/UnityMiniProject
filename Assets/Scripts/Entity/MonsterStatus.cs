@@ -40,6 +40,9 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     public bool OnDamage(ref DamageInfo inoutDamageInfo)
     {
+        if (IsDead)
+            return false;
+
         var damage = DamageCalculate(ref inoutDamageInfo);
 
         if (damage == 0f)

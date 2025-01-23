@@ -10,15 +10,15 @@ public class DamagedObject : MonoBehaviour
     [SerializeField] protected UnityEvent startHitEvent;
     [SerializeField] protected UnityEvent destoryEvent;
     [SerializeField] protected List<GameObject> hitObjectList;
-    [SerializeField] private bool autoDestory;
+    [SerializeField] protected bool autoDestory;
     [SerializeField] protected LayerMask hitLayerMasks;
 
     // private AttackInfoData AttackInfoData;
 
-    [SerializeField] private AttackData attackData = new AttackData();
+    [SerializeField] protected AttackData attackData = new AttackData();
 
-    [SerializeField] private float time = 0.5f;
-    private float currentTime = 0f;
+    [SerializeField] protected float time = 0.5f;
+    protected float currentTime = 0f;
 
     private void Start()
     {

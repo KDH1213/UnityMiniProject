@@ -49,6 +49,20 @@ public static class CoinDrawTableIds
     };
 }
 
+public static class CharactorTableIds
+{
+    public static readonly string[] String =
+    {
+        "CharactorTable",
+    };
+}
+public static class AttackTableIds
+{
+    public static readonly string[] String =
+    {
+        "AttackTable",
+    };
+}
 public static class Varibalbes
 {
     public static Languages currentLanguage = Languages.Korea;

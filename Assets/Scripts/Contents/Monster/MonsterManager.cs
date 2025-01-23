@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class MonsterManager : MonoBehaviour
 {
+    [SerializeField]
     private List<MonsterFSMController> currentMonsterList = new List<MonsterFSMController>();
+
+    [SerializeField]
     private List<MonsterFSMController> startDeathMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> deathMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> destroyMonsterList = new List<MonsterFSMController>();

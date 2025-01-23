@@ -29,7 +29,7 @@ public class CharactorIdleState : CharactorBaseState
     {
         if(isAttack)
         {
-            int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorProfile.AttackRange, hitLayerMasks);
+            int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange, hitLayerMasks);
             if (count > 0)
             {
                 var hitTarget = OverlapCollider.HitColliders;
@@ -50,7 +50,7 @@ public class CharactorIdleState : CharactorBaseState
     private IEnumerator CoAttackReload()
     {
         isAttack = false;
-        yield return new WaitForSeconds(CharactorFSM.CharactorProfile.AttackSpeed);
+        yield return new WaitForSeconds(CharactorFSM.CharactorData.AttackSpeed);
         isAttack = true;
     }
 

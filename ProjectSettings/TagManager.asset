@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - OverlapCollider
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Charactor
     uniqueID: 3505681033
+    locked: 0
+  - name: AttackBox
+    uniqueID: 3273992939
     locked: 0
   - name: InGameUI
     uniqueID: 1696955619

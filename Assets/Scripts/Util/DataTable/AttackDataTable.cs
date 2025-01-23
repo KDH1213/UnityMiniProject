@@ -6,12 +6,13 @@ public class AttackData
 {
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeField] public AttackType AttackType { get; set; }
-    [field: SerializeField] public DebuffType DebuffType { get; set; }
     [field: SerializeField] public float Damage { get; set; }
     [field: SerializeField] public float AttackRange { get; set; }
+    [field: SerializeField] public DebuffType DebuffType { get; set; }
     [field: SerializeField] public float DebuffTime { get; set; }
     [field: SerializeField] public string VFXId { get; set; }
 
+    public GameObject PrefabObject;
     //public override string ToString()
     //{
     //    return $"Type : {Type}\nName : {Name}\nDesc : {Desc}\nValue : {Value}\nCost : {Cost}\nIcon : {Icon}\n";
@@ -22,6 +23,7 @@ public class AttackData
 public class AttackDataTable : DataTable
 {
     private Dictionary<string, AttackData> attackTable = new Dictionary<string, AttackData>();
+    private readonly string assetPath = "Prefabs/TempPrefab/{0}";
 
     public override void Load(string filename)
     {
@@ -33,6 +35,10 @@ public class AttackDataTable : DataTable
 
         foreach (var item in list)
         {
+            item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.Id), typeof(GameObject)));
+            if (item.PrefabObject == null)
+                continue;
+
             if (!attackTable.ContainsKey(item.Id))
                 attackTable.Add(item.Id, item);
             else

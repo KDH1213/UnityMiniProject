@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharactorAttackState : CharactorBaseState
 {
-    [SerializeField] private AttackInfoData attackInfoData;
     [SerializeField] private AttackType attackType;
 
     private Collider2D attackTarget;
@@ -24,7 +23,9 @@ public class CharactorAttackState : CharactorBaseState
         //GetMovePoint();
         //charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
 
+     
         OnStartAttack();
+
         CharactorFSM.ChangeState(CharactorStateType.Idle);
     }
 
@@ -44,7 +45,22 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnStartAttack()
     {
-        var createObject = Instantiate(attackInfoData.AttackObjectPrefab);
-        createObject.transform.position = attackTarget.transform.position + attackInfoData.CreateOffsetPos;
+        if (CharactorFSM.AttackData.AttackType == AttackType.Single)
+        {
+            var target = attackTarget.GetComponent<IDamageable>();
+            var attackInfo = CharactorFSM.AttackData;
+
+            var damageInfo = new DamageInfo();
+            damageInfo.damage = attackInfo.Damage;
+            damageInfo.debuffType = attackInfo.DebuffType;
+            damageInfo.debuffTime = attackInfo.DebuffTime;
+            target.OnDamage(ref damageInfo);
+        }
+        else
+        {
+            var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
+            createObject.transform.position = attackTarget.transform.position;
+        }
+
     }
 }

@@ -27,7 +27,9 @@ public class LocalizationText : MonoBehaviour
             OnChangeLanguage(Varibalbes.currentLanguage);
         else
         {
+#if UNITY_EDITOR
             OnChangeLanguage(editorLanguage);
+#endif
         }
     }
 

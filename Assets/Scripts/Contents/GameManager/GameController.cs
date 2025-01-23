@@ -73,8 +73,8 @@ public class GameController : MonoBehaviour
         moneyText.text = currentCoin.ToString();
         createCoin += 2;
 
-        var createCharactor = Instantiate(characterPrefabs);
-        charactorTileManager.CreateCharactor(createCharactor);
+        var createCharactor = Instantiate(OnRandomCreateCharactor());
+        charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
     }
 
     public void SetCurrentWave(int wave)
@@ -112,5 +112,34 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    private GameObject OnRandomCreateCharactor()
+    {
+        var drawData = DataTableManager.CoinDrawTable.Get(0);
+        float randomRange = drawData.Normal + drawData.Rare + drawData.Epic;
+        float randomPos = Random.Range(0, randomRange);
+
+        randomPos -= drawData.Normal;
+        if(randomPos < 0)
+        {
+            var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.N);
+
+            return charactorData.PrefabObject;
+        }
+        else
+        {
+            randomPos -= drawData.Rare;
+            if (randomPos < 0)
+            {
+                var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.A);
+                return charactorData.PrefabObject;
+            }
+            else
+            {
+                var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.S);
+                return charactorData.PrefabObject;
+            }
+        }
     }
 }

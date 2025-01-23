@@ -44,6 +44,50 @@ public static class DataTableManager
             tables.Add(id, table);
         }
 
+        foreach (var id in MonsterDataTableIds.String)
+        {
+            var table = new MonsterDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
+        foreach (var id in AttackTableIds.String)
+        {
+            var table = new AttackDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+        foreach (var id in CharactorTableIds.String)
+        {
+            var table = new CharactorDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+#else
+        //var table = new StringTable();
+        //var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
+        //table.Load(stringTableId);
+        //tables.Add(stringTableId, table);
+
+        //  foreach (var id in ItemTableIds.String)
+        //{
+        //    var table = new ItemTable();
+        //    table.Load(id);
+        //    tables.Add(id, table);
+        //}
+          foreach (var id in CoinDrawTableIds.String)
+        {
+            var table = new CoinDrawTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
+        foreach (var id in WaveDataTableIds.String)
+        {
+            var table = new WaveDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 
         foreach (var id in MonsterDataTableIds.String)
         {
@@ -51,15 +95,17 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
-#else
-        var table = new StringTable();
-        var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
-        table.Load(stringTableId);
-        tables.Add(stringTableId, table);
 
-          foreach (var id in ItemTableIds.String)
+        foreach (var id in AttackTableIds.String)
         {
-            var table = new ItemTable();
+            var table = new AttackDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
+        foreach (var id in CharactorTableIds.String)
+        {
+            var table = new CharactorDataTable();
             table.Load(id);
             tables.Add(id, table);
         }
@@ -101,6 +147,24 @@ public static class DataTableManager
         get
         {
             return Get<MonsterDataTable>(MonsterDataTableIds.String[0]);
+        }
+    }
+
+
+    public static AttackDataTable AttackDataTable
+    {
+        get
+        {
+            return Get<AttackDataTable>(AttackTableIds.String[0]);
+        }
+    }
+
+
+    public static CharactorDataTable CharactorDataTable
+    {
+        get
+        {
+            return Get<CharactorDataTable>(CharactorTableIds.String[0]);
         }
     }
     public static T Get<T>(string id) where T : DataTable
