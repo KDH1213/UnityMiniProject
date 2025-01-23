@@ -8,6 +8,7 @@ public class CharactorTileManager : MonoBehaviour
     private List<CharactorTileController> charactorTileObjects = new List<CharactorTileController>();
     public List<CharactorTileController> CharactorTileObjects { get { return charactorTileObjects; } }
 
+    [SerializeField] private int maxCharactorTileCount = 3;
     private int useCharactorTileCount = 0;
 
     private void Awake()
@@ -34,7 +35,8 @@ public class CharactorTileManager : MonoBehaviour
     {
         foreach (var tile in charactorTileObjects)
         {
-            if(tile.CharactorCount == 0)
+            if(tile.CharactorCount == 0 || (tile.CharactorClassType == CharactorClassType.N 
+                && tile.CharactorID == createCharactor.CharactorData.Id && tile.CharactorCount < maxCharactorTileCount))
             {
                 tile.AddCharactor(createCharactor);
                 ++useCharactorTileCount;
