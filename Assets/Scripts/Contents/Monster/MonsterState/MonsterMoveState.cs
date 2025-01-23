@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MonsterMoveState : MonsterBaseState
+public class MonsterMoveState : MonsterBaseState, IRouteMove
 {
     [SerializeField] private Vector2 movePoint;
 
@@ -13,6 +13,11 @@ public class MonsterMoveState : MonsterBaseState
     private Vector2 currentPosition;
     private float moveSpeed;
     private int moveIndex = 0;
+
+    public Vector2 MovePoint { get { return movePoint; } }
+    public Vector2 CurrentPosition { get { return currentPosition; } }
+    public Vector2 MoveDirection { get { return moveDirection; } }
+    public int MoveIndex { get { return moveIndex; } }
 
     protected override void Awake()
     {
