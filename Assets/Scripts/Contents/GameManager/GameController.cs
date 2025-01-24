@@ -129,30 +129,30 @@ public class GameController : MonoBehaviour
 
     private GameObject OnRandomCreateCharactor()
     {
-        var drawData = DataTableManager.CoinDrawTable.Get(0);
-        float randomRange = drawData.Normal + drawData.Rare + drawData.Epic;
-        float randomPos = Random.Range(0, randomRange);
+        var coinDrawList = DataTableManager.CoinDrawTable.Get(0).CoinDrawList;
 
-        randomPos -= drawData.Normal;
-        if(randomPos < 0)
+        int count = coinDrawList.Count;
+        float randomRange = 0f;
+
+        foreach (var coinDraw in coinDrawList)
         {
-            var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.N);
-
-            return charactorData.PrefabObject;
+            randomRange += coinDraw;
         }
-        else
+
+        float randomPos = Random.value * randomRange;
+
+        for (int i = 0; i < count; ++i)
         {
-            randomPos -= drawData.Rare;
-            if (randomPos < 0)
+            if (randomPos < coinDrawList[i])
             {
-                var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.A);
-                return charactorData.PrefabObject;
+                return DataTableManager.CharactorDataTable.GetRandom((CharactorClassType)i).PrefabObject;
             }
             else
             {
-                var charactorData = DataTableManager.CharactorDataTable.GetRandom(CharactorClassType.S);
-                return charactorData.PrefabObject;
+                randomPos -= coinDrawList[i];
             }
         }
+
+        return DataTableManager.CharactorDataTable.GetRandom((CharactorClassType)(count - 1)).PrefabObject;
     }
 }
