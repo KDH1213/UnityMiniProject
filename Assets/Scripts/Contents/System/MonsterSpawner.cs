@@ -5,9 +5,12 @@ using UnityEngine.Events;
 
 public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
-    [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform[] movePoints;
-    [SerializeField] private GameObject monsterPrefab;
+    [SerializeField]
+    private Transform startPoint;
+    [SerializeField]
+    private Transform[] movePoints;
+    [SerializeField] 
+    private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;

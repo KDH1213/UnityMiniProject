@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharactorMoveState : CharactorBaseState
 {
-    [SerializeField] private Vector2 movePoint;
+    [SerializeField] 
+    private Vector2 movePoint;
 
     private Vector2 startPoint;
     private float currentMoveTime;

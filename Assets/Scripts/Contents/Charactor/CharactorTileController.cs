@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class CharactorTileController : MonoBehaviour
 {
-    [SerializeField] private int charactorCount = 0;
-    [SerializeField] private int maxCharactorCount = 3;
+    [SerializeField] 
+    private int charactorCount = 0;
+    [SerializeField] 
+    private int maxCharactorCount = 3;
 
-    [SerializeField] private List<CharactorFSM> characterControllers;
-    [SerializeField] private GroundSocketPositionData positionData;
+    [SerializeField] 
+    private List<CharactorFSM> characterControllers;
+    [SerializeField] 
+    private GroundSocketPositionData positionData;
     
     public CharactorClassType CharactorClassType { get; private set; }
     public string CharactorID { get; private set; } = string.Empty;

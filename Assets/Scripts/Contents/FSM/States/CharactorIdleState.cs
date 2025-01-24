@@ -5,7 +5,9 @@ using UnityEngine;
 public class CharactorIdleState : CharactorBaseState
 {
     private OverlapCollider OverlapCollider;
-    [SerializeField] protected LayerMask hitLayerMasks;
+
+    [SerializeField] 
+    protected LayerMask hitLayerMasks;
 
     private bool isAttack = true;
 

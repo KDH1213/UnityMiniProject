@@ -10,7 +10,10 @@ public class CharactorTileManager : MonoBehaviour
 
     private Dictionary<string, int> charactorCountTable = new Dictionary<string, int>();
 
-    [SerializeField] private int maxCharactorTileCount = 3;
+    [SerializeField]
+    private int totalCharactorCount = 20;
+    [SerializeField]
+    private int maxCharactorTileCount = 3;
     private int useCharactorTileCount = 0;
 
     private void Awake()
@@ -56,6 +59,6 @@ public class CharactorTileManager : MonoBehaviour
 
     public bool IsCreateCharactor()
     {
-        return useCharactorTileCount == CharactorTileObjects.Count;
+        return useCharactorTileCount == totalCharactorCount;
     }
 }

@@ -5,37 +5,51 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private CharactorTileManager charactorTileManager;
-    [SerializeField] private CharactorFSM characterPrefabs;
-    [SerializeField] private MonsterManager monsterManager;
-    [SerializeField] private MonsterSpawnSystem spawnSystem;
+    [SerializeField]
+    private CharactorTileManager charactorTileManager;
+    [SerializeField]
+    private CharactorFSM characterPrefabs;
+    [SerializeField]
+    private MonsterManager monsterManager;
+    [SerializeField]
+    private MonsterSpawnSystem spawnSystem;
 
-    [SerializeField] private int createCoin = 20;
-    [SerializeField] private int currentCoin = 500;
+    [SerializeField]
+    private int createCoin = 20;
+    [SerializeField]
+    private int currentCoin = 500;
     private int currentJewel = 0;
 
-    private int                     currentWave = 0;
-    [SerializeField] private int maxMonsterCount;
-    private int                     currentMonsterCount = 0;
+    [SerializeField]
+    private int maxMonsterCount;
 
-    public UnityEvent<int>      changeMonsterEvnet;
-    public UnityEvent<int>      moneyChangeEvent;
-    public UnityEvent           gameClearEvent;
-    public UnityEvent           gameoverEvent;
-    public UnityEvent           createFailEvenet;
+    private int currentWave = 0;
+    private int currentMonsterCount = 0;
+
+    public UnityEvent<int> changeMonsterEvnet;
+    public UnityEvent<int> moneyChangeEvent;
+    public UnityEvent gameClearEvent;
+    public UnityEvent gameoverEvent;
+    public UnityEvent createFailEvenet;
 
     #region UI Object
-    [SerializeField] private TextMeshProUGUI moneyText;
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private TextMeshProUGUI monsterText;
+    [SerializeField] 
+    private TextMeshProUGUI moneyText;
+    [SerializeField] 
+    private TextMeshProUGUI waveText;
+    [SerializeField] 
+    private TextMeshProUGUI monsterText;
 
     private readonly string waveFomat = "Wave {0}/{1}";
     private readonly string monsterCountFomat = "{0}/{1}";
     #endregion
 
 
-    [SerializeField] private GameObject gameoverObject;
-    [SerializeField] private GameObject clearObject;
+    [SerializeField] 
+    private GameObject gameoverObject;
+
+    [SerializeField] 
+    private GameObject clearObject;
 
     private void Awake()
     {

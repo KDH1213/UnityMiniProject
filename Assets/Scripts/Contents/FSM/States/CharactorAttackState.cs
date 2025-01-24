@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharactorAttackState : CharactorBaseState
 {
-    [SerializeField] private AttackType attackType;
+    [SerializeField] 
+    private AttackType attackType;
 
     private Collider2D attackTarget;
 
