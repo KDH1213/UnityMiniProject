@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class MonsterSpawnSystem : MonoBehaviour
 {
-    [SerializeField] public List<MonsterSpawner> monsterSpawnerList;
+    [SerializeField] 
+    public List<MonsterSpawner> monsterSpawnerList;
 
     private List<WaveData> waveDataList = new List<WaveData>();
 
-    [SerializeField] public List<MonsterSpawnInfo> spawnDataByLevelList;
-    [SerializeField] private MonsterManager monsterManager;
-    [field: SerializeField] public GameController GameController { get; private set; }
+    [SerializeField] 
+    public List<MonsterSpawnInfo> spawnDataByLevelList;
+    [SerializeField] 
+    private MonsterManager monsterManager;
+    [field: SerializeField] 
+    public GameController GameController { get; private set; }
 
-    [SerializeField] private bool useAutoStart = false;
+    [SerializeField] 
+    private bool useAutoStart = false;
 
     private int currentWaveLevel = 0;
     private bool isActive = false;

@@ -5,19 +5,32 @@ using UnityEngine.Events;
 
 public class DamagedObject : MonoBehaviour
 {
-    [SerializeField] protected OverlapCollider overlapCollider;
-    [SerializeField] protected UnityEvent hitEvent;
-    [SerializeField] protected UnityEvent startHitEvent;
-    [SerializeField] protected UnityEvent destoryEvent;
-    [SerializeField] protected List<GameObject> hitObjectList;
-    [SerializeField] protected bool autoDestory;
-    [SerializeField] protected LayerMask hitLayerMasks;
+    [SerializeField] 
+    protected OverlapCollider overlapCollider;
+
+    [SerializeField] 
+    protected UnityEvent hitEvent;
+    [SerializeField] 
+    protected UnityEvent startHitEvent;
+    [SerializeField] 
+    protected UnityEvent destoryEvent;
+
+    [SerializeField] 
+    protected List<GameObject> hitObjectList;
+
+    [SerializeField] 
+    protected LayerMask hitLayerMasks;
+
+    [SerializeField] 
+    protected bool autoDestory;
 
     // private AttackInfoData AttackInfoData;
 
-    [SerializeField] protected AttackData attackData = new AttackData();
+    [SerializeField] 
+    protected AttackData attackData = new AttackData();
 
-    [SerializeField] protected float time = 0.5f;
+    [SerializeField] 
+    protected float time = 0.5f;
     protected float currentTime = 0f;
 
     protected virtual void Start()

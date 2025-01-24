@@ -7,6 +7,8 @@ public class CoinDrawData
     public float Rare { get; set; }
     public float Epic { get; set; }
 
+    private List<float> coinDrawList = new List<float>();
+    public List<float> CoinDrawList { get { return coinDrawList; } }
 
     //public override string ToString()
     //{
@@ -33,6 +35,12 @@ public class CoinDrawTable : DataTable
             if (item == null)
             {
                 Debug.LogError($"Key Duplicated");
+            }
+            else
+            {
+                item.CoinDrawList.Add(item.Normal);
+                item.CoinDrawList.Add(item.Rare);
+                item.CoinDrawList.Add(item.Epic);
             }
         }
     }
