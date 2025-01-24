@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2371766649573061528}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8637345, g: 0, b: 0.93333334, a: 0.3137255}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.3137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,8 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2371766649573061528}
-  - component: {fileID: 2995144878401815616}
-  - component: {fileID: 4330639343436061944}
+  - component: {fileID: -836849594748682069}
   m_Layer: 0
   m_Name: TestSingAttackBox
   m_TagString: Untagged
@@ -118,7 +117,7 @@ Transform:
   - {fileID: 5125623447956589419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2995144878401815616
+--- !u!114 &-836849594748682069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,10 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7919080240681997631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20eeb631cf50aa0409119981493e0429, type: 3}
+  m_Script: {fileID: 11500000, guid: 975b84bacf9e6f042b44982db99d6d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlapCollider: {fileID: 4330639343436061944}
+  overlapCollider: {fileID: 0}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -144,32 +143,14 @@ MonoBehaviour:
   autoDestory: 1
   hitLayerMasks:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   attackData:
     <Id>k__BackingField: 
-    <AttackType>k__BackingField: 1
-    <Damage>k__BackingField: 10
-    <AttackRange>k__BackingField: 3
+    <AttackType>k__BackingField: 0
+    <Damage>k__BackingField: 0
+    <AttackRange>k__BackingField: 0
     <DebuffType>k__BackingField: 0
-    <DebuffTime>k__BackingField: 1
+    <DebuffTime>k__BackingField: 0
     <VFXId>k__BackingField: 
     PrefabObject: {fileID: 0}
-  time: 0.5
---- !u!114 &4330639343436061944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7919080240681997631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b8a83424b015c4a83f3c5f9bd2fb13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderCount: 20
-  hitColliders: []
-  hitLayerMasks:
-    serializedVersion: 2
-    m_Bits: 128
-  overlapType: 0
+  time: 0.2

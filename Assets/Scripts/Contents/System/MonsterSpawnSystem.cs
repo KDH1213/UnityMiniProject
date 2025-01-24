@@ -57,7 +57,7 @@ public class MonsterSpawnSystem : MonoBehaviour
             spawner.StartSpawn();
             ++activeSpawnerCount; 
         }
-        // GameController.Instance.SetCurrentWave(currentWaveLevel);
+        GameController.SetCurrentWave(currentWaveLevel + 1, waveDataList.Count);
     }
 
     public void StopSpawn()
@@ -87,5 +87,14 @@ public class MonsterSpawnSystem : MonoBehaviour
             StartSpawn();
             yield return new WaitForSeconds(waveDataList[currentWaveLevel++].SpawnTime);
         }
+        StartCoroutine(CoRestert());
+        GameController.GameClear();
+    }
+
+    // TODO :: 테스트 용 씬 전환 임시 추가
+    private IEnumerator CoRestert()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        GameController.OnRestart();
     }
 }

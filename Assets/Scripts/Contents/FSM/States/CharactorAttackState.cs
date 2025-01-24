@@ -56,11 +56,8 @@ public class CharactorAttackState : CharactorBaseState
             damageInfo.debuffTime = attackInfo.DebuffTime;
             target.OnDamage(ref damageInfo);
         }
-        else
-        {
-            var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
-            createObject.transform.position = attackTarget.transform.position;
-        }
 
+        var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
+        createObject.transform.position = attackTarget.transform.position;
     }
 }

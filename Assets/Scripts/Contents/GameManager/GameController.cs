@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private CharactorFSM characterPrefabs;
     [SerializeField] private MonsterManager monsterManager;
     [SerializeField] private MonsterSpawnSystem spawnSystem;
-    [SerializeField] private int maxWave = 80;
 
     [SerializeField] private int createCoin = 20;
     [SerializeField] private int currentCoin = 500;
@@ -30,7 +29,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI monsterText;
 
-    private readonly string waveFomat = "{0}/{1}";
+    private readonly string waveFomat = "Wave {0}/{1}";
     private readonly string monsterCountFomat = "{0}/{1}";
     #endregion
 
@@ -77,9 +76,9 @@ public class GameController : MonoBehaviour
         charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
     }
 
-    public void SetCurrentWave(int wave)
+    public void SetCurrentWave(int wave, int maxWave)
     {
-        // waveText.text = string.Format(waveFomat, wave, maxWave);
+        waveText.text = string.Format(waveFomat, wave, maxWave);
     }
 
     public void OnChangeMonsterCount(int count)
@@ -93,7 +92,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void GameClear()
+    public void GameClear()
     {
         Time.timeScale = 0f;
 

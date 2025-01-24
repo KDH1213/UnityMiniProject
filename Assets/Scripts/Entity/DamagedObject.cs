@@ -20,7 +20,7 @@ public class DamagedObject : MonoBehaviour
     [SerializeField] protected float time = 0.5f;
     protected float currentTime = 0f;
 
-    private void Start()
+    protected virtual void Start()
     {
         StartAttack();
 
