@@ -26,6 +26,11 @@ public class MonsterManager : MonoBehaviour
         destroyMonsterList.Capacity = 20;
     }
 
+    private void Start()
+    {
+        changeMonsterCount?.Invoke(0);
+    }
+
     public void OnAddMonster(MonsterFSMController monsterFSMController)
     {
         if (currentMonsterList.Contains(monsterFSMController))

@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MonsterSpawnSystem : MonoBehaviour
 {
-    [SerializeField] 
-    public List<MonsterSpawner> monsterSpawnerList;
-
-    private List<WaveData> waveDataList = new List<WaveData>();
-
-    [SerializeField] 
-    public List<MonsterSpawnInfo> spawnDataByLevelList;
-    [SerializeField] 
+    [SerializeField]
     private MonsterManager monsterManager;
-    [field: SerializeField] 
+    [field: SerializeField]
     public GameController GameController { get; private set; }
+
+    [SerializeField] 
+    private List<MonsterSpawner> monsterSpawnerList;
+    private List<WaveData> waveDataList = new List<WaveData>();
 
     [SerializeField] 
     private bool useAutoStart = false;
 
-    private int currentWaveLevel = 0;
-    private bool isActive = false;
+    public UnityEvent<int, int> changeWaveEvent;
+    public UnityEvent<float> changeWaveTimeEvent;
 
     private int activeSpawnerCount;
+    private int currentWaveLevel = 0;
+
+    private bool isActive = false;
 
     private Coroutine coSpawn;
 
@@ -33,7 +34,7 @@ public class MonsterSpawnSystem : MonoBehaviour
 
     private void Start()
     {
-        // GameController.Instance.SetCurrentWave(currentWaveLevel);
+        changeWaveEvent?.Invoke(currentWaveLevel, waveDataList.Count);
 
         foreach (var spawner in monsterSpawnerList)
         {
@@ -62,7 +63,7 @@ public class MonsterSpawnSystem : MonoBehaviour
             spawner.StartSpawn();
             ++activeSpawnerCount; 
         }
-        GameController.SetCurrentWave(currentWaveLevel + 1, waveDataList.Count);
+        changeWaveEvent?.Invoke(currentWaveLevel + 1, waveDataList.Count);
     }
 
     public void StopSpawn()
@@ -86,11 +87,27 @@ public class MonsterSpawnSystem : MonoBehaviour
     private IEnumerator CoStartSpawn()
     {
         int maxWave = waveDataList.Count;
+        float currentTime = 0f;
         while (currentWaveLevel < maxWave)
         {
-            yield return new WaitForSeconds(waveDataList[currentWaveLevel].SpawnWaitTime);
+            currentTime = waveDataList[currentWaveLevel].SpawnWaitTime;
+            while (currentTime > 0f)
+            {
+                yield return new WaitForEndOfFrame();
+                currentTime -= Time.deltaTime;
+                changeWaveTimeEvent?.Invoke(currentTime);
+
+            }
+
             StartSpawn();
-            yield return new WaitForSeconds(waveDataList[currentWaveLevel++].SpawnTime);
+
+            currentTime += waveDataList[currentWaveLevel++].SpawnTime;
+            while (currentTime > 0f)
+            {
+                yield return new WaitForEndOfFrame();
+                currentTime -= Time.deltaTime;
+                changeWaveTimeEvent?.Invoke(currentTime);
+            }
         }
         StartCoroutine(CoRestert());
         GameController.GameClear();

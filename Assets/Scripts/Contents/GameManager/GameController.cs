@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -8,11 +7,11 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private CharactorTileManager charactorTileManager;
     [SerializeField]
-    private CharactorFSM characterPrefabs;
-    [SerializeField]
     private MonsterManager monsterManager;
     [SerializeField]
     private MonsterSpawnSystem spawnSystem;
+    [SerializeField] 
+    private InGameUiController inGameUiController;
 
     [SerializeField]
     private int createCoin = 20;
@@ -26,47 +25,38 @@ public class GameController : MonoBehaviour
     private int currentWave = 0;
     private int currentMonsterCount = 0;
 
-    public UnityEvent<int> changeMonsterEvnet;
-    public UnityEvent<int> moneyChangeEvent;
+    public UnityEvent<int, int> changeMonsterEvnet;
+    public UnityEvent<int> coinChangeEvent;
+    public UnityEvent<int> changeCreateCoinValueEvnet;
     public UnityEvent gameClearEvent;
     public UnityEvent gameoverEvent;
     public UnityEvent createFailEvenet;
 
-    #region UI Object
-    [SerializeField] 
-    private TextMeshProUGUI moneyText;
-    [SerializeField] 
-    private TextMeshProUGUI waveText;
-    [SerializeField] 
-    private TextMeshProUGUI monsterText;
 
-    private readonly string waveFomat = "Wave {0}/{1}";
-    private readonly string monsterCountFomat = "{0}/{1}";
-    #endregion
-
-
+    // TODO :: 임시 게임 종료, 클리어 오브젝트 추가, UI, 보상 시스템 기획서 나올시 수정
     [SerializeField] 
     private GameObject gameoverObject;
-
     [SerializeField] 
     private GameObject clearObject;
 
     private void Awake()
     {
+        spawnSystem.changeWaveEvent.AddListener(inGameUiController.OnChangeWave);
+        spawnSystem.changeWaveTimeEvent.AddListener(inGameUiController.OnChangeWaveTime);
+
+        changeMonsterEvnet.AddListener(inGameUiController.OnChangeMonsterCount);
         monsterManager.changeMonsterCount.AddListener(OnChangeMonsterCount);
     }
 
     private void Start()
     {
-        moneyText.text = currentCoin.ToString();
-        monsterText.text = string.Format(monsterCountFomat, currentMonsterCount, maxMonsterCount);
+        coinChangeEvent.Invoke(currentCoin);
     }
 
     public void AddCoin(int coin)
     {
         currentCoin += coin;
-        moneyText.text = currentCoin.ToString();
-        moneyChangeEvent.Invoke(currentCoin);
+        coinChangeEvent.Invoke(currentCoin);
     }
 
     public void AddJewel(int jewel)
@@ -83,24 +73,20 @@ public class GameController : MonoBehaviour
         }
 
         currentCoin -= createCoin;
-        moneyText.text = currentCoin.ToString();
         createCoin += 2;
+        coinChangeEvent?.Invoke(currentCoin);
+        changeCreateCoinValueEvnet?.Invoke(createCoin);
 
         var createCharactor = Instantiate(OnRandomCreateCharactor());
         charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
     }
 
-    public void SetCurrentWave(int wave, int maxWave)
-    {
-        waveText.text = string.Format(waveFomat, wave, maxWave);
-    }
-
     public void OnChangeMonsterCount(int count)
     {
         currentMonsterCount = count;
-        monsterText.text = string.Format(monsterCountFomat, currentMonsterCount, maxMonsterCount);
+        changeMonsterEvnet?.Invoke(currentMonsterCount, maxMonsterCount);
 
-        if(currentMonsterCount == maxMonsterCount)
+        if (currentMonsterCount == maxMonsterCount)
         {
             GameOver();
         }

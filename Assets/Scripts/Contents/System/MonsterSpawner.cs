@@ -6,26 +6,21 @@ using UnityEngine.Events;
 public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField]
+    private MonsterSpawnSystem monsterSpawnSystem;
+
+    [SerializeField]
     private Transform startPoint;
     [SerializeField]
     private Transform[] movePoints;
-    [SerializeField] 
+
     private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;
     private Vector2[] moveDirections;
 
-    public MonsterSpawnSystem monsterSpawnSystem;
-
-    protected MonsterSpawnInfo monsterSpawnInfo;
     public GameController GameController { get; private set; }
 
-
-    private WaveData waveData;
-    [SerializeField] private MonsterData monsterData;
-
-    private Coroutine spawnCoroutine;
 
     protected float spawnTime;
     protected float currentSpawnTime = 0f;
@@ -33,6 +28,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
     protected bool isActive = false;
     protected bool isRepeat = true;
+
+    private WaveData waveData;
+    private MonsterData monsterData;
+    private Coroutine spawnCoroutine;
 
     private void Awake()
     {
@@ -42,12 +41,6 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     private void Start()
     {
         GameController = monsterSpawnSystem.GameController;
-    }
-
-    public virtual void SetMonsterSpawnInfo(MonsterSpawnInfo monsterSpawnInfo)
-    {
-        this.monsterSpawnInfo = monsterSpawnInfo;
-        spawnTime = this.monsterSpawnInfo.SpawnTime;
     }
 
     public virtual void SetMonsterWaveData(WaveData monsterSpawnInfo)
@@ -92,12 +85,6 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             spawnCoroutine = null;
         }
     }
-
-    public virtual void SetSpwanTime(float time)
-    {
-        spawnTime = time;
-    }
-
 
     private IEnumerator StartSpawnCoroutine()
     {

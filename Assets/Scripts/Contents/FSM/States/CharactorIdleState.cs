@@ -68,7 +68,8 @@ public class CharactorIdleState : CharactorBaseState
             {
                 if (routeMove.MoveDirection.x == 0f)
                 {
-                    if (Mathf.Abs(routeMove.CurrentPosition.y) < Mathf.Abs(routeMove.CurrentPosition.y))
+                    if((routeMove.MoveDirection.y > 0f && routeMove.CurrentPosition.y < routeMove.CurrentPosition.y)
+                        || routeMove.MoveDirection.y < 0f && routeMove.CurrentPosition.y > routeMove.CurrentPosition.y)
                     {
                         routeMove = target;
                         targetIndex = i;
@@ -76,7 +77,8 @@ public class CharactorIdleState : CharactorBaseState
                 }
                 else
                 {
-                    if (Mathf.Abs(routeMove.CurrentPosition.x) < Mathf.Abs(routeMove.CurrentPosition.x))
+                    if ((routeMove.MoveDirection.x > 0f && routeMove.CurrentPosition.x < routeMove.CurrentPosition.x)
+                          || routeMove.MoveDirection.x < 0f && routeMove.CurrentPosition.x > routeMove.CurrentPosition.x)
                     {
                         routeMove = target;
                         targetIndex = i;
