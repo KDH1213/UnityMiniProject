@@ -20,6 +20,8 @@ public class InGameUiController : MonoBehaviour
     private TextMeshProUGUI monsterText;
     [SerializeField]
     private TextMeshProUGUI waveTimeText;
+    [SerializeField]
+    private TextMeshProUGUI charactorCountText;
 
     public UnityEvent createFailEvenet;
 
@@ -37,6 +39,7 @@ public class InGameUiController : MonoBehaviour
     {
         gameController.coinChangeEvent.AddListener(OnChangeCoinCount);
         gameController.changeCreateCoinValueEvnet.AddListener(OnChangeCreateCoinValue);
+        gameController.jowelChangeEvent.AddListener(OnChangeJowel);
     }
 
     public void OnChangeCoinCount(int coin)
@@ -65,5 +68,15 @@ public class InGameUiController : MonoBehaviour
             currentTime = (int)time;
             waveTimeText.text = string.Format(nextWaveTime, currentTime);
         }
+    }
+
+    public void OnChangeJowel(int jowel)
+    {
+        waveText.text =  string.Format(jowelFomat, jowel);
+    }
+
+    public void OnChangeCharactorCount(int count, int maxCount)
+    {
+        charactorCountText.text =  string.Format(charactorCountFomat, count, maxCount);
     }
 }

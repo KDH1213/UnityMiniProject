@@ -145,7 +145,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         int jewelQty = monsterData.JewelQty;
 
         monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
-        monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.AddCoin(monsterCoinQty); if(jewelQty != 0) GameController.AddJewel(jewelQty); });
+        monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.OnAddCoin(monsterCoinQty); if(jewelQty != 0) GameController.OnAddJowel(jewelQty); });
         // enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 

@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     private int createCoin = 20;
     [SerializeField]
     private int currentCoin = 500;
-    private int currentJewel = 0;
+    private int currentJowel = 0;
 
     [SerializeField]
     private int maxMonsterCount;
@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public UnityEvent<int, int> changeMonsterEvnet;
     public UnityEvent<int> coinChangeEvent;
     public UnityEvent<int> changeCreateCoinValueEvnet;
+    public UnityEvent<int> jowelChangeEvent;
     public UnityEvent gameClearEvent;
     public UnityEvent gameoverEvent;
     public UnityEvent createFailEvenet;
@@ -44,29 +45,34 @@ public class GameController : MonoBehaviour
         spawnSystem.changeWaveEvent.AddListener(inGameUiController.OnChangeWave);
         spawnSystem.changeWaveTimeEvent.AddListener(inGameUiController.OnChangeWaveTime);
 
+        charactorTileManager.changeCharatorCountEvent.AddListener(inGameUiController.OnChangeCharactorCount);
         changeMonsterEvnet.AddListener(inGameUiController.OnChangeMonsterCount);
         monsterManager.changeMonsterCount.AddListener(OnChangeMonsterCount);
     }
 
     private void Start()
     {
-        coinChangeEvent.Invoke(currentCoin);
+        coinChangeEvent?.Invoke(currentCoin);
+        jowelChangeEvent?.Invoke(currentJowel);
+        changeCreateCoinValueEvnet?.Invoke(createCoin);
     }
 
-    public void AddCoin(int coin)
+    public void OnAddCoin(int coin)
     {
         currentCoin += coin;
-        coinChangeEvent.Invoke(currentCoin);
+        coinChangeEvent?.Invoke(currentCoin);
     }
 
-    public void AddJewel(int jewel)
+    public void OnAddJowel(int jowel)
     {
-        currentJewel += jewel;
+        currentJowel += jowel;
+        jowelChangeEvent?.Invoke(currentJowel);
     }
 
+    // TODO :: 에디터 상 캐릭터 생성 버튼과 이벤트 연결
     public void OnCreateCharactor()
     {
-        if(createCoin > currentCoin || charactorTileManager.IsCreateCharactor())
+        if(createCoin > currentCoin || !charactorTileManager.IsCreateCharactor())
         {
             createFailEvenet?.Invoke();
             return;
@@ -78,7 +84,7 @@ public class GameController : MonoBehaviour
         changeCreateCoinValueEvnet?.Invoke(createCoin);
 
         var createCharactor = Instantiate(OnRandomCreateCharactor());
-        charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+        charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());        
     }
 
     public void OnChangeMonsterCount(int count)

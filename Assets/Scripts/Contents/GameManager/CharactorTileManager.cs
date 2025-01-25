@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharactorTileManager : MonoBehaviour
 {
@@ -11,14 +12,28 @@ public class CharactorTileManager : MonoBehaviour
     private Dictionary<string, int> charactorCountTable = new Dictionary<string, int>();
 
     [SerializeField]
-    private int totalCharactorCount = 20;
+    private readonly int maxCharactorCount = 20;
+
     [SerializeField]
-    private int maxCharactorTileCount = 3;
+    private readonly int maxCharactorTileCount = 3;
+
+    [SerializeField]
+    private int tileControllerCount;
     private int useCharactorTileCount = 0;
+    private int totalCharactorCount = 0;
+
+    public UnityEvent<int, int> changeCharatorCountEvent;
+
 
     private void Awake()
     {
         StartSortcharactorTiles();
+        tileControllerCount = charactorTileObjects.Count;
+    }
+
+    private void Start()
+    {
+        changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
     }
 
     public void StartSortcharactorTiles()
@@ -49,9 +64,15 @@ public class CharactorTileManager : MonoBehaviour
                 if (charactorCountTable.ContainsKey(charactorID))
                     ++charactorCountTable[charactorID];
                 else
+                {
                     charactorCountTable.Add(charactorID, 1);
+                    ++useCharactorTileCount;
+                }
 
-                ++useCharactorTileCount;
+                ++totalCharactorCount;
+
+                // if (tile.CharactorCount == 0)
+                changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
                 break;
             }
         }
@@ -59,6 +80,6 @@ public class CharactorTileManager : MonoBehaviour
 
     public bool IsCreateCharactor()
     {
-        return useCharactorTileCount == totalCharactorCount;
+        return (totalCharactorCount < maxCharactorCount && useCharactorTileCount < tileControllerCount);
     }
 }
