@@ -53,7 +53,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
-        // hpbar.fillAmount = currentHp / Hp;
 
         hitEvent?.Invoke();
 
@@ -61,11 +60,11 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         {
             IsDead = true;
             inoutDamageInfo.targetDeath = IsDead;
-            // GameController.Instance.AddMoney(enemyProfile.Money);
             deathEvent?.Invoke();
             // Destroy(gameObject);
         }
-        else if (inoutDamageInfo.debuffType != DebuffType.None)
+        else if (inoutDamageInfo.debuffType != DebuffType.None 
+            && (inoutDamageInfo.debuffProbability >= 100f || (Random.value * 100f) <= inoutDamageInfo.debuffProbability))
         {
             debuffEvent?.Invoke(inoutDamageInfo.debuffTime);
         }

@@ -10,6 +10,7 @@ public class AttackData
     [field: SerializeField] public float AttackRange { get; set; }
     [field: SerializeField] public DebuffType DebuffType { get; set; }
     [field: SerializeField] public float DebuffTime { get; set; }
+    [field: SerializeField] public float DebuffProbability { get; set; }
     [field: SerializeField] public string VFXId { get; set; }
 
     public GameObject PrefabObject;
@@ -38,6 +39,8 @@ public class AttackDataTable : DataTable
             item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.Id), typeof(GameObject)));
             if (item.PrefabObject == null)
                 continue;
+
+            item.PrefabObject.GetComponent<DamagedObject>().SetAttackData(item);
 
             if (!attackTable.ContainsKey(item.Id))
                 attackTable.Add(item.Id, item);

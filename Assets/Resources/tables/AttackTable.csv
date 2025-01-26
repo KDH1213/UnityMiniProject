@@ -1,4 +1,4 @@
-﻿Id,AttackType,Damage,AttackRange,DebuffType,DebuffTime,VFXId
-TestAttackBox,Multiple,20,3,None,0,None
-StunTestAttackBox,Multiple,10,4,Stun,0.5,None
-TestSingAttackBox,Single,50,4,None,0,None
+﻿Id,AttackType,Damage,AttackRange,DebuffType,DebuffTime,DebuffProbability,VFXId
+TestAttackBox,Multiple,20,3,None,0,0,None
+StunTestAttackBox,Multiple,10,4,Stun,0.5,30,None
+TestSingAttackBox,Single,50,4,None,0,0,None

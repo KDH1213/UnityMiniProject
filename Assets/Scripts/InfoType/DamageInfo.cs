@@ -15,4 +15,5 @@ public struct DamageInfo
     // public KnockbackData    knockbackData;
     public DebuffType       debuffType;
     public float            debuffTime;
+    public float            debuffProbability;
 }

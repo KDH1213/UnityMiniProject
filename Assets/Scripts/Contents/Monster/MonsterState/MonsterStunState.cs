@@ -9,6 +9,8 @@ public class MonsterStunState : MonsterBaseState
     private float stunTime;
     private Coroutine stunCoroutine;
 
+    private float currentStunTime = 0f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -41,6 +43,9 @@ public class MonsterStunState : MonsterBaseState
 
     public void SetStunTime(float time)
     {
+        if (currentStunTime > time)
+            return;
+
         stunTime = time;
         MonsterFSM.ChangeState(MonsterStateType.Stun);
     }
@@ -55,7 +60,13 @@ public class MonsterStunState : MonsterBaseState
             sprite.color = stunColor;
         }
 
-        yield return new WaitForSeconds(stunTime);
+        currentStunTime = stunTime;
+
+        while (currentStunTime > 0f)
+        {
+            yield return new WaitForEndOfFrame();
+            currentStunTime -= Time.deltaTime;
+        }
 
         foreach (var sprite in spriteRenderers)
         {

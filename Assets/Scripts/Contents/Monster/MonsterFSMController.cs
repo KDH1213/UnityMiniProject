@@ -4,17 +4,24 @@ using UnityEngine.Events;
 
 public class MonsterFSMController : FSMController<MonsterStateType>
 {
-    [SerializeField] protected Animator animator;
-    public Animator Animator {  get { return animator; } }
+    [SerializeField]
+    protected Animator animator;
+    public Animator Animator { get { return animator; } }
 
-    [SerializeField] private MonsterStatus monsterStatus;
+    [SerializeField]
+    private MonsterStatus monsterStatus;
 
     private MonsterSpawner monsterSpawner;
     public MonsterSpawner MonsterSpawner { get { return monsterSpawner; } }
-    [SerializeField] private SpriteRenderer[] spriteRenderers;
+
+    [SerializeField] 
+    private SpriteRenderer[] spriteRenderers;
     public SpriteRenderer[] SpriteRenderers { get { return spriteRenderers; } }
-    [SerializeField] private Color hitEffectColor;
-    [SerializeField] private float hitEffectTime;
+
+    [SerializeField] 
+    private Color hitEffectColor;
+    [SerializeField] 
+    private float hitEffectTime;
     private Coroutine hitEffectCoroutine;
 
     private bool isMove = false;

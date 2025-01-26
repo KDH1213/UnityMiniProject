@@ -20,7 +20,7 @@ public class SingleDamagedObject : DamagedObject
         DamageInfo damageInfo = new DamageInfo();
         damageInfo.damage = attackData.Damage;
         damageInfo.debuffType = attackData.DebuffType;
-        damageInfo.debuffTime = attackData.DebuffTime;
+        damageInfo.debuffProbability = attackData.DebuffProbability;
 
         damageable.OnDamage(ref damageInfo);
         hitEvent?.Invoke();

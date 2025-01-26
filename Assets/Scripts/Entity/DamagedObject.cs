@@ -79,6 +79,7 @@ public class DamagedObject : MonoBehaviour
             damageInfo.damage = attackData.Damage;
             damageInfo.debuffType = attackData.DebuffType;
             damageInfo.debuffTime = attackData.DebuffTime;
+            damageInfo.debuffProbability = attackData.DebuffProbability;
 
             damageable.OnDamage(ref damageInfo);
             hitEvent?.Invoke();
@@ -111,6 +112,11 @@ public class DamagedObject : MonoBehaviour
     protected virtual void OnDestroy()
     {
         destoryEvent?.Invoke();
+    }
+
+    public void SetAttackData(AttackData data)
+    {
+        attackData = data;
     }
 
     private void OnDrawGizmos()
