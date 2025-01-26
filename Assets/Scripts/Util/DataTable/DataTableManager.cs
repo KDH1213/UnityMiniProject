@@ -23,13 +23,6 @@ public static class DataTableManager
         //    tables.Add(id, table);
         //}
 
-        //foreach (var id in WaveDataTableIds.String)
-        //{
-        //    var table = new WaveDataTable();
-        //    table.Load(id);
-        //    tables.Add(id, table);
-        //}
-
         foreach (var id in CoinDrawTableIds.String)
         {
             var table = new CoinDrawTable();
