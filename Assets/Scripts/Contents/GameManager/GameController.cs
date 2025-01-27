@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
         coinChangeEvent?.Invoke(currentCoin);
     }
 
-    public void OnAddJowel(int jowel)
+    public void OnAddJewel(int jowel)
     {
         currentJowel += jowel;
         jowelChangeEvent?.Invoke(currentJowel);
@@ -159,18 +159,29 @@ public class GameController : MonoBehaviour
         charactorTileManager.OnSaleCharactor(charactorTileController);
         CharactorClassType type = charactorTileController.CharactorClassType;
 
-        switch (type)
+        var scaleData = DataTableManager.CharactorSaleTable.Get(type);
+
+        if(scaleData.CurrencyType == CurrencyType.Coin)
         {
-            case CharactorClassType.N:
-                // OnAddCoin()
-                break;
-            case CharactorClassType.A:
-                break;
-            case CharactorClassType.S:
-                break;
-            default:
-                break;
+            OnAddCoin(scaleData.CurrencyValue);
         }
+        else if (scaleData.CurrencyType == CurrencyType.Jewel)
+        {
+            OnAddJewel(scaleData.CurrencyValue);
+        }
+
+        //switch (type)
+        //{
+        //    case CharactorClassType.N:
+        //        OnAddCoin()
+        //        break;
+        //    case CharactorClassType.A:
+        //        break;
+        //    case CharactorClassType.S:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     public GameObject GetCreateSynthesisCharactor(CharactorClassType currentType)

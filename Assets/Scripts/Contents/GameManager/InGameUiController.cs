@@ -22,6 +22,8 @@ public class InGameUiController : MonoBehaviour
     private TextMeshProUGUI waveTimeText;
     [SerializeField]
     private TextMeshProUGUI charactorCountText;
+    [SerializeField]
+    private TextMeshProUGUI jewelText;
 
     public UnityEvent createFailEvenet;
 
@@ -72,7 +74,7 @@ public class InGameUiController : MonoBehaviour
 
     public void OnChangeJowel(int jowel)
     {
-        waveText.text =  string.Format(jowelFomat, jowel);
+        jewelText.text =  string.Format(jowelFomat, jowel);
     }
 
     public void OnChangeCharactorCount(int count, int maxCount)
