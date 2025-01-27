@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,5 +98,27 @@ public class CharactorTileController : MonoBehaviour
             Destroy(characterControllerList[--charactorCount].gameObject);
         }
         characterControllerList.RemoveRange(charactorCount, count);
+    }
+
+    public void OnChangeCharactorInfo(CharactorTileController endCharactorTileObject)
+    {
+        foreach (var characterController in characterControllerList)
+        {
+            var currentPos = characterController.transform.position - transform.position ;
+            ((CharactorMoveState)characterController.StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + currentPos);
+            characterController.ChangeState(CharactorStateType.Move);
+        }
+
+        foreach (var characterController in endCharactorTileObject.characterControllerList)
+        {
+            var currentPos = characterController.transform.position - endCharactorTileObject.transform.position;
+            ((CharactorMoveState)characterController.StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + currentPos);
+            characterController.ChangeState(CharactorStateType.Move);
+        }
+
+        (characterControllerList, endCharactorTileObject.characterControllerList) = (endCharactorTileObject.characterControllerList, characterControllerList);
+        (charactorCount, endCharactorTileObject.charactorCount) = (endCharactorTileObject.charactorCount, charactorCount);
+        (CharactorClassType, endCharactorTileObject.CharactorClassType) = (endCharactorTileObject.CharactorClassType, CharactorClassType);
+        (CharactorID, endCharactorTileObject.CharactorID) = (endCharactorTileObject.CharactorID, CharactorID);
     }
 }

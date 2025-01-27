@@ -9,7 +9,7 @@ public class CharactorMoveState : CharactorBaseState
 
     private Vector2 startPoint;
     private float currentMoveTime;
-    private float moveTime = 1f;
+    private float moveTime = 0.5f;
 
     protected override void Awake()
     {
@@ -34,7 +34,7 @@ public class CharactorMoveState : CharactorBaseState
 
     public override void Exit()
     {
-        charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
+        // charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
     }
 
     public void Move()

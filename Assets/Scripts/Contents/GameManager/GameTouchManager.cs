@@ -23,8 +23,12 @@ public class GameTouchManager : MonoBehaviour
 
     private PointerEventData pointerEventData = new PointerEventData(null);
     private CharactorTileController seleteCharactorTileObject;
+    private CharactorTileController endCharactorTileObject;
 
-    private bool isTargetIsUI = false;
+    private bool isDrag = false;
+
+    private float dragOnTime = 0.2f;
+    private float currentDrageTime = 0f;
 
     private void Awake()
     {
@@ -37,6 +41,48 @@ public class GameTouchManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             OnFindTarget();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            currentDrageTime += Time.deltaTime;
+
+            if (currentDrageTime >= dragOnTime)
+            {
+                OnStartDrag();
+            }
+        }
+
+        if(isDrag)
+        {
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
+            
+            if(target.transform != null)
+                endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
+            //endCharactorTileObject
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if(isDrag)
+            {
+                if(endCharactorTileObject == null || seleteCharactorTileObject == endCharactorTileObject)
+                {
+                    OnActiveInteractionUI();
+                }
+                else
+                {
+                    seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
+                    seleteCharactorTileObject = null;
+                    endCharactorTileObject = null;
+                }
+            }
+            else
+                OnActiveInteractionUI();
+
+            isDrag = false;
+            currentDrageTime = 0f;
         }
     }
 
@@ -52,7 +98,6 @@ public class GameTouchManager : MonoBehaviour
             }
         }
 
-
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var target = Physics2D.Raycast(mousePosition,transform.forward, 100f, targetLayerMask);
 
@@ -64,17 +109,49 @@ public class GameTouchManager : MonoBehaviour
         }
 
         seleteCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
-        if (seleteCharactorTileObject != null)
+   
+    }
+
+    private void OnSelete()
+    {
+        // 선택 했을 때 기준 
+        // 공격 범위 출력 X 
+        // 
+    }
+    private void OnStartDrag()
+    {
+        if (seleteCharactorTileObject == null)
+        {
+            return;
+        }
+
+        attackRangeObject.OnDisableObject();
+        charactorUIInteraction.gameObject.SetActive(false);
+        isDrag = true;
+    }
+
+    private void OnEndDrag()
+    {
+        if(isDrag)
         {
 
-            attackRangeObject.OnActiveObject(seleteCharactorTileObject);
-            charactorUIInteraction.gameObject.SetActive(attackRangeObject.gameObject.activeSelf);
+        }
+    }
 
-            if(charactorUIInteraction.gameObject.activeSelf)
-            {
-                charactorUIInteraction.SetInteractionTile(seleteCharactorTileObject);
-                charactorUIInteraction.transform.position = Camera.main.WorldToScreenPoint(attackRangeObject.transform.position);
-            }
+    private void OnActiveInteractionUI()
+    {
+        if (seleteCharactorTileObject == null)
+        {
+            return;
+        }
+
+        attackRangeObject.OnActiveObject(seleteCharactorTileObject);
+        charactorUIInteraction.gameObject.SetActive(attackRangeObject.gameObject.activeSelf);
+
+        if (charactorUIInteraction.gameObject.activeSelf)
+        {
+            charactorUIInteraction.SetInteractionTile(seleteCharactorTileObject);
+            charactorUIInteraction.transform.position = Camera.main.WorldToScreenPoint(attackRangeObject.transform.position);
         }
     }
 
@@ -86,7 +163,8 @@ public class GameTouchManager : MonoBehaviour
         if (seleteCharactorTileObject.CharactorCount == 0)
         {
             charactorUIInteraction.gameObject.SetActive(false);
-            attackRangeObject.gameObject.SetActive(false);
+            attackRangeObject.OnDisableObject();
+            seleteCharactorTileObject = null;
         }
     }
 
@@ -95,11 +173,8 @@ public class GameTouchManager : MonoBehaviour
         synthesisCharactorEvnet?.Invoke(seleteCharactorTileObject);
         seleteCharactorTileObject.OnSynthesisCharactor();
         attackRangeObject.OnDisableObject();
-        charactorUIInteraction.gameObject.SetActive(false);
-    }
 
-    public void OnTargetIsUI()
-    {
-        isTargetIsUI = true;
+        charactorUIInteraction.gameObject.SetActive(false);
+        seleteCharactorTileObject = null;
     }
 }
