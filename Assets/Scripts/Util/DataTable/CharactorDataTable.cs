@@ -73,7 +73,7 @@ public class CharactorDataTable : DataTable
             return charactorDatas[(int)type][index];       
     }
 
-    public CharactorData GetRandom(CharactorClassType type)
+    public CharactorData GetRandomDrawCharactor(CharactorClassType type)
     {
         int count = charactorDatas[(int)type].Count;
         return charactorDatas[(int)type][Random.Range(0, count)];

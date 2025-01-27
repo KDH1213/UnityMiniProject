@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
         monsterManager.changeMonsterCount.AddListener(OnChangeMonsterCount);
 
         gameTouchManager.saleCharactorEvnet.AddListener(OnSaleCharactor);
-        gameTouchManager.synthesisCharactorEvnet.AddListener(OnSynthesisCharactor);
 
         // gameTouchManager.
     }
@@ -144,7 +143,7 @@ public class GameController : MonoBehaviour
         {
             if (randomPos < coinDrawList[i])
             {
-                return DataTableManager.CharactorDataTable.GetRandom((CharactorClassType)i).PrefabObject;
+                return DataTableManager.CharactorDataTable.GetRandomDrawCharactor((CharactorClassType)i).PrefabObject;
             }
             else
             {
@@ -152,7 +151,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        return DataTableManager.CharactorDataTable.GetRandom((CharactorClassType)(count - 1)).PrefabObject;
+        return DataTableManager.CharactorDataTable.GetRandomDrawCharactor((CharactorClassType)(count - 1)).PrefabObject;
     }
 
     public void OnSaleCharactor(CharactorTileController charactorTileController)
@@ -174,8 +173,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void OnSynthesisCharactor(CharactorTileController synthesisCharactorTileObject)
+    public GameObject GetCreateSynthesisCharactor(CharactorClassType currentType)
     {
-        charactorTileManager.OnSynthesisCharactor(synthesisCharactorTileObject);
+        return Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor((currentType + 1)).PrefabObject);
     }
 }

@@ -1,29 +1,28 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharactorTileController : MonoBehaviour
 {
-    [SerializeField] 
-    private int charactorCount = 0;
+    [SerializeField]
+    private CharactorTileManager charactorTileManager;
 
-    [SerializeField] 
-    private List<CharactorFSM> characterControllers;
     [SerializeField] 
     private GroundSocketPositionData positionData;
     
     public CharactorClassType CharactorClassType { get; private set; }
     public string CharactorID { get; private set; } = string.Empty;
-    public List<CharactorFSM> CharacterControllers { get { return characterControllers; } }
 
+    private List<CharactorFSM> characterControllerList = new List<CharactorFSM>();
+    public List<CharactorFSM> CharacterControllers { get { return characterControllerList; } }
 
+    private int charactorCount = 0;
     public int CharactorCount { get { return charactorCount; } }
 
     public void AddCharactor(CharactorFSM characterController)
     {
         ResetPosition();
-        characterControllers.Add(characterController);
+        characterControllerList.Add(characterController);
         characterController.transform.position = transform.position;
 
         CharactorID = characterController.CharactorData.Id;
@@ -46,7 +45,7 @@ public class CharactorTileController : MonoBehaviour
 
         for (int i = 0; i < charactorCount; ++i)
         {
-            characterControllers[i].transform.position -= positionList[i];
+            characterControllerList[i].transform.position -= positionList[i];
         }
     }
 
@@ -59,7 +58,7 @@ public class CharactorTileController : MonoBehaviour
 
         for (int i = 0; i < charactorCount; ++i)
         {
-            characterControllers[i].transform.position += positionList[i];
+            characterControllerList[i].transform.position += positionList[i];
         }
     }
     
@@ -74,12 +73,29 @@ public class CharactorTileController : MonoBehaviour
             return;
 
         ResetPosition();
-        Destroy(characterControllers[--charactorCount].gameObject);
-        characterControllers.RemoveAt(charactorCount);
+        RemoveCharactor(1);
+        // Destroy(characterControllerList[--charactorCount].gameObject);
+        // characterControllerList.RemoveAt(charactorCount);
         ChangePosition();
     }
 
     public void OnSynthesisCharactor()
     {
+        if (charactorCount < positionData.NumberOfCharactersPerTile)
+            return;
+
+        charactorTileManager.OnSynthesisCharactor(this);
+    }
+
+    public void RemoveCharactor(int count)
+    {
+        if (count > charactorCount)
+            return;
+
+        for (int i = 0; i < count; ++i)
+        {
+            Destroy(characterControllerList[--charactorCount].gameObject);
+        }
+        characterControllerList.RemoveRange(charactorCount, count);
     }
 }
