@@ -24,9 +24,6 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     private float hitEffectTime;
     private Coroutine hitEffectCoroutine;
 
-    private bool isMove = false;
-    private bool isDestination = false;
-
     protected override void Awake()
     {
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));

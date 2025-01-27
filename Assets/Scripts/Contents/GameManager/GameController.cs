@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private int maxMonsterCount;
 
-    private int currentWave = 0;
     private int currentMonsterCount = 0;
 
     public UnityEvent<int, int> changeMonsterEvnet;
@@ -111,7 +110,7 @@ public class GameController : MonoBehaviour
         clearObject.SetActive(true);
         gameClearEvent?.Invoke();
     }
-    private void GameOver()
+    public void GameOver()
     {
         Time.timeScale = 0f;
 

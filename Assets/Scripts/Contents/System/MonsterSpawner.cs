@@ -134,9 +134,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         GameObject monster = Instantiate(monsterPrefab);
         monster.transform.position = startPoint.transform.position;
 
-        var enemyController = monster.GetComponent<MonsterFSMController>();
-        enemyController.OnSpawn(this);
-        spawnEvent?.Invoke(enemyController);
+        var monsterController = monster.GetComponent<MonsterFSMController>();
+        monsterController.OnSpawn(this);
+        spawnEvent?.Invoke(monsterController);
 
         var monsterStatus = monster.GetComponent<MonsterStatus>();
         monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
@@ -144,8 +144,16 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         int monsterCoinQty = monsterData.CoinQty;
         int jewelQty = monsterData.JewelQty;
 
-        monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
+        monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
         monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.OnAddCoin(monsterCoinQty); if(jewelQty != 0) GameController.OnAddJewel(jewelQty); });
+
+        if(monsterData.MonsterType == MonsterType.Boss)
+        {
+            monsterSpawnSystem.OnAddBossMonster();
+            monsterStatus.DeathEvent.AddListener(monsterSpawnSystem.OnDeathBossMonster);
+        }
+
+        
         // enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
         // enemyController.SetDestinationPoint(this, movePoints[0].position);
 

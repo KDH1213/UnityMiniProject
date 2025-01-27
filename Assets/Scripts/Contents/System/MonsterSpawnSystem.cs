@@ -19,10 +19,12 @@ public class MonsterSpawnSystem : MonoBehaviour
 
     public UnityEvent<int, int> changeWaveEvent;
     public UnityEvent<float> changeWaveTimeEvent;
+    public UnityEvent bossWaveEvnet;
 
     private int activeSpawnerCount;
     private int currentWaveLevel = 0;
 
+    private int bossMonsterCount = 0;
     private bool isActive = false;
 
     private Coroutine coSpawn;
@@ -52,9 +54,6 @@ public class MonsterSpawnSystem : MonoBehaviour
 
     public void StartSpawn()
     {
-        if (isActive)
-            return;
-
         isActive = true;
         activeSpawnerCount = 0;
         foreach (var spawner in monsterSpawnerList)
@@ -88,6 +87,7 @@ public class MonsterSpawnSystem : MonoBehaviour
     {
         int maxWave = waveDataList.Count;
         float currentTime = 0f;
+        bool isGameOver = false;
         while (currentWaveLevel < maxWave)
         {
             currentTime = waveDataList[currentWaveLevel].SpawnWaitTime;
@@ -97,6 +97,13 @@ public class MonsterSpawnSystem : MonoBehaviour
                 currentTime -= Time.deltaTime;
                 changeWaveTimeEvent?.Invoke(currentTime);
 
+            }
+
+            if(bossMonsterCount != 0)
+            {
+                GameController.GameOver();
+                isGameOver = true;
+                break;
             }
 
             StartSpawn();
@@ -110,7 +117,9 @@ public class MonsterSpawnSystem : MonoBehaviour
             }
         }
         StartCoroutine(CoRestert());
-        GameController.GameClear();
+
+        if(!isGameOver)
+            GameController.GameClear();
     }
 
     // TODO :: 테스트 용 씬 전환 임시 추가
@@ -118,5 +127,18 @@ public class MonsterSpawnSystem : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2f);
         GameController.OnRestart();
+    }
+
+    public void OnDeathBossMonster()
+    {
+        --bossMonsterCount;
+
+        if(bossMonsterCount < 0)
+            bossMonsterCount = 0;
+    }
+
+    public void OnAddBossMonster()
+    {
+        ++bossMonsterCount;
     }
 }
