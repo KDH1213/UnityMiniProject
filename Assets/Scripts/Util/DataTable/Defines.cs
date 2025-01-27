@@ -63,6 +63,14 @@ public static class AttackTableIds
         "AttackTable",
     };
 }
+public static class CharactorSaleTableIds
+{
+    public static readonly string[] String =
+    {
+        "CharactorSaleTable",
+    };
+}
+
 public static class Varibalbes
 {
     public static Languages currentLanguage = Languages.Korea;

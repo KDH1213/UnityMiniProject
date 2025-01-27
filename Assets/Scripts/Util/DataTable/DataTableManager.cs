@@ -56,6 +56,13 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+
+        foreach (var id in CharactorSaleTableIds.String)
+        {
+            var table = new CharactorSaleTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 #else
         //var table = new StringTable();
         //var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
@@ -160,6 +167,15 @@ public static class DataTableManager
             return Get<CharactorDataTable>(CharactorTableIds.String[0]);
         }
     }
+
+    public static CharactorSaleTable CharactorSaleTable
+    {
+        get
+        {
+            return Get<CharactorSaleTable>(CharactorSaleTableIds.String[0]);
+        }
+    }
+
     public static T Get<T>(string id) where T : DataTable
     {
         if(!tables.ContainsKey(id))

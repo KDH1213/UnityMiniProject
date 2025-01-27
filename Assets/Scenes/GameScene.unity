@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 105280470}
   - component: {fileID: 105280472}
   m_Layer: 5
-  m_Name: JowelText
+  m_Name: JewelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: jowel
+  m_text: jewel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2601,6 +2601,7 @@ MonoBehaviour:
   monsterText: {fileID: 1122914078}
   waveTimeText: {fileID: 1773251404}
   charactorCountText: {fileID: 1848304033}
+  jewelText: {fileID: 105280470}
   createFailEvenet:
     m_PersistentCalls:
       m_Calls: []
