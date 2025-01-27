@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GroundSocketPosition", menuName = "GHH/System/GroundSocketPosition", order = 0)]
 public class GroundSocketPositionData : ScriptableObject
 {
+    [field: SerializeField]
+    public int NumberOfCharactersPerTile { get; private set; }
+
     [SerializeField] 
     public List<Vector3> twoSocketoffsetList;
     [SerializeField] 

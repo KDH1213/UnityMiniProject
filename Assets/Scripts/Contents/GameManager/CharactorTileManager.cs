@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,11 +14,11 @@ public class CharactorTileManager : MonoBehaviour
     private readonly int maxCharactorCount = 20;
 
     [SerializeField]
-    private readonly int maxCharactorTileCount = 3;
+    private readonly int maxTileCharactorCount = 3;
 
     [SerializeField]
     private int tileControllerCount;
-    private int useCharactorTileCount = 0;
+    private int useTileCharactorCount = 0;
     private int totalCharactorCount = 0;
 
     public UnityEvent<int, int> changeCharatorCountEvent;
@@ -56,7 +55,7 @@ public class CharactorTileManager : MonoBehaviour
         foreach (var tile in charactorTileObjects)
         {
             if(tile.CharactorCount == 0 || (tile.CharactorClassType == CharactorClassType.N 
-                && tile.CharactorID == createCharactor.CharactorData.Id && tile.CharactorCount < maxCharactorTileCount))
+                && tile.CharactorID == createCharactor.CharactorData.Id && tile.CharactorCount < maxTileCharactorCount))
             {
                 tile.AddCharactor(createCharactor);
 
@@ -66,7 +65,7 @@ public class CharactorTileManager : MonoBehaviour
                 else
                 {
                     charactorCountTable.Add(charactorID, 1);
-                    ++useCharactorTileCount;
+                    ++useTileCharactorCount;
                 }
 
                 ++totalCharactorCount;
@@ -80,6 +79,23 @@ public class CharactorTileManager : MonoBehaviour
 
     public bool IsCreateCharactor()
     {
-        return (totalCharactorCount < maxCharactorCount && useCharactorTileCount < tileControllerCount);
+        return (totalCharactorCount < maxCharactorCount && useTileCharactorCount < tileControllerCount);
+    }
+
+    public void OnSaleCharactor(CharactorTileController charactorTileController)
+    {
+        if (!charactorCountTable.ContainsKey(charactorTileController.CharactorID))
+            return;
+
+        --charactorCountTable[charactorTileController.CharactorID];
+    }
+
+    public void OnSynthesisCharactor(CharactorTileController charactorTileController)
+    {
+        if (!charactorCountTable.ContainsKey(charactorTileController.CharactorID))
+            return;
+
+        charactorCountTable[charactorTileController.CharactorID] -= 3;
+
     }
 }

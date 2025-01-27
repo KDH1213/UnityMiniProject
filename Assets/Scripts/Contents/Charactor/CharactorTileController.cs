@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,6 @@ public class CharactorTileController : MonoBehaviour
 {
     [SerializeField] 
     private int charactorCount = 0;
-    [SerializeField] 
-    private int maxCharactorCount = 3;
 
     [SerializeField] 
     private List<CharactorFSM> characterControllers;
@@ -62,5 +61,25 @@ public class CharactorTileController : MonoBehaviour
         {
             characterControllers[i].transform.position += positionList[i];
         }
+    }
+    
+    public bool IsCreateCharactor()
+    {
+        return charactorCount < positionData.NumberOfCharactersPerTile;
+    }
+
+    public void OnSaleCharactor()
+    {
+        if (charactorCount == 0)
+            return;
+
+        ResetPosition();
+        Destroy(characterControllers[--charactorCount].gameObject);
+        characterControllers.RemoveAt(charactorCount);
+        ChangePosition();
+    }
+
+    public void OnSynthesisCharactor()
+    {
     }
 }

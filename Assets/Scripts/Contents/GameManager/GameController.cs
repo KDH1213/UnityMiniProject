@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     private MonsterSpawnSystem spawnSystem;
     [SerializeField] 
     private InGameUiController inGameUiController;
+    [SerializeField] 
+    private GameTouchManager gameTouchManager;
 
     [SerializeField]
     private int createCoin = 20;
@@ -48,6 +50,11 @@ public class GameController : MonoBehaviour
         charactorTileManager.changeCharatorCountEvent.AddListener(inGameUiController.OnChangeCharactorCount);
         changeMonsterEvnet.AddListener(inGameUiController.OnChangeMonsterCount);
         monsterManager.changeMonsterCount.AddListener(OnChangeMonsterCount);
+
+        gameTouchManager.saleCharactorEvnet.AddListener(OnSaleCharactor);
+        gameTouchManager.synthesisCharactorEvnet.AddListener(OnSynthesisCharactor);
+
+        // gameTouchManager.
     }
 
     private void Start()
@@ -146,5 +153,29 @@ public class GameController : MonoBehaviour
         }
 
         return DataTableManager.CharactorDataTable.GetRandom((CharactorClassType)(count - 1)).PrefabObject;
+    }
+
+    public void OnSaleCharactor(CharactorTileController charactorTileController)
+    {
+        charactorTileManager.OnSaleCharactor(charactorTileController);
+        CharactorClassType type = charactorTileController.CharactorClassType;
+
+        switch (type)
+        {
+            case CharactorClassType.N:
+                // OnAddCoin()
+                break;
+            case CharactorClassType.A:
+                break;
+            case CharactorClassType.S:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnSynthesisCharactor(CharactorTileController synthesisCharactorTileObject)
+    {
+        charactorTileManager.OnSynthesisCharactor(synthesisCharactorTileObject);
     }
 }

@@ -31,7 +31,7 @@ public class CharactorIdleState : CharactorBaseState
     {
         if(isAttack)
         {
-            int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange, hitLayerMasks);
+            int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange * 0.5f, hitLayerMasks);
             if (count > 0)
             {
                 var hitTarget = OverlapCollider.HitColliders;
