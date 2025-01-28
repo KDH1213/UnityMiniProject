@@ -125,9 +125,11 @@ MonoBehaviour:
     <AttackRange>k__BackingField: 0
     <DebuffType>k__BackingField: 0
     <DebuffTime>k__BackingField: 0
+    <DebuffProbability>k__BackingField: 0
     <VFXId>k__BackingField: 
     PrefabObject: {fileID: 0}
   <Animator>k__BackingField: {fileID: 0}
+  <CharactorProfile>k__BackingField: {fileID: 11400000, guid: 23721d512eff65c4a9dc52b260f65d0c, type: 2}
 --- !u!114 &2728541537493807711
 MonoBehaviour:
   m_ObjectHideFlags: 0

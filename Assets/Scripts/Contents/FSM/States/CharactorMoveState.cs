@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CharactorMoveState : CharactorBaseState
 {
     [SerializeField] 
     private Vector2 movePoint;
 
-    private Vector2 startPoint;
+    private Vector2 currentPosition;
+    private Vector2 direction;
+
     private float currentMoveTime;
     private float moveTime = 0.5f;
 
@@ -39,12 +42,13 @@ public class CharactorMoveState : CharactorBaseState
 
     public void Move()
     {
-        currentMoveTime += Time.deltaTime;
-        transform.position = Vector2.Lerp(startPoint, movePoint, currentMoveTime / moveTime);
+        currentPosition += direction * (Time.deltaTime * CharactorFSM.CharactorProfile.MoveSpeed);
+        transform.position = currentPosition;
 
-        if(currentMoveTime >= moveTime)
+        if (IsCheckResult())
         {
-           CharactorFSM.ChangeState(CharactorStateType.Idle);
+            transform.position = movePoint;
+            CharactorFSM.ChangeState(CharactorStateType.Idle);
         }
     }
 
@@ -54,7 +58,30 @@ public class CharactorMoveState : CharactorBaseState
 
     public void OnSetMovePoint(Vector2 movePoint)
     {
-        startPoint = transform.position;
+        currentPosition = transform.position;
         this.movePoint = movePoint;
+
+        direction = movePoint - currentPosition;
+        direction.Normalize();
+    }
+
+    public bool IsCheckResult()
+    {
+        Vector2 position;
+
+        if (direction.x > 0f)
+            position.x = Mathf.Min(movePoint.x, currentPosition.x);
+        else
+            position.x = Mathf.Max(movePoint.x, currentPosition.x);
+
+        if (direction.y > 0f)
+            position.y = Mathf.Min(movePoint.y, currentPosition.y);
+        else
+            position.y = Mathf.Max(movePoint.y, currentPosition.y);
+
+        if (movePoint == position)
+            return true;
+
+        return false;
     }
 }

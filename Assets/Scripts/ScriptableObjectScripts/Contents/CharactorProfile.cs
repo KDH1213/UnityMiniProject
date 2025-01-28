@@ -4,22 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class CharactorProfile : ScriptableObject
 {
-    [SerializeField]
-    private AttackType attackType;
-    public AttackType AttackType { get { return attackType; } }
+    [field: SerializeField]
+    public float MoveSpeed {  get; private set; }
 
-    [SerializeField]
-    private float attackpower;
-    public float Attackpower { get { return attackpower; } }
-    [SerializeField]
-    private float masicAttackpower;
-    public float MasicAttackpowerv { get { return masicAttackpower; } }
-
-    [SerializeField]
-    private float attackRange;
-    public float AttackRange { get { return attackRange; } }
-
-    [SerializeField]
-    private float attackSpeed;
-    public float AttackSpeed { get { return attackSpeed; } }
 }

@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb770fd0a28c844daf6bf9c52c9e160, type: 3}
   m_Name: CharactorProfile
   m_EditorClassIdentifier: 
-  attackType: 1
-  attackpower: 30
-  masicAttackpower: 0
-  attackRange: 10
-  attackSpeed: 0.1
+  <MoveSpeed>k__BackingField: 30

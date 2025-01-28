@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 public class MonsterMoveState : MonsterBaseState, IRouteMove
 {
-    [SerializeField] private Vector2 movePoint;
+    [SerializeField] 
+    private Vector2 movePoint;
 
     private Transform monsterTransform;
-    [SerializeField] Transform monsterSpriteTransform;
+    [SerializeField] 
+    Transform monsterSpriteTransform;
     private Vector2 moveDirection;
     private Vector2 currentPosition;
     private float moveSpeed;
@@ -52,11 +54,12 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
     public void Move()
     {
         currentPosition += moveDirection * (moveSpeed * Time.deltaTime);
-        monsterTransform.position = (Vector3)currentPosition;
+        monsterTransform.position = currentPosition;
 
-        if ((currentPosition - movePoint).sqrMagnitude < 0.1f)
+        if (IsCheckResult())
         {
-            monsterTransform.position = (Vector3)movePoint;
+            currentPosition = movePoint;
+            monsterTransform.position = movePoint;
             ++moveIndex;
             GetMovePoint();
 
@@ -87,5 +90,25 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
                 monsterSpriteTransform.localScale = scale;
             }
         }
+    }
+
+    public bool IsCheckResult()
+    {
+        Vector2 position;
+
+        if (moveDirection.x > 0f)
+            position.x = Mathf.Min(movePoint.x, currentPosition.x);
+        else
+            position.x = Mathf.Max(movePoint.x, currentPosition.x);
+
+        if (moveDirection.y > 0f)
+            position.y = Mathf.Min(movePoint.y, currentPosition.y);
+        else
+            position.y = Mathf.Max(movePoint.y, currentPosition.y);
+
+        if (movePoint == position)
+            return true;
+
+        return false;
     }
 }
