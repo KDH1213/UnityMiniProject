@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementPath : MonoBehaviour
+public class UIMovementPath : MonoBehaviour
 {
     [SerializeField]
     private LineRenderer movementPathObject;

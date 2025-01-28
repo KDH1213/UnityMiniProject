@@ -16,7 +16,7 @@ public class GameTouchManager : MonoBehaviour
     private GameController gameController;
 
     [SerializeField]
-    private MovementPath movementPathObject;
+    private UIMovementPath uiMovementPathObject;
 
     [SerializeField]
     private LayerMask targetLayerMask;
@@ -65,7 +65,7 @@ public class GameTouchManager : MonoBehaviour
             {
                 endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
 
-                movementPathObject.SetDestination(endCharactorTileObject.transform.position);
+                uiMovementPathObject.SetDestination(endCharactorTileObject.transform.position);
             }
         }
 
@@ -82,7 +82,7 @@ public class GameTouchManager : MonoBehaviour
                     seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
                     attackRangeObject.OnTargetMove();
 
-                    movementPathObject.gameObject.SetActive(false);
+                    uiMovementPathObject.gameObject.SetActive(false);
                     seleteCharactorTileObject = null;
                     endCharactorTileObject = null;
                 }
@@ -134,9 +134,9 @@ public class GameTouchManager : MonoBehaviour
         attackRangeObject.OnActiveObject(seleteCharactorTileObject);
         charactorUIInteraction.gameObject.SetActive(false);
 
-        movementPathObject.gameObject.SetActive(true);
-        movementPathObject.SetStartPoint(seleteCharactorTileObject.transform.position);
-        movementPathObject.SetDestination(seleteCharactorTileObject.transform.position);
+        uiMovementPathObject.gameObject.SetActive(true);
+        uiMovementPathObject.SetStartPoint(seleteCharactorTileObject.transform.position);
+        uiMovementPathObject.SetDestination(seleteCharactorTileObject.transform.position);
 
         isDrag = true;
     }
