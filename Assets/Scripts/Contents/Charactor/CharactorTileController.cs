@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,8 +73,6 @@ public class CharactorTileController : MonoBehaviour
 
         ResetPosition();
         RemoveCharactor(1);
-        // Destroy(characterControllerList[--charactorCount].gameObject);
-        // characterControllerList.RemoveAt(charactorCount);
         ChangePosition();
     }
 

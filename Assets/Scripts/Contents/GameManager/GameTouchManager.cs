@@ -16,6 +16,9 @@ public class GameTouchManager : MonoBehaviour
     private GameController gameController;
 
     [SerializeField]
+    private MovementPath movementPathObject;
+
+    [SerializeField]
     private LayerMask targetLayerMask;
 
     public UnityEvent<CharactorTileController> saleCharactorEvnet;
@@ -59,8 +62,11 @@ public class GameTouchManager : MonoBehaviour
             var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
             
             if(target.transform != null)
+            {
                 endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
-            //endCharactorTileObject
+
+                movementPathObject.SetDestination(endCharactorTileObject.transform.position);
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -74,6 +80,9 @@ public class GameTouchManager : MonoBehaviour
                 else
                 {
                     seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
+                    attackRangeObject.OnTargetMove();
+
+                    movementPathObject.gameObject.SetActive(false);
                     seleteCharactorTileObject = null;
                     endCharactorTileObject = null;
                 }
@@ -96,6 +105,10 @@ public class GameTouchManager : MonoBehaviour
             {
                 return;
             }
+            else
+            {
+                seleteCharactorTileObject = null;
+            }
         }
 
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -111,13 +124,6 @@ public class GameTouchManager : MonoBehaviour
         seleteCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
    
     }
-
-    private void OnSelete()
-    {
-        // 선택 했을 때 기준 
-        // 공격 범위 출력 X 
-        // 
-    }
     private void OnStartDrag()
     {
         if (seleteCharactorTileObject == null)
@@ -125,17 +131,18 @@ public class GameTouchManager : MonoBehaviour
             return;
         }
 
-        attackRangeObject.OnDisableObject();
+        attackRangeObject.OnActiveObject(seleteCharactorTileObject);
         charactorUIInteraction.gameObject.SetActive(false);
+
+        movementPathObject.gameObject.SetActive(true);
+        movementPathObject.SetStartPoint(seleteCharactorTileObject.transform.position);
+        movementPathObject.SetDestination(seleteCharactorTileObject.transform.position);
+
         isDrag = true;
     }
 
     private void OnEndDrag()
     {
-        if(isDrag)
-        {
-
-        }
     }
 
     private void OnActiveInteractionUI()
@@ -177,4 +184,5 @@ public class GameTouchManager : MonoBehaviour
         charactorUIInteraction.gameObject.SetActive(false);
         seleteCharactorTileObject = null;
     }
+
 }
