@@ -14,6 +14,9 @@ public class WaveData
     public float SpawnWaitTime { get; set; }
     public float SpawnInterval { get; set; }
     
+    public CurrencyType CurrencyType { get; set; }
+    public int StartCurreneyValue { get; set; }
+    
 
     //public override string ToString()
     //{

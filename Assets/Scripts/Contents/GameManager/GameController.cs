@@ -187,4 +187,19 @@ public class GameController : MonoBehaviour
     {
         return Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor((currentType + 1)).PrefabObject);
     }
+
+    public void AddCurrencyType(CurrencyType currencyType, int startCurreneyValue)
+    {
+        switch (currencyType)
+        {
+            case CurrencyType.Coin:
+                OnAddCoin(startCurreneyValue);
+                break;
+            case CurrencyType.Jewel:
+                OnAddJewel(startCurreneyValue);
+                break;
+            default:
+                break;
+        }
+    }
 }
