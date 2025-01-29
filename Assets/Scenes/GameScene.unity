@@ -465,7 +465,7 @@ MonoBehaviour:
   - {fileID: 2144865227}
   - {fileID: 1822044920}
   - {fileID: 943022312}
-  tileControllerCount: 0
+  <CharactorDeploymentData>k__BackingField: {fileID: 11400000, guid: 60763749d0ee2ea4dbf901b83af38246, type: 2}
   changeCharatorCountEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1870,7 +1870,7 @@ MonoBehaviour:
   attackRangeObject: {fileID: 1714485700}
   charactorUIInteraction: {fileID: 901829610}
   gameController: {fileID: 213184030}
-  movementPathObject: {fileID: 389856696}
+  uiMovementPathObject: {fileID: 389856696}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64

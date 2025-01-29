@@ -7,7 +7,7 @@ public class CharactorTileController : MonoBehaviour
     private CharactorTileManager charactorTileManager;
 
     [SerializeField] 
-    private GroundSocketPositionData positionData;
+    private CharactorDeploymentData charactorDeploymentData;
     
     public CharactorClassType CharactorClassType { get; private set; }
     public string CharactorID { get; private set; } = string.Empty;
@@ -37,33 +37,29 @@ public class CharactorTileController : MonoBehaviour
 
     private void ResetPosition()
     {
-        if (charactorCount == 1)
+        if ((charactorDeploymentData.OverlappingClassTypeMask & (CharactorClassTypeMask)(1 << (int)CharactorClassType)) == 0)
             return;
-
-        var positionList = charactorCount == 2 ? positionData.twoSocketoffsetList : positionData.threeSocketList;
 
         for (int i = 0; i < charactorCount; ++i)
         {
-            characterControllerList[i].transform.position -= positionList[i];
+            characterControllerList[i].transform.position -= charactorDeploymentData.deploymentPositionList[i];
         }
     }
 
     private void ChangePosition()
     {
-        if (charactorCount == 1)
+        if ((charactorDeploymentData.OverlappingClassTypeMask & (CharactorClassTypeMask)(1 << (int)CharactorClassType)) == 0)
             return;
-
-        var positionList = charactorCount == 2 ? positionData.twoSocketoffsetList : positionData.threeSocketList;
 
         for (int i = 0; i < charactorCount; ++i)
         {
-            characterControllerList[i].transform.position += positionList[i];
+            characterControllerList[i].transform.position += charactorDeploymentData.deploymentPositionList[i];
         }
     }
     
     public bool IsCreateCharactor()
     {
-        return charactorCount < positionData.NumberOfCharactersPerTile;
+        return charactorCount < charactorDeploymentData.maxDeploymentCount;
     }
 
     public void OnSaleCharactor()
@@ -78,7 +74,7 @@ public class CharactorTileController : MonoBehaviour
 
     public void OnSynthesisCharactor()
     {
-        if (charactorCount < positionData.NumberOfCharactersPerTile)
+        if (charactorCount < charactorDeploymentData.maxDeploymentCount)
             return;
 
         charactorTileManager.OnSynthesisCharactor(this);
