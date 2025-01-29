@@ -10,10 +10,18 @@ public class CharactorUIInteraction : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private GameObject synthesisButton;
 
+    [SerializeField]
+    private UICharactorInfo uiTargetInfoPanel;
+
     public UnityEvent sellCharactorEvnet;
     public UnityEvent synthesisCharactorEvnet;
 
     private CharactorTileController selectCharactorTileController;
+
+    private void OnDisable()
+    {
+        uiTargetInfoPanel.gameObject.SetActive(false);
+    }
 
     public void OnSellCharactor()
     {
@@ -22,6 +30,7 @@ public class CharactorUIInteraction : MonoBehaviour, IPointerDownHandler
         if (selectCharactorTileController.CharactorCount == 0)
         {
             selectCharactorTileController.gameObject.SetActive(false);
+            uiTargetInfoPanel.gameObject.SetActive(false);
         }
 
         sellCharactorEvnet?.Invoke();
@@ -45,6 +54,8 @@ public class CharactorUIInteraction : MonoBehaviour, IPointerDownHandler
             synthesisButton.SetActive(true);
 
         saleButton.SetActive(true);
+        uiTargetInfoPanel.SetData(tile.CharacterControllers[0].CharactorData);
+        uiTargetInfoPanel.gameObject.SetActive(true);
     }
 
     public void OnPointerDown(PointerEventData eventData)

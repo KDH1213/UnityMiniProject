@@ -1,0 +1,103 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UICharactorInfo : MonoBehaviour
+{
+    [SerializeField]
+    private Image charactorImage;
+    [SerializeField]
+    private TextMeshProUGUI charactorType;
+    [SerializeField]
+    private TextMeshProUGUI charactorName;
+
+    [SerializeField]
+    private Image attackImage;
+    [SerializeField]
+    private Image attackSpeedImage;
+
+    [SerializeField]
+    private TextMeshProUGUI attackDamage;
+    [SerializeField]
+    private TextMeshProUGUI attackSpeed;
+    [SerializeField]
+    private TextMeshProUGUI attackName;
+    [SerializeField]
+    private TextMeshProUGUI attackType;
+
+    [SerializeField]
+    private TextMeshProUGUI debuffName;
+    [SerializeField]
+    private TextMeshProUGUI debuffTypeName;
+    [SerializeField]
+    private TextMeshProUGUI debuffProbability;
+    [SerializeField]
+    private TextMeshProUGUI debuffTime;
+
+    public CharactorData CharactorData { get; private set; }
+    public AttackData AttackData { get; private set; }
+
+    private readonly string charactorTypeFormat = "{0}";
+    private readonly string charactorNameFormat = "{0}";
+
+    private readonly string attackNameFormat = "{0}";
+    private readonly string attackTypeFormat = "{0}";
+
+    private readonly string damageFormat = "{0}";
+    private readonly string attackSpeedFormat = "{0:f1}";
+
+
+    private readonly string debuffNameFormat = "{0}";
+    private readonly string debuffTypeFormat = "{0}";
+    private readonly string debuffProbabilityFormat = "{0:f2}";
+    private readonly string debuffTimeFormat = "{0:f2}";
+
+
+    private void Awake()
+    {
+        DefaultSetting();
+        SetEmpty();
+    }
+
+    public void SetEmpty()
+    {
+        CharactorData = null;
+        AttackData = null;
+    }
+
+    public void SetData(CharactorData charactorData)
+    {
+        CharactorData = charactorData;
+        AttackData = DataTableManager.AttackDataTable.Get(CharactorData.AttackInfoID);
+
+        charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType);
+        charactorName.text = string.Format(charactorNameFormat, CharactorData.PrefabID);
+        attackDamage.text = string.Format(damageFormat, AttackData.Damage);
+        attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed);
+
+        attackType.text = string.Format(attackTypeFormat, AttackData.AttackType);
+        debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType);
+
+        if(AttackData.DebuffType != DebuffType.None)
+        {
+            debuffProbability.text = string.Format(debuffProbabilityFormat, AttackData.DebuffProbability);
+            debuffTime.text = string.Format(debuffTimeFormat, AttackData.DebuffTime);
+        }
+        else
+        {
+            debuffProbability.text = string.Empty;
+            debuffTime.text = string.Empty;
+        }
+    }
+
+    private void DefaultSetting()
+    {
+        // attackImage;
+        // attackSpeedImage;
+
+        attackName.text = string.Format(attackNameFormat, "AttackName");
+        debuffName.text = string.Format(debuffNameFormat, "DebuffName"); 
+    }
+}
