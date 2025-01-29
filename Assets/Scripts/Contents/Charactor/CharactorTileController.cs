@@ -110,13 +110,19 @@ public class CharactorTileController : MonoBehaviour
 
         for (int i = 0; i < leftCount; ++i)
         {
-            ((CharactorMoveState)characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + charactorDeploymentData.deploymentPositionList[i]);
+            if ((charactorDeploymentData.OverlappingClassTypeMask & (CharactorClassTypeMask)(1 << (int)CharactorClassType)) == 0)
+                ((CharactorMoveState)characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position);
+            else
+                ((CharactorMoveState)characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + charactorDeploymentData.deploymentPositionList[i]);
             characterControllerList[i].ChangeState(CharactorStateType.Move);
         }
 
         for (int i = 0; i < rightCount; ++i)
         {
-            ((CharactorMoveState)endCharactorTileObject.characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + charactorDeploymentData.deploymentPositionList[i]);
+            if ((charactorDeploymentData.OverlappingClassTypeMask & (CharactorClassTypeMask)(1 << (int)endCharactorTileObject.CharactorClassType)) == 0)
+                ((CharactorMoveState)endCharactorTileObject.characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position);
+            else
+                ((CharactorMoveState)endCharactorTileObject.characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + charactorDeploymentData.deploymentPositionList[i]);
             endCharactorTileObject.characterControllerList[i].ChangeState(CharactorStateType.Move);
         }
 
