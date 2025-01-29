@@ -7,7 +7,7 @@ public class CharactorSellTable : DataTable
     public class CharactorSellData
     {
         //판매 가격, 재화 타입, 등급
-        public string Id {  get; set; }
+        public int Id {  get; set; }
         public CharactorClassType CharactorClassType { get; set; }
         public CurrencyType CurrencyType { get; set; }
         public int CurrencyValue { get; set; }

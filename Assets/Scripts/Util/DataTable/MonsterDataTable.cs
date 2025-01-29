@@ -5,13 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class MonsterData
 {
-    [field: SerializeField] public string Id { get; set; }
-    [field: SerializeField] public string MonsterPrefabId { get; set; }
-    [field: SerializeField] public MonsterType MonsterType { get; set; }
-    [field: SerializeField] public float MoveSpeed { get; set; }
-    [field: SerializeField] public float Hp { get; set; }
-    [field: SerializeField] public int CoinQty { get; set; }
-    [field: SerializeField] public int JewelQty { get; set; }
+    [field: SerializeField] 
+    public int Id { get; set; }
+    [field: SerializeField] 
+    public string MonsterPrefabId { get; set; }
+    [field: SerializeField] 
+    public MonsterType MonsterType { get; set; }
+    [field: SerializeField] 
+    public float MoveSpeed { get; set; }
+    [field: SerializeField]
+    public float Hp { get; set; }
+    [field: SerializeField] 
+    public int CoinQty { get; set; }
+    [field: SerializeField]
+    public int JewelQty { get; set; }
 
     public GameObject PrefabObject;
     //public override string ToString()
@@ -23,7 +30,7 @@ public class MonsterData
 
 public class MonsterDataTable : DataTable
 {
-    private Dictionary<string, MonsterData> monsterTable = new Dictionary<string, MonsterData>();
+    private Dictionary<int, MonsterData> monsterTable = new Dictionary<int, MonsterData>();
     private readonly string assetPath = "Prefabs/Monsters/{0}";
 
     public override void Load(string filename)
@@ -58,7 +65,7 @@ public class MonsterDataTable : DataTable
         }
     }
 
-    public MonsterData Get(string id)
+    public MonsterData Get(int id)
     {
         if (!monsterTable.ContainsKey(id))
         {

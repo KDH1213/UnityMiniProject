@@ -10,7 +10,7 @@ public class CharactorTileController : MonoBehaviour
     private CharactorDeploymentData charactorDeploymentData;
     
     public CharactorClassType CharactorClassType { get; private set; }
-    public string CharactorID { get; private set; } = string.Empty;
+    public int CharactorID { get; private set; } = -1;
 
     private List<CharactorFSM> characterControllerList = new List<CharactorFSM>();
     public List<CharactorFSM> CharacterControllers { get { return characterControllerList; } }

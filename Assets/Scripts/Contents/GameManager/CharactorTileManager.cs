@@ -18,7 +18,7 @@ public class CharactorTileManager : MonoBehaviour
     private readonly int maxCharactorCount = 20;
 
 
-    private Dictionary<string, int> charactorCountTable = new Dictionary<string, int>();
+    private Dictionary<int, int> charactorCountTable = new Dictionary<int, int>();
 
     private int tileControllerCount;
     private int useTileCharactorCount = 0;
@@ -125,7 +125,7 @@ public class CharactorTileManager : MonoBehaviour
         AddCharactorTable(createCharactor.CharactorData.Id);
     }
 
-    private void AddCharactorTable(string charactorID)
+    private void AddCharactorTable(int charactorID)
     {
         if (charactorCountTable.ContainsKey(charactorID))
             ++charactorCountTable[charactorID];

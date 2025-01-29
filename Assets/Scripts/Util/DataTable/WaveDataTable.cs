@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WaveData
 {
-    public string Id { get; set; }
-    public string MonsterID { get; set; }
+    public int Id { get; set; }
+    public int MonsterID { get; set; }
 
     public int WaveLevel { get; set; }
 
@@ -22,21 +22,6 @@ public class WaveData
     //{
     //    return $"Type : {Type}\nName : {Name}\nDesc : {Desc}\nVa9lue : {Value}\nCost : {Cost}\nIcon : {Icon}\n";
     //}
-
-    public string StringName
-    {
-        get
-        {
-            return DataTableManager.ItemTable.Get(Id).Name;
-        }
-    }
-    public string StringDesc
-    {
-        get
-        {
-            return DataTableManager.ItemTable.Get(Id).Desc;
-        }
-    }
 }
 
 

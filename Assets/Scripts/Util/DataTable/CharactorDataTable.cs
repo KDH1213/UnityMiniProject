@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharactorData
 {
     [field: SerializeField] 
-    public string Id { get; set; }
+    public int Id { get; set; }
     [field: SerializeField] 
     public string PrefabID { get; set; }
     [field: SerializeField] 
@@ -15,7 +15,7 @@ public class CharactorData
     [field: SerializeField] 
     public float AttackSpeed { get; set; }
     [field: SerializeField] 
-    public string AttackInfoID { get; set; }
+    public int AttackInfoID { get; set; }
 
     public GameObject PrefabObject;
 }
