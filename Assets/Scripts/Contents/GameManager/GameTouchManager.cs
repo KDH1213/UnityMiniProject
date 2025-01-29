@@ -75,6 +75,7 @@ public class GameTouchManager : MonoBehaviour
             {
                 if(endCharactorTileObject == null || seleteCharactorTileObject == endCharactorTileObject)
                 {
+                    uiMovementPathObject.gameObject.SetActive(false);
                     OnActiveInteractionUI();
                 }
                 else
