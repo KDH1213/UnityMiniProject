@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76c77afb5d2f2d4485c060da3a7a775, type: 3}
   m_Name: GroundSocketPosition
   m_EditorClassIdentifier: 
-  <NumberOfCharactersPerTile>k__BackingField: 3
-  twoSocketoffsetList:
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  threeSocketList:
-  - {x: -1, y: -0.5, z: 0}
-  - {x: 1, y: -0.5, z: 0}
+  <maxDeploymentCount>k__BackingField: 3
+  OverlappingClassTypeMask: 3
+  deploymentPositionList:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
   - {x: 0, y: 0.5, z: 0}

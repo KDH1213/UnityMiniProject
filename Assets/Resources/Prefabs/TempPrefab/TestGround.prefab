@@ -99,10 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3332c8ba1e20df04fa8d3f2c5a7736d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactorCount: 0
-  maxCharactorCount: 2
-  characterControllers: []
-  positionData: {fileID: 11400000, guid: 60763749d0ee2ea4dbf901b83af38246, type: 2}
+  charactorTileManager: {fileID: 0}
+  charactorDeploymentData: {fileID: 11400000, guid: 60763749d0ee2ea4dbf901b83af38246, type: 2}
 --- !u!61 &3950492620218056653
 BoxCollider2D:
   m_ObjectHideFlags: 0
