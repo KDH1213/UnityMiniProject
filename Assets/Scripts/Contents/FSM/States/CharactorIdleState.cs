@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CharactorIdleState : CharactorBaseState
 {
-    private OverlapCollider OverlapCollider;
-
     [SerializeField] 
     protected LayerMask hitLayerMasks;
+
+    private OverlapCollider OverlapCollider;
+
+    private float attackTime = 0f;
 
     private bool isAttack = true;
 
@@ -15,6 +17,8 @@ public class CharactorIdleState : CharactorBaseState
     {
         base.Awake();
         stateType = CharactorStateType.Idle;
+
+        attackTime = 1f / CharactorFSM.CharactorData.AttackSpeed;
     }
 
     private void Start()
@@ -52,7 +56,7 @@ public class CharactorIdleState : CharactorBaseState
     private IEnumerator CoAttackReload()
     {
         isAttack = false;
-        yield return new WaitForSeconds(CharactorFSM.CharactorData.AttackSpeed);
+        yield return new WaitForSeconds(attackTime);
         isAttack = true;
     }
 
@@ -93,5 +97,13 @@ public class CharactorIdleState : CharactorBaseState
         }
 
         return targetIndex;
+    }
+
+
+    public void OnChangeStatus()
+    {
+        // TODO :: player Status 제작에 따라 값을 받아게 변경
+        // 캐릭터 공격력, 패시브 스킬 적용 여부 미정인 상태
+        attackTime = 1f / CharactorFSM.CharactorData.AttackSpeed;
     }
 }

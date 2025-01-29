@@ -61,4 +61,5 @@ public class CharactorAttackState : CharactorBaseState
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
         createObject.transform.position = attackTarget.transform.position;
     }
+
 }
