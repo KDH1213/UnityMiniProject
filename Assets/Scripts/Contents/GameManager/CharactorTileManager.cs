@@ -57,7 +57,7 @@ public class CharactorTileManager : MonoBehaviour
     {
         if (IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
         {
-            charactorTileController.AddCharactor(createCharactor);
+            charactorTileController.CreateCharactor(createCharactor);
             AddCharactorTable(createCharactor.CharactorData.Id);
             return;
         }
@@ -69,7 +69,7 @@ public class CharactorTileManager : MonoBehaviour
                 && tile.CharactorID == createCharactor.CharactorData.Id && tile.CharactorCount < CharactorDeploymentData.maxDeploymentCount))
             {
 
-                tile.AddCharactor(createCharactor);
+                tile.CreateCharactor(createCharactor);
                 AddCharactorTable(createCharactor.CharactorData.Id);
                 break;
             }
@@ -81,12 +81,23 @@ public class CharactorTileManager : MonoBehaviour
         return (totalCharactorCount < maxCharactorCount && useTileCharactorCount < tileControllerCount);
     }
 
-    public void OnSaleCharactor(CharactorTileController charactorTileController)
+    public void OnSellCharactor(CharactorTileController charactorTileController)
     {
         if (!charactorCountTable.ContainsKey(charactorTileController.CharactorID))
             return;
 
         --charactorCountTable[charactorTileController.CharactorID];
+
+        var list = IsFindDeploymentPossibleCharactorTiles(charactorTileController);
+        if (list.Count == 0)
+            return;
+
+        var charactor = list[0].CharacterControllers[list[0].CharactorCount - 1];
+        list[0].RemoveCharactor(1);
+
+        ((CharactorMoveState)charactor.StateTable[CharactorStateType.Move]).OnSetMovePoint(charactorTileController.transform.position + CharactorDeploymentData.deploymentPositionList[charactorTileController.CharactorCount]);
+        charactorTileController.AddCharactor(charactor);
+        charactor.ChangeState(CharactorStateType.Move);
     }
 
     public void OnSynthesisCharactor(CharactorTileController charactorTileController)
@@ -101,15 +112,15 @@ public class CharactorTileManager : MonoBehaviour
         var synthesisCharactor = gameController.GetCreateSynthesisCharactor(charactorTileController.CharactorClassType);
         var createCharactor = synthesisCharactor.GetComponent<CharactorFSM>();
 
-        charactorTileController.RemoveCharactor(charactorCount);
+        charactorTileController.RemoveCharactor(charactorCount, true);
 
         if (IsCharactorDeployment(ref createCharactor, out var tile))
         {
-            tile.AddCharactor(createCharactor);
+            tile.CreateCharactor(createCharactor);
         }
         else
         {
-            charactorTileController.AddCharactor(createCharactor);
+            charactorTileController.CreateCharactor(createCharactor);
         }
         AddCharactorTable(createCharactor.CharactorData.Id);
     }
@@ -141,14 +152,14 @@ public class CharactorTileManager : MonoBehaviour
         return true;
     }
 
-    private bool IsFindDeploymentTile(ref CharactorFSM synthesisCharactor, out CharactorTileController charactorTileController)
+    private bool IsFindDeploymentTile(ref CharactorFSM findCharactor, out CharactorTileController charactorTileController)
     {
         charactorTileController = null;
 
         foreach (var tile in charactorTileObjects)
         {
             if (tile.CharactorCount > 0 && tile.CharactorCount < CharactorDeploymentData.maxDeploymentCount
-                 && tile.CharactorID == synthesisCharactor.CharactorData.Id)
+                 && tile.CharactorID == findCharactor.CharactorData.Id)
             {
                 charactorTileController = tile;
                 return true;
@@ -157,4 +168,22 @@ public class CharactorTileManager : MonoBehaviour
 
         return false;
     }
+
+    private List<CharactorTileController> IsFindDeploymentPossibleCharactorTiles(CharactorTileController charactorTileController)
+    {
+        var list = new List<CharactorTileController>();
+        var count = charactorTileObjects.Count;
+
+        for(int i = count -1; i >= 0; --i)
+        {
+            if (charactorTileObjects[i] == charactorTileController
+                || charactorTileObjects[i].CharactorCount == 0 || charactorTileObjects[i].CharactorCount == 3
+                || charactorTileObjects[i].CharactorID != charactorTileController.CharactorID)
+                continue;
+
+            list.Add(charactorTileObjects[i]);
+        }
+
+        return list;
+    }    
 }

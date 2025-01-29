@@ -21,6 +21,9 @@ public class CharactorAttackRangeObject : MonoBehaviour
             return;
         }
 
+        //if (isMove && targetTileController.CharactorCount != 0 && targetCharactor == targetTileController.CharacterControllers[0])
+        //    return;
+
         isMove = false;
         gameObject.SetActive(true);
         targetTileController = charactorTileController;

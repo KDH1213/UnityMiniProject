@@ -63,11 +63,11 @@ public static class AttackTableIds
         "AttackTable",
     };
 }
-public static class CharactorSaleTableIds
+public static class CharactorSellTableIds
 {
     public static readonly string[] String =
     {
-        "CharactorSaleTable",
+        "CharactorSellTable",
     };
 }
 

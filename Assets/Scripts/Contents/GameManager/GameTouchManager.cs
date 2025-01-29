@@ -21,7 +21,7 @@ public class GameTouchManager : MonoBehaviour
     [SerializeField]
     private LayerMask targetLayerMask;
 
-    public UnityEvent<CharactorTileController> saleCharactorEvnet;
+    public UnityEvent<CharactorTileController> sellCharactorEvnet;
     public UnityEvent<CharactorTileController> synthesisCharactorEvnet;
 
     private PointerEventData pointerEventData = new PointerEventData(null);
@@ -35,7 +35,7 @@ public class GameTouchManager : MonoBehaviour
 
     private void Awake()
     {
-        charactorUIInteraction.saleCharactorEvnet.AddListener(OnSaleInteractionCharactor);
+        charactorUIInteraction.sellCharactorEvnet.AddListener(OnSellInteractionCharactor);
         charactorUIInteraction.synthesisCharactorEvnet.AddListener(OnSynthesisCharactor);
     }
 
@@ -162,10 +162,10 @@ public class GameTouchManager : MonoBehaviour
         }
     }
 
-    public void OnSaleInteractionCharactor()
+    public void OnSellInteractionCharactor()
     {
-        saleCharactorEvnet?.Invoke(seleteCharactorTileObject);
-        seleteCharactorTileObject.OnSaleCharactor();
+        seleteCharactorTileObject.OnSellCharactor();
+        sellCharactorEvnet?.Invoke(seleteCharactorTileObject);
 
         if (seleteCharactorTileObject.CharactorCount == 0)
         {

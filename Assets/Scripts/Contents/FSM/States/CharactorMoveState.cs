@@ -11,9 +11,6 @@ public class CharactorMoveState : CharactorBaseState
     private Vector2 currentPosition;
     private Vector2 direction;
 
-    private float currentMoveTime;
-    private float moveTime = 0.5f;
-
     protected override void Awake()
     {
         base.Awake();
@@ -22,8 +19,6 @@ public class CharactorMoveState : CharactorBaseState
 
     public override void Enter()
     {
-        currentMoveTime = 0f;
-
         //currentPosition = monsterTransform.position;
         //moveSpeed = charactorFSM.GetStatValue(StatType.MovementSpeed);
         //GetMovePoint();

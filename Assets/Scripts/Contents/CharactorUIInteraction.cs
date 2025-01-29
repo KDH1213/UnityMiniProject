@@ -10,21 +10,21 @@ public class CharactorUIInteraction : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private GameObject synthesisButton;
 
-    public UnityEvent saleCharactorEvnet;
+    public UnityEvent sellCharactorEvnet;
     public UnityEvent synthesisCharactorEvnet;
 
     private CharactorTileController selectCharactorTileController;
 
-    public void OnSaleCharactor()
+    public void OnSellCharactor()
     {
-        selectCharactorTileController.OnSaleCharactor();
+        selectCharactorTileController.OnSellCharactor();
 
         if (selectCharactorTileController.CharactorCount == 0)
         {
             selectCharactorTileController.gameObject.SetActive(false);
         }
 
-        saleCharactorEvnet?.Invoke();
+        sellCharactorEvnet?.Invoke();
     }
 
     public void OnSynthesisCharactor()

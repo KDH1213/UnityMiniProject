@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharactorSaleTable : DataTable
+public class CharactorSellTable : DataTable
 {
-    public class CharactorSaleData
+    public class CharactorSellData
     {
         //판매 가격, 재화 타입, 등급
         public string Id {  get; set; }
@@ -13,14 +13,14 @@ public class CharactorSaleTable : DataTable
         public int CurrencyValue { get; set; }
     }
 
-    private Dictionary<CharactorClassType, CharactorSaleData> dictionoary = new Dictionary<CharactorClassType, CharactorSaleData>();
+    private Dictionary<CharactorClassType, CharactorSellData> dictionoary = new Dictionary<CharactorClassType, CharactorSellData>();
 
     public override void Load(string filename)
     {
         var path = string.Format(FormatPath, filename);
 
         var textAsset = Resources.Load<TextAsset>(path);
-        var list = LoadCSV<CharactorSaleData>(textAsset.text);
+        var list = LoadCSV<CharactorSellData>(textAsset.text);
 
         dictionoary.Clear();
 
@@ -37,7 +37,7 @@ public class CharactorSaleTable : DataTable
         }
     }
 
-    public CharactorSaleData Get(CharactorClassType key)
+    public CharactorSellData Get(CharactorClassType key)
     {
         if (!dictionoary.ContainsKey(key))
         {

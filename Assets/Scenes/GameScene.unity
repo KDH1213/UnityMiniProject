@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 408807759}
   - component: {fileID: 408807758}
   m_Layer: 10
-  m_Name: SaleButton
+  m_Name: SellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,19 +1269,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 526080416}
         m_TargetAssemblyTypeName: GameTouchManager, Assembly-CSharp
-        m_MethodName: OnTargetIsUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 526080416}
-        m_TargetAssemblyTypeName: GameTouchManager, Assembly-CSharp
-        m_MethodName: OnSaleInteractionCharactor
+        m_MethodName: OnSellInteractionCharactor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1690,18 +1678,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 526080416}
         m_TargetAssemblyTypeName: GameTouchManager, Assembly-CSharp
-        m_MethodName: OnTargetIsUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 526080416}
-        m_TargetAssemblyTypeName: GameTouchManager, Assembly-CSharp
         m_MethodName: OnSynthesisCharactor
         m_Mode: 1
         m_Arguments:
@@ -1874,7 +1850,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  saleCharactorEvnet:
+  sellCharactorEvnet:
     m_PersistentCalls:
       m_Calls: []
   synthesisCharactorEvnet:
@@ -3505,7 +3481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saleButton: {fileID: 408807756}
   synthesisButton: {fileID: 461201596}
-  saleCharactorEvnet:
+  sellCharactorEvnet:
     m_PersistentCalls:
       m_Calls: []
   synthesisCharactorEvnet:
@@ -4017,7 +3993,7 @@ GameObject:
   - component: {fileID: 1002146631}
   - component: {fileID: 1002146630}
   m_Layer: 5
-  m_Name: SaleText
+  m_Name: SellText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4062,7 +4038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sale
+  m_text: sell
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

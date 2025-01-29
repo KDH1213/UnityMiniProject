@@ -57,9 +57,9 @@ public static class DataTableManager
             tables.Add(id, table);
         }
 
-        foreach (var id in CharactorSaleTableIds.String)
+        foreach (var id in CharactorSellTableIds.String)
         {
-            var table = new CharactorSaleTable();
+            var table = new CharactorSellTable();
             table.Load(id);
             tables.Add(id, table);
         }
@@ -168,11 +168,11 @@ public static class DataTableManager
         }
     }
 
-    public static CharactorSaleTable CharactorSaleTable
+    public static CharactorSellTable CharactorSellTable
     {
         get
         {
-            return Get<CharactorSaleTable>(CharactorSaleTableIds.String[0]);
+            return Get<CharactorSellTable>(CharactorSellTableIds.String[0]);
         }
     }
 

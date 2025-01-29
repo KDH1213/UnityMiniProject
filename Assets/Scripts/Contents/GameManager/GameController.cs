@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
         changeMonsterEvnet.AddListener(inGameUiController.OnChangeMonsterCount);
         monsterManager.changeMonsterCount.AddListener(OnChangeMonsterCount);
 
-        gameTouchManager.saleCharactorEvnet.AddListener(OnSaleCharactor);
+        gameTouchManager.sellCharactorEvnet.AddListener(OnSellCharactor);
 
         // gameTouchManager.
     }
@@ -153,20 +153,19 @@ public class GameController : MonoBehaviour
         return DataTableManager.CharactorDataTable.GetRandomDrawCharactor((CharactorClassType)(count - 1)).PrefabObject;
     }
 
-    public void OnSaleCharactor(CharactorTileController charactorTileController)
+    public void OnSellCharactor(CharactorTileController charactorTileController)
     {
-        charactorTileManager.OnSaleCharactor(charactorTileController);
         CharactorClassType type = charactorTileController.CharactorClassType;
 
-        var scaleData = DataTableManager.CharactorSaleTable.Get(type);
+        var sellData = DataTableManager.CharactorSellTable.Get(type);
 
-        if(scaleData.CurrencyType == CurrencyType.Coin)
+        if(sellData.CurrencyType == CurrencyType.Coin)
         {
-            OnAddCoin(scaleData.CurrencyValue);
+            OnAddCoin(sellData.CurrencyValue);
         }
-        else if (scaleData.CurrencyType == CurrencyType.Jewel)
+        else if (sellData.CurrencyType == CurrencyType.Jewel)
         {
-            OnAddJewel(scaleData.CurrencyValue);
+            OnAddJewel(sellData.CurrencyValue);
         }
 
         //switch (type)

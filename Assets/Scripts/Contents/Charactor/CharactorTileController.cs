@@ -18,7 +18,7 @@ public class CharactorTileController : MonoBehaviour
     private int charactorCount = 0;
     public int CharactorCount { get { return charactorCount; } }
 
-    public void AddCharactor(CharactorFSM characterController)
+    public void CreateCharactor(CharactorFSM characterController)
     {
         ResetPosition();
         characterControllerList.Add(characterController);
@@ -28,6 +28,12 @@ public class CharactorTileController : MonoBehaviour
         CharactorClassType = characterController.CharactorData.CharactorClassType;
         ++charactorCount;
         ChangePosition();
+    }
+
+    public void AddCharactor(CharactorFSM characterController)
+    {
+        characterControllerList.Add(characterController);
+        ++charactorCount;
     }
 
     public void OnChangeCharactorCount()
@@ -62,13 +68,14 @@ public class CharactorTileController : MonoBehaviour
         return charactorCount < charactorDeploymentData.maxDeploymentCount;
     }
 
-    public void OnSaleCharactor()
+    public void OnSellCharactor()
     {
         if (charactorCount == 0)
             return;
 
         ResetPosition();
-        RemoveCharactor(1);
+        RemoveCharactor(1, true);
+        charactorTileManager.OnSellCharactor(this);
         ChangePosition();
     }
 
@@ -80,32 +87,37 @@ public class CharactorTileController : MonoBehaviour
         charactorTileManager.OnSynthesisCharactor(this);
     }
 
-    public void RemoveCharactor(int count)
+    public void RemoveCharactor(int count, bool isDestroy = false)
     {
         if (count > charactorCount)
             return;
 
-        for (int i = 0; i < count; ++i)
+        if(isDestroy)
         {
-            Destroy(characterControllerList[--charactorCount].gameObject);
+            for (int i = 0; i < count; ++i)
+            {
+                Destroy(characterControllerList[charactorCount - 1 - i].gameObject);
+            }
         }
+        charactorCount -= count;
         characterControllerList.RemoveRange(charactorCount, count);
     }
 
     public void OnChangeCharactorInfo(CharactorTileController endCharactorTileObject)
     {
-        foreach (var characterController in characterControllerList)
+        int leftCount = characterControllerList.Count;
+        int rightCount = endCharactorTileObject.characterControllerList.Count; 
+
+        for (int i = 0; i < leftCount; ++i)
         {
-            var currentPos = characterController.transform.position - transform.position ;
-            ((CharactorMoveState)characterController.StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + currentPos);
-            characterController.ChangeState(CharactorStateType.Move);
+            ((CharactorMoveState)characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + charactorDeploymentData.deploymentPositionList[i]);
+            characterControllerList[i].ChangeState(CharactorStateType.Move);
         }
 
-        foreach (var characterController in endCharactorTileObject.characterControllerList)
+        for (int i = 0; i < rightCount; ++i)
         {
-            var currentPos = characterController.transform.position - endCharactorTileObject.transform.position;
-            ((CharactorMoveState)characterController.StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + currentPos);
-            characterController.ChangeState(CharactorStateType.Move);
+            ((CharactorMoveState)endCharactorTileObject.characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + charactorDeploymentData.deploymentPositionList[i]);
+            endCharactorTileObject.characterControllerList[i].ChangeState(CharactorStateType.Move);
         }
 
         (characterControllerList, endCharactorTileObject.characterControllerList) = (endCharactorTileObject.characterControllerList, characterControllerList);
