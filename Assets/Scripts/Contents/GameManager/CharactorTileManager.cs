@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,7 +56,8 @@ public class CharactorTileManager : MonoBehaviour
 
     public void CreateCharactor(CharactorFSM createCharactor)
     {
-        if (IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
+        if (((CharactorClassTypeMask)(1 << (int)createCharactor.CharactorData.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) != 0
+            && IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
         {
             charactorTileController.CreateCharactor(createCharactor);
             AddCharactorTable(createCharactor.CharactorData.Id);
@@ -93,7 +95,7 @@ public class CharactorTileManager : MonoBehaviour
             return;
 
         var charactor = list[0].CharacterControllers[list[0].CharactorCount - 1];
-        list[0].RemoveCharactor(1);
+        list[0].RemoveCharactor(1, false);
 
         ((CharactorMoveState)charactor.StateTable[CharactorStateType.Move]).OnSetMovePoint(charactorTileController.transform.position + CharactorDeploymentData.deploymentPositionList[charactorTileController.CharactorCount]);
         charactorTileController.AddCharactor(charactor);
@@ -221,8 +223,8 @@ public class CharactorTileManager : MonoBehaviour
 
     public int GetHoldingsStatusPercent(CombinationData combinationData)
     {
-        int percent = 0;
-        int maxPercent = 0;
+        float percent = 0;
+        float maxPercent = 0;
 
         foreach (var item in combinationData.IngredientTable)
         {
@@ -245,7 +247,7 @@ public class CharactorTileManager : MonoBehaviour
 
 
             int holdingCount = charactorCountTable[item.Key];
-
+             
             if(DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.N)
             {
                 percent += Mathf.Min(charactorCountTable[item.Key], item.Value) * 10;
@@ -263,6 +265,49 @@ public class CharactorTileManager : MonoBehaviour
             }
         }
 
-        return percent / maxPercent * 100;
+        return (int)(percent / maxPercent * 100f);
+    }
+
+    public void OnCreateCombinationCharactor(CombinationData combinationData)
+    {
+        foreach (var item in combinationData.IngredientTable)
+        {
+            charactorCountTable[item.Key] -= item.Value;
+            totalCharactorCount -= item.Value;
+            var list = charactorTileObjects.FindAll(tile => tile.CharactorID == item.Key);
+            int destroyCount = 0;
+
+            list.Sort((CharactorTileController left, CharactorTileController right) =>
+            {
+                if (left.CharactorCount < right.CharactorCount)
+                    return -1;
+                else if (left.CharactorCount > right.CharactorCount)
+                    return 1;
+                else
+                {
+                    if (left.transform.position.x == right.transform.position.x)
+                    {
+                        return left.transform.position.y > right.transform.position.y ? -1 : 1;
+                    }
+                    else
+                    {
+                        return left.transform.position.x > right.transform.position.x ? -1 : 1;
+                    }
+                }
+            });
+
+            for (var i = 0; i < list.Count; i++)
+            {
+                int count = Mathf.Min(item.Value - destroyCount, list[i].CharactorCount);
+                list[i].RemoveCharactor(count, true);
+                destroyCount += count;
+
+                if(destroyCount == item.Value)
+                    break;
+            }
+        }
+
+        var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.Id).PrefabObject); 
+        CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
     }
 }

@@ -87,7 +87,7 @@ public class CharactorTileController : MonoBehaviour
         charactorTileManager.OnSynthesisCharactor(this);
     }
 
-    public void RemoveCharactor(int count, bool isDestroy = false)
+    public void RemoveCharactor(int count, bool isDestroy)
     {
         if (count > charactorCount)
             return;

@@ -57,7 +57,9 @@ public class UICombinationTable : MonoBehaviour
 
     private void OnClickCreateButton()
     {
+        charactorTileManager.OnCreateCombinationCharactor(currentSeleteSlot.CombinationData);
 
+        gameObject.SetActive(false);
     }
     
 }
