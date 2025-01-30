@@ -90,6 +90,9 @@ public class CharactorTileManager : MonoBehaviour
 
         --charactorCountTable[charactorTileController.CharactorID];
 
+        if ((((CharactorClassTypeMask)(1 << (int)charactorTileController.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) == 0))
+            return;
+
         var list = IsFindDeploymentPossibleCharactorTiles(charactorTileController);
         if (list.Count == 0)
             return;
