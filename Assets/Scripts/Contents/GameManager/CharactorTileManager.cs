@@ -185,5 +185,84 @@ public class CharactorTileManager : MonoBehaviour
         }
 
         return list;
-    }    
+    }
+
+    public List<(int, bool)> GetHoldingsStatus(CombinationData combinationData)
+    {
+        List<(int, bool)> holingsStatusList = new List<(int, bool)>();
+
+        foreach (var item in combinationData.IngredientTable)
+        {
+            if (!charactorCountTable.ContainsKey(item.Key))
+            {
+                for(int i = 0; i < item.Value; ++i)
+                {
+                    holingsStatusList.Add( new (item.Key, false));
+                }
+
+                continue;
+            }
+
+            int holdingCount = Mathf.Min(charactorCountTable[item.Key], item.Value);
+
+            for(int i = 0;i < holdingCount; ++i)
+            {
+                holingsStatusList.Add(new(item.Key, true));
+            }
+
+            for (int i = holdingCount; i < item.Value; ++i)
+            {
+                holingsStatusList.Add(new(item.Key, false));
+            }
+        }
+
+        return holingsStatusList;
+    }
+
+    public int GetHoldingsStatusPercent(CombinationData combinationData)
+    {
+        int percent = 0;
+        int maxPercent = 0;
+
+        foreach (var item in combinationData.IngredientTable)
+        {
+            if (!charactorCountTable.ContainsKey(item.Key))
+            {
+                if (DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.N)
+                {
+                    maxPercent += item.Value * 10;
+                }
+                else if (DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.A)
+                {
+                    maxPercent += item.Value * 30;
+                }
+                else
+                {
+                    maxPercent += item.Value * 50;
+                }
+                continue;
+            }
+
+
+            int holdingCount = charactorCountTable[item.Key];
+
+            if(DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.N)
+            {
+                percent += Mathf.Min(charactorCountTable[item.Key], item.Value) * 10;
+                maxPercent += item.Value * 10;
+            }
+            else if (DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.A)
+            {
+                percent += Mathf.Min(charactorCountTable[item.Key], item.Value) * 30;
+                maxPercent += item.Value * 30;
+            }
+            else
+            {
+                percent += Mathf.Min(charactorCountTable[item.Key], item.Value) * 50;
+                maxPercent += item.Value * 50;
+            }
+        }
+
+        return percent / maxPercent * 100;
+    }
 }
