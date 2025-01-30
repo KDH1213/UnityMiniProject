@@ -63,6 +63,13 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+
+        foreach (var id in CombinationTableIds.String)
+        {
+            var table = new CombinationTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 #else
         //var table = new StringTable();
         //var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
@@ -106,6 +113,13 @@ public static class DataTableManager
         foreach (var id in CharactorTableIds.String)
         {
             var table = new CharactorDataTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
+          foreach (var id in CombinationTableIds.String)
+        {
+            var table = new CombinationTable();
             table.Load(id);
             tables.Add(id, table);
         }
@@ -176,6 +190,13 @@ public static class DataTableManager
         }
     }
 
+    public static CombinationTable CombinationTable
+    {
+        get
+        {
+            return Get<CombinationTable>(CombinationTableIds.String[0]);
+        }
+    }
     public static T Get<T>(string id) where T : DataTable
     {
         if(!tables.ContainsKey(id))

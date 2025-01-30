@@ -71,6 +71,14 @@ public static class CharactorSellTableIds
     };
 }
 
+public static class CombinationTableIds
+{
+    public static readonly string[] String =
+    {
+        "CombinationTable",
+    };
+}
+
 public static class Varibalbes
 {
     public static Languages currentLanguage = Languages.Korea;

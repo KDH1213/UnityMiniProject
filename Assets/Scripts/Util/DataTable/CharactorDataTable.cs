@@ -4,6 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class CharactorData
 {
+
+    // 캐릭터 이름 추가
+    // 캐릭터 아이콘 sprite 추가
     [field: SerializeField] 
     public int Id { get; set; }
     [field: SerializeField] 
@@ -23,7 +26,8 @@ public class CharactorData
 
 public class CharactorDataTable : DataTable
 {
-    private List<List<CharactorData>>  charactorDatas = new List<List<CharactorData>>();
+    private List<List<CharactorData>>  charactorDataList = new List<List<CharactorData>>();
+    private Dictionary<int, CharactorData> charactorTable = new Dictionary<int, CharactorData>();
 
     private readonly string assetPath = "Prefabs/TempPrefab/{0}";
 
@@ -32,9 +36,9 @@ public class CharactorDataTable : DataTable
         var path = string.Format(FormatPath, filename);
 
         var textAsset = Resources.Load<TextAsset>(path);
-        charactorDatas.Clear();
+        charactorDataList.Clear();
 
-        charactorDatas = new List<List<CharactorData>>()
+        charactorDataList = new List<List<CharactorData>>()
         {
             new List<CharactorData>(),
             new List<CharactorData>(),
@@ -54,8 +58,11 @@ public class CharactorDataTable : DataTable
             charactorFsm.AttackData = DataTableManager.AttackDataTable.Get(item.AttackInfoID);
             charactorFsm.CharactorData = item;
 
-            if (!charactorDatas[(int)item.CharactorClassType].Contains(item))
-                charactorDatas[(int)item.CharactorClassType].Add(item);
+            if (!charactorDataList[(int)item.CharactorClassType].Contains(item))
+            {
+                charactorDataList[(int)item.CharactorClassType].Add(item);
+                charactorTable.Add(item.Id, item);
+            }
             else
             {
                 Debug.LogError($"중복 키 : {item.Id}");
@@ -65,17 +72,25 @@ public class CharactorDataTable : DataTable
 
     public CharactorData Get(CharactorClassType type, int index)
     {
-        if (charactorDatas[(int)type][index] == null)
+        if (charactorDataList[(int)type][index] == null)
         {
             return default;
         }
         else
-            return charactorDatas[(int)type][index];       
+            return charactorDataList[(int)type][index];       
     }
 
     public CharactorData GetRandomDrawCharactor(CharactorClassType type)
     {
-        int count = charactorDatas[(int)type].Count;
-        return charactorDatas[(int)type][Random.Range(0, count)];
+        int count = charactorDataList[(int)type].Count;
+        return charactorDataList[(int)type][Random.Range(0, count)];
+    }
+
+    public CharactorData Get(int id)
+    {
+        if(!charactorTable.ContainsKey(id))
+            return default;
+
+        return charactorTable[id];
     }
 }
