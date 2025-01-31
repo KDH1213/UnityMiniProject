@@ -9,13 +9,13 @@ public abstract class BaseState<T> : MonoBehaviour
     public T StateType { get { return stateType; } }   
 
     public UnityEvent enterStateEvent;
-    public UnityEvent excuteUpdateStateEvent;
-    public UnityEvent excuteFixedUpdateStateEvent;
+    public UnityEvent executeUpdateStateEvent;
+    public UnityEvent executeFixedUpdateStateEvent;
     public UnityEvent exitStateEvent;
 
     public abstract void Enter();
-    public abstract void ExcuteUpdate();
-    public abstract void ExcuteFixedUpdate();
+    public abstract void ExecuteUpdate();
+    public abstract void ExecuteFixedUpdate();
 
     public abstract void Exit();
 }

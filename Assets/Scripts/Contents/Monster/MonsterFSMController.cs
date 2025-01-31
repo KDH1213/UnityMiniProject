@@ -45,12 +45,12 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     public virtual void ExcuteUpdate()
     {
-        stateTable[currentStateType]?.ExcuteUpdate();
+        stateTable[currentStateType]?.ExecuteUpdate();
     }
 
     public virtual void ExcuteFixedUpdate()
     {
-        stateTable[currentStateType]?.ExcuteFixedUpdate();
+        stateTable[currentStateType]?.ExecuteFixedUpdate();
     }
 
     public void OnSpawn(MonsterSpawner monsterSpawner)

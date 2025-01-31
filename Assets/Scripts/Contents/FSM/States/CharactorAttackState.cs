@@ -30,7 +30,7 @@ public class CharactorAttackState : CharactorBaseState
         CharactorFSM.ChangeState(CharactorStateType.Idle);
     }
 
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
     }
 

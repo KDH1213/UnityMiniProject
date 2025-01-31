@@ -16,13 +16,13 @@ public class CharactorBaseState : BaseState<CharactorStateType>
         enterStateEvent?.Invoke();
         this.enabled = true;
     }
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
-        excuteUpdateStateEvent?.Invoke();
+        executeUpdateStateEvent?.Invoke();
     }
-    public override void ExcuteFixedUpdate()
+    public override void ExecuteFixedUpdate()
     {
-        excuteFixedUpdateStateEvent?.Invoke();
+        executeFixedUpdateStateEvent?.Invoke();
     }
 
     public override void Exit()

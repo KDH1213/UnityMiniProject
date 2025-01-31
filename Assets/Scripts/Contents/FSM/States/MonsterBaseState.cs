@@ -12,13 +12,13 @@ public class MonsterBaseState : BaseState<MonsterStateType>
     {
         enterStateEvent?.Invoke();
     }
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
-        excuteUpdateStateEvent?.Invoke();
+        executeUpdateStateEvent?.Invoke();
     }
-    public override void ExcuteFixedUpdate()
+    public override void ExecuteFixedUpdate()
     {
-        excuteFixedUpdateStateEvent?.Invoke();
+        executeFixedUpdateStateEvent?.Invoke();
     }
 
     public override void Exit() 

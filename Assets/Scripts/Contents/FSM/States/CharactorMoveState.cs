@@ -25,7 +25,7 @@ public class CharactorMoveState : CharactorBaseState
         //charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
     }
 
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
         Move();
     }

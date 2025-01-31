@@ -17,6 +17,6 @@ public class CharactorFSM : FSMController<CharactorStateType>
 
     private void Update()
     {
-        StateTable[currentStateType].ExcuteUpdate();
+        StateTable[currentStateType].ExecuteUpdate();
     }
 }

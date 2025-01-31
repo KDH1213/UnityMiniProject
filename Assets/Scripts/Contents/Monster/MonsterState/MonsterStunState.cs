@@ -29,10 +29,10 @@ public class MonsterStunState : MonsterBaseState
         stunCoroutine = StartCoroutine(CoStunTime());
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
     }
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
     }
-    public override void ExcuteFixedUpdate()
+    public override void ExecuteFixedUpdate()
     {
     }
 

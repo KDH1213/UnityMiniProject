@@ -31,7 +31,7 @@ public class CharactorIdleState : CharactorBaseState
 
     }
 
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
         if(isAttack)
         {

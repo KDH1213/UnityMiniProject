@@ -36,7 +36,7 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
         MonsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
     }
 
-    public override void ExcuteUpdate()
+    public override void ExecuteUpdate()
     {
         Move();
     }
