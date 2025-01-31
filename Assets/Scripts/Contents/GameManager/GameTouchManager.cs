@@ -46,7 +46,7 @@ public class GameTouchManager : MonoBehaviour
             OnFindTarget();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !isDrag)
         {
             currentDrageTime += Time.deltaTime;
 
