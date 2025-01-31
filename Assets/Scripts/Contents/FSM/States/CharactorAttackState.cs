@@ -8,6 +8,7 @@ public class CharactorAttackState : CharactorBaseState
     private AttackType attackType;
 
     private Collider2D attackTarget;
+    private AttackData attackData;
 
     private float attackTime = 0.5f;
 
@@ -15,6 +16,7 @@ public class CharactorAttackState : CharactorBaseState
     {
         base.Awake();
         stateType = CharactorStateType.Attack;
+        attackData = CharactorFSM.AttackData;
     }
 
     public override void Enter()
@@ -56,6 +58,11 @@ public class CharactorAttackState : CharactorBaseState
             damageInfo.debuffType = attackInfo.DebuffType;
             damageInfo.debuffTime = attackInfo.DebuffTime;
             target.OnDamage(ref damageInfo);
+        }
+        else if(CharactorFSM.AttackData.AttackType == AttackType.Area)
+        {
+            Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
+            return;
         }
 
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);

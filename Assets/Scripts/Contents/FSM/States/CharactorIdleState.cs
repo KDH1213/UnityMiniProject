@@ -7,6 +7,8 @@ public class CharactorIdleState : CharactorBaseState
     [SerializeField] 
     protected LayerMask hitLayerMasks;
 
+    private AttackData attackData;
+
     private OverlapCollider OverlapCollider;
 
     private float attackTime = 0f;
@@ -19,6 +21,7 @@ public class CharactorIdleState : CharactorBaseState
         stateType = CharactorStateType.Idle;
 
         attackTime = 1f / CharactorFSM.CharactorData.AttackSpeed;
+        attackData = CharactorFSM.AttackData;
     }
 
     private void Start()
@@ -35,16 +38,7 @@ public class CharactorIdleState : CharactorBaseState
     {
         if(isAttack)
         {
-            int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange * 0.5f, hitLayerMasks);
-            if (count > 0)
-            {
-                var hitTarget = OverlapCollider.HitColliders;
-                int targetIndex = FindeTarget(ref hitTarget, count);
-
-                StartCoroutine(CoAttackReload());
-                ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(hitTarget[targetIndex]);
-                CharactorFSM.ChangeState(CharactorStateType.Attack);
-            }
+            FindAttackTaget();           
         }
     }
 
@@ -105,5 +99,31 @@ public class CharactorIdleState : CharactorBaseState
         // TODO :: player Status 제작에 따라 값을 받아게 변경
         // 캐릭터 공격력, 패시브 스킬 적용 여부 미정인 상태
         attackTime = 1f / CharactorFSM.CharactorData.AttackSpeed;
+    }
+
+    private void FindAttackTaget()
+    {
+        int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange * 0.5f, hitLayerMasks);
+        if (count == 0)
+            return;
+
+        switch (attackData.AttackType)
+        {
+            case AttackType.Single:
+            case AttackType.Multiple:
+                {
+                    var hitTarget = OverlapCollider.HitColliders;
+                    int targetIndex = FindeTarget(ref hitTarget, count);
+                    ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(hitTarget[targetIndex]);
+                }
+                break;
+            case AttackType.Area:
+                break;
+            default:
+                break;
+        }
+
+        StartCoroutine(CoAttackReload());
+        CharactorFSM.ChangeState(CharactorStateType.Attack);
     }
 }
