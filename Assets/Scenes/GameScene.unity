@@ -902,6 +902,7 @@ MonoBehaviour:
   synthesisCharactorEvnet:
     m_PersistentCalls:
       m_Calls: []
+  dragOnTime: 0.4
 --- !u!1001 &586711536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1991,9 +1992,9 @@ MonoBehaviour:
   startPoint: {fileID: 873408803}
   movePoints:
   - {fileID: 873408803}
-  - {fileID: 1244514720}
-  - {fileID: 1900437073}
   - {fileID: 1972919517}
+  - {fileID: 1900437073}
+  - {fileID: 1244514720}
   spawnEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2034,7 +2035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244514720}
   m_Layer: 0
-  m_Name: MovePoint2
+  m_Name: MovePoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,9 +2086,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 873408803}
-  - {fileID: 1244514720}
-  - {fileID: 1900437073}
   - {fileID: 1972919517}
+  - {fileID: 1900437073}
+  - {fileID: 1244514720}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283745430
@@ -5249,7 +5250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972919517}
   m_Layer: 0
-  m_Name: MovePoint4
+  m_Name: MovePoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

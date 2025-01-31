@@ -9,6 +9,7 @@ public class CharactorAttackRangeObject : MonoBehaviour
 
     private CharactorTileController targetTileController;
     private CharactorFSM targetCharactor;
+    public CharactorTileController TargetTileController { get { return targetTileController; } }
 
     private Vector3 targetOffsetPosition;
     private bool isMove = false;

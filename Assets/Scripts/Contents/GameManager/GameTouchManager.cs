@@ -30,6 +30,7 @@ public class GameTouchManager : MonoBehaviour
 
     private bool isDrag = false;
 
+    [SerializeField]
     private float dragOnTime = 0.2f;
     private float currentDrageTime = 0f;
 
