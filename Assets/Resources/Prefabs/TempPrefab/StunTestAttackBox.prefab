@@ -141,17 +141,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hitObjectList: []
-  autoDestory: 1
   hitLayerMasks:
     serializedVersion: 2
     m_Bits: 128
+  autoDestory: 1
   attackData:
-    <Id>k__BackingField: 
+    <Id>k__BackingField: 0
+    <PrefabID>k__BackingField: 
     <AttackType>k__BackingField: 1
     <Damage>k__BackingField: 10
     <AttackRange>k__BackingField: 3
     <DebuffType>k__BackingField: 1
     <DebuffTime>k__BackingField: 1
+    <DebuffProbability>k__BackingField: 0
     <VFXId>k__BackingField: 
     PrefabObject: {fileID: 0}
   time: 0.5
@@ -167,9 +169,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b8a83424b015c4a83f3c5f9bd2fb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderCount: 20
-  hitColliders: []
+  hitColliderList: []
+  colliderSize: 20
   hitLayerMasks:
     serializedVersion: 2
     m_Bits: 128
-  overlapType: 0
+  overlapType: 1
+  contactFilter2D:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 359.9999
+  defalutContactFilter2D:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 359.9999

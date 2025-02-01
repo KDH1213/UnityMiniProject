@@ -149,7 +149,7 @@ MonoBehaviour:
     <Id>k__BackingField: 1114
     <PrefabID>k__BackingField: TestAreaAttackBox
     <AttackType>k__BackingField: 2
-    <Damage>k__BackingField: 50
+    <Damage>k__BackingField: 100
     <AttackRange>k__BackingField: 6
     <DebuffType>k__BackingField: 0
     <DebuffTime>k__BackingField: 0
@@ -169,9 +169,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b8a83424b015c4a83f3c5f9bd2fb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderCount: 20
-  hitColliders: []
+  hitColliderList: []
+  colliderSize: 20
   hitLayerMasks:
     serializedVersion: 2
     m_Bits: 128
   overlapType: 1
+  contactFilter2D:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 359.9999
+  defalutContactFilter2D:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 359.9999

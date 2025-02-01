@@ -59,7 +59,7 @@ public class DamagedObject : MonoBehaviour
         if (count == 0)
             return;
 
-        var hitColliders = overlapCollider.HitColliders;
+        var hitColliders = overlapCollider.HitColliderList;
         GameObject? hitObject;
 
         for (int i = 0; i < count; ++i)

@@ -1432,12 +1432,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b8a83424b015c4a83f3c5f9bd2fb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderCount: 40
-  hitColliders: []
+  hitColliderList: []
+  colliderSize: 40
   hitLayerMasks:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   overlapType: 0
+  contactFilter2D:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 358.9
+  defalutContactFilter2D:
+    useTriggers: 1
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    minDepth: -Infinity
+    maxDepth: Infinity
+    minNormalAngle: 0
+    maxNormalAngle: 359.9999
 --- !u!224 &901829606 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8803143531013178966, guid: 35c8d99d8c6ea6947b42974a333ec8fd, type: 3}
