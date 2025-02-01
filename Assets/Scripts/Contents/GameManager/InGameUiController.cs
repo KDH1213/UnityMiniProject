@@ -46,21 +46,21 @@ public class InGameUiController : MonoBehaviour
 
     public void OnChangeCoinCount(int coin)
     {
-        coinText.text = string.Format(coinFomat, coin);
+        coinText.text = string.Format(coinFomat, coin.ToString());
     }
     public void OnChangeCreateCoinValue(int coin)
     {
-        createCoinValueText.text = string.Format(changeCreateCoinValue, coin);
+        createCoinValueText.text = string.Format(changeCreateCoinValue, coin.ToString());
     }
 
     public void OnChangeMonsterCount(int count, int maxCount)
     {
-        monsterText.text =  string.Format(monsterCountFomat, count, maxCount);
+        monsterText.text =  string.Format(monsterCountFomat, count.ToString(), maxCount.ToString());
     }
 
     public void OnChangeWave(int wave, int maxWave)
     {
-        waveText.text =  string.Format(waveFomat, wave, maxWave);
+        waveText.text =  string.Format(waveFomat, wave.ToString(), maxWave.ToString());
     }
 
     public void OnChangeWaveTime(float time)
@@ -68,17 +68,17 @@ public class InGameUiController : MonoBehaviour
         if(currentTime != (int)time)
         {
             currentTime = (int)time;
-            waveTimeText.text = string.Format(nextWaveTime, currentTime);
+            waveTimeText.text = string.Format(nextWaveTime, currentTime.ToString());
         }
     }
 
     public void OnChangeJowel(int jowel)
     {
-        jewelText.text =  string.Format(jowelFomat, jowel);
+        jewelText.text =  string.Format(jowelFomat, jowel.ToString());
     }
 
     public void OnChangeCharactorCount(int count, int maxCount)
     {
-        charactorCountText.text =  string.Format(charactorCountFomat, count, maxCount);
+        charactorCountText.text =  string.Format(charactorCountFomat, count.ToString(), maxCount.ToString());
     }
 }

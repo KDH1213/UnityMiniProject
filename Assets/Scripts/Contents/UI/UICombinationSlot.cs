@@ -38,6 +38,6 @@ public class UICombinationSlot : MonoBehaviour
 
     public void OnSetCombinationPersent(int persent)
     {
-        persentText.text = string.Format(persentFormat, persent);
+        persentText.text = string.Format(persentFormat, persent.ToString());
     }
 }

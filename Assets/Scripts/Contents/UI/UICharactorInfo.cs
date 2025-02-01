@@ -72,18 +72,18 @@ public class UICharactorInfo : MonoBehaviour
         CharactorData = charactorData;
         AttackData = DataTableManager.AttackDataTable.Get(CharactorData.AttackInfoID);
 
-        charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType);
+        charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType.ToString());
         charactorName.text = string.Format(charactorNameFormat, CharactorData.PrefabID);
-        attackDamage.text = string.Format(damageFormat, AttackData.Damage);
-        attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed);
+        attackDamage.text = string.Format(damageFormat, AttackData.Damage.ToString());
+        attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed.ToString());
 
-        attackType.text = string.Format(attackTypeFormat, AttackData.AttackType);
-        debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType);
+        attackType.text = string.Format(attackTypeFormat, AttackData.AttackType.ToString());
+        debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType.ToString());
 
         if(AttackData.DebuffType != DebuffType.None)
         {
-            debuffProbability.text = string.Format(debuffProbabilityFormat, AttackData.DebuffProbability);
-            debuffTime.text = string.Format(debuffTimeFormat, AttackData.DebuffTime);
+            debuffProbability.text = string.Format(debuffProbabilityFormat, AttackData.DebuffProbability.ToString());
+            debuffTime.text = string.Format(debuffTimeFormat, AttackData.DebuffTime.ToString());
         }
         else
         {
