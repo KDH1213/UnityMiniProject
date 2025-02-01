@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class DamagedObject : MonoBehaviour
 {
-    [SerializeField] 
     protected OverlapCollider overlapCollider;
 
     [SerializeField] 
@@ -33,6 +32,11 @@ public class DamagedObject : MonoBehaviour
     protected float time = 0.5f;
     protected float currentTime = 0f;
 
+    private void Awake()
+    {
+        overlapCollider = GameObject.FindWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
+    }
+
     protected virtual void Start()
     {
         StartAttack();
@@ -54,7 +58,7 @@ public class DamagedObject : MonoBehaviour
 
     protected virtual void AttackHit()
     {
-        int count = overlapCollider.StartOverlapCircle(attackData.AttackRange * 0.5f);
+        int count = overlapCollider.StartOverlapCircle(transform.position, attackData.AttackRange * 0.5f, hitLayerMasks);
 
         if (count == 0)
             return;
