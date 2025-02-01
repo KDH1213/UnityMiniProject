@@ -20,6 +20,8 @@ public class DamagedObject : MonoBehaviour
     [SerializeField] 
     protected LayerMask hitLayerMasks;
 
+    public float Damage {  get; set; }
+
     [SerializeField] 
     protected bool autoDestory;
 
@@ -58,7 +60,7 @@ public class DamagedObject : MonoBehaviour
 
     protected virtual void AttackHit()
     {
-        int count = overlapCollider.StartOverlapCircle(transform.position, attackData.AttackRange * 0.5f, hitLayerMasks);
+        int count = overlapCollider.StartOverlapCircle(transform.position, attackData.RealAttackRange * 0.5f, hitLayerMasks);
 
         if (count == 0)
             return;
@@ -80,7 +82,7 @@ public class DamagedObject : MonoBehaviour
 
             hitObjectList.Add(hitObject);
             DamageInfo damageInfo = new DamageInfo();
-            damageInfo.damage = attackData.Damage;
+            damageInfo.damage = Damage;
             damageInfo.debuffType = attackData.DebuffType;
             damageInfo.debuffTime = attackData.DebuffTime;
             damageInfo.debuffProbability = attackData.DebuffProbability;

@@ -103,7 +103,7 @@ public class CharactorIdleState : CharactorBaseState
 
     private void FindAttackTaget()
     {
-        int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange * 0.5f, hitLayerMasks);
+        int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
         if (count == 0)
             return;
 

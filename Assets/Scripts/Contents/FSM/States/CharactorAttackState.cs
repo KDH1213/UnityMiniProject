@@ -54,19 +54,23 @@ public class CharactorAttackState : CharactorBaseState
             var attackInfo = CharactorFSM.AttackData;
 
             var damageInfo = new DamageInfo();
-            damageInfo.damage = attackInfo.Damage;
+            damageInfo.damage = CharactorFSM.CharactorData.Damage;
             damageInfo.debuffType = attackInfo.DebuffType;
             damageInfo.debuffTime = attackInfo.DebuffTime;
             target.OnDamage(ref damageInfo);
         }
         else if(CharactorFSM.AttackData.AttackType == AttackType.Area)
         {
-            Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
+            var areaAttackObject = Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
+            areaAttackObject.GetComponent<DamagedObject>().Damage = CharactorFSM.CharactorData.Damage;
+            areaAttackObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
             return;
         }
 
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
         createObject.transform.position = attackTarget.transform.position;
+        createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
+        createObject.GetComponent<DamagedObject>().Damage = CharactorFSM.CharactorData.Damage;
     }
 
 }

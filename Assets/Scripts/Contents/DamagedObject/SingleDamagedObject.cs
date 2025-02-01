@@ -18,7 +18,7 @@ public class SingleDamagedObject : DamagedObject
     {
         var damageable = attackTarget.GetComponent<IDamageable>();
         DamageInfo damageInfo = new DamageInfo();
-        damageInfo.damage = attackData.Damage;
+        damageInfo.damage = Damage;
         damageInfo.debuffType = attackData.DebuffType;
         damageInfo.debuffProbability = attackData.DebuffProbability;
 

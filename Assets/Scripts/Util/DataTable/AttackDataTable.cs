@@ -11,8 +11,6 @@ public class AttackData
     [field: SerializeField] 
     public AttackType AttackType { get; set; }
     [field: SerializeField] 
-    public float Damage { get; set; }
-    [field: SerializeField] 
     public float AttackRange { get; set; }
     [field: SerializeField] 
     public DebuffType DebuffType { get; set; }
@@ -24,6 +22,7 @@ public class AttackData
     public string VFXId { get; set; }
 
     public GameObject PrefabObject;
+    public float RealAttackRange;
     //public override string ToString()
     //{
     //    return $"Type : {Type}\nName : {Name}\nDesc : {Desc}\nValue : {Value}\nCost : {Cost}\nIcon : {Icon}\n";
@@ -50,6 +49,7 @@ public class AttackDataTable : DataTable
             if (item.PrefabObject == null)
                 continue;
 
+            item.RealAttackRange = item.AttackRange * 3f;
             item.PrefabObject.GetComponent<DamagedObject>().SetAttackData(item);
 
             if (!attackTable.ContainsKey(item.Id))

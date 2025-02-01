@@ -4,7 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class CharactorData
 {
-
     // 캐릭터 이름 추가
     // 캐릭터 아이콘 sprite 추가
     [field: SerializeField] 
@@ -13,14 +12,19 @@ public class CharactorData
     public string PrefabID { get; set; }
     [field: SerializeField] 
     public CharactorClassType CharactorClassType { get; set; }
+
+    [field: SerializeField]
+    public float Damage { get; set; }
     [field: SerializeField]
     public float AttackRange { get; set; }
+
     [field: SerializeField] 
     public float AttackSpeed { get; set; }
     [field: SerializeField] 
     public int AttackInfoID { get; set; }
 
     public GameObject PrefabObject;
+    public float RealAttackRange;
 }
 
 
@@ -54,6 +58,7 @@ public class CharactorDataTable : DataTable
             if (item.PrefabObject == null)
                 continue;
 
+            item.RealAttackRange = item.AttackRange * 3f;
             var charactorFsm = item.PrefabObject.GetComponent<CharactorFSM>();
             charactorFsm.AttackData = DataTableManager.AttackDataTable.Get(item.AttackInfoID);
             charactorFsm.CharactorData = item;

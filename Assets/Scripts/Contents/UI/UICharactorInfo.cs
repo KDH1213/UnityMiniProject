@@ -74,7 +74,7 @@ public class UICharactorInfo : MonoBehaviour
 
         charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType.ToString());
         charactorName.text = string.Format(charactorNameFormat, CharactorData.PrefabID);
-        attackDamage.text = string.Format(damageFormat, AttackData.Damage.ToString());
+        attackDamage.text = string.Format(damageFormat, CharactorData.Damage.ToString());
         attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed.ToString());
 
         attackType.text = string.Format(attackTypeFormat, AttackData.AttackType.ToString());
