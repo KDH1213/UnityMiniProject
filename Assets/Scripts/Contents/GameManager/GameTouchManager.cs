@@ -42,12 +42,12 @@ public class GameTouchManager : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_STANDALONE
         InputDevicePC();
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS
-        InputMobileDevice();
+        InputDeviceMobile();
 #endif
     }
 
@@ -67,7 +67,7 @@ public class GameTouchManager : MonoBehaviour
             }
         }
 
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_STANDALONE
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
 #endif
@@ -148,7 +148,7 @@ public class GameTouchManager : MonoBehaviour
         charactorUIInteraction.gameObject.SetActive(false);
         seleteCharactorTileObject = null;
     }
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_STANDALONE
     private void InputDevicePC()
     {
         if (Input.GetMouseButtonDown(0))
