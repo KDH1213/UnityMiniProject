@@ -38,6 +38,9 @@ public class GameTouchManager : MonoBehaviour
     {
         charactorUIInteraction.sellCharactorEvnet.AddListener(OnSellInteractionCharactor);
         charactorUIInteraction.synthesisCharactorEvnet.AddListener(OnSynthesisCharactor);
+#if UNITY_ANDROID || UNITY_IOS
+        MultiTouchManager.Instance.SetOnLongPressTime(dragOnTime);
+#endif
     }
 
     private void Update()
@@ -225,9 +228,9 @@ public class GameTouchManager : MonoBehaviour
             }
         }
 
-        if (isDrag)
+        if (MultiTouchManager.Instance.IsLongPress)
         {
-            var touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            var touchPosition = Camera.main.ScreenToWorldPoint(MultiTouchManager.Instance.Touch.position);
             var target = Physics2D.Raycast(touchPosition, transform.forward, 100f, targetLayerMask);
 
             if (target.transform != null)
@@ -238,7 +241,7 @@ public class GameTouchManager : MonoBehaviour
             }
         }
 
-        if (MultiTouchManager.Instance.IsTap)
+        if (MultiTouchManager.Instance.IsTouchEnd)
         {
             if (isDrag)
             {

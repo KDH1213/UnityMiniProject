@@ -6,6 +6,7 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
 {
     public bool IsTouchBegan { get; private set; } = false;
     public bool IsTouchPress { get; private set; } = false;
+    public bool IsTouchEnd { get; private set; } = false;
     public bool IsTap { get; private set; } = false;
     public bool IsDoubleTap { get; private set; } = false;
     public bool IsLongPress { get; private set; } = false;
@@ -14,6 +15,9 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
     public Vector2 SwipeDirection {  get; private set; } = Vector2.zero;
     public float Rotate { get; private set; } = 0f;
     public float ZoomInOut { get; private set; } = 0f;
+
+
+    public Touch Touch { get; private set; }
 
     [SerializeField] 
     private float tapTime = 0.1f;
@@ -78,6 +82,7 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
                         prevFingerId = primaryFingerId;
                         primaryFingerId = -1;
                         IsTouchPress = false;
+                        IsTouchEnd = true;
                     }
                     break;
             }
@@ -89,22 +94,23 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
         }
         else if (TouchCount == 1)
         {
+            Touch = Input.GetTouch(0);
             CheckLongPress();
         }
         else if (TouchCount == 2)
         {
-            Touch touch0 = Input.GetTouch(0);
+            Touch = Input.GetTouch(0);
             Touch touch1 = Input.GetTouch(1);
 
-            Vector2 touch0Prev = touch0.position - touch0.deltaPosition;
+            Vector2 touch0Prev = Touch.position - Touch.deltaPosition;
             Vector2 touch1Prev = touch1.position - touch1.deltaPosition;
 
-            Vector2 currentTouchPosition = touch0.position - touch1.position;
+            Vector2 currentTouchPosition = Touch.position - touch1.position;
 
             float prevDistance = (touch0Prev - touch1Prev).magnitude;
             float currentDistance = (currentTouchPosition).magnitude;
 
-            Rotate = Vector2.SignedAngle(touch0.deltaPosition - touch1.deltaPosition, currentTouchPosition);
+            Rotate = Vector2.SignedAngle(Touch.deltaPosition - touch1.deltaPosition, currentTouchPosition);
             ZoomInOut = currentDistance - prevDistance;
         }
     }
@@ -116,6 +122,7 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
             IsTap = false;
             IsDoubleTap = false;
             IsLongPress = false;
+            IsTouchEnd = false;
         }
 
         if(IsTouchBegan)
@@ -174,5 +181,10 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
             SwipeDirection = SwipeDirection.y > 0f ? Vector2.up : Vector2.down;
         }
 
+    }
+
+    public void SetOnLongPressTime(float time)
+    {
+        longTapTime = time;
     }
 }

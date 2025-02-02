@@ -1433,25 +1433,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitColliderList: []
-  colliderSize: 40
+  colliderSize: 0
   hitLayerMasks:
     serializedVersion: 2
     m_Bits: 128
   overlapType: 0
   contactFilter2D:
-    useTriggers: 0
-    useLayerMask: 1
+    useTriggers: 1
+    useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 4294967295
     minDepth: -Infinity
     maxDepth: Infinity
     minNormalAngle: 0
-    maxNormalAngle: 358.9
+    maxNormalAngle: 359.9999
   defalutContactFilter2D:
     useTriggers: 1
     useLayerMask: 0
@@ -5756,6 +5756,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3470526680099447945, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3902267137050484230, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_fontSize
       value: 40
@@ -5810,6 +5814,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4043379985873199586, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147899322513078516, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4466850081397560088, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
