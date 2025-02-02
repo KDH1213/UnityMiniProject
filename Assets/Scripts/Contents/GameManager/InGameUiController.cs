@@ -32,10 +32,10 @@ public class InGameUiController : MonoBehaviour
     private readonly string waveFomat = "Wave {0}/{1}";
     private readonly string nextWaveTime = "{0}";
     private readonly string monsterCountFomat = "{0}/{1}";
-    private readonly string coinFomat = "Coin :{0}";
-    private readonly string jowelFomat = "Jowel :{0}";
+    private readonly string coinFomat = "코인 :{0}";
+    private readonly string jowelFomat = "보석 :{0}";
     private readonly string charactorCountFomat = "{0}/{1}";
-    private readonly string changeCreateCoinValue = "Value : {0}";
+    private readonly string changeCreateCoinValue = "{0}";
 
     private void Awake()
     {
