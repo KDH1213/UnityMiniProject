@@ -54,20 +54,20 @@ public class CharactorIdleState : CharactorBaseState
         isAttack = true;
     }
 
-    private int FindeTarget(ref Collider2D[] hitTarget, int count)
+    private int FindeTarget(ref List<Collider2D> hitTargeList, int count)
     {
-        var routeMove = hitTarget[0].GetComponent<IRouteMove>();
+        var routeMove = hitTargeList[0].GetComponent<IRouteMove>();
         int targetIndex = 0;
 
         for (int i = 1; i < count; ++i)
         {
-            var target = hitTarget[i].GetComponent<IRouteMove>();
+            var target = hitTargeList[i].GetComponent<IRouteMove>();
             if (routeMove.MoveIndex == target.MoveIndex)
             {
                 if (routeMove.MoveDirection.x == 0f)
                 {
-                    if((routeMove.MoveDirection.y > 0f && routeMove.CurrentPosition.y < routeMove.CurrentPosition.y)
-                        || routeMove.MoveDirection.y < 0f && routeMove.CurrentPosition.y > routeMove.CurrentPosition.y)
+                    if((routeMove.MoveDirection.y > 0f && routeMove.CurrentPosition.y < target.CurrentPosition.y)
+                        || routeMove.MoveDirection.y < 0f && routeMove.CurrentPosition.y > target.CurrentPosition.y)
                     {
                         routeMove = target;
                         targetIndex = i;
@@ -75,8 +75,8 @@ public class CharactorIdleState : CharactorBaseState
                 }
                 else
                 {
-                    if ((routeMove.MoveDirection.x > 0f && routeMove.CurrentPosition.x < routeMove.CurrentPosition.x)
-                          || routeMove.MoveDirection.x < 0f && routeMove.CurrentPosition.x > routeMove.CurrentPosition.x)
+                    if ((routeMove.MoveDirection.x > 0f && routeMove.CurrentPosition.x < target.CurrentPosition.x)
+                          || routeMove.MoveDirection.x < 0f && routeMove.CurrentPosition.x > target.CurrentPosition.x)
                     {
                         routeMove = target;
                         targetIndex = i;
@@ -103,7 +103,7 @@ public class CharactorIdleState : CharactorBaseState
 
     private void FindAttackTaget()
     {
-        int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.AttackRange * 0.5f, hitLayerMasks);
+        int count = OverlapCollider.StartOverlapCircle(transform.position, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
         if (count == 0)
             return;
 
@@ -112,7 +112,7 @@ public class CharactorIdleState : CharactorBaseState
             case AttackType.Single:
             case AttackType.Multiple:
                 {
-                    var hitTarget = OverlapCollider.HitColliders;
+                    var hitTarget = OverlapCollider.HitColliderList;
                     int targetIndex = FindeTarget(ref hitTarget, count);
                     ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(hitTarget[targetIndex]);
                 }

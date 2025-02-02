@@ -40,7 +40,7 @@ public class CharactorAttackRangeObject : MonoBehaviour
     private void SetTargetInfo()
     {
         transform.position = targetTileController.transform.position;
-        float attackRange = targetCharactor.CharactorData.AttackRange;
+        float attackRange = targetCharactor.CharactorData.RealAttackRange;
         transform.localScale = Vector2.one * attackRange;
     }
 

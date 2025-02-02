@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2371766649573061528}
   - component: {fileID: 7197730445091008161}
-  - component: {fileID: 2404274663269958651}
   m_Layer: 0
   m_Name: TestAreaAttackBox
   m_TagString: Untagged
@@ -130,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eeb631cf50aa0409119981493e0429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlapCollider: {fileID: 2404274663269958651}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -149,7 +147,7 @@ MonoBehaviour:
     <Id>k__BackingField: 1114
     <PrefabID>k__BackingField: TestAreaAttackBox
     <AttackType>k__BackingField: 2
-    <Damage>k__BackingField: 50
+    <Damage>k__BackingField: 100
     <AttackRange>k__BackingField: 6
     <DebuffType>k__BackingField: 0
     <DebuffTime>k__BackingField: 0
@@ -157,21 +155,3 @@ MonoBehaviour:
     <VFXId>k__BackingField: None
     PrefabObject: {fileID: 7919080240681997631}
   time: 0.5
---- !u!114 &2404274663269958651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7919080240681997631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b8a83424b015c4a83f3c5f9bd2fb13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderCount: 20
-  hitColliders: []
-  hitLayerMasks:
-    serializedVersion: 2
-    m_Bits: 128
-  overlapType: 1

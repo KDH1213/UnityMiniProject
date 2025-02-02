@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class DamagedObject : MonoBehaviour
 {
-    [SerializeField] 
     protected OverlapCollider overlapCollider;
 
     [SerializeField] 
@@ -21,6 +20,8 @@ public class DamagedObject : MonoBehaviour
     [SerializeField] 
     protected LayerMask hitLayerMasks;
 
+    public float Damage {  get; set; }
+
     [SerializeField] 
     protected bool autoDestory;
 
@@ -32,6 +33,11 @@ public class DamagedObject : MonoBehaviour
     [SerializeField] 
     protected float time = 0.5f;
     protected float currentTime = 0f;
+
+    private void Awake()
+    {
+        overlapCollider = GameObject.FindWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
+    }
 
     protected virtual void Start()
     {
@@ -54,12 +60,12 @@ public class DamagedObject : MonoBehaviour
 
     protected virtual void AttackHit()
     {
-        int count = overlapCollider.StartOverlapCircle(attackData.AttackRange * 0.5f);
+        int count = overlapCollider.StartOverlapCircle(transform.position, attackData.RealAttackRange * 0.5f, hitLayerMasks);
 
         if (count == 0)
             return;
 
-        var hitColliders = overlapCollider.HitColliders;
+        var hitColliders = overlapCollider.HitColliderList;
         GameObject? hitObject;
 
         for (int i = 0; i < count; ++i)
@@ -76,7 +82,7 @@ public class DamagedObject : MonoBehaviour
 
             hitObjectList.Add(hitObject);
             DamageInfo damageInfo = new DamageInfo();
-            damageInfo.damage = attackData.Damage;
+            damageInfo.damage = Damage;
             damageInfo.debuffType = attackData.DebuffType;
             damageInfo.debuffTime = attackData.DebuffTime;
             damageInfo.debuffProbability = attackData.DebuffProbability;

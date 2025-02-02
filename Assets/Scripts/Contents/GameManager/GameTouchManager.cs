@@ -42,68 +42,22 @@ public class GameTouchManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            OnFindTarget();
-        }
+#if UNITY_EDITOR || UNITY_STANDALONE
+        InputDevicePC();
+#endif
 
-        if (Input.GetMouseButton(0) && !isDrag)
-        {
-            currentDrageTime += Time.deltaTime;
-
-            if (currentDrageTime >= dragOnTime)
-            {
-                OnStartDrag();
-            }
-        }
-
-        if(isDrag)
-        {
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
-            
-            if(target.transform != null)
-            {
-                endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
-
-                uiMovementPathObject.SetDestination(endCharactorTileObject.transform.position);
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if(isDrag)
-            {
-                if(endCharactorTileObject == null || seleteCharactorTileObject == endCharactorTileObject)
-                {
-                    uiMovementPathObject.gameObject.SetActive(false);
-                    OnActiveInteractionUI();
-                }
-                else
-                {
-                    seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
-                    attackRangeObject.OnTargetMove();
-
-                    uiMovementPathObject.gameObject.SetActive(false);
-                    seleteCharactorTileObject = null;
-                    endCharactorTileObject = null;
-                }
-            }
-            else
-                OnActiveInteractionUI();
-
-            isDrag = false;
-            currentDrageTime = 0f;
-        }
+#if UNITY_ANDROID || UNITY_IOS
+        InputMobileDevice();
+#endif
     }
 
     private void OnFindTarget()
     {
-        if(charactorUIInteraction.gameObject.activeSelf && EventSystem.current.IsPointerOverGameObject())
+        if (charactorUIInteraction.gameObject.activeSelf && EventSystem.current.IsPointerOverGameObject())
         {
-             var targetUI = EventSystem.current.currentSelectedGameObject;
+            var targetUI = EventSystem.current.currentSelectedGameObject;
 
-            if(targetUI != null && targetUI.layer == GetLayer.InteractionUI)
+            if (targetUI != null && targetUI.layer == GetLayer.InteractionUI)
             {
                 return;
             }
@@ -113,8 +67,16 @@ public class GameTouchManager : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR || UNITY_STANDALONE
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var target = Physics2D.Raycast(mousePosition,transform.forward, 100f, targetLayerMask);
+        var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS
+       
+        var touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+        var target = Physics2D.Raycast(touchPosition, transform.forward, 100f, targetLayerMask);
+#endif
 
         if (target.transform == null)
         {
@@ -124,7 +86,7 @@ public class GameTouchManager : MonoBehaviour
         }
 
         seleteCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
-   
+
     }
     private void OnStartDrag()
     {
@@ -186,5 +148,122 @@ public class GameTouchManager : MonoBehaviour
         charactorUIInteraction.gameObject.SetActive(false);
         seleteCharactorTileObject = null;
     }
+#if UNITY_EDITOR || UNITY_STANDALONE
+    private void InputDevicePC()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnFindTarget();
+        }
+
+        if (Input.GetMouseButton(0) && !isDrag)
+        {
+            currentDrageTime += Time.deltaTime;
+
+            if (currentDrageTime >= dragOnTime)
+            {
+                OnStartDrag();
+            }
+        }
+
+        if (isDrag)
+        {
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var target = Physics2D.Raycast(mousePosition, transform.forward, 100f, targetLayerMask);
+
+            if (target.transform != null)
+            {
+                endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
+
+                uiMovementPathObject.SetDestination(endCharactorTileObject.transform.position);
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (isDrag)
+            {
+                if (endCharactorTileObject == null || seleteCharactorTileObject == endCharactorTileObject)
+                {
+                    uiMovementPathObject.gameObject.SetActive(false);
+                    OnActiveInteractionUI();
+                }
+                else
+                {
+                    seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
+                    attackRangeObject.OnTargetMove();
+
+                    uiMovementPathObject.gameObject.SetActive(false);
+                    seleteCharactorTileObject = null;
+                    endCharactorTileObject = null;
+                }
+            }
+            else
+                OnActiveInteractionUI();
+
+            isDrag = false;
+            currentDrageTime = 0f;
+        }
+    }
+#endif
+
+    #if UNITY_ANDROID || UNITY_IOS
+    private void InputDeviceMobile()
+    {
+        if (MultiTouchManager.Instance.IsTouchBegan)
+        {
+            OnFindTarget();
+        }
+
+        if (MultiTouchManager.Instance.IsTouchPress && !isDrag)
+        {
+            currentDrageTime += Time.deltaTime;
+
+            if (MultiTouchManager.Instance.IsLongPress)
+            {
+                OnStartDrag();
+            }
+        }
+
+        if (isDrag)
+        {
+            var touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            var target = Physics2D.Raycast(touchPosition, transform.forward, 100f, targetLayerMask);
+
+            if (target.transform != null)
+            {
+                endCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
+
+                uiMovementPathObject.SetDestination(endCharactorTileObject.transform.position);
+            }
+        }
+
+        if (MultiTouchManager.Instance.IsTap)
+        {
+            if (isDrag)
+            {
+                if (endCharactorTileObject == null || seleteCharactorTileObject == endCharactorTileObject)
+                {
+                    uiMovementPathObject.gameObject.SetActive(false);
+                    OnActiveInteractionUI();
+                }
+                else
+                {
+                    seleteCharactorTileObject.OnChangeCharactorInfo(endCharactorTileObject);
+                    attackRangeObject.OnTargetMove();
+
+                    uiMovementPathObject.gameObject.SetActive(false);
+                    seleteCharactorTileObject = null;
+                    endCharactorTileObject = null;
+                }
+            }
+            else
+                OnActiveInteractionUI();
+
+            isDrag = false;
+            currentDrageTime = 0f;
+        }
+    }
+    #endif
 
 }
