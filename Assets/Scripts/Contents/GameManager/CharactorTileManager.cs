@@ -83,6 +83,11 @@ public class CharactorTileManager : MonoBehaviour
         return (totalCharactorCount < maxCharactorCount && useTileCharactorCount < tileControllerCount);
     }
 
+    public bool IsCreateCombinationCharactor()
+    {
+        return useTileCharactorCount < tileControllerCount;
+    }
+
     public void OnSellCharactor(CharactorTileController charactorTileController)
     {
         if (!charactorCountTable.ContainsKey(charactorTileController.CharactorID))
