@@ -89,6 +89,8 @@ public class CharactorTileManager : MonoBehaviour
             return;
 
         --charactorCountTable[charactorTileController.CharactorID];
+        totalCharactorCount -= 1;
+        changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
 
         if ((((CharactorClassTypeMask)(1 << (int)charactorTileController.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) == 0))
             return;
@@ -103,6 +105,7 @@ public class CharactorTileManager : MonoBehaviour
         ((CharactorMoveState)charactor.StateTable[CharactorStateType.Move]).OnSetMovePoint(charactorTileController.transform.position + CharactorDeploymentData.deploymentPositionList[charactorTileController.CharactorCount]);
         charactorTileController.AddCharactor(charactor);
         charactor.ChangeState(CharactorStateType.Move);
+
     }
 
     public void OnSynthesisCharactor(CharactorTileController charactorTileController)
@@ -128,6 +131,7 @@ public class CharactorTileManager : MonoBehaviour
             charactorTileController.CreateCharactor(createCharactor);
         }
         AddCharactorTable(createCharactor.CharactorData.Id);
+        changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
     }
 
     private void AddCharactorTable(int charactorID)

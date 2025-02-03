@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -99,6 +100,7 @@ public class GameController : MonoBehaviour
 
         if (currentMonsterCount == maxMonsterCount)
         {
+            StartCoroutine(CoRestert());
             GameOver();
         }
     }
@@ -200,5 +202,11 @@ public class GameController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator CoRestert()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        OnRestart();
     }
 }
