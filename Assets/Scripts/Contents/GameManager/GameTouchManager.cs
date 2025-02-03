@@ -89,6 +89,8 @@ public class GameTouchManager : MonoBehaviour
         }
 
         seleteCharactorTileObject = target.transform.GetComponent<CharactorTileController>();
+        if (seleteCharactorTileObject.CharactorCount == 0)
+            seleteCharactorTileObject = null;
 
     }
     private void OnStartDrag()
@@ -116,6 +118,8 @@ public class GameTouchManager : MonoBehaviour
     {
         if (seleteCharactorTileObject == null)
         {
+            charactorUIInteraction.gameObject.SetActive(false);
+            attackRangeObject.OnDisableObject();
             return;
         }
 

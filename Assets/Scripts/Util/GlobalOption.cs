@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GlobalOption : MonoBehaviour
 {
     [SerializeField]
-    private int targetFrameRate;
+    private Toggle fpsToggle;
 
+    private bool isOnFPS = false;
+
+    [SerializeField]
+    private int targetFrameRate;
 
     private GameModeType currentMode = GameModeType.GamePlay;   
 
@@ -16,6 +21,12 @@ public class GlobalOption : MonoBehaviour
     {
         Application.targetFrameRate = targetFrameRate;
         prevTimeScale = Time.timeScale;
+
+        if(fpsToggle != null)
+        {
+            fpsToggle.onValueChanged.AddListener(OnFPS);
+            fpsToggle.isOn = isOnFPS;
+        }
     }
 
     public void OnPause()
@@ -40,5 +51,34 @@ public class GlobalOption : MonoBehaviour
     public void OnExitGame()
     {
         Application.Quit();
+    }
+
+    public void OnFPS(bool value)
+    {
+        isOnFPS = value;
+    }
+
+    [Range(10, 150)]
+    public int fontSize = 30;
+    public Color color = new Color(.0f, .0f, .0f, 1.0f);
+    public float width, height;
+
+    void OnGUI()
+    {
+        if (!isOnFPS)
+            return;
+
+        Rect position = new Rect(width, height, Screen.width, Screen.height);
+
+        float fps = 1.0f / Time.deltaTime;
+        float ms = Time.deltaTime * 1000.0f;
+        string text = string.Format("{0:N1} FPS ({1:N1}ms)", fps, ms);
+
+        GUIStyle style = new GUIStyle();
+
+        style.fontSize = fontSize;
+        style.normal.textColor = color;
+
+        GUI.Label(position, text, style);
     }
 }
