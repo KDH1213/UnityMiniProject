@@ -24,14 +24,6 @@ public class CharactorAttackState : CharactorBaseState
 
     public override void Enter()
     {
-        //currentPosition = monsterTransform.position;
-        //moveSpeed = charactorFSM.GetStatValue(StatType.MovementSpeed);
-        //GetMovePoint();
-        //charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
-
-     
-
-
         if (charactorFSM.Animator != null)
         {
             charactorFSM.Animator.SetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
@@ -41,7 +33,6 @@ public class CharactorAttackState : CharactorBaseState
             OnStartAttack();
             CharactorFSM.ChangeState(CharactorStateType.Idle);
         }
-
     }
 
     public override void ExecuteUpdate()
@@ -57,7 +48,6 @@ public class CharactorAttackState : CharactorBaseState
     public override void Exit()
     {
         charactorFSM.Animator.ResetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
-        // charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
     }
 
     public void SetAttackTarget(Collider2D target)

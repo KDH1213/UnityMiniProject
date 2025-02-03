@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class MonsterStunState : MonsterBaseState
 {
@@ -52,13 +51,13 @@ public class MonsterStunState : MonsterBaseState
 
     private IEnumerator CoStunTime()
     {
-        var spriteRenderers = MonsterFSM.SpriteRenderers;
-        var originalColor = spriteRenderers[0].color;
+        //var spriteRenderers = MonsterFSM.SpriteRenderers;
+        //var originalColor = spriteRenderers[0].color;
 
-        foreach (var sprite in spriteRenderers)
-        {
-            sprite.color = stunColor;
-        }
+        //foreach (var sprite in spriteRenderers)
+        //{
+        //    sprite.color = stunColor;
+        //}
 
         currentStunTime = stunTime;
 
@@ -68,10 +67,10 @@ public class MonsterStunState : MonsterBaseState
             currentStunTime -= Time.deltaTime;
         }
 
-        foreach (var sprite in spriteRenderers)
-        {
-            sprite.color = originalColor;
-        }
+        //foreach (var sprite in spriteRenderers)
+        //{
+        //    sprite.color = originalColor;
+        //}
 
         if(MonsterFSM.CurrentStateType != MonsterStateType.Death)
             MonsterFSM.ChangeState(MonsterStateType.Move);

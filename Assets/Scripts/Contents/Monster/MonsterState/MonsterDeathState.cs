@@ -30,7 +30,7 @@ public class MonsterDeathState : MonsterBaseState
 
     private IEnumerator CoDeathEffectTime()
     {
-        var spriteRenderers = MonsterFSM.SpriteRenderers;
+        var spriteRenderers = MonsterFSM.GetComponentsInChildren<SpriteRenderer>();
         var currentColor = spriteRenderers[0].color;
         float currentTime = 0f;
         while (currentTime < deathEffectTime)

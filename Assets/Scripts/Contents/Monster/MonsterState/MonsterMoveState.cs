@@ -72,9 +72,9 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
 
     private void OnFilp()
     {
-        if(moveDirection.y > 0f)
+        if (moveDirection.y > 0f)
         {
-            if(monsterSpriteTransform.localScale.x > 0f)
+            if (monsterSpriteTransform.localScale.x > 0f)
             {
                 var scale = monsterSpriteTransform.localScale;
                 scale.x = -1f;

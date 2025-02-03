@@ -28,18 +28,18 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     protected override void Awake()
     {
-        originColor = spriteRenderers[0].color;
+        // originColor = spriteRenderers[0].color;
 
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
             => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
 
-        monsterStatus.damegedEvent.AddListener( () =>
-            {
-                if (hitEffectCoroutine != null)
-                    StopCoroutine(hitEffectCoroutine);
-                hitEffectCoroutine = StartCoroutine(CoHitEffect());
-            });
+        //monsterStatus.damegedEvent.AddListener( () =>
+        //    {
+        //        if (hitEffectCoroutine != null)
+        //            StopCoroutine(hitEffectCoroutine);
+        //        hitEffectCoroutine = StartCoroutine(CoHitEffect());
+        //    });
     }
 
     protected void Start()
@@ -69,23 +69,23 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         return monsterStatus.GetStatValue(statType);
     }
 
-    private IEnumerator CoHitEffect()
-    {
-        var originalColor = originColor;
+    //private IEnumerator CoHitEffect()
+    //{
+    //    var originalColor = originColor;
 
-        foreach (var sprite in spriteRenderers)
-        {
-            sprite.color = hitEffectColor;
-        }
+    //    foreach (var sprite in spriteRenderers)
+    //    {
+    //        sprite.color = hitEffectColor;
+    //    }
 
-        yield return new WaitForSeconds(hitEffectTime);
+    //    yield return new WaitForSeconds(hitEffectTime);
 
-        if(currentStateType == MonsterStateType.Move)
-        {
-            foreach (var sprite in spriteRenderers)
-            {
-                sprite.color = originalColor;
-            }
-        }     
-    }
+    //    if(currentStateType == MonsterStateType.Move)
+    //    {
+    //        foreach (var sprite in spriteRenderers)
+    //        {
+    //            sprite.color = originalColor;
+    //        }
+    //    }     
+    //}
 }
