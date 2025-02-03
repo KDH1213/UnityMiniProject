@@ -22,7 +22,8 @@ public class CharactorMoveState : CharactorBaseState
         //currentPosition = monsterTransform.position;
         //moveSpeed = charactorFSM.GetStatValue(StatType.MovementSpeed);
         //GetMovePoint();
-        //charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
+        if (charactorFSM.Animator != null)
+            charactorFSM.Animator.SetBool(DHUtil.CharactorAnimationUtil.hashIsMove, true);
     }
 
     public override void ExecuteUpdate()
@@ -32,7 +33,8 @@ public class CharactorMoveState : CharactorBaseState
 
     public override void Exit()
     {
-        // charactorFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
+        if (charactorFSM.Animator != null)
+            charactorFSM.Animator.SetBool(DHUtil.CharactorAnimationUtil.hashIsMove, false);
     }
 
     public void Move()
