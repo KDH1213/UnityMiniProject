@@ -24,8 +24,12 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     private float hitEffectTime;
     private Coroutine hitEffectCoroutine;
 
+    private Color originColor;
+
     protected override void Awake()
     {
+        originColor = spriteRenderers[0].color;
+
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
             => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
@@ -67,7 +71,7 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     private IEnumerator CoHitEffect()
     {
-        var originalColor = spriteRenderers[0].color;
+        var originalColor = originColor;
 
         foreach (var sprite in spriteRenderers)
         {
