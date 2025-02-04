@@ -7,6 +7,8 @@ public class CoinDrawData
     public float Rare { get; set; }
     public float Epic { get; set; }
 
+    public int Value { get; set; }
+
     private List<float> coinDrawList = new List<float>();
     public List<float> CoinDrawList { get { return coinDrawList; } }
 

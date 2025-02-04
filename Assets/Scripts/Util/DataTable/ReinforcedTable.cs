@@ -16,9 +16,11 @@ public class ReinforcedData
 
     public List<int> valueList = new List<int>();
     public List<int> damagePercentList = new List<int>();
+
+    public int MaxCount { get { return valueList.Count; } }
 }
 
-public class ReinforcedDataTable : DataTable
+public class ReinforcedTable : DataTable
 {
     private Dictionary<CharactorClassType, ReinforcedData> reinforcedDictionoary = new Dictionary<CharactorClassType, ReinforcedData>();
     public override void Load(string filename)
@@ -41,8 +43,6 @@ public class ReinforcedDataTable : DataTable
                 Debug.LogError($"{item.Id} None");
             }
         }
-
-        reinforcedDictionoary.Clear();
     }
 
     public ReinforcedData GetKeyData(CharactorClassType key)

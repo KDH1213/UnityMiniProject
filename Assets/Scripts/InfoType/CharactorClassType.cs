@@ -4,6 +4,7 @@ public enum CharactorClassType
     N,
     A,
     S,
+    End
 }
 [System.Serializable]
 [System.Flags]

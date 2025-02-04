@@ -79,6 +79,14 @@ public static class CombinationTableIds
     };
 }
 
+public static class ReinforcedTableIds
+{
+    public static readonly string[] String =
+    {
+        "ReinforcedTable",
+    };
+}
+
 public static class Varibalbes
 {
     public static Languages currentLanguage = Languages.Korea;
