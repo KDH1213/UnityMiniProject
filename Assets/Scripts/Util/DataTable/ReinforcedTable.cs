@@ -15,7 +15,7 @@ public class ReinforcedData
     public string DamagePercent { get; set; }
 
     public List<int> valueList = new List<int>();
-    public List<int> damagePercentList = new List<int>();
+    public List<float> damagePercentList = new List<float>();
 
     public int MaxCount { get { return valueList.Count; } }
 }
@@ -35,7 +35,12 @@ public class ReinforcedTable : DataTable
             if(!reinforcedDictionoary.ContainsKey(item.CharactorClassType))
             {
                 item.valueList = item.Value.Split('_').Select(p => int.Parse(p)).ToList();
-                item.damagePercentList = item.DamagePercent.Split('_').Select(p => int.Parse(p)).ToList();
+                item.damagePercentList = item.DamagePercent.Split('_').Select(p => float.Parse(p)).ToList();
+
+                for (int i = 0; i < item.damagePercentList.Count; ++i)
+                {
+                    item.damagePercentList[i] = item.damagePercentList[i] * 0.01f;
+                }
                 reinforcedDictionoary.Add(item.CharactorClassType, item);
             }
             else

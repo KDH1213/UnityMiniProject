@@ -18,6 +18,8 @@ public class ReinforcedManager : MonoBehaviour
     public UnityEvent<int> reinforcedLevelTypeCellEvent;
 
     private int[] currentReinforcedLevelTypes = new int[(int)CharactorClassType.End];
+    private float[] currentReinforcedDamageDamagePercent = new float[(int)CharactorClassType.End];
+
     private int currentReinforcedLevelTypeCall = 0;
 
     private void Awake()
@@ -28,6 +30,16 @@ public class ReinforcedManager : MonoBehaviour
         reinforcedLevelTypeCellEvent.AddListener(inGameUiController.OnChangeCoinDrawLevel);
     }
 
+    public int GetReinforcedLevel(CharactorClassType type)
+    {
+        return currentReinforcedLevelTypes[(int)type];
+    }
+
+    public float GetCurrentReinforcedDamageDamagePercent(CharactorClassType type)
+    {
+        return currentReinforcedDamageDamagePercent[(int)type];
+    }
+
     public void OnLevelUpReinforcedLevelType(int index)
     {
         var type = (CharactorClassType)index;
@@ -36,6 +48,7 @@ public class ReinforcedManager : MonoBehaviour
             return;
         gameController.OnAddCoin(-value);
         ++currentReinforcedLevelTypes[index];
+        currentReinforcedDamageDamagePercent[index] = DataTableManager.ReinforcedTable.GetKeyData(type).damagePercentList[currentReinforcedLevelTypes[index]];
 
         switch (type)
         {

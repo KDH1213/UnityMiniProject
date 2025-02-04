@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UICharactorInfo : MonoBehaviour
 {
     [SerializeField]
+    private ReinforcedManager reinforcedManager;
+    [SerializeField]
     private Image charactorImage;
     [SerializeField]
     private TextMeshProUGUI charactorType;
@@ -20,6 +22,9 @@ public class UICharactorInfo : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI attackDamage;
+
+    [SerializeField]
+    private TextMeshProUGUI reinforcedAttackDamage;
     [SerializeField]
     private TextMeshProUGUI attackSpeed;
     [SerializeField]
@@ -46,6 +51,7 @@ public class UICharactorInfo : MonoBehaviour
     private readonly string attackTypeFormat = "{0}";
 
     private readonly string damageFormat = "{0}";
+    private readonly string reinforcedDamageFormat = "+ {0:f2}";
     private readonly string attackSpeedFormat = "{0:f1}";
 
 
@@ -71,6 +77,7 @@ public class UICharactorInfo : MonoBehaviour
     {
         CharactorData = charactorData;
         AttackData = DataTableManager.AttackDataTable.Get(CharactorData.AttackInfoID);
+        var level = reinforcedManager.GetReinforcedLevel(CharactorData.CharactorClassType);
 
         charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType.ToString());
         charactorName.text = string.Format(charactorNameFormat, CharactorData.PrefabID);
@@ -79,6 +86,17 @@ public class UICharactorInfo : MonoBehaviour
 
         attackType.text = string.Format(attackTypeFormat, AttackData.AttackType.ToString());
         debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType.ToString());
+
+        if(level == 0)
+        {
+            reinforcedAttackDamage.gameObject.SetActive(false);
+        }
+        else
+        {
+            reinforcedAttackDamage.gameObject.SetActive(true);
+            var extraDamage = CharactorData.Damage * reinforcedManager.GetCurrentReinforcedDamageDamagePercent(CharactorData.CharactorClassType);
+            reinforcedAttackDamage.text = string.Format(reinforcedDamageFormat, extraDamage);
+        }
 
         if(AttackData.DebuffType != DebuffType.None)
         {

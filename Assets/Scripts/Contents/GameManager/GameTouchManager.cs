@@ -85,6 +85,7 @@ public class GameTouchManager : MonoBehaviour
         {
             attackRangeObject.OnDisableObject();
             charactorUIInteraction.gameObject.SetActive(false);
+            seleteCharactorTileObject = null;
             return;
         }
 

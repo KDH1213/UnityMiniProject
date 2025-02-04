@@ -18,7 +18,6 @@ public class CharactorTileManager : MonoBehaviour
     [SerializeField]
     private readonly int maxCharactorCount = 20;
 
-
     private Dictionary<int, int> charactorCountTable = new Dictionary<int, int>();
 
     private int tileControllerCount;

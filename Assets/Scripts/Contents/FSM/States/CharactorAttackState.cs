@@ -15,8 +15,12 @@ public class CharactorAttackState : CharactorBaseState
     private float attackTime = 0.5f;
     private bool isTargetDeath = false;
 
+    private ReinforcedManager reinforcedManager;
+
     protected override void Awake()
     {
+        reinforcedManager = GameObject.FindWithTag(Tags.ReinforcedManager).GetComponent<ReinforcedManager>();
+
         base.Awake();
         stateType = CharactorStateType.Attack;
         attackData = CharactorFSM.AttackData;
@@ -47,7 +51,10 @@ public class CharactorAttackState : CharactorBaseState
 
     public override void Exit()
     {
-        charactorFSM.Animator.ResetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
+        if (charactorFSM.Animator != null)
+        {
+            charactorFSM.Animator.ResetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
+        }
     }
 
     public void SetAttackTarget(Collider2D target)
@@ -58,6 +65,9 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnStartAttack()
     {
+        var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * reinforcedManager.GetReinforcedLevel(CharactorFSM.CharactorData.CharactorClassType);
+
+
         if (CharactorFSM.AttackData.AttackType == AttackType.Single)
         {
             if (!isTargetDeath)
@@ -66,7 +76,7 @@ public class CharactorAttackState : CharactorBaseState
                 var attackInfo = CharactorFSM.AttackData;
 
                 var damageInfo = new DamageInfo();
-                damageInfo.damage = CharactorFSM.CharactorData.Damage;
+                damageInfo.damage = damage;
                 damageInfo.debuffType = attackInfo.DebuffType;
                 damageInfo.debuffTime = attackInfo.DebuffTime;
                 target.OnDamage(ref damageInfo);
@@ -75,7 +85,7 @@ public class CharactorAttackState : CharactorBaseState
         else if(CharactorFSM.AttackData.AttackType == AttackType.Area)
         {
             var areaAttackObject = Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
-            areaAttackObject.GetComponent<DamagedObject>().Damage = CharactorFSM.CharactorData.Damage;
+            areaAttackObject.GetComponent<DamagedObject>().Damage = damage;
             areaAttackObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
             return;
         }
@@ -83,7 +93,7 @@ public class CharactorAttackState : CharactorBaseState
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
         createObject.transform.position = isTargetDeath ? attackPoint : attackTarget.transform.position;
         createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
-        createObject.GetComponent<DamagedObject>().Damage = CharactorFSM.CharactorData.Damage;
+        createObject.GetComponent<DamagedObject>().Damage = damage;
     }
 
     public void OnEndAttackAnimation()
