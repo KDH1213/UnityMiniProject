@@ -8,9 +8,9 @@ public class MonsterData
     [field: SerializeField] 
     public int Id { get; set; }
     [field: SerializeField] 
-    public string MonsterPrefabId { get; set; }
-    [field: SerializeField] 
     public MonsterType MonsterType { get; set; }
+    [field: SerializeField] 
+    public string MonsterPrefabId { get; set; }
     [field: SerializeField] 
     public float MoveSpeed { get; set; }
     [field: SerializeField]

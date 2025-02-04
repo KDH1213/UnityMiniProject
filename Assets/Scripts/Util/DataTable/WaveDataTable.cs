@@ -15,7 +15,7 @@ public class WaveData
     public float SpawnInterval { get; set; }
     
     public CurrencyType CurrencyType { get; set; }
-    public int WaveStartCurreneyValue { get; set; }
+    public int WaveStartCurrencyValue { get; set; }
     
 
     //public override string ToString()
