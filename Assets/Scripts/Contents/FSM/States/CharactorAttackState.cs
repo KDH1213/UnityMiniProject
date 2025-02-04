@@ -7,7 +7,8 @@ public class CharactorAttackState : CharactorBaseState
     [SerializeField] 
     private AttackType attackType;
 
-    private MonsterFSMController attackTarget;
+    private Collider2D attackTargetCollider;
+    private IDamageable attackTarget;
     private AttackData attackData;
 
     private Vector2 attackPoint;
@@ -41,11 +42,12 @@ public class CharactorAttackState : CharactorBaseState
 
     public override void ExecuteUpdate()
     {
-        if(!isTargetDeath && attackTarget.CurrentStateType == MonsterStateType.Death)
+        if(attackTarget != null && attackTarget.IsDead)
         {
-            attackPoint = attackTarget.transform.position;
+            attackPoint = attackTargetCollider.transform.position;
             attackTarget = null;
-            isTargetDeath= true;
+            attackTargetCollider = null;
+            isTargetDeath = true;
         }
     }
 
@@ -59,7 +61,8 @@ public class CharactorAttackState : CharactorBaseState
 
     public void SetAttackTarget(Collider2D target)
     {
-        attackTarget = target.GetComponent<MonsterFSMController>();
+        attackTarget = target.GetComponent<IDamageable>();
+        attackTargetCollider = target;
         isTargetDeath = false;
     }
 
@@ -72,14 +75,13 @@ public class CharactorAttackState : CharactorBaseState
         {
             if (!isTargetDeath)
             {
-                var target = attackTarget.GetComponent<IDamageable>();
                 var attackInfo = CharactorFSM.AttackData;
 
                 var damageInfo = new DamageInfo();
                 damageInfo.damage = damage;
                 damageInfo.debuffType = attackInfo.DebuffType;
                 damageInfo.debuffTime = attackInfo.DebuffTime;
-                target.OnDamage(ref damageInfo);
+                attackTarget.OnDamage(ref damageInfo);
             }
         }
         else if(CharactorFSM.AttackData.AttackType == AttackType.Area)
@@ -91,7 +93,7 @@ public class CharactorAttackState : CharactorBaseState
         }
 
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
-        createObject.transform.position = isTargetDeath ? attackPoint : attackTarget.transform.position;
+        createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
         createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
         createObject.GetComponent<DamagedObject>().Damage = damage;
     }
