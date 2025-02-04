@@ -2132,7 +2132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6150010547922384000}
-  - component: {fileID: 8090419498729751493}
   - component: {fileID: 5601328775420326491}
   - component: {fileID: 6779698076757365526}
   - component: {fileID: 8032815710176162826}
@@ -2164,27 +2163,6 @@ Transform:
   - {fileID: 427781943572647581}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8090419498729751493
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4827146736011443587}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb60a6f9c54ca21409d63bd60e331829, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5601328775420326491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,7 +2226,7 @@ MonoBehaviour:
       Value: {fileID: 2813291433801693992}
     - Key: 5
       Value: {fileID: 8032815710176162826}
-  animator: {fileID: 8090419498729751493}
+  animator: {fileID: 5726264508623877614}
   monsterStatus: {fileID: 5601328775420326491}
   spriteRenderers:
   - {fileID: 0}
