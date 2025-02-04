@@ -67,12 +67,22 @@ public class GlobalOption : MonoBehaviour
     {
         if (!isOnFPS)
             return;
-
+        string text;
         Rect position = new Rect(width, height, Screen.width, Screen.height);
 
-        float fps = 1.0f / Time.deltaTime;
-        float ms = Time.deltaTime * 1000.0f;
-        string text = string.Format("{0:N1} FPS ({1:N1}ms)", fps, ms);
+        if(Time.timeScale == 0)
+        {
+            float fps = 1.0f / Time.unscaledDeltaTime;
+            float ms = Time.unscaledDeltaTime * 1000.0f;
+            text = string.Format("{0:N1} FPS ({1:N1}ms)", fps, ms);
+        }
+        else
+        {
+            float fps = 1.0f / Time.deltaTime;
+            float ms = Time.deltaTime * 1000.0f;
+            text = string.Format("{0:N1} FPS ({1:N1}ms)", fps, ms);
+        }
+        
 
         GUIStyle style = new GUIStyle();
 
