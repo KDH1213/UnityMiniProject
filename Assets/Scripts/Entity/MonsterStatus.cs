@@ -16,6 +16,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     [SerializeField] 
     private Slider hpbar;
+    [SerializeField]
+    private UIDamageText uIDamageTextPrefab;
     public bool IsDead { get; private set; } = false;
 
     public UnityEvent hitEvent;
@@ -57,6 +59,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
+        Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
         hitEvent?.Invoke();
 

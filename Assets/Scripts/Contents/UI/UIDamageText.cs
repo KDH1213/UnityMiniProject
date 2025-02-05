@@ -50,4 +50,9 @@ public class UIDamageText : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public void SetDamage(string damage)
+    {
+        damageText.text = damage;
+    }
 }

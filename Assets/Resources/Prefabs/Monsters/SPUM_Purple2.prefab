@@ -2650,6 +2650,7 @@ MonoBehaviour:
   monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 1887246426840176121}
   hpbar: {fileID: 5195174950894745089}
+  uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2713,6 +2714,7 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
+  monsterCollider: {fileID: 0}
   deathEffectTime: 0.5
 --- !u!114 &681447071307784330
 MonoBehaviour:
