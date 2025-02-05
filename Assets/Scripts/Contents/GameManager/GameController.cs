@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -22,8 +23,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private int currentCoin = 500;
     public int CurrentCoin { get { return currentCoin; } }
-    private int currentJowel = 0;
-    public int CurrentJowel { get { return currentJowel; } }
+    private int currentJewel = 0;
+    public int CurrentJewel { get { return currentJewel; } }
 
     [SerializeField]
     private int maxMonsterCount;
@@ -39,11 +40,20 @@ public class GameController : MonoBehaviour
     public UnityEvent createFailEvenet;
 
 
+
     // TODO :: 임시 게임 종료, 클리어 오브젝트 추가, UI, 보상 시스템 기획서 나올시 수정
     [SerializeField] 
     private GameObject gameoverObject;
     [SerializeField] 
     private GameObject clearObject;
+
+    [SerializeField]
+    private Transform coinEffectCreatePoint;
+    [SerializeField]
+    private Transform jewelEffectCreatePoint;
+
+    [SerializeField]
+    private GameObject currencyEffectPrefab;
 
     private void Awake()
     {
@@ -62,7 +72,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         coinChangeEvent?.Invoke(currentCoin);
-        jowelChangeEvent?.Invoke(currentJowel);
+        jowelChangeEvent?.Invoke(currentJewel);
         changeCreateCoinValueEvnet?.Invoke(createCoin);
     }
 
@@ -70,12 +80,14 @@ public class GameController : MonoBehaviour
     {
         currentCoin += coin;
         coinChangeEvent?.Invoke(currentCoin);
+        Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
     }
 
     public void OnAddJewel(int jowel)
     {
-        currentJowel += jowel;
-        jowelChangeEvent?.Invoke(currentJowel);
+        currentJewel += jowel;
+        jowelChangeEvent?.Invoke(currentJewel);
+        Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
     }
 
     // TODO :: 에디터 상 캐릭터 생성 버튼과 이벤트 연결
@@ -112,6 +124,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
 
         clearObject.SetActive(true);
+
         gameClearEvent?.Invoke();
     }
     public void GameOver()

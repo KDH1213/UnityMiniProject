@@ -318,7 +318,7 @@ public class CharactorTileManager : MonoBehaviour
             }
         }
 
-        var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.Id).PrefabObject); 
+        var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).PrefabObject); 
         CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
     }
 }

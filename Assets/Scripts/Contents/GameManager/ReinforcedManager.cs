@@ -55,7 +55,7 @@ public class ReinforcedManager : MonoBehaviour
         else
         {
             var value = DataTableManager.ReinforcedTable.GetKeyData(type).valueList[currentReinforcedLevelTypes[index]];
-            if (gameController.CurrentJowel < value)
+            if (gameController.CurrentJewel < value)
                 return;
 
             gameController.OnAddJewel(-value);
