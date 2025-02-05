@@ -9,7 +9,7 @@ public class CombinationData
     //판매 가격, 재화 타입, 등급
     public int Id { get; set; }
 
-    public string PrefabID { get; set; }
+    public int CharacterID { get; set; }
     public string Ingredient { get; set; }
 
     public Dictionary<int, int> IngredientTable { get; private set; } = new Dictionary<int, int>();

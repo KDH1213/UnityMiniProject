@@ -69,7 +69,7 @@ public class ReinforcedManager : MonoBehaviour
     }
     public void OnLevelUpReinforcedLevelTypeCall()
     {
-        var value = DataTableManager.CoinDrawTable.Get(currentReinforcedLevelTypeCall).Value;
+        var value = DataTableManager.CoinDrawTable.Get(currentReinforcedLevelTypeCall).UpgradeCost;
         if (gameController.CurrentCoint < value)
             return;
 

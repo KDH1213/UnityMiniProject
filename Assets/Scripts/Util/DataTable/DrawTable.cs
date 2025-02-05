@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class CoinDrawData
 {
-    public float Normal {  get; set; }
-    public float Rare { get; set; }
-    public float Epic { get; set; }
+    public int CallID { get; set; }
+    public int CallLV { get; set; }
 
-    public int Value { get; set; }
+    public float NCallPct {  get; set; }
+    public float ACallPct { get; set; }
+    public float SCallPct { get; set; }
+
+    public int UpgradeCost { get; set; }
 
     private List<float> coinDrawList = new List<float>();
     public List<float> CoinDrawList { get { return coinDrawList; } }
@@ -40,9 +43,9 @@ public class CoinDrawTable : DataTable
             }
             else
             {
-                item.CoinDrawList.Add(item.Normal);
-                item.CoinDrawList.Add(item.Rare);
-                item.CoinDrawList.Add(item.Epic);
+                item.CoinDrawList.Add(item.NCallPct);
+                item.CoinDrawList.Add(item.ACallPct);
+                item.CoinDrawList.Add(item.SCallPct);
             }
         }
     }
