@@ -33,7 +33,7 @@ public class CharactorDataTable : DataTable
     private List<List<CharactorData>>  charactorDataList = new List<List<CharactorData>>();
     private Dictionary<int, CharactorData> charactorTable = new Dictionary<int, CharactorData>();
 
-    private readonly string assetPath = "Prefabs/TempPrefab/{0}";
+    private readonly string assetPath = "Prefabs/Charactors/{0}";
 
     public override void Load(string filename)
     {
@@ -58,7 +58,7 @@ public class CharactorDataTable : DataTable
             if (item.PrefabObject == null)
                 continue;
 
-            item.RealAttackRange = item.AttackRange * 3f;
+            item.RealAttackRange = (item.AttackRange * 3f) + 3f;
             var charactorFsm = item.PrefabObject.GetComponent<CharactorFSM>();
             charactorFsm.AttackData = DataTableManager.AttackDataTable.Get(item.AttackInfoID);
             charactorFsm.CharactorData = item;

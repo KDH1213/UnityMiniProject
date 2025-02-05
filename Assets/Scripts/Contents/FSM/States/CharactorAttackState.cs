@@ -99,13 +99,13 @@ public class CharactorAttackState : CharactorBaseState
         {
             var areaAttackObject = Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
             areaAttackObject.GetComponent<DamagedObject>().Damage = damage;
-            areaAttackObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
+            areaAttackObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
             return;
         }
 
         var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
         createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
-        createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange;
+        createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
         createObject.GetComponent<DamagedObject>().Damage = damage;
     }
 
@@ -115,4 +115,9 @@ public class CharactorAttackState : CharactorBaseState
             CharactorFSM.ChangeState(CharactorStateType.Idle);
     }
 
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(transform.position, CharactorFSM.CharactorData.RealAttackRange * 0.5f);
+    //}
 }

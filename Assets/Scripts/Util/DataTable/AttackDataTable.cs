@@ -49,7 +49,7 @@ public class AttackDataTable : DataTable
             if (item.PrefabObject == null)
                 continue;
 
-            item.RealAttackRange = item.AttackRange * 3f;
+            item.RealAttackRange = (item.AttackRange * 3f) + 3f;
             item.PrefabObject.GetComponent<DamagedObject>().SetAttackData(item);
 
             if (!attackTable.ContainsKey(item.Id))

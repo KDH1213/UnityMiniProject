@@ -138,6 +138,8 @@ public class CharactorIdleState : CharactorBaseState
                 }
                 break;
             case AttackType.Area:
+
+                ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(OverlapCollider.HitColliderList[0]);
                 break;
             default:
                 break;
