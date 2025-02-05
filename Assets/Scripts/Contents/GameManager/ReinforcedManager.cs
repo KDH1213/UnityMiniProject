@@ -43,10 +43,24 @@ public class ReinforcedManager : MonoBehaviour
     public void OnLevelUpReinforcedLevelType(int index)
     {
         var type = (CharactorClassType)index;
-        var value = DataTableManager.ReinforcedTable.GetKeyData(type).valueList[currentReinforcedLevelTypes[index]];
-        if (gameController.CurrentCoint < value)
-            return;
-        gameController.OnAddCoin(-value);
+
+        if (DataTableManager.ReinforcedTable.GetKeyData(type).CurrencyType == CurrencyType.Coin)
+        {
+            var value = DataTableManager.ReinforcedTable.GetKeyData(type).valueList[currentReinforcedLevelTypes[index]];
+            if (gameController.CurrentCoin < value)
+                return;
+
+            gameController.OnAddCoin(-value);
+        }
+        else
+        {
+            var value = DataTableManager.ReinforcedTable.GetKeyData(type).valueList[currentReinforcedLevelTypes[index]];
+            if (gameController.CurrentJowel < value)
+                return;
+
+            gameController.OnAddJewel(-value);
+        }
+
         ++currentReinforcedLevelTypes[index];
         currentReinforcedDamageDamagePercent[index] = DataTableManager.ReinforcedTable.GetKeyData(type).damagePercentList[currentReinforcedLevelTypes[index]];
 
@@ -70,7 +84,7 @@ public class ReinforcedManager : MonoBehaviour
     public void OnLevelUpReinforcedLevelTypeCall()
     {
         var value = DataTableManager.CoinDrawTable.Get(currentReinforcedLevelTypeCall).UpgradeCost;
-        if (gameController.CurrentCoint < value)
+        if (gameController.CurrentCoin < value)
             return;
 
         gameController.OnAddCoin(-value);

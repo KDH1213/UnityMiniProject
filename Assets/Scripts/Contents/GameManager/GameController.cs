@@ -21,8 +21,9 @@ public class GameController : MonoBehaviour
     private int createCoin = 20;
     [SerializeField]
     private int currentCoin = 500;
-    public int CurrentCoint { get { return currentCoin; } }
+    public int CurrentCoin { get { return currentCoin; } }
     private int currentJowel = 0;
+    public int CurrentJowel { get { return currentJowel; } }
 
     [SerializeField]
     private int maxMonsterCount;
