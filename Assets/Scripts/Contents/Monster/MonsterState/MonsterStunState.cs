@@ -26,7 +26,7 @@ public class MonsterStunState : MonsterBaseState
         }
 
         stunCoroutine = StartCoroutine(CoStunTime());
-        monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
+        monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, true);
     }
     public override void ExecuteUpdate()
     {
@@ -38,6 +38,7 @@ public class MonsterStunState : MonsterBaseState
     public override void Exit()
     {
         exitStateEvent?.Invoke();
+        monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, false);
     }
 
     public void SetStunTime(float time)

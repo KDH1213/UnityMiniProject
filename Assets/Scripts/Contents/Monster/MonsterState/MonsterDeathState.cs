@@ -14,7 +14,7 @@ public class MonsterDeathState : MonsterBaseState
     {
         enterStateEvent?.Invoke();
         StartCoroutine(CoDeathEffectTime());
-        monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, false);
+        monsterFSM.Animator.SetTrigger(DHUtil.MonsterAnimationUtil.hashIsDeath);
     }
     public override void ExecuteUpdate()
     {
