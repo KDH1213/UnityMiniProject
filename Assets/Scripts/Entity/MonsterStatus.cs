@@ -9,10 +9,13 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     private SerializedDictionary<StatType, StatusValue> currentValues = new SerializedDictionary<StatType, StatusValue>();
     public SerializedDictionary<StatType, StatusValue> CurrentValueTable { get {  return currentValues; } }
 
-    [SerializeField] private MonsterProfile monsterProfile;
-    [SerializeField] private MonsterFSMController monsterFSMController;
+    [SerializeField] 
+    private MonsterProfile monsterProfile;
+    [SerializeField] 
+    private MonsterFSMController monsterFSMController;
 
-    [SerializeField] private Slider hpbar;
+    [SerializeField] 
+    private Slider hpbar;
     public bool IsDead { get; private set; } = false;
 
     public UnityEvent hitEvent;
@@ -50,6 +53,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             inoutDamageInfo.targetDeath = false;
             return false;
         }
+        hpbar.gameObject.SetActive(true);
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
@@ -60,6 +64,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         {
             IsDead = true;
             inoutDamageInfo.targetDeath = IsDead;
+
+            hpbar.gameObject.SetActive(false);
             deathEvent?.Invoke();
             // Destroy(gameObject);
         }

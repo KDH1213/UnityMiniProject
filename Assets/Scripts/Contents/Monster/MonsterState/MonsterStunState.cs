@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MonsterStunState : MonsterBaseState
 {
-    [SerializeField] private Color stunColor;
+    [SerializeField] 
+    private Color stunColor;
     private float stunTime;
     private Coroutine stunCoroutine;
 

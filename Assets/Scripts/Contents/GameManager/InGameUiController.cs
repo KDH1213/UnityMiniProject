@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class InGameUiController : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class InGameUiController : MonoBehaviour
     private TextMeshProUGUI charactorCountText;
     [SerializeField]
     private TextMeshProUGUI jewelText;
+
+    [SerializeField]
+    private Slider monsterCountSlider;
 
     public UnityEvent createFailEvenet;
 
@@ -80,6 +84,8 @@ public class InGameUiController : MonoBehaviour
         gameController.coinChangeEvent.AddListener(OnChangeCoinCount);
         gameController.changeCreateCoinValueEvnet.AddListener(OnChangeCreateCoinValue);
         gameController.jowelChangeEvent.AddListener(OnChangeJowel);
+
+        monsterCountSlider.value = 0;
     }
 
     public void OnChangeCoinCount(int coin)
@@ -94,7 +100,8 @@ public class InGameUiController : MonoBehaviour
 
     public void OnChangeMonsterCount(int count, int maxCount)
     {
-        monsterText.text =  string.Format(monsterCountFomat, count.ToString(), maxCount.ToString());
+        monsterText.text = string.Format(monsterCountFomat, count.ToString(), maxCount.ToString());
+        monsterCountSlider.value = (float)count / (float)maxCount;
     }
 
     public void OnChangeWave(int wave, int maxWave)
