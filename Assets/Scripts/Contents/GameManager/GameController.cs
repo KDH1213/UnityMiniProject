@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour
     private GameTouchManager gameTouchManager;
 
     [SerializeField]
+    private ReinforcedManager reinforcedManager;
+
+    [SerializeField]
     private int createCoin = 20;
     [SerializeField]
     private int currentCoin = 500;
@@ -143,7 +146,7 @@ public class GameController : MonoBehaviour
 
     private GameObject OnRandomCreateCharactor()
     {
-        var coinDrawList = DataTableManager.CoinDrawTable.Get(0).CoinDrawList;
+        var coinDrawList = DataTableManager.CoinDrawTable.Get(reinforcedManager.CurrentReinforcedLevelTypeCall).CoinDrawList;
 
         int count = coinDrawList.Count;
         float randomRange = 0f;

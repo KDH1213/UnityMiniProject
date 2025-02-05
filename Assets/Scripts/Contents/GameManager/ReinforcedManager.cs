@@ -21,6 +21,7 @@ public class ReinforcedManager : MonoBehaviour
     private float[] currentReinforcedDamageDamagePercent = new float[(int)CharactorClassType.End];
 
     private int currentReinforcedLevelTypeCall = 0;
+    public int CurrentReinforcedLevelTypeCall { get { return currentReinforcedLevelTypeCall; } }
 
     private void Awake()
     {
