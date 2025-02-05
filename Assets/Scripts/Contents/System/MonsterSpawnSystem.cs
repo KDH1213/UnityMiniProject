@@ -23,6 +23,7 @@ public class MonsterSpawnSystem : MonoBehaviour
 
     private int activeSpawnerCount;
     private int currentWaveLevel = 0;
+    public int CurrentWaveLevel { get  { return currentWaveLevel; } }
 
     private int bossMonsterCount = 0;
     private bool isActive = false;
@@ -118,17 +119,9 @@ public class MonsterSpawnSystem : MonoBehaviour
                 changeWaveTimeEvent?.Invoke(currentTime);
             }
         }
-        StartCoroutine(CoRestert());
 
         if(!isGameOver)
             GameController.GameClear();
-    }
-
-    // TODO :: 테스트 용 씬 전환 임시 추가
-    private IEnumerator CoRestert()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-        GameController.OnRestart();
     }
 
     public void OnDeathBossMonster()

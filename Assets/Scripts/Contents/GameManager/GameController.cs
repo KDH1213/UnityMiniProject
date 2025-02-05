@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private MonsterManager monsterManager;
     [SerializeField]
     private MonsterSpawnSystem spawnSystem;
+    public MonsterSpawnSystem SpawnSystem { get { return spawnSystem; } }
     [SerializeField] 
     private InGameUiController inGameUiController;
     [SerializeField] 
@@ -101,7 +102,6 @@ public class GameController : MonoBehaviour
 
         if (currentMonsterCount == maxMonsterCount)
         {
-            StartCoroutine(CoRestert());
             GameOver();
         }
     }
@@ -205,9 +205,4 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private IEnumerator CoRestert()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-        OnRestart();
-    }
 }
