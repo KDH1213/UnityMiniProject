@@ -1678,8 +1678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roulette: {fileID: 2911692932058780452}
   point: {fileID: 4974079948578018938}
-  defalutRotationTime: 0.5
-  rotationSpeed: 20
+  defalutRotationTime: 1
+  rotationSpeed: 50
 --- !u!1 &3648688926163502108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,8 +2048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roulette: {fileID: 2017600781509419391}
   point: {fileID: 5639085645729854344}
-  defalutRotationTime: 0.5
-  rotationSpeed: 20
+  defalutRotationTime: 1
+  rotationSpeed: 50
 --- !u!1 &4240891473680396325
 GameObject:
   m_ObjectHideFlags: 0
