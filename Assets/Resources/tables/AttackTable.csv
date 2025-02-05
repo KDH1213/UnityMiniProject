@@ -1,5 +1,12 @@
-﻿Id,PrefabID,AttackType,AttackRange,DebuffType,DebuffTime,DebuffProbability,VFXId
-1111,TestAttackBox,Multiple,1,None,0,0,None
-1112,StunTestAttackBox,Multiple,1,Stun,0.5,30,None
-1113,TestSingAttackBox,Single,1,None,0,0,None
-1114,TestAreaAttackBox,Area,3,None,0,0,None
+Id,PrefabID,AttackType,AttackRange,DebuffType,DebuffTime,DebuffProbability,VFXId
+71101,TestSingAttackBox,Single,1,None,0,0,None
+72111,StunTestAttackBox,Multiple,1,Stun,0.5,20,None
+73201,TestAreaAttackBox,Area,2,None,0,0,None
+72101,TestAttackBox,Multiple,1,None,0,0,None
+72211,StunTestAttackBox,Multiple,2,Stun,1,30,None
+73301,TestAreaAttackBox,Area,3,None,0,0,None
+72212,StunTestAttackBox,Multiple,2,Stun,1.5,50,None
+71102,TestSingAttackBox,Single,1,None,0,0,None
+72213,StunTestAttackBox,Multiple,2,Stun,1,80,None
+72201,TestAttackBox,Multiple,2,None,0,0,None
+73311,TestAreaAttackBox,Area,3,Stun,5,10,None
