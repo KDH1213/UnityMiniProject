@@ -24,6 +24,15 @@ public class CharactorMoveState : CharactorBaseState
         //GetMovePoint();
         if (charactorFSM.Animator != null)
             charactorFSM.Animator.SetBool(DHUtil.CharactorAnimationUtil.hashIsMove, true);
+
+        if(direction.x < 0f && charactorFSM.IsFlip())
+        {
+            charactorFSM.OnFlip();
+        }
+        else if (direction.x > 0f && !charactorFSM.IsFlip())
+        {
+            charactorFSM.OnFlip();
+        }
     }
 
     public override void ExecuteUpdate()

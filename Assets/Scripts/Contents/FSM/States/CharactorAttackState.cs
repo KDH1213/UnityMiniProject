@@ -29,6 +29,17 @@ public class CharactorAttackState : CharactorBaseState
 
     public override void Enter()
     {
+
+        var direction = attackTargetCollider.transform.position - transform.position;
+        if (direction.x < 0f && charactorFSM.IsFlip())
+        {
+            charactorFSM.OnFlip();
+        }
+        else if (direction.x > 0f && !charactorFSM.IsFlip())
+        {
+            charactorFSM.OnFlip();
+        }
+
         if (charactorFSM.Animator != null)
         {
             charactorFSM.Animator.SetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
