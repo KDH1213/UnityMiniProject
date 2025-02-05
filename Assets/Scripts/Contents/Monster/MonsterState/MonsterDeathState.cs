@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class MonsterDeathState : MonsterBaseState
 {
-    [SerializeField] private float deathEffectTime;
+    [SerializeField]
+    private Collider2D monsterCollider;
+
+    [SerializeField] 
+    private float deathEffectTime;
     protected override void Awake()
     {
         base.Awake();
         stateType = MonsterStateType.Death;
+        monsterCollider = GetComponent<Collider2D>();
     }
 
     public override void Enter()
@@ -15,6 +20,7 @@ public class MonsterDeathState : MonsterBaseState
         enterStateEvent?.Invoke();
         StartCoroutine(CoDeathEffectTime());
         monsterFSM.Animator.SetTrigger(DHUtil.MonsterAnimationUtil.hashIsDeath);
+        monsterCollider.enabled = false;
     }
     public override void ExecuteUpdate()
     {
