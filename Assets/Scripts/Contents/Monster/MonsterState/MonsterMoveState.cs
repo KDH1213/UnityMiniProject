@@ -34,6 +34,7 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
         moveSpeed = monsterFSM.GetStatValue(StatType.MovementSpeed);
         GetMovePoint();
         MonsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsMove, true);
+        Flip();
     }
 
     public override void ExecuteUpdate()
@@ -62,34 +63,32 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
             monsterTransform.position = movePoint;
             ++moveIndex;
             GetMovePoint();
-
-            if(moveDirection.y != 0f)
-            {
-                OnFilp();
-            }
+            Flip();
         }
     }
 
-    private void OnFilp()
+    private void Flip()
     {
-        if (moveDirection.y > 0f)
+        if (moveDirection.y < 0f && IsFlip())
         {
-            if (monsterSpriteTransform.localScale.x > 0f)
-            {
-                var scale = monsterSpriteTransform.localScale;
-                scale.x = -1f;
-                monsterSpriteTransform.localScale = scale;
-            }
+            OnFlip();
         }
-        else
+        else if (moveDirection.y > 0f && !IsFlip())
         {
-            if (monsterSpriteTransform.localScale.x < 0f)
-            {
-                var scale = monsterSpriteTransform.localScale;
-                scale.x = 1f;
-                monsterSpriteTransform.localScale = scale;
-            }
+            OnFlip();
         }
+    }
+
+    public void OnFlip()
+    {
+        var scale = monsterSpriteTransform.localScale;
+        scale.x *= -1f;
+        monsterSpriteTransform.localScale = scale;
+    }
+
+    public bool IsFlip()
+    {
+        return monsterSpriteTransform.localScale.x > 0f ? false : true;
     }
 
     public bool IsCheckResult()
