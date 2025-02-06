@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class UIDamageText : MonoBehaviour
 {
     [SerializeField]
     private Transform target;
+
     [SerializeField]
     private Vector3 direction;
 
@@ -16,6 +17,8 @@ public class UIDamageText : MonoBehaviour
     [SerializeField]
     private float time;
 
+    [SerializeField] 
+    private Vector3 startScale;
     [SerializeField]
     private Vector3 targetScale;
 
@@ -24,9 +27,42 @@ public class UIDamageText : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI damageText;
-    private void Start()
+
+    private IObjectPool<UIDamageText> uiDamageTextPool;
+
+    private Vector3 position;
+    private Vector3 endPosition;
+    private Vector3 scale;
+    private Color color;
+    private float currentTime;
+
+    private void OnDisable()
     {
-        StartCoroutine(CoEffect());
+        target.localScale = startScale;
+    }
+
+    private void OnEnable()
+    {
+        position = target.position;
+        endPosition = target.position + direction * distance;
+        scale = target.localScale;
+        color = damageText.color;
+    }
+    //private void Start()
+    //{
+    //    StartCoroutine(CoEffect());
+    //}
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+        var ratio = currentTime / time;
+        target.position = Vector3.Lerp(position, endPosition, ratio);
+        target.localScale = Vector3.Lerp(scale, targetScale, ratio);
+        damageText.color = Color.Lerp(color, targetColor, ratio);
+
+        if(currentTime > time)
+            DestroyUIDamageText();
     }
 
     private IEnumerator CoEffect()
@@ -48,11 +84,26 @@ public class UIDamageText : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Destroy(gameObject);
+        DestroyUIDamageText();
     }
 
     public void SetDamage(string damage)
     {
         damageText.text = damage;
+    }
+
+    public void SetPool(IObjectPool<UIDamageText> uiDamageTextPool)
+    {
+        this.uiDamageTextPool = uiDamageTextPool;
+    }
+
+    public IObjectPool<UIDamageText> GetObjectPool()
+    {
+        return uiDamageTextPool;
+    }
+
+    public void DestroyUIDamageText()
+    {
+        uiDamageTextPool.Release(this);
     }
 }

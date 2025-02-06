@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
+using UnityEngine.Pool;
 
 public class MonsterStatus : MonoBehaviour, IDamageable
 {
@@ -27,6 +28,9 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public UnityEvent damegedEvent;
     public UnityEvent DeathEvent { get { return deathEvent; } }
     public UnityEvent<float> debuffEvent;
+
+
+    private IObjectPool<UIDamageText> uIDamageObjectTextPool;
 
     private void Awake()
     {
@@ -61,15 +65,17 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
-        Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
-        if(vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
-        {
-            foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
-            {
-                Instantiate(vfx, transform.position, Quaternion.identity);
-            }
-        }
+        uIDamageObjectTextPool.Get().SetDamage(damage.ToString());
+        // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
+
+        //if(vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
+        //{
+        //    foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
+        //    {
+        //        Instantiate(vfx, transform.position, Quaternion.identity);
+        //    }
+        //}
 
         hitEvent?.Invoke();
 
@@ -103,5 +109,10 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public float GetStatValue(StatType statType)
     {
         return currentValues[statType].Value;
+    }
+
+    public void SetUIDamageObjectTextPool(UIDamageObjectTextPool uIDamageObjectTextPool)
+    {
+        this.uIDamageObjectTextPool = uIDamageObjectTextPool.UiDamageTextPool;
     }
 }

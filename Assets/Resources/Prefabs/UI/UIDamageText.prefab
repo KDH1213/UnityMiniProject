@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -253,6 +253,6 @@ MonoBehaviour:
   direction: {x: 0, y: 1, z: 0}
   distance: 3
   time: 0.5
-  targetScale: {x: 1.25, y: 1.25, z: 1}
+  targetScale: {x: 4, y: 4, z: 1}
   targetColor: {r: 1, g: 1, b: 1, a: 0}
   damageText: {fileID: 2545219681237427161}

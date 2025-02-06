@@ -13,6 +13,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     [SerializeField]
     private Transform[] movePoints;
 
+    [SerializeField]
+    private UIDamageObjectTextPool uIDamageObjectTextPool;
+
     private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
@@ -146,8 +149,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
         monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
         monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.OnAddCoin(monsterCoinQty); if(jewelQty != 0) GameController.OnAddJewel(jewelQty); });
+        monsterStatus.SetUIDamageObjectTextPool(uIDamageObjectTextPool);
 
-        if(monsterData.MonsterType == MonsterType.Boss)
+        if (monsterData.MonsterType == MonsterType.Boss)
         {
             monsterSpawnSystem.OnAddBossMonster();
             monsterStatus.DeathEvent.AddListener(monsterSpawnSystem.OnDeathBossMonster);
