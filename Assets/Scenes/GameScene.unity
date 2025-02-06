@@ -11204,6 +11204,10 @@ PrefabInstance:
       value: -152.5
       objectReference: {fileID: 0}
     - target: {fileID: 2450677109217710294, guid: 7c75c9c5af72d5e4fb133279b54b15ff, type: 3}
+      propertyPath: resultTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450677109217710294, guid: 7c75c9c5af72d5e4fb133279b54b15ff, type: 3}
       propertyPath: resultAngleEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

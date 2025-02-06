@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,10 +9,14 @@ public class UIDrawJewelRoulette : MonoBehaviour
     private Image roulette;
 
     [SerializeField]
-    private Image point;
+    private Button drawButton;
 
     [SerializeField]
-    private Button drawButton;
+    private Slider rouletteSlider;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float rouletteValue;
 
     [SerializeField]
     private float defalutRotationTime = 0.5f;
@@ -33,12 +36,10 @@ public class UIDrawJewelRoulette : MonoBehaviour
 
     Coroutine coroutine;
 
-    // Quaternion target;
-    // Quaternion startRotation;
-    //float currentTime = 0f;
-    //bool isRotation = false;
-    //bool isStart = false;
-    //bool isEnd = false;
+    private void Awake()
+    {
+        rouletteSlider.value = rouletteValue;
+    }
 
     private void Start()
     {
@@ -57,25 +58,23 @@ public class UIDrawJewelRoulette : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        float startAngle = roulette.transform.rotation.eulerAngles.z;
+        float currentAngle = Random.Range(0f, 360f);
+        float targetAngle = startAngle + currentAngle;
 
-        var target = Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f));
-        var startRotation = roulette.transform.rotation;
-
-        if(startRotation.z < 0f)
-        {
-            startRotation *= Quaternion.Euler(Vector3.forward * 360f);
-        }
 
         currentTime = 0f;
         while (currentTime < resultTime)
         {
             currentTime += Time.deltaTime;
-            roulette.transform.rotation = Quaternion.Lerp(startRotation, target, currentTime / 0.1f);
+            startAngle = Mathf.Lerp(startAngle, targetAngle, currentTime / resultTime);
+            roulette.transform.rotation = Quaternion.Euler(0f,0f, startAngle);
             yield return new WaitForEndOfFrame();
         }
-        // roulette.transform.rotation.z;
 
-        resultAngleEvent?.Invoke(true, charactorClassType);
+        float successAngle = rouletteValue * 360f;
+
+        resultAngleEvent?.Invoke((currentAngle < successAngle), charactorClassType);
         coroutine = null;
     }
 
@@ -87,50 +86,4 @@ public class UIDrawJewelRoulette : MonoBehaviour
             return;
     }
 
-    public void OnTest()
-    {
-        if (coroutine == null)
-            coroutine = StartCoroutine(CoRatation());
-        else
-            return;
-
-        //isRotation = true;
-        //isStart = true;
-    }
-
-    //private void Update()
-    //{
-    //    if (isRotation)
-    //    {
-
-    //        if(isStart)
-    //        {
-    //            currentTime += Time.deltaTime;
-    //            roulette.transform.rotation *= Quaternion.Euler(Vector3.forward * rotationSpeed);
-    //            if (currentTime > defalutRotationTime)
-    //            {
-    //                isStart = false;
-    //                target = Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f));
-    //                startRotation = roulette.transform.rotation;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            if (startRotation.z < 0f)
-    //            {
-    //                startRotation *= Quaternion.Euler(Vector3.forward * 360f);
-    //            }
-
-    //            currentTime = 0f;
-
-    //            currentTime += Time.deltaTime;
-    //            roulette.transform.rotation = Quaternion.Lerp(startRotation, target, currentTime / 0.1f);
-    //            if (currentTime > 0.1f)
-    //            {
-    //                isRotation = false;
-    //            }
-
-    //        }
-    //    }
-    //}
 }

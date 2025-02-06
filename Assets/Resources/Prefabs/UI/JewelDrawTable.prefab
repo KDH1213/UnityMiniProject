@@ -1665,11 +1665,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roulette: {fileID: 2911692932058780452}
-  point: {fileID: 4974079948578018938}
   drawButton: {fileID: 5182697523590614851}
+  rouletteSlider: {fileID: 2906849190295373771}
+  rouletteValue: 0.2
   defalutRotationTime: 1
   rotationSpeed: 50
-  resultTime: 0.1
+  resultTime: 0.3
   drawValue: 1
   charactorClassType: 1
   resultAngleEvent:
@@ -2042,11 +2043,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roulette: {fileID: 2017600781509419391}
-  point: {fileID: 5639085645729854344}
   drawButton: {fileID: 6778578249747861000}
+  rouletteSlider: {fileID: 3401583019102194416}
+  rouletteValue: 0.1
   defalutRotationTime: 1
   rotationSpeed: 50
-  resultTime: 0.1
+  resultTime: 0.3
   drawValue: 2
   charactorClassType: 1
   resultAngleEvent:
