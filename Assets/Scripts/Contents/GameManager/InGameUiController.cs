@@ -83,7 +83,7 @@ public class InGameUiController : MonoBehaviour
     {
         gameController.coinChangeEvent.AddListener(OnChangeCoinCount);
         gameController.changeCreateCoinValueEvnet.AddListener(OnChangeCreateCoinValue);
-        gameController.jowelChangeEvent.AddListener(OnChangeJowel);
+        gameController.jewelChangeEvent.AddListener(OnChangeJowel);
 
         monsterCountSlider.value = 0;
     }

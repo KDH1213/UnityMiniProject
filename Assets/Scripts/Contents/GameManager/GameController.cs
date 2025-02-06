@@ -31,18 +31,18 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private int maxMonsterCount;
-
     private int currentMonsterCount = 0;
 
     public UnityEvent<int, int> changeMonsterEvnet;
     public UnityEvent<int> coinChangeEvent;
     public UnityEvent<int> changeCreateCoinValueEvnet;
-    public UnityEvent<int> jowelChangeEvent;
+    public UnityEvent<int> jewelChangeEvent;
     public UnityEvent gameClearEvent;
     public UnityEvent gameoverEvent;
     public UnityEvent createFailEvenet;
+    public UnityEvent drawJewelEvent;
 
-
+    private bool isOnJewelDraw = false;
 
     // TODO :: 임시 게임 종료, 클리어 오브젝트 추가, UI, 보상 시스템 기획서 나올시 수정
     [SerializeField] 
@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         coinChangeEvent?.Invoke(currentCoin);
-        jowelChangeEvent?.Invoke(currentJewel);
+        jewelChangeEvent?.Invoke(currentJewel);
         changeCreateCoinValueEvnet?.Invoke(createCoin);
     }
 
@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
     public void OnAddJewel(int jowel)
     {
         currentJewel += jowel;
-        jowelChangeEvent?.Invoke(currentJewel);
+        jewelChangeEvent?.Invoke(currentJewel);
         Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
     }
 
@@ -111,6 +111,20 @@ public class GameController : MonoBehaviour
         charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());        
     }
 
+    public void OnStartDrawJewelChractor(int jewelValue, UnityAction drawAction)
+    {
+        if (isOnJewelDraw || (jewelValue > currentJewel || !charactorTileManager.IsCreateCharactor()))
+        {
+            createFailEvenet?.Invoke();
+            return;
+        }
+
+        currentJewel -= jewelValue;
+        jewelChangeEvent?.Invoke(currentJewel);
+        drawAction?.Invoke();
+        isOnJewelDraw = true;
+    }
+
     public void OnChangeMonsterCount(int count)
     {
         currentMonsterCount = count;
@@ -120,6 +134,21 @@ public class GameController : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public void OnResult(bool isSuccess, CharactorClassType charactorClassType)
+    {
+        if(isSuccess)
+        {
+            var createCharactor = Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor(charactorClassType).PrefabObject);
+            charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+        }
+        else
+        {
+
+        }
+
+        isOnJewelDraw = false;
     }
 
     public void GameClear()

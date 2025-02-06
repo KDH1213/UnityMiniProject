@@ -1332,19 +1332,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8628652302167968452}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1121862048429914314}
-        m_TargetAssemblyTypeName: UIDrawJewelRoulette, Assembly-CSharp
-        m_MethodName: OnTest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8995072196566556149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,8 +1666,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roulette: {fileID: 2911692932058780452}
   point: {fileID: 4974079948578018938}
+  drawButton: {fileID: 5182697523590614851}
   defalutRotationTime: 1
   rotationSpeed: 50
+  resultTime: 0.1
+  drawValue: 1
+  charactorClassType: 1
+  resultAngleEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3648688926163502108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,8 +2043,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roulette: {fileID: 2017600781509419391}
   point: {fileID: 5639085645729854344}
+  drawButton: {fileID: 6778578249747861000}
   defalutRotationTime: 1
   rotationSpeed: 50
+  resultTime: 0.1
+  drawValue: 2
+  charactorClassType: 1
+  resultAngleEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4240891473680396325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,19 +2756,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4921677923709953639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2450677109217710294}
-        m_TargetAssemblyTypeName: UIDrawJewelRoulette, Assembly-CSharp
-        m_MethodName: OnTest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7635513416251373496
 MonoBehaviour:
   m_ObjectHideFlags: 0
