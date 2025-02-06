@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: 72101Vertical_Slash_Tripple_normal Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143668, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143668, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143669, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143669, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 763934023
+      objectReference: {fileID: 0}
     - target: {fileID: 8011499988070143669, guid: d01b2bc613595994f976d54ca728e205, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
