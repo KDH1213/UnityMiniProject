@@ -14,17 +14,17 @@ public class InGameUiController : MonoBehaviour
     private TextMeshProUGUI createCoinValueText;
 
     [SerializeField]
-    private TextMeshProUGUI coinText;
+    private TextMeshProUGUI[] coinTexts;
+    [SerializeField]
+    private TextMeshProUGUI[] charactorCountTexts;
+    [SerializeField]
+    private TextMeshProUGUI[] jewelTexts;
     [SerializeField]
     private TextMeshProUGUI waveText;
     [SerializeField]
     private TextMeshProUGUI monsterText;
     [SerializeField]
     private TextMeshProUGUI waveTimeText;
-    [SerializeField]
-    private TextMeshProUGUI charactorCountText;
-    [SerializeField]
-    private TextMeshProUGUI jewelText;
 
     [SerializeField]
     private Slider monsterCountSlider;
@@ -33,11 +33,11 @@ public class InGameUiController : MonoBehaviour
 
     private int currentTime = 0;
 
-    private readonly string waveFomat = "Wave {0} / {1}";
-    private readonly string nextWaveTime = "{0}";
+    private readonly string waveFomat = "웨이브 {0} / {1}";
+    private readonly string nextWaveTime = "시간 {0}";
     private readonly string monsterCountFomat = "{0} / {1}";
-    private readonly string coinFomat = "코인 : {0}";
-    private readonly string jowelFomat = "보석 : {0}";
+    private readonly string coinFomat = "{0}";
+    private readonly string jowelFomat = "{0}";
     private readonly string charactorCountFomat = "{0} / {1}";
     private readonly string changeCreateCoinValue = "{0}";
 
@@ -60,10 +60,6 @@ public class InGameUiController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI reinforcedValueCellText;
 
-    [SerializeField]
-    private TextMeshProUGUI reinforcedCoinText;
-    [SerializeField]
-    private TextMeshProUGUI reinforcedJewelText;
 
     [SerializeField]
     private UIButton reinforcedNButton;
@@ -90,8 +86,10 @@ public class InGameUiController : MonoBehaviour
 
     public void OnChangeCoinCount(int coin)
     {
-        coinText.text = string.Format(coinFomat, coin.ToString());
-        reinforcedCoinText.text = string.Format(coinFomat, coin.ToString());
+        foreach (var coinText in coinTexts)
+        {
+            coinText.text = string.Format(coinFomat, coin.ToString());
+        }
     }
     public void OnChangeCreateCoinValue(int coin)
     {
@@ -120,13 +118,18 @@ public class InGameUiController : MonoBehaviour
 
     public void OnChangeJowel(int jowel)
     {
-        jewelText.text =  string.Format(jowelFomat, jowel.ToString());
-        reinforcedJewelText.text = string.Format(jowelFomat, jowel.ToString());
+        foreach (var jewelText in jewelTexts)
+        {
+            jewelText.text = string.Format(jowelFomat, jowel.ToString());
+        }
     }
 
     public void OnChangeCharactorCount(int count, int maxCount)
     {
-        charactorCountText.text =  string.Format(charactorCountFomat, count.ToString(), maxCount.ToString());
+        foreach (var charactorCountText in charactorCountTexts)
+        {
+            charactorCountText.text = string.Format(charactorCountFomat, count.ToString(), maxCount.ToString());
+        }
     }
 
     public void OnChangeCharactorClassReinforced(CharactorClassType charactorClassType, int currentLevel)
