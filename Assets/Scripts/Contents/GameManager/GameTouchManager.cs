@@ -56,6 +56,9 @@ public class GameTouchManager : MonoBehaviour
 
     private void OnFindTarget()
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (charactorUIInteraction.gameObject.activeSelf && EventSystem.current.IsPointerOverGameObject())
         {
             var targetUI = EventSystem.current.currentSelectedGameObject;
@@ -125,7 +128,9 @@ public class GameTouchManager : MonoBehaviour
         }
 
         attackRangeObject.OnActiveObject(seleteCharactorTileObject);
-        charactorUIInteraction.gameObject.SetActive(attackRangeObject.gameObject.activeSelf);
+
+        if (seleteCharactorTileObject.CharacterControllers[0].CurrentStateType != CharactorStateType.Move)
+            charactorUIInteraction.gameObject.SetActive(attackRangeObject.gameObject.activeSelf);
 
         if (charactorUIInteraction.gameObject.activeSelf)
         {
