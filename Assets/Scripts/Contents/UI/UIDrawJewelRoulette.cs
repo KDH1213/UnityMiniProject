@@ -36,6 +36,9 @@ public class UIDrawJewelRoulette : MonoBehaviour
 
     Coroutine coroutine;
 
+    private float targetAngle;
+    private bool isOnRandom = false;
+
     private void Awake()
     {
         rouletteSlider.value = rouletteValue;
@@ -47,9 +50,26 @@ public class UIDrawJewelRoulette : MonoBehaviour
         drawButton.onClick.AddListener(() => gameController.OnStartDrawJewelChractor(drawValue, OnStartRoulette));
     }
 
+    private void OnDisable()
+    {
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            if(!isOnRandom)
+                roulette.transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+            else
+                roulette.transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
+
+            float successAngle = rouletteValue * 360f;
+            resultAngleEvent?.Invoke((roulette.transform.rotation.eulerAngles.z < successAngle), charactorClassType);
+            coroutine = null;
+        }
+    }
+
     private IEnumerator CoRatation()
     {
         float currentTime = 0f;
+        isOnRandom = false;
 
         while (currentTime < defalutRotationTime)
         {
@@ -60,7 +80,8 @@ public class UIDrawJewelRoulette : MonoBehaviour
 
         float startAngle = roulette.transform.rotation.eulerAngles.z;
         float currentAngle = Random.Range(0f, 360f);
-        float targetAngle = startAngle + currentAngle;
+        targetAngle = startAngle + currentAngle;
+        isOnRandom = true;
 
 
         currentTime = 0f;
@@ -74,7 +95,7 @@ public class UIDrawJewelRoulette : MonoBehaviour
 
         float successAngle = rouletteValue * 360f;
 
-        resultAngleEvent?.Invoke((currentAngle < successAngle), charactorClassType);
+        resultAngleEvent?.Invoke((roulette.transform.rotation.eulerAngles.z < successAngle), charactorClassType);
         coroutine = null;
     }
 
