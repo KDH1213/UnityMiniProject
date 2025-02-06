@@ -66,7 +66,9 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
 
-        uIDamageObjectTextPool.Get().SetDamage(damage.ToString());
+        var damageText = uIDamageObjectTextPool.Get();
+        damageText.SetDamage(damage.ToString());
+        damageText.transform.position = transform.position;
         // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
         //if(vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))

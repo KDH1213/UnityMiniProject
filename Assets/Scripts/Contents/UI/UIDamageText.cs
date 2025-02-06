@@ -47,6 +47,7 @@ public class UIDamageText : MonoBehaviour
         endPosition = target.position + direction * distance;
         scale = target.localScale;
         color = damageText.color;
+        currentTime = 0f;
     }
     //private void Start()
     //{
