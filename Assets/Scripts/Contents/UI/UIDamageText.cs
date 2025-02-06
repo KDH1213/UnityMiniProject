@@ -42,8 +42,8 @@ public class UIDamageText : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             var ratio = currentTime / time;
-            target.position = Vector2.Lerp(position, endPosition, ratio);
-            target.localScale = Vector2.Lerp(scale, targetScale, ratio);
+            target.position = Vector3.Lerp(position, endPosition, ratio);
+            target.localScale = Vector3.Lerp(scale, targetScale, ratio);
             damageText.color = Color.Lerp(color, targetColor, ratio);
             yield return new WaitForEndOfFrame();
         }

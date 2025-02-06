@@ -86,6 +86,7 @@ public class DamagedObject : MonoBehaviour
             damageInfo.debuffType = attackData.DebuffType;
             damageInfo.debuffTime = attackData.DebuffTime;
             damageInfo.debuffProbability = attackData.DebuffProbability;
+            damageInfo.vfxID = attackData.VFXId;
 
             damageable.OnDamage(ref damageInfo);
             hitEvent?.Invoke();

@@ -92,6 +92,7 @@ public class CharactorAttackState : CharactorBaseState
                 damageInfo.damage = damage;
                 damageInfo.debuffType = attackInfo.DebuffType;
                 damageInfo.debuffTime = attackInfo.DebuffTime;
+                damageInfo.vfxID = attackInfo.VFXId;
                 attackTarget.OnDamage(ref damageInfo);
             }
         }

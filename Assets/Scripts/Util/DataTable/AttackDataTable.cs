@@ -19,7 +19,7 @@ public class AttackData
     [field: SerializeField] 
     public float DebuffProbability { get; set; }
     [field: SerializeField] 
-    public string VFXId { get; set; }
+    public int VFXId { get; set; }
 
     public GameObject PrefabObject;
     public float RealAttackRange;

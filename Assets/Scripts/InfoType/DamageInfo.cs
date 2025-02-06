@@ -16,4 +16,5 @@ public struct DamageInfo
     public DebuffType       debuffType;
     public float            debuffTime;
     public float            debuffProbability;
+    public int              vfxID;
 }
