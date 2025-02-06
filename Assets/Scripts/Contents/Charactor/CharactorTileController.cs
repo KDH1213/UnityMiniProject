@@ -8,7 +8,9 @@ public class CharactorTileController : MonoBehaviour
 
     [SerializeField] 
     private CharactorDeploymentData charactorDeploymentData;
-    
+    public CharactorDeploymentData CharactorDeploymentData { get { return charactorDeploymentData; } }
+
+
     public CharactorClassType CharactorClassType { get; private set; }
     public int CharactorID { get; private set; } = -1;
 

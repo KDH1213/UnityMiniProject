@@ -29,6 +29,11 @@ public class CharactorAttackRangeObject : MonoBehaviour
         gameObject.SetActive(true);
         targetTileController = charactorTileController;
         targetCharactor = targetTileController.CharacterControllers[0];
+
+        if(targetCharactor.CurrentStateType == CharactorStateType.Move)
+        {
+            OnTargetMove();
+        }
         SetTargetInfo();
     }
 
@@ -55,7 +60,11 @@ public class CharactorAttackRangeObject : MonoBehaviour
     public void OnTargetMove()
     {
         isMove = true;
-        targetOffsetPosition = targetTileController.transform.position - targetCharactor.transform.position;
+
+        if (targetCharactor.CharactorData.CharactorClassType == CharactorClassType.N)
+            targetOffsetPosition = -targetTileController.CharactorDeploymentData.deploymentPositionList[0];
+        else
+            targetOffsetPosition = Vector3.zero;
     }
 
     //private void OnChangeCharactorTile(CharactorTileController moveTile)
