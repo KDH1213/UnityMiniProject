@@ -150,6 +150,7 @@ Transform:
   m_Children:
   - {fileID: 7116899210628019715}
   - {fileID: 482166304889730243}
+  - {fileID: 153296828700137006}
   m_Father: {fileID: 1485751646966100811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &5623257062793243517
@@ -218,6 +219,21 @@ MonoBehaviour:
       - m_Target: {fileID: 2700859866702801471}
         m_TargetAssemblyTypeName: CharactorAttackState, Assembly-CSharp
         m_MethodName: OnEndAttackAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  createAttackVFXEvnet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2700859866702801471}
+        m_TargetAssemblyTypeName: CharactorAttackState, Assembly-CSharp
+        m_MethodName: OnCreateVFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1458,6 +1474,8 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
+  vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
+  attackEffectPoint: {fileID: 153296828700137006}
   attackType: 0
 --- !u!114 &8823195985203931501
 MonoBehaviour:
@@ -2372,6 +2390,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6491969362021469508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153296828700137006}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &153296828700137006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491969362021469508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.65400696, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3624840889889073969}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6550069547257289592
 GameObject:
   m_ObjectHideFlags: 0

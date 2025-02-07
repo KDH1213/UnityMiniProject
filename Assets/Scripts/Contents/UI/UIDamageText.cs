@@ -17,10 +17,8 @@ public class UIDamageText : MonoBehaviour
     [SerializeField]
     private float time;
 
-    [SerializeField] 
-    private Vector3 startScale;
     [SerializeField]
-    private Vector3 targetScale;
+    private float targetScaleSize;
 
     [SerializeField]
     private Color targetColor;
@@ -30,35 +28,32 @@ public class UIDamageText : MonoBehaviour
 
     private IObjectPool<UIDamageText> uiDamageTextPool;
 
-    [SerializeField]
-    private Canvas canvas;
-
-    private Vector3 startPosition;
     private Vector3 position;
     private Vector3 endPosition;
+
+    private Vector3 startScale;
+    private Vector3 targetScale;
+
     private Vector3 scale;
     private Color color;
     private float currentTime;
 
     private void OnDisable()
     {
+        damageText.color = color;
         target.localScale = startScale;
-        target.position = Vector3.zero;
     }
 
     private void Awake()
     {
-        canvas.worldCamera = Camera.main;
-        target.localScale = startScale;
-        target.position = Vector3.zero;
+        color = damageText.color;
+        startScale = transform.localScale;
+        targetScale = startScale * targetScaleSize;
     }
 
     private void OnEnable()
     {
-        position = target.position;
-        endPosition = target.position + direction * distance;
         scale = target.localScale;
-        color = damageText.color;
         currentTime = 0f;
     }
     //private void Start()
@@ -103,6 +98,9 @@ public class UIDamageText : MonoBehaviour
     public void SetDamage(string damage)
     {
         damageText.text = damage;
+
+        position = target.position;
+        endPosition = target.position + direction * distance;
     }
 
     public void SetPool(IObjectPool<UIDamageText> uiDamageTextPool)

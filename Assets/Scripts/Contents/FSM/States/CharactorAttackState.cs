@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CharactorAttackState : CharactorBaseState
 {
+    [SerializeField]
+    private VfxContainerData vfxContainerData;
+
+    [SerializeField]
+    private Transform attackEffectPoint;
+
     [SerializeField] 
     private AttackType attackType;
 
@@ -108,6 +114,7 @@ public class CharactorAttackState : CharactorBaseState
         createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
         createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
         createObject.GetComponent<DamagedObject>().Damage = damage;
+
     }
 
     public void OnEndAttackAnimation()
@@ -116,6 +123,16 @@ public class CharactorAttackState : CharactorBaseState
             CharactorFSM.ChangeState(CharactorStateType.Idle);
     }
 
+    public void OnCreateVFX()
+    {
+        if (vfxContainerData.VfxContainerTable.ContainsKey(attackData.VFXId))
+        {
+            foreach (var vfx in vfxContainerData.VfxContainerTable[attackData.VFXId])
+            {
+                Instantiate(vfx, attackEffectPoint.position, Quaternion.identity);
+            }
+        }
+    }
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.yellow;

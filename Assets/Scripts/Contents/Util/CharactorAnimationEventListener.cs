@@ -7,6 +7,7 @@ public class CharactorAnimationEventListener : MonoBehaviour
 {
     public UnityEvent startAttackEvent;
     public UnityEvent endAttackAnimationEvent;
+    public UnityEvent createAttackVFXEvnet;
 
     public void OnStartAttack()
     {
@@ -16,5 +17,10 @@ public class CharactorAnimationEventListener : MonoBehaviour
     public void OnEndAttackAnimation()
     {
         endAttackAnimationEvent?.Invoke();
+    }
+
+    public void OnCreateVFX()
+    {
+        createAttackVFXEvnet?.Invoke();
     }
 }

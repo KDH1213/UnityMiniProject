@@ -92,6 +92,8 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
+  vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
+  attackEffectPoint: {fileID: 707239932640435539}
   attackType: 0
 --- !u!114 &3609299525105832819
 MonoBehaviour:
@@ -1294,6 +1296,37 @@ Transform:
   - {fileID: 6078639168462283784}
   - {fileID: 7910677830612039816}
   m_Father: {fileID: 6380078455941653827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1628841780779137701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707239932640435539}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &707239932640435539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628841780779137701}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.65400696, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6692324674921233075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1943603961195255022
 GameObject:
@@ -2834,6 +2867,7 @@ Transform:
   m_Children:
   - {fileID: 6380078455941653827}
   - {fileID: 3046158132711348159}
+  - {fileID: 707239932640435539}
   m_Father: {fileID: 1828978382332402734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &8220124409479680420
@@ -2902,6 +2936,21 @@ MonoBehaviour:
       - m_Target: {fileID: 9156491987952682970}
         m_TargetAssemblyTypeName: CharactorAttackState, Assembly-CSharp
         m_MethodName: OnEndAttackAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  createAttackVFXEvnet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9156491987952682970}
+        m_TargetAssemblyTypeName: CharactorAttackState, Assembly-CSharp
+        m_MethodName: OnCreateVFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

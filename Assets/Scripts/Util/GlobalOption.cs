@@ -19,6 +19,7 @@ public class GlobalOption : MonoBehaviour
 
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;
         prevTimeScale = Time.timeScale;
 

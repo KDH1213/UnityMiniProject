@@ -67,17 +67,17 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
 
         var damageText = uIDamageObjectTextPool.Get();
-        damageText.SetDamage(damage.ToString());
         damageText.transform.position = transform.position;
+        damageText.SetDamage(damage.ToString());
         // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
-        if (vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
-        {
-            foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
-            {
-                Instantiate(vfx, transform.position, Quaternion.identity);
-            }
-        }
+        //if (vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
+        //{
+        //    foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
+        //    {
+        //        Instantiate(vfx, transform.position, Quaternion.identity);
+        //    }
+        //}
 
         hitEvent?.Invoke();
 
