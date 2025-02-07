@@ -21,13 +21,13 @@ public class VFXObjectPool : MonoBehaviour
         // UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
     }
 
-    private DamagedVFX OnCreateDamagedVFX()
-    {
-        // Instantiate(vfxContainerData.VfxContainerTable[id][0]).TryGetComponent(out DamagedVFX vfxObject);
-        // vfxObject.SetPool(vfxDamagedVFXPoolTable[id]);
+    //private DamagedVFX OnCreateDamagedVFX()
+    //{
+    //    // Instantiate(vfxContainerData.VfxContainerTable[id][0]).TryGetComponent(out DamagedVFX vfxObject);
+    //    // vfxObject.SetPool(vfxDamagedVFXPoolTable[id]);
 
-        return vfxObject;
-    }
+    //    return vfxObject;
+    //}
 
     private void OnGetDamagedVFX(DamagedVFX vfxObject)
     {
