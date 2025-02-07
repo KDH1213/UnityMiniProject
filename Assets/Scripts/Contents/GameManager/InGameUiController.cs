@@ -33,7 +33,7 @@ public class InGameUiController : MonoBehaviour
 
     private int currentTime = 0;
 
-    private readonly string waveFomat = "웨이브 {0} / {1}";
+    private readonly string waveFomat = "{0} / {1}";
     private readonly string nextWaveTime = "시간 {0}";
     private readonly string monsterCountFomat = "{0} / {1}";
     private readonly string coinFomat = "{0}";

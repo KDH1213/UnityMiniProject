@@ -8,7 +8,7 @@ public class CharactorAttackState : CharactorBaseState
     private VfxContainerData vfxContainerData;
 
     [SerializeField]
-    private Transform attackEffectPoint;
+    private GameObject attackVFX;
 
     [SerializeField] 
     private AttackType attackType;
@@ -125,13 +125,14 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnCreateVFX()
     {
-        if (vfxContainerData.VfxContainerTable.ContainsKey(attackData.VFXId))
-        {
-            foreach (var vfx in vfxContainerData.VfxContainerTable[attackData.VFXId])
-            {
-                Instantiate(vfx, attackEffectPoint.position, Quaternion.identity);
-            }
-        }
+        attackVFX.SetActive(true);
+        //if (vfxContainerData.VfxContainerTable.ContainsKey(attackData.VFXId))
+        //{
+        //    foreach (var vfx in vfxContainerData.VfxContainerTable[attackData.VFXId])
+        //    {
+        //        Instantiate(vfx, attackEffectPoint.position, Quaternion.identity);
+        //    }
+        //}
     }
     //private void OnDrawGizmos()
     //{
