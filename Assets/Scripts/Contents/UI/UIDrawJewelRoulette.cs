@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class UIDrawJewelRoulette : MonoBehaviour
 {
     [SerializeField]
+    private ParticleSystem failEffect;
+
+    [SerializeField]
     private Image roulette;
 
     [SerializeField]
@@ -64,6 +67,9 @@ public class UIDrawJewelRoulette : MonoBehaviour
             resultAngleEvent?.Invoke((roulette.transform.rotation.eulerAngles.z < successAngle), charactorClassType);
             coroutine = null;
         }
+
+        failEffect.Stop();
+        failEffect.gameObject.SetActive(false);
     }
 
     private IEnumerator CoRatation()
@@ -94,8 +100,14 @@ public class UIDrawJewelRoulette : MonoBehaviour
         }
 
         float successAngle = rouletteValue * 360f;
+        bool isSuccess = roulette.transform.rotation.eulerAngles.z < successAngle;
 
-        resultAngleEvent?.Invoke((roulette.transform.rotation.eulerAngles.z < successAngle), charactorClassType);
+        if(!isSuccess)
+        {
+            failEffect.gameObject.SetActive(true);
+            // failEffect.Play();
+        }
+        resultAngleEvent?.Invoke(isSuccess, charactorClassType);
         coroutine = null;
     }
 
