@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1245930670201019424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 320, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2168094477530688937
 CanvasRenderer:
@@ -253,6 +253,8 @@ MonoBehaviour:
   direction: {x: 0, y: 1, z: 0}
   distance: 3
   time: 0.5
+  startScale: {x: 0, y: 0, z: 1}
   targetScale: {x: 4, y: 4, z: 1}
   targetColor: {r: 1, g: 1, b: 1, a: 0}
   damageText: {fileID: 2545219681237427161}
+  canvas: {fileID: 815473524857312212}

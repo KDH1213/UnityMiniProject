@@ -71,13 +71,13 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         damageText.transform.position = transform.position;
         // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
-        //if(vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
-        //{
-        //    foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
-        //    {
-        //        Instantiate(vfx, transform.position, Quaternion.identity);
-        //    }
-        //}
+        if (vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
+        {
+            foreach (var vfx in vfxContainerData.VfxContainerTable[inoutDamageInfo.vfxID])
+            {
+                Instantiate(vfx, transform.position, Quaternion.identity);
+            }
+        }
 
         hitEvent?.Invoke();
 

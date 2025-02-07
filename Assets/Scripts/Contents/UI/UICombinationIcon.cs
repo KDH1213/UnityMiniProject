@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +11,8 @@ public class UICombinationIcon : MonoBehaviour
     private TextMeshProUGUI holdingText;
 
     private readonly string holdingFormat = "{0}";
-    private static string none = "None";
-    private static string holding = "Holding";
+    private static string none = "미보유";
+    private static string holding = "보유";
 
 
     public void SetIconInfo(int item1, bool item2)

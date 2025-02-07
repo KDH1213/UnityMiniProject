@@ -12,7 +12,7 @@ public class UIDamageObjectTextPool : MonoBehaviour
 
     private void Awake()
     {
-        UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 300);
+        UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
     }
 
     private UIDamageText OnCreateDamageText()

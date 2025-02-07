@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 public class UIDamageText : MonoBehaviour
 {
     [SerializeField]
-    private Transform target;
+    private RectTransform target;
 
     [SerializeField]
     private Vector3 direction;
@@ -30,6 +30,10 @@ public class UIDamageText : MonoBehaviour
 
     private IObjectPool<UIDamageText> uiDamageTextPool;
 
+    [SerializeField]
+    private Canvas canvas;
+
+    private Vector3 startPosition;
     private Vector3 position;
     private Vector3 endPosition;
     private Vector3 scale;
@@ -39,6 +43,14 @@ public class UIDamageText : MonoBehaviour
     private void OnDisable()
     {
         target.localScale = startScale;
+        target.position = Vector3.zero;
+    }
+
+    private void Awake()
+    {
+        canvas.worldCamera = Camera.main;
+        target.localScale = startScale;
+        target.position = Vector3.zero;
     }
 
     private void OnEnable()
