@@ -4536,7 +4536,6 @@ MonoBehaviour:
         maxValue: 100
         minValue: 0
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
-  monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 1990333794170835757}
   monseterVFXHitPoint: {fileID: 0}
   hpbar: {fileID: 3780625658761865741}
@@ -4578,7 +4577,7 @@ MonoBehaviour:
   animator: {fileID: 6596431390262083941}
   monsterStatus: {fileID: 519046074775251037}
   spriteRenderers: []
-  hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
+  hitEffectColor: {r: 1, g: 0, b: 0, a: 0.43137255}
   hitEffectTime: 0.3
   destoryEvent:
     m_PersistentCalls:
@@ -4607,7 +4606,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  monsterCollider: {fileID: 0}
   deathEffectTime: 0.5
 --- !u!114 &6540569921375256254
 MonoBehaviour:

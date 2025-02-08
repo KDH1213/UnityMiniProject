@@ -1,3 +1,6 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
@@ -30,25 +33,51 @@ public class MonsterFSMController : FSMController<MonsterStateType>
 
     private Color originColor;
 
+    private UniTask uniTaskHitEffect;
+    private CancellationTokenSource hitEffectCoroutineSource = new();
+
     protected override void Awake()
     {
-        // originColor = spriteRenderers[0].color;
+        originColor = spriteRenderers[0].color;
 
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
         monsterStatus.debuffEvent.AddListener((time)
             => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
 
-        //monsterStatus.damegedEvent.AddListener( () =>
-        //    {
-        //        if (hitEffectCoroutine != null)
-        //            StopCoroutine(hitEffectCoroutine);
-        //        hitEffectCoroutine = StartCoroutine(CoHitEffect());
-        //    });
+        monsterStatus.damegedEvent.AddListener(() =>
+            {
+                if (uniTaskHitEffect.Status == UniTaskStatus.Pending)
+                {
+                    hitEffectCoroutineSource.Cancel();
+                }
+                uniTaskHitEffect = UniHitEffect();
+                //if (hitEffectCoroutine != null)
+                //    StopCoroutine(hitEffectCoroutine);
+                //hitEffectCoroutine = StartCoroutine(CoHitEffect());
+            });
     }
 
     protected void Start()
     {
         StartState();
+
+        //var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+       
+        //foreach (var spriteRenderer in spriteRenderers)
+        //{
+        //    var material = spriteRenderer.material;
+        //    material.color = hitEffectColor;
+        //    // spriteRenderers[0].material = material;
+        //    // var material = spriteRenderers[0].material;
+        //    // material.color = hitEffectColor;
+        //}
+       
+    }
+
+    private void OnDestroy()
+    {
+        hitEffectCoroutineSource.Cancel();
+        hitEffectCoroutineSource.Dispose();
     }
 
     public virtual void ExcuteUpdate()
@@ -84,6 +113,28 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         MonsterPool.Release(this);
     }
 
+    public void SetSpriteRenderer()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+    private async UniTask UniHitEffect()
+    {
+        var originalColor = originColor;
+
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = hitEffectColor;
+        }
+        await UniTask.Delay(TimeSpan.FromSeconds(hitEffectTime));
+
+        if (currentStateType == MonsterStateType.Move || currentStateType == MonsterStateType.Stun)
+        {
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.color = originalColor;
+            }
+        }
+    }
     //private IEnumerator CoHitEffect()
     //{
     //    var originalColor = originColor;

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Cysharp.Threading.Tasks;
+using System.Threading;
+
 public class MonsterStunState : MonsterBaseState
 {
     [SerializeField] 
@@ -11,6 +14,9 @@ public class MonsterStunState : MonsterBaseState
 
     private float currentStunTime = 0f;
 
+    private UniTask stunTimeTask;
+    private CancellationTokenSource stunCoroutineSource = new();
+
     protected override void Awake()
     {
         base.Awake();
@@ -19,23 +25,33 @@ public class MonsterStunState : MonsterBaseState
 
     private void OnDisable()
     {
-        if(stunCoroutine != null)
-        {
-            StopCoroutine(stunCoroutine);
-            stunCoroutine = null;
-        }
+        //if(stunCoroutine != null)
+        //{
+        //    StopCoroutine(stunCoroutine);
+        //    stunCoroutine = null;
+        //}
+
+        stunCoroutineSource.Cancel();
     }
 
     public override void Enter()
     {
         enterStateEvent?.Invoke();
 
-        if(stunCoroutine != null)
-        {
-            StopCoroutine(stunCoroutine);
-        }
+        //if(stunCoroutine != null)
+        //{
+        //    StopCoroutine(stunCoroutine);
+        //}
 
-        stunCoroutine = StartCoroutine(CoStunTime());
+        //stunCoroutine = StartCoroutine(CoStunTime());
+
+        if(stunTimeTask.Status == UniTaskStatus.Pending)
+        {
+            stunCoroutineSource.Cancel(true);
+        }
+        stunTimeTask = UniTaskStunTime();
+
+
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, true);
     }
     public override void ExecuteUpdate()
@@ -47,6 +63,7 @@ public class MonsterStunState : MonsterBaseState
 
     public override void Exit()
     {
+        stunCoroutineSource.Cancel();
         exitStateEvent?.Invoke();
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, false);
     }
@@ -60,6 +77,19 @@ public class MonsterStunState : MonsterBaseState
         MonsterFSM.ChangeState(MonsterStateType.Stun);
     }
 
+    private async UniTask UniTaskStunTime()
+    {
+        currentStunTime = stunTime;
+
+        while (currentStunTime > 0f)
+        {
+            await UniTask.Yield(PlayerLoopTiming.Update);
+            currentStunTime -= Time.deltaTime;
+        }
+
+        if (MonsterFSM.CurrentStateType != MonsterStateType.Death)
+            MonsterFSM.ChangeState(MonsterStateType.Move);
+    }
     private IEnumerator CoStunTime()
     {
         //var spriteRenderers = MonsterFSM.SpriteRenderers;
@@ -85,5 +115,11 @@ public class MonsterStunState : MonsterBaseState
 
         if(MonsterFSM.CurrentStateType != MonsterStateType.Death)
             MonsterFSM.ChangeState(MonsterStateType.Move);
+    }
+
+    private void OnDestroy()
+    {
+        stunCoroutineSource.Cancel();
+        stunCoroutineSource.Dispose();
     }
 }

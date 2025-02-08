@@ -4135,7 +4135,6 @@ MonoBehaviour:
         maxValue: 100
         minValue: 0
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
-  monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 2717556869981826461}
   monseterVFXHitPoint: {fileID: 5320769298223175155}
   hpbar: {fileID: 1428481210780547783}
@@ -4176,8 +4175,36 @@ MonoBehaviour:
       Value: {fileID: 9036865719326886243}
   animator: {fileID: 900918936458052425}
   monsterStatus: {fileID: 8333707681588985470}
-  spriteRenderers: []
-  hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
+  spriteRenderers:
+  - {fileID: 6389734835354124643}
+  - {fileID: 4442715554186143541}
+  - {fileID: 6265228737241744236}
+  - {fileID: 6376640386125096790}
+  - {fileID: 2244540582535079778}
+  - {fileID: 6867876247102061787}
+  - {fileID: 8140876052040389749}
+  - {fileID: 7203931936596369722}
+  - {fileID: 3092155880996112524}
+  - {fileID: 9038350555249977796}
+  - {fileID: 9053203807009707683}
+  - {fileID: 2174990940058166900}
+  - {fileID: 9092708985174459167}
+  - {fileID: 6668415116698986868}
+  - {fileID: 439169847207365238}
+  - {fileID: 8081737728759083246}
+  - {fileID: 465586221203650227}
+  - {fileID: 5752568461211451710}
+  - {fileID: 2336360387957382491}
+  - {fileID: 7473476773567229799}
+  - {fileID: 37197763290262219}
+  - {fileID: 6493687892640013077}
+  - {fileID: 4131380390850237989}
+  - {fileID: 4804640157036350518}
+  - {fileID: 8840870691440181135}
+  - {fileID: 3491134270643716943}
+  - {fileID: 1430312027819853015}
+  - {fileID: 5625022558160385612}
+  hitEffectColor: {r: 1, g: 0, b: 0, a: 0.43137255}
   hitEffectTime: 0.3
   destoryEvent:
     m_PersistentCalls:
@@ -4206,7 +4233,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  monsterCollider: {fileID: 0}
   deathEffectTime: 0.5
 --- !u!114 &2006434685062972372
 MonoBehaviour:
