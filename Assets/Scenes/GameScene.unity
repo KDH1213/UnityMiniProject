@@ -9662,6 +9662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSpawnSystem: {fileID: 340588165}
+  monsterObjectPool: {fileID: 1558926976}
   startPoint: {fileID: 873408803}
   movePoints:
   - {fileID: 873408803}
@@ -10499,6 +10500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1558926974}
   - component: {fileID: 1558926975}
+  - component: {fileID: 1558926976}
   m_Layer: 0
   m_Name: MonsterController
   m_TagString: Untagged
@@ -10538,6 +10540,18 @@ MonoBehaviour:
   changeMonsterCount:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1558926976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558926973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2cb71871bad3f4a9b651ab1482ba3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1567616376
 GameObject:
   m_ObjectHideFlags: 0

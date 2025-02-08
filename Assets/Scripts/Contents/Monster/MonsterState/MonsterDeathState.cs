@@ -17,7 +17,7 @@ public class MonsterDeathState : MonsterBaseState
 
     private void OnDisable()
     {
-        
+        monsterCollider.enabled = true;
     }
 
     public override void Enter()
@@ -57,12 +57,12 @@ public class MonsterDeathState : MonsterBaseState
             yield return new WaitForEndOfFrame();
         }
 
-        gameObject.SetActive(false);
+        // monsterFSM.MonsterPool.Release(monsterFSM);
+        Destroy(gameObject);
 
         foreach (var sprite in spriteRenderers)
         {
             sprite.color = Color.white;
         }
-        // Destroy(gameObject);
     }
 }

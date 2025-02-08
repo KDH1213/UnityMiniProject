@@ -1,6 +1,5 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Pool;
 
 public class MonsterFSMController : FSMController<MonsterStateType>
 {
@@ -23,6 +22,8 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     [SerializeField] 
     private float hitEffectTime;
     private Coroutine hitEffectCoroutine;
+
+    public IObjectPool<MonsterFSMController> MonsterPool { get; private set; }
 
     private Color originColor;
 
@@ -67,6 +68,11 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     public float GetStatValue(StatType statType)
     {
         return monsterStatus.GetStatValue(statType);
+    }
+
+    public void SetPool(IObjectPool<MonsterFSMController> objectPool)
+    {
+        MonsterPool = objectPool;
     }
 
     //private IEnumerator CoHitEffect()

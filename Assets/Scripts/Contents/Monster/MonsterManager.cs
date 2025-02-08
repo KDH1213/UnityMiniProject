@@ -33,8 +33,8 @@ public class MonsterManager : MonoBehaviour
 
     public void OnAddMonster(MonsterFSMController monsterFSMController)
     {
-        if (currentMonsterList.Contains(monsterFSMController))
-            return;
+        //if (currentMonsterList.Contains(monsterFSMController))
+        //    return;
         
         currentMonsterList.Add(monsterFSMController);
         changeMonsterCount?.Invoke(CurrentMonsterCount);
@@ -42,8 +42,8 @@ public class MonsterManager : MonoBehaviour
 
     public void OnDeathMonster(MonsterFSMController monsterFSMController)
     {
-        if (!currentMonsterList.Contains(monsterFSMController))
-            return;
+        //if (!currentMonsterList.Contains(monsterFSMController))
+        //    return;
 
         startDeathMonsterList.Add(monsterFSMController);
         isDeathMonster = true;

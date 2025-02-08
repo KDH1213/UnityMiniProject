@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +6,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField]
     private MonsterSpawnSystem monsterSpawnSystem;
+    [SerializeField]
+    private MonsterObjectPool monsterObjectPool;
 
     [SerializeField]
     private Transform startPoint;
@@ -18,7 +19,6 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     [SerializeField]
     private VFXObjectPool vFXObjectPool;
 
-    private GameObject monsterPrefab;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;
@@ -53,7 +53,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         waveData = monsterSpawnInfo;
         spawnTime = waveData.SpawnInterval;
         monsterData = DataTableManager.MonsterDataTable.Get(waveData.MonsterID);
-        monsterPrefab = monsterData.PrefabObject;
+        monsterObjectPool.SetMonsterData(monsterData.PrefabObject, monsterData.Id);
     }
 
     public virtual void StartSpawn()
@@ -136,34 +136,37 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
     public virtual void ISpawn()
     {
-        GameObject monster = Instantiate(monsterPrefab);
-        monster.transform.position = startPoint.transform.position;
+        var monsterController = monsterObjectPool.GetMonster();
+        monsterController.transform.position = startPoint.transform.position;
 
-        var monsterController = monster.GetComponent<MonsterFSMController>();
-        monsterController.OnSpawn(this);
         spawnEvent?.Invoke(monsterController);
 
-        var monsterStatus = monster.GetComponent<MonsterStatus>();
+        var monsterStatus = monsterController.GetComponent<MonsterStatus>();
         monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
         monsterStatus.CurrentValueTable[StatType.HP].SetValue(monsterData.Hp);
         int monsterCoinQty = monsterData.CoinQty;
         int jewelQty = monsterData.JewelQty;
 
-        monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
+        monsterStatus.DeathEvent.RemoveAllListeners();
         monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.OnAddCoin(monsterCoinQty); if(jewelQty != 0) GameController.OnAddJewel(jewelQty); });
-        monsterStatus.SetUIDamageObjectTextPool(uIDamageObjectTextPool);
-        monsterStatus.SetVFXObjectPool(vFXObjectPool);
+        monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
+
+        if (ReferenceEquals(monsterController.MonsterSpawner, null))
+        {
+            monsterController.OnSpawn(this); 
+            monsterStatus.SetUIDamageObjectTextPool(uIDamageObjectTextPool);
+            monsterStatus.SetVFXObjectPool(vFXObjectPool);
+        }
+        else
+        {
+            monsterController.ChangeState(MonsterStateType.Move);
+        }
 
         if (monsterData.MonsterType == MonsterType.Boss)
         {
             monsterSpawnSystem.OnAddBossMonster();
             monsterStatus.DeathEvent.AddListener(monsterSpawnSystem.OnDeathBossMonster);
         }
-
-        
-        // enemyController.GetComponent<IDamageable>()?.DeathEvent.AddListener(() => deathMonsterAction.Invoke(enemyController));
-        // enemyController.SetDestinationPoint(this, movePoints[0].position);
-
         ++currentSpawnCount;
     }
 
