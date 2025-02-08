@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -39,6 +41,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     private MonsterData monsterData;
     private Coroutine spawnCoroutine;
 
+
+    private UniTask spawnTimeTask;
+    private CancellationTokenSource spawnCoroutineSource = new();
+
     private void Awake()
     {
         CreateMoveDirection();
@@ -61,10 +67,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     {
 
         spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
-        //if (monsterSpawnInfo.IsRepeat)
-        //    spawnCoroutine = StartCoroutine(StartSpawnRepeatCoroutine());
-        //else
-        //    spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
+
+        // spawnTimeTask = UniTaskStartSpawn();
+
 
         isActive = true;
         enabled = true;
@@ -135,6 +140,44 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         }
     }
 
+    private async UniTask UniTaskStartSpawn()
+    {
+        currentSpawnCount = 0;
+        ISpawn();
+
+        while (currentSpawnCount < waveData.SpawnCount)
+        {
+            currentSpawnTime += Time.deltaTime;
+
+            if (currentSpawnTime >= spawnTime)
+            {
+                ISpawn();
+                currentSpawnTime -= spawnTime;
+            }
+
+            await UniTask.Yield(PlayerLoopTiming.Update);
+        }
+
+        monsterSpawnSystem.EndSpawn();
+    }
+    private async UniTask UniTaskStartSpawnRepeat()
+    {
+        ISpawn();
+
+        while (true)
+        {
+            currentSpawnTime += Time.deltaTime;
+
+            if (currentSpawnTime >= spawnTime)
+            {
+                ISpawn();
+                currentSpawnTime -= spawnTime;
+            }
+
+            await UniTask.Yield(PlayerLoopTiming.Update);
+        }
+    }
+
     public virtual void ISpawn()
     {
         var monsterController = monsterObjectPool.GetMonster();
@@ -158,6 +201,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             monsterController.destoryEvent.AddListener(destoryMonsterAction);
             monsterStatus.SetUIDamageObjectTextPool(uIDamageObjectTextPool);
             monsterStatus.SetVFXObjectPool(vFXObjectPool);
+
+            if (monsterData.MonsterType == MonsterType.Boss)
+                monsterStatus.DeathEvent.AddListener(monsterSpawnSystem.OnDeathBossMonster);
         }
         else
         {
@@ -167,7 +213,6 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         if (monsterData.MonsterType == MonsterType.Boss)
         {
             monsterSpawnSystem.OnAddBossMonster();
-            monsterStatus.DeathEvent.AddListener(monsterSpawnSystem.OnDeathBossMonster);
         }
         ++currentSpawnCount;
     }

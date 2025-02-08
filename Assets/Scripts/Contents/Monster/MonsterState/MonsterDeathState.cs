@@ -1,13 +1,19 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class MonsterDeathState : MonsterBaseState
 {
-    [SerializeField]
     private Collider2D monsterCollider;
 
     [SerializeField] 
     private float deathEffectTime;
+
+
+    private UniTask uniTaskDeathEffectTime;
+    private CancellationTokenSource deathEffectCoroutineSource = new();
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,10 +26,18 @@ public class MonsterDeathState : MonsterBaseState
         monsterCollider.enabled = true;
     }
 
+    private void OnDestroy()
+    {
+        deathEffectCoroutineSource.Cancel();
+        deathEffectCoroutineSource.Dispose();
+    }
+
     public override void Enter()
     {
         enterStateEvent?.Invoke();
-        StartCoroutine(CoDeathEffectTime());
+        // StartCoroutine(CoDeathEffectTime());
+        uniTaskDeathEffectTime = UniTaskDeathEffectTime();
+
         monsterFSM.Animator.SetTrigger(DHUtil.MonsterAnimationUtil.hashIsDeath);
         monsterCollider.enabled = false;
     }
@@ -39,9 +53,35 @@ public class MonsterDeathState : MonsterBaseState
         exitStateEvent?.Invoke();
     }
 
+    private async UniTask UniTaskDeathEffectTime()
+    {
+        var spriteRenderers = MonsterFSM.SpriteRenderers;
+        var currentColor = spriteRenderers[0].color;
+        float currentTime = 0f;
+        while (currentTime < deathEffectTime)
+        {
+            currentTime += Time.deltaTime;
+            currentColor.a = (deathEffectTime - currentTime) / deathEffectTime;
+
+            foreach (var sprite in spriteRenderers)
+            {
+                sprite.color = currentColor;
+            }
+
+            await UniTask.Yield(PlayerLoopTiming.Update);
+        }
+
+        monsterFSM.Release();
+
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = Color.white;
+        }
+    }
+
     private IEnumerator CoDeathEffectTime()
     {
-        var spriteRenderers = MonsterFSM.GetComponentsInChildren<SpriteRenderer>();
+        var spriteRenderers = MonsterFSM.SpriteRenderers;
         var currentColor = spriteRenderers[0].color;
         float currentTime = 0f;
         while (currentTime < deathEffectTime)

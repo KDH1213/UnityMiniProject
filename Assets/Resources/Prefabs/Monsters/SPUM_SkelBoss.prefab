@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1660453387162676009}
   - component: {fileID: 613910954236647634}
-  - component: {fileID: 5897325099855813982}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -85,18 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5897325099855813982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255862882244440569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &374555660656427599
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 612224273949176076}
   - component: {fileID: 6034173365359876918}
-  - component: {fileID: 7177846339490684057}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -182,18 +168,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7177846339490684057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374555660656427599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &492417314147121857
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +559,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771206164332649790}
-  - component: {fileID: 4909783363192596480}
   m_Layer: 0
   m_Name: PivotFront
   m_TagString: Untagged
@@ -609,18 +582,6 @@ Transform:
   - {fileID: 5947186094383920071}
   m_Father: {fileID: 8130461012709880043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4909783363192596480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985471517949561386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1570494446405116612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1159,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2713084380093361299}
-  - component: {fileID: 8131492126316574294}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -1224,535 +1184,6 @@ Transform:
   - {fileID: 5138432165551603181}
   m_Father: {fileID: 1772847223841008592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.285}
---- !u!114 &8131492126316574294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3011527570881309535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5084db87f5a3218479da5aa1e18581d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matchingTables:
-  - UnitType: Unit
-    PartType: Eye
-    PartSubType: 
-    Index: 0
-    Dir: 
-    Structure: Back
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye16
-    MaskIndex: 0
-    renderer: {fileID: 613910954236647634}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Eye
-    PartSubType: 
-    Index: 0
-    Dir: 
-    Structure: Front
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye16
-    MaskIndex: 0
-    renderer: {fileID: 6034173365359876918}
-    Color:
-      serializedVersion: 2
-      rgba: 4278255358
-  - UnitType: Unit
-    PartType: Eye
-    PartSubType: 
-    Index: 0
-    Dir: 
-    Structure: Back
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye16
-    MaskIndex: 0
-    renderer: {fileID: 1590058939467639702}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Eye
-    PartSubType: 
-    Index: 0
-    Dir: 
-    Structure: Front
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye16
-    MaskIndex: 0
-    renderer: {fileID: 8680336001826791686}
-    Color:
-      serializedVersion: 2
-      rgba: 4278255358
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Head
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 6323448680199502135}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Body
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 2266624321804607956}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Arm_L
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 8231165868234600269}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Arm_R
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 2818510391470101715}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Foot_L
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 5356748860348615743}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Body
-    PartSubType: 
-    Index: 1
-    Dir: 
-    Structure: Foot_R
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/1_Body/Skelton_1
-    MaskIndex: 0
-    renderer: {fileID: 7368435160417348440}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Hair
-    PartSubType: 
-    Index: 2
-    Dir: 
-    Structure: Hair
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 3944380090611582488}
-    Color:
-      serializedVersion: 2
-      rgba: 4280690289
-  - UnitType: Unit
-    PartType: FaceHair
-    PartSubType: 
-    Index: 3
-    Dir: 
-    Structure: FaceHair
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 138975555489086465}
-    Color:
-      serializedVersion: 2
-      rgba: 4280690289
-  - UnitType: Unit
-    PartType: Cloth
-    PartSubType: 
-    Index: 4
-    Dir: 
-    Structure: Left
-    ItemPath: Addons/Undead/0_Unit/0_Sprite/2_Cloth/Undead_Cloth_04
-    MaskIndex: 0
-    renderer: {fileID: 4931798119946629810}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Cloth
-    PartSubType: 
-    Index: 4
-    Dir: 
-    Structure: Right
-    ItemPath: Addons/Undead/0_Unit/0_Sprite/2_Cloth/Undead_Cloth_04
-    MaskIndex: 0
-    renderer: {fileID: 7203273277919464842}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Cloth
-    PartSubType: 
-    Index: 4
-    Dir: 
-    Structure: Body
-    ItemPath: Addons/Undead/0_Unit/0_Sprite/2_Cloth/Undead_Cloth_04
-    MaskIndex: 0
-    renderer: {fileID: 2698840782370027705}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Pant
-    PartSubType: 
-    Index: 5
-    Dir: 
-    Structure: Right
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 6731424091519732611}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Pant
-    PartSubType: 
-    Index: 5
-    Dir: 
-    Structure: Left
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4710975768958545515}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Helmet
-    PartSubType: 
-    Index: 6
-    Dir: Back
-    Structure: Helmet
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4004886479953577596}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Helmet
-    PartSubType: 
-    Index: 6
-    Dir: Front
-    Structure: Helmet
-    ItemPath: Addons/Legacy/0_Unit/0_Sprite/4_Helmet/Helmet_5
-    MaskIndex: 0
-    renderer: {fileID: 1093328631962370300}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190083
-  - UnitType: Unit
-    PartType: Armor
-    PartSubType: 
-    Index: 7
-    Dir: 
-    Structure: Body
-    ItemPath: Addons/Ver300/0_Unit/0_Sprite/7_Armor/New_Armor_08
-    MaskIndex: 0
-    renderer: {fileID: 7363087584622223933}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Armor
-    PartSubType: 
-    Index: 7
-    Dir: 
-    Structure: Left
-    ItemPath: Addons/Ver300/0_Unit/0_Sprite/7_Armor/New_Armor_08
-    MaskIndex: 0
-    renderer: {fileID: 6386725724005467508}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Armor
-    PartSubType: 
-    Index: 7
-    Dir: 
-    Structure: Right
-    ItemPath: Addons/Ver300/0_Unit/0_Sprite/7_Armor/New_Armor_08
-    MaskIndex: 0
-    renderer: {fileID: 382232647924643873}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Back
-    PartSubType: 
-    Index: 9
-    Dir: 
-    Structure: Back
-    ItemPath: Addons/RetroHeroes/0_Unit/0_Sprite/7_Back/Back_Rogue_2
-    MaskIndex: 0
-    renderer: {fileID: 7925370333472791461}
-    Color:
-      serializedVersion: 2
-      rgba: 4294967295
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Sword
-    Index: 10
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Sword
-    Index: 10
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Axe
-    Index: 11
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Axe
-    Index: 11
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Bow
-    Index: 12
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Bow
-    Index: 12
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Shield
-    Index: 13
-    Dir: Left
-    Structure: Weapons
-    ItemPath: Addons/RetroHeroes/0_Unit/0_Sprite/6_Weapons/3_Shield/Shield_Knight_2
-    MaskIndex: 0
-    renderer: {fileID: 6900280447554280045}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Shield
-    Index: 13
-    Dir: Right
-    Structure: Weapons
-    ItemPath: Addons/RetroHeroes/0_Unit/0_Sprite/6_Weapons/3_Shield/Shield_Knight_2
-    MaskIndex: 0
-    renderer: {fileID: 9014560212582509736}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Spear
-    Index: 14
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Spear
-    Index: 14
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Wand
-    Index: 15
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Wand
-    Index: 15
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Hammer
-    Index: 16
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Hammer
-    Index: 16
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Dagger
-    Index: 17
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Dagger
-    Index: 17
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Mace
-    Index: 18
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Mace
-    Index: 18
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Others
-    Index: 19
-    Dir: Left
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 4630825516800899533}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190088
-  - UnitType: Unit
-    PartType: Weapons
-    PartSubType: Others
-    Index: 19
-    Dir: Right
-    Structure: Weapons
-    ItemPath: 
-    MaskIndex: 0
-    renderer: {fileID: 238921330443799081}
-    Color:
-      serializedVersion: 2
-      rgba: 4278190085
 --- !u!1 &3149767156796946075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1395,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537546852954282045}
-  - component: {fileID: 5435736858026509104}
   m_Layer: 0
   m_Name: BodySet
   m_TagString: Untagged
@@ -1988,18 +1418,6 @@ Transform:
   - {fileID: 8789917541112062434}
   m_Father: {fileID: 2713084380093361299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5435736858026509104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3546520832638657513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3614667367901405839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +1628,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5947186094383920071}
   - component: {fileID: 71651282827334971}
-  - component: {fileID: 6571090231979214890}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -2285,18 +1702,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6571090231979214890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3706312453183260340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3830814201360751575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +1977,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2457159937576708161}
-  - component: {fileID: 5667661517897470799}
   m_Layer: 0
   m_Name: PivotFront
   m_TagString: Untagged
@@ -2596,18 +2000,6 @@ Transform:
   - {fileID: 6008836303286581632}
   m_Father: {fileID: 6738621086503264721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5667661517897470799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4678018063155302580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4775121948972516498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2113,6 @@ MonoBehaviour:
         maxValue: 100
         minValue: 0
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
-  monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 1207513179766443493}
   monseterVFXHitPoint: {fileID: 0}
   hpbar: {fileID: 3992560011730098164}
@@ -2762,8 +2153,36 @@ MonoBehaviour:
       Value: {fileID: 6702187800789567809}
   animator: {fileID: 7124211499644167484}
   monsterStatus: {fileID: 4303035685131893067}
-  spriteRenderers: []
-  hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
+  spriteRenderers:
+  - {fileID: 7925370333472791461}
+  - {fileID: 2266624321804607956}
+  - {fileID: 2698840782370027705}
+  - {fileID: 7363087584622223933}
+  - {fileID: 3944380090611582488}
+  - {fileID: 6323448680199502135}
+  - {fileID: 138975555489086465}
+  - {fileID: 613910954236647634}
+  - {fileID: 6034173365359876918}
+  - {fileID: 1590058939467639702}
+  - {fileID: 8680336001826791686}
+  - {fileID: 4004886479953577596}
+  - {fileID: 1093328631962370300}
+  - {fileID: 8231165868234600269}
+  - {fileID: 4931798119946629810}
+  - {fileID: 6386725724005467508}
+  - {fileID: 4630825516800899533}
+  - {fileID: 6900280447554280045}
+  - {fileID: 2818510391470101715}
+  - {fileID: 7203273277919464842}
+  - {fileID: 382232647924643873}
+  - {fileID: 238921330443799081}
+  - {fileID: 9014560212582509736}
+  - {fileID: 5356748860348615743}
+  - {fileID: 6731424091519732611}
+  - {fileID: 7368435160417348440}
+  - {fileID: 4710975768958545515}
+  - {fileID: 4428999213591917263}
+  hitEffectColor: {r: 1, g: 0, b: 0, a: 0.43137255}
   hitEffectTime: 0.3
   destoryEvent:
     m_PersistentCalls:
@@ -2792,7 +2211,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  monsterCollider: {fileID: 0}
   deathEffectTime: 0.5
 --- !u!114 &1426740948675383596
 MonoBehaviour:
@@ -3334,7 +2752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4950634116025310408}
   - component: {fileID: 6287597138037532240}
-  - component: {fileID: 5356868028349220489}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -3409,18 +2826,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5356868028349220489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5684803461843860307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5948494497703493292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +2835,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6170154670533795063}
-  - component: {fileID: 6536447218818759673}
   m_Layer: 0
   m_Name: PivotBack
   m_TagString: Untagged
@@ -3454,18 +2858,6 @@ Transform:
   - {fileID: 7117036037581845187}
   m_Father: {fileID: 6738621086503264721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6536447218818759673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5948494497703493292}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6088211454757491054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,7 +2987,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6008836303286581632}
   - component: {fileID: 8680336001826791686}
-  - component: {fileID: 2423013427000207954}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -3670,18 +3061,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2423013427000207954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6320449744222471065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6371205995281629579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,7 +3252,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3349297284215275088}
-  - component: {fileID: 858994445837197198}
   m_Layer: 0
   m_Name: PivotFront
   m_TagString: Untagged
@@ -3897,18 +3275,6 @@ Transform:
   - {fileID: 4950634116025310408}
   m_Father: {fileID: 1649110501812613687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &858994445837197198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7256143219247004794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7400720659321007608
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,7 +3517,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6786868626499037861}
-  - component: {fileID: 8043145080689327921}
   m_Layer: 0
   m_Name: PivotBack
   m_TagString: Untagged
@@ -4175,18 +3540,6 @@ Transform:
   - {fileID: 1660453387162676009}
   m_Father: {fileID: 8407494408579641767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8043145080689327921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7752661374077091635}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7793516897096664521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,7 +3969,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9101753623865623112}
-  - component: {fileID: 4726788496329139758}
   m_Layer: 0
   m_Name: PivotFront
   m_TagString: Untagged
@@ -4640,18 +3992,6 @@ Transform:
   - {fileID: 612224273949176076}
   m_Father: {fileID: 8407494408579641767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4726788496329139758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441285278143535042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8511672256713993533
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,7 +4099,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7117036037581845187}
   - component: {fileID: 1590058939467639702}
-  - component: {fileID: 1635918382103913766}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -4834,18 +4173,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1635918382103913766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8749609282814195063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c562f92f3b8b435d98ac3b65547b755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8836567058105966099
 GameObject:
   m_ObjectHideFlags: 0

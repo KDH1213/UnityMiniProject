@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,8 +42,8 @@ public class DamagedObject : MonoBehaviour
     {
         StartAttack();
 
-        if(autoDestory)
-            Destroy(gameObject, time);
+        //if(autoDestory)
+        //    Destroy(gameObject, time);
     }
 
     //private void Update()
@@ -66,7 +65,7 @@ public class DamagedObject : MonoBehaviour
             return;
 
         var hitColliders = overlapCollider.HitColliderList;
-        GameObject? hitObject;
+        GameObject hitObject;
 
         for (int i = 0; i < count; ++i)
         {

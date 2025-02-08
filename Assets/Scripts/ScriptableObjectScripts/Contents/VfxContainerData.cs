@@ -2,7 +2,6 @@ using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AYellowpaper.SerializedCollections;
 
 
 [CreateAssetMenu(fileName = "VfxContainer", menuName = "VFXContainer/VFXContainer", order = 5)]
