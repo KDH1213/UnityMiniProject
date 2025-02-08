@@ -125,7 +125,7 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnCreateVFX()
     {
-        attackVFX.SetActive(true);
+        attackVFX?.SetActive(true);
         //if (vfxContainerData.VfxContainerTable.ContainsKey(attackData.VFXId))
         //{
         //    foreach (var vfx in vfxContainerData.VfxContainerTable[attackData.VFXId])

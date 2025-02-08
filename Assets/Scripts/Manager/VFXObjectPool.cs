@@ -1,46 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class VFXObjectPool : MonoBehaviour
 {
+    public int CreateID {  get; set; }
     [SerializeField]
     private VfxContainerData vfxContainerData;
     [SerializeField]
-    private GameObject[] vfxObjects;
-    public Dictionary<int, IObjectPool<DamagedVFX>> vfxDamagedVFXPoolTable { get; private set; }
+    private VFXObject[] vfxObjects;
+    public Dictionary<int, IObjectPool<VFXObject>> vfxObjectPoolTable { get; private set; } = new Dictionary<int, IObjectPool<VFXObject>>();
 
     private void Awake()
     {
 
-        //foreach (var vfxObject in vfxObjects)
-        //{
-        //    vfxDamagedVFXPoolTable[0] = new ObjectPool<DamagedVFX>(OnCreateDamagedVFX, OnGetDamagedVFX, OnReleaseDamagedVFX, OnDestroyDamagedVFX, true, 1000);
-        //}
-        // UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
+        foreach (var vfxObject in vfxObjects)
+        {
+            if(!vfxObjectPoolTable.ContainsKey(vfxObject.ID))
+            {
+                vfxObjectPoolTable.Add(vfxObject.ID, new ObjectPool<VFXObject>(OnCreateVFX, OnGetVFX, OnReleaseVFX, OnDestroyVFX, true, 1000));
+            }
+        }
     }
 
-    //private DamagedVFX OnCreateDamagedVFX()
-    //{
-    //    // Instantiate(vfxContainerData.VfxContainerTable[id][0]).TryGetComponent(out DamagedVFX vfxObject);
-    //    // vfxObject.SetPool(vfxDamagedVFXPoolTable[id]);
+    private VFXObject OnCreateVFX()
+    {
+        Instantiate(vfxContainerData.VfxContainerTable[CreateID][0]).TryGetComponent(out VFXObject vFXObject);
+        vFXObject.SetPool(vfxObjectPoolTable[CreateID]);
+        return vFXObject;
+    }
 
-    //    return vfxObject;
-    //}
-
-    private void OnGetDamagedVFX(DamagedVFX vfxObject)
+    private void OnGetVFX(VFXObject vfxObject)
     {
         vfxObject.gameObject.SetActive(true);
     }
 
-    private void OnReleaseDamagedVFX(DamagedVFX vfxObject)
+    private void OnReleaseVFX(VFXObject vfxObject)
     {
         vfxObject.gameObject.SetActive(false);
     }
 
-    private void OnDestroyDamagedVFX(DamagedVFX vfxObject)
+    private void OnDestroyVFX(VFXObject vfxObject)
     {
         Destroy(vfxObject.gameObject);
+    }
+
+    public VFXObject GetVFX(int vfxID)
+    {
+        CreateID = vfxID;
+        return vfxObjectPoolTable[CreateID].Get();
     }
 }

@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 213184030}
   - component: {fileID: 213184031}
   - component: {fileID: 213184032}
+  - component: {fileID: 213184033}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -614,6 +615,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIDamageTextPrefab: {fileID: 4734904404186430332, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
+--- !u!114 &213184033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213184028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f5cee2375c76c48b6f30ea8b182731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
+  vfxObjects:
+  - {fileID: 1333540728688398660, guid: 4f4940654bfd8904a92632c9ecf96d32, type: 3}
+  - {fileID: 8749302039270916943, guid: 3d1e10d321a761f4785cd7198322efd4, type: 3}
 --- !u!114 &221630511 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2781219236140579087, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
@@ -9652,6 +9669,7 @@ MonoBehaviour:
   - {fileID: 1900437073}
   - {fileID: 1244514720}
   uIDamageObjectTextPool: {fileID: 213184032}
+  vFXObjectPool: {fileID: 213184033}
   spawnEvent:
     m_PersistentCalls:
       m_Calls: []

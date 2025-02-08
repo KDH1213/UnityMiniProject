@@ -16,6 +16,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     private MonsterProfile monsterProfile;
     [SerializeField] 
     private MonsterFSMController monsterFSMController;
+    [SerializeField]
+    private Transform monseterVFXHitPoint;
 
     [SerializeField] 
     private Slider hpbar;
@@ -31,6 +33,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
 
     private IObjectPool<UIDamageText> uIDamageObjectTextPool;
+    private VFXObjectPool vFXObjectPool;
 
     private void Awake()
     {
@@ -48,6 +51,10 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         hpbar.value = 1f;
     }
 
+    private void OnEnable()
+    {
+        hpbar.value = 1f;
+    }
 
     public bool OnDamage(ref DamageInfo inoutDamageInfo)
     {
@@ -67,6 +74,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
 
         var damageText = uIDamageObjectTextPool.Get();
+       
         damageText.transform.position = transform.position;
         damageText.SetDamage(damage.ToString());
         // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
@@ -116,5 +124,10 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public void SetUIDamageObjectTextPool(UIDamageObjectTextPool uIDamageObjectTextPool)
     {
         this.uIDamageObjectTextPool = uIDamageObjectTextPool.UiDamageTextPool;
+    }
+
+    public void SetVFXObjectPool(VFXObjectPool vFXObjectPool)
+    {
+        this.vFXObjectPool = vFXObjectPool;
     }
 }

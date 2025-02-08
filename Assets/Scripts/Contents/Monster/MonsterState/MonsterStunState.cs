@@ -17,6 +17,15 @@ public class MonsterStunState : MonsterBaseState
         stateType = MonsterStateType.Stun;
     }
 
+    private void OnDisable()
+    {
+        if(stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+            stunCoroutine = null;
+        }
+    }
+
     public override void Enter()
     {
         enterStateEvent?.Invoke();

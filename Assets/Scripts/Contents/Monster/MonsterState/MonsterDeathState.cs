@@ -15,6 +15,11 @@ public class MonsterDeathState : MonsterBaseState
         monsterCollider = GetComponent<Collider2D>();
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
     public override void Enter()
     {
         enterStateEvent?.Invoke();
@@ -52,6 +57,12 @@ public class MonsterDeathState : MonsterBaseState
             yield return new WaitForEndOfFrame();
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+
+        foreach (var sprite in spriteRenderers)
+        {
+            sprite.color = Color.white;
+        }
+        // Destroy(gameObject);
     }
 }

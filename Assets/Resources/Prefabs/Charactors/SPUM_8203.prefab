@@ -2806,7 +2806,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
-  attackVFX: {fileID: 0}
+  attackVFX: {fileID: 6969860655764421880}
   attackType: 0
 --- !u!114 &3822711207457014305
 MonoBehaviour:
@@ -4404,5 +4404,10 @@ PrefabInstance:
 --- !u!4 &6968076448653145634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4478575470736882, guid: 0700bbcfe6ddd8946a7d5fb5d681a5c8, type: 3}
+  m_PrefabInstance: {fileID: 6970584453935793104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6969860655764421880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1573365260959528, guid: 0700bbcfe6ddd8946a7d5fb5d681a5c8, type: 3}
   m_PrefabInstance: {fileID: 6970584453935793104}
   m_PrefabAsset: {fileID: 0}

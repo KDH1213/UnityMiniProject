@@ -23,7 +23,12 @@ public class GlobalOption : MonoBehaviour
         Application.targetFrameRate = targetFrameRate;
         prevTimeScale = Time.timeScale;
 
-        if(fpsToggle != null)
+#if UNITY_EDITOR
+        UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
+        UnityEngine.Rendering.DebugManager.instance.displayRuntimeUI = false;
+#endif
+
+        if (fpsToggle != null)
         {
             fpsToggle.onValueChanged.AddListener(OnFPS);
             fpsToggle.isOn = isOnFPS;

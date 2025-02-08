@@ -3740,6 +3740,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6403662544967058397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5320769298223175155}
+  m_Layer: 7
+  m_Name: HitVFXPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5320769298223175155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403662544967058397}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2855373811032255306}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6765801925132268765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4062,6 +4093,7 @@ Transform:
   m_Children:
   - {fileID: 2321603301221618369}
   - {fileID: 3479999007753142294}
+  - {fileID: 5320769298223175155}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8333707681588985470
@@ -4093,6 +4125,7 @@ MonoBehaviour:
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
   monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 2717556869981826461}
+  monseterVFXHitPoint: {fileID: 5320769298223175155}
   hpbar: {fileID: 1428481210780547783}
   uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
