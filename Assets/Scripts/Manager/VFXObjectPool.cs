@@ -14,10 +14,10 @@ public class VFXObjectPool : MonoBehaviour
     private void Awake()
     {
 
-        foreach (var vfxObject in vfxObjects)
-        {
-            vfxDamagedVFXPoolTable[0] = new ObjectPool<DamagedVFX>(OnCreateDamagedVFX, OnGetDamagedVFX, OnReleaseDamagedVFX, OnDestroyDamagedVFX, true, 1000);
-        }
+        //foreach (var vfxObject in vfxObjects)
+        //{
+        //    vfxDamagedVFXPoolTable[0] = new ObjectPool<DamagedVFX>(OnCreateDamagedVFX, OnGetDamagedVFX, OnReleaseDamagedVFX, OnDestroyDamagedVFX, true, 1000);
+        //}
         // UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
     }
 
