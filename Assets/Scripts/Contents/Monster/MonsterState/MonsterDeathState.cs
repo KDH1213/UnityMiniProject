@@ -57,8 +57,7 @@ public class MonsterDeathState : MonsterBaseState
             yield return new WaitForEndOfFrame();
         }
 
-        // monsterFSM.MonsterPool.Release(monsterFSM);
-        Destroy(gameObject);
+        monsterFSM.Release();
 
         foreach (var sprite in spriteRenderers)
         {

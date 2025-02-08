@@ -581,8 +581,8 @@ MonoBehaviour:
       m_Calls: []
   gameoverObject: {fileID: 316944629}
   clearObject: {fileID: 528260532}
-  coinEffectCreatePoint: {fileID: 0}
-  jewelEffectCreatePoint: {fileID: 0}
+  coinEffectCreatePoint: {fileID: 1005377274}
+  jewelEffectCreatePoint: {fileID: 1060257463}
   currencyEffectPrefab: {fileID: 2999878689933817713, guid: b6238f02e04af8e49b214d98a0e68d46, type: 3}
 --- !u!114 &213184031
 MonoBehaviour:
@@ -9380,6 +9380,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1005377274 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5654490851900216044, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
+  m_PrefabInstance: {fileID: 5965138574247614283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1010877387 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8137858922252142258, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
@@ -9448,6 +9453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1060257463 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7033045905632459847, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
+  m_PrefabInstance: {fileID: 5965138574247614283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1094539957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14444,6 +14454,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 213184030}
+    - target: {fileID: 7033045905632459847, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7103756637837524466, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

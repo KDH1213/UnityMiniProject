@@ -354,13 +354,25 @@ MonoBehaviour:
     _serializedList:
     - Key: 3
       Value:
-        statusInfoType: 0
+        statusInfoType: 3
         value: 5
         maxValue: 5
         minValue: 0
+    - Key: 14
+      Value:
+        statusInfoType: 14
+        value: 0
+        maxValue: 0
+        minValue: 0
+    - Key: 13
+      Value:
+        statusInfoType: 13
+        value: 5
+        maxValue: 0
+        minValue: 0
     - Key: 1
       Value:
-        statusInfoType: 0
+        statusInfoType: 1
         value: 100
         maxValue: 100
         minValue: 0
@@ -409,6 +421,9 @@ MonoBehaviour:
   spriteRenderers: []
   hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
   hitEffectTime: 0.3
+  destoryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3665390309244302557
 MonoBehaviour:
   m_ObjectHideFlags: 0

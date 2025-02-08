@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Pool;
 
 public class MonsterFSMController : FSMController<MonsterStateType>
@@ -22,6 +23,8 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     [SerializeField] 
     private float hitEffectTime;
     private Coroutine hitEffectCoroutine;
+
+    public UnityEvent<MonsterFSMController> destoryEvent;
 
     public IObjectPool<MonsterFSMController> MonsterPool { get; private set; }
 
@@ -73,6 +76,12 @@ public class MonsterFSMController : FSMController<MonsterStateType>
     public void SetPool(IObjectPool<MonsterFSMController> objectPool)
     {
         MonsterPool = objectPool;
+    }
+
+    public void Release()
+    {
+        destoryEvent?.Invoke(this);
+        MonsterPool.Release(this);
     }
 
     //private IEnumerator CoHitEffect()

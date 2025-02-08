@@ -13,8 +13,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     [SerializeField]
     private VfxContainerData vfxContainerData;
     [SerializeField] 
-    private MonsterProfile monsterProfile;
-    [SerializeField] 
     private MonsterFSMController monsterFSMController;
     [SerializeField]
     private Transform monseterVFXHitPoint;
@@ -31,6 +29,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public UnityEvent DeathEvent { get { return deathEvent; } }
     public UnityEvent<float> debuffEvent;
 
+    public UnityAction<int> CoinQtyAction;
+    public UnityAction<int> JewelQtyAction;
 
     private IObjectPool<UIDamageText> uIDamageObjectTextPool;
     private VFXObjectPool vFXObjectPool;
@@ -54,6 +54,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         hpbar.value = 1f;
+        IsDead = false;
     }
 
     public bool OnDamage(ref DamageInfo inoutDamageInfo)
@@ -96,6 +97,9 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
             hpbar.gameObject.SetActive(false);
             deathEvent?.Invoke();
+
+            CoinQtyAction.Invoke((int)currentValues[StatType.CoinQty].Value);
+            JewelQtyAction.Invoke((int)currentValues[StatType.JewelQty].Value);
             // Destroy(gameObject);
         }
         else if (inoutDamageInfo.debuffType != DebuffType.None 

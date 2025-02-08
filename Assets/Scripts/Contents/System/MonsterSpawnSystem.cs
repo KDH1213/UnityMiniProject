@@ -43,6 +43,7 @@ public class MonsterSpawnSystem : MonoBehaviour
         {
             spawner.spawnEvent.AddListener(monsterManager.OnAddMonster);
             spawner.SetMonsterDeathAction(monsterManager.OnDeathMonster);
+            spawner.SetMonsterDestroyAction(monsterManager.OnDestroyMonster);
         }
 
         coSpawn = StartCoroutine(CoStartSpawn());

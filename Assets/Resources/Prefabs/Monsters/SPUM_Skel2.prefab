@@ -4647,19 +4647,32 @@ MonoBehaviour:
     _serializedList:
     - Key: 3
       Value:
-        statusInfoType: 0
+        statusInfoType: 3
         value: 5
         maxValue: 5
         minValue: 0
+    - Key: 14
+      Value:
+        statusInfoType: 14
+        value: 0
+        maxValue: 0
+        minValue: 0
+    - Key: 13
+      Value:
+        statusInfoType: 13
+        value: 5
+        maxValue: 0
+        minValue: 0
     - Key: 1
       Value:
-        statusInfoType: 0
+        statusInfoType: 1
         value: 100
         maxValue: 100
         minValue: 0
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
   monsterProfile: {fileID: 0}
   monsterFSMController: {fileID: 2978863288738422763}
+  monseterVFXHitPoint: {fileID: 0}
   hpbar: {fileID: 2694617944192522484}
   uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
@@ -4701,6 +4714,9 @@ MonoBehaviour:
   spriteRenderers: []
   hitEffectColor: {r: 1, g: 0, b: 0, a: 1}
   hitEffectTime: 0.3
+  destoryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7730024180751522169
 MonoBehaviour:
   m_ObjectHideFlags: 0

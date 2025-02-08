@@ -81,6 +81,10 @@ public class GameController : MonoBehaviour
 
     public void OnAddCoin(int coin)
     {
+        if (coin == 0)
+            return;
+
+
         currentCoin += coin;
         coinChangeEvent?.Invoke(currentCoin);
         Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
@@ -88,6 +92,9 @@ public class GameController : MonoBehaviour
 
     public void OnAddJewel(int jowel)
     {
+        if (jowel == 0)
+            return;
+
         currentJewel += jowel;
         jewelChangeEvent?.Invoke(currentJewel);
         Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();

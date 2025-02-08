@@ -19,7 +19,8 @@ public enum StatType
 
     Damage,
     MagicDamage,
-
+    CoinQty,
+    JewelQty,
 
     End
 }

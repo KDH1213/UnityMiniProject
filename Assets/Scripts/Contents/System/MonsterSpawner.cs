@@ -19,6 +19,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     [SerializeField]
     private VFXObjectPool vFXObjectPool;
 
+    public UnityAction<MonsterFSMController> destoryMonsterAction;
 
     public UnityEvent<MonsterFSMController> spawnEvent;
     public UnityAction<MonsterFSMController> deathMonsterAction;
@@ -144,16 +145,17 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         var monsterStatus = monsterController.GetComponent<MonsterStatus>();
         monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
         monsterStatus.CurrentValueTable[StatType.HP].SetValue(monsterData.Hp);
-        int monsterCoinQty = monsterData.CoinQty;
-        int jewelQty = monsterData.JewelQty;
+        monsterStatus.CurrentValueTable[StatType.CoinQty].SetValue(monsterData.CoinQty);
+        monsterStatus.CurrentValueTable[StatType.JewelQty].SetValue(monsterData.JewelQty);
 
-        monsterStatus.DeathEvent.RemoveAllListeners();
-        monsterStatus.DeathEvent.AddListener(() => { if(monsterCoinQty != 0) GameController.OnAddCoin(monsterCoinQty); if(jewelQty != 0) GameController.OnAddJewel(jewelQty); });
         monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
 
         if (ReferenceEquals(monsterController.MonsterSpawner, null))
         {
-            monsterController.OnSpawn(this); 
+            monsterStatus.CoinQtyAction = GameController.OnAddCoin;
+            monsterStatus.JewelQtyAction = GameController.OnAddJewel;
+            monsterController.OnSpawn(this);
+            monsterController.destoryEvent.AddListener(destoryMonsterAction);
             monsterStatus.SetUIDamageObjectTextPool(uIDamageObjectTextPool);
             monsterStatus.SetVFXObjectPool(vFXObjectPool);
         }
@@ -212,5 +214,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     public void SetMonsterDeathAction(UnityAction<MonsterFSMController> onDeathMonster)
     {
         deathMonsterAction = onDeathMonster;
+    }
+
+    public void SetMonsterDestroyAction(UnityAction<MonsterFSMController> onDestoryMonster)
+    {
+        destoryMonsterAction = onDestoryMonster;
     }
 }

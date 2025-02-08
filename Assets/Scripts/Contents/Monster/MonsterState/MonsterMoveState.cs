@@ -21,6 +21,11 @@ public class MonsterMoveState : MonsterBaseState, IRouteMove
     public Vector2 MoveDirection { get { return moveDirection; } }
     public int MoveIndex { get { return moveIndex; } }
 
+    private void OnDisable()
+    {
+        moveIndex = 0;
+    }
+
     protected override void Awake()
     {
         base.Awake();
