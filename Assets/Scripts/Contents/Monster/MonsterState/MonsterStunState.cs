@@ -92,14 +92,6 @@ public class MonsterStunState : MonsterBaseState
     }
     private IEnumerator CoStunTime()
     {
-        //var spriteRenderers = MonsterFSM.SpriteRenderers;
-        //var originalColor = spriteRenderers[0].color;
-
-        //foreach (var sprite in spriteRenderers)
-        //{
-        //    sprite.color = stunColor;
-        //}
-
         currentStunTime = stunTime;
 
         while (currentStunTime > 0f)
@@ -107,11 +99,6 @@ public class MonsterStunState : MonsterBaseState
             yield return new WaitForEndOfFrame();
             currentStunTime -= Time.deltaTime;
         }
-
-        //foreach (var sprite in spriteRenderers)
-        //{
-        //    sprite.color = originalColor;
-        //}
 
         if(MonsterFSM.CurrentStateType != MonsterStateType.Death)
             MonsterFSM.ChangeState(MonsterStateType.Move);

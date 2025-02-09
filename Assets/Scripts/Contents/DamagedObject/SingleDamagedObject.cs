@@ -6,13 +6,13 @@ public class SingleDamagedObject : DamagedObject
 {
     public GameObject attackTarget { get; set; }
 
-    protected override void Start()
-    {
-        if (autoDestory)
-        {
-            Destroy(gameObject, time);
-        }
-    }
+    //protected override void Start()
+    //{
+    //    if (autoDestory)
+    //    {
+    //        Destroy(gameObject, time);
+    //    }
+    //}
 
     protected override void AttackHit()
     {
@@ -21,25 +21,9 @@ public class SingleDamagedObject : DamagedObject
         damageInfo.damage = Damage;
         damageInfo.debuffType = attackData.DebuffType;
         damageInfo.debuffProbability = attackData.DebuffProbability;
+        damageInfo.vfxID = attackData.VFXId;
 
         damageable.OnDamage(ref damageInfo);
         hitEvent?.Invoke();
-    }
-
-    public override void StartAttack()
-    {
-        startHitEvent?.Invoke();
-
-        AttackHit();
-
-        //if(autoDestory)
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
-
-    protected override void OnDestroy()
-    {
-        destoryEvent?.Invoke();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Pool;
 
 public class DamagedObject : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class DamagedObject : MonoBehaviour
 
     [SerializeField] 
     protected AttackData attackData = new AttackData();
+    public IObjectPool<DamagedObject> DamagedObjectPool { get; private set; }
 
     [SerializeField] 
     protected float time = 0.5f;
@@ -37,25 +39,6 @@ public class DamagedObject : MonoBehaviour
     {
         overlapCollider = GameObject.FindWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
     }
-
-    protected virtual void Start()
-    {
-        StartAttack();
-
-        //if(autoDestory)
-        //    Destroy(gameObject, time);
-    }
-
-    //private void Update()
-    //{
-    //    currentTime += Time.deltaTime;
-
-    //    if (currentTime >= time)
-    //    {
-    //        StartAttack();
-    //        currentTime = 0f;
-    //    }
-    //}
 
     protected virtual void AttackHit()
     {
@@ -67,11 +50,18 @@ public class DamagedObject : MonoBehaviour
         var hitColliders = overlapCollider.HitColliderList;
         GameObject hitObject;
 
+        DamageInfo damageInfo = new DamageInfo();
+        damageInfo.damage = Damage;
+        damageInfo.debuffType = attackData.DebuffType;
+        damageInfo.debuffTime = attackData.DebuffTime;
+        damageInfo.debuffProbability = attackData.DebuffProbability;
+        damageInfo.vfxID = attackData.VFXId;
+
         for (int i = 0; i < count; ++i)
         {
             hitObject = hitColliders[i].gameObject;
 
-            if (((1 << hitObject.layer) & hitLayerMasks) == 0 || hitObjectList.Contains(hitObject))
+            if (((1 << hitObject.layer) & hitLayerMasks) == 0)
                 continue;
 
             var damageable = hitObject.GetComponent<IDamageable>();
@@ -80,27 +70,10 @@ public class DamagedObject : MonoBehaviour
                 continue;
 
             hitObjectList.Add(hitObject);
-            DamageInfo damageInfo = new DamageInfo();
-            damageInfo.damage = Damage;
-            damageInfo.debuffType = attackData.DebuffType;
-            damageInfo.debuffTime = attackData.DebuffTime;
-            damageInfo.debuffProbability = attackData.DebuffProbability;
-            damageInfo.vfxID = attackData.VFXId;
-
+      
             damageable.OnDamage(ref damageInfo);
             hitEvent?.Invoke();
         }
-
-
-        //foreach (var hit in hitObjectList)
-        //{
-        //    if ((hit.gameObject.layer & hitLayerMasks) == 0 || !hitObjectList.Contains(hit.gameObject))
-        //        continue;
-
-        //    hitObjectList.Add(hit.gameObject);
-        //    // hit.GetComponent<IDamageable>().OnDamage()
-        //    hitEvent?.Invoke();
-        //}
     }
 
     public virtual void StartAttack()
@@ -109,10 +82,7 @@ public class DamagedObject : MonoBehaviour
 
         AttackHit();
 
-        //if(autoDestory)
-        //{
-        //    Destroy(gameObject);
-        //}
+        Release();
     }
 
     protected virtual void OnDestroy()
@@ -125,7 +95,14 @@ public class DamagedObject : MonoBehaviour
         attackData = data;
     }
 
-    private void OnDrawGizmos()
+    public void SetPool(IObjectPool<DamagedObject> damagedObjectObjectPool)
     {
+        DamagedObjectPool = damagedObjectObjectPool;
+    }
+
+    public void Release()
+    {
+        destoryEvent?.Invoke();
+        DamagedObjectPool.Release(this);
     }
 }

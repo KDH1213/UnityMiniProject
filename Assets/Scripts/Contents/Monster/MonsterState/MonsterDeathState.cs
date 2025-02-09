@@ -10,9 +10,7 @@ public class MonsterDeathState : MonsterBaseState
     [SerializeField] 
     private float deathEffectTime;
 
-
     private UniTask uniTaskDeathEffectTime;
-    private CancellationTokenSource deathEffectCoroutineSource = new();
 
     protected override void Awake()
     {
@@ -24,12 +22,6 @@ public class MonsterDeathState : MonsterBaseState
     private void OnDisable()
     {
         monsterCollider.enabled = true;
-    }
-
-    private void OnDestroy()
-    {
-        deathEffectCoroutineSource.Cancel();
-        deathEffectCoroutineSource.Dispose();
     }
 
     public override void Enter()
@@ -68,7 +60,7 @@ public class MonsterDeathState : MonsterBaseState
                 sprite.color = currentColor;
             }
 
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: this.GetCancellationTokenOnDestroy());
         }
 
         monsterFSM.Release();

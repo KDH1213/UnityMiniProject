@@ -33,6 +33,8 @@ public class AttackData
 public class AttackDataTable : DataTable
 {
     private Dictionary<int, AttackData> attackTable = new Dictionary<int, AttackData>();
+    public Dictionary<int, AttackData> AttackTable {  get { return attackTable; } }
+
     private readonly string assetPath = "Prefabs/TempPrefab/{0}";
 
     public override void Load(string filename)

@@ -475,6 +475,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3332c8ba1e20df04fa8d3f2c5a7736d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &201176821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201176822}
+  - component: {fileID: 201176823}
+  m_Layer: 0
+  m_Name: DamagedObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201176822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201176821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 509946368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201176823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201176821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250e5b11ba622e4b8746c12e5d5fde1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagedObjectPoolPrefab: {fileID: 0}
 --- !u!1 &213184028
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +533,7 @@ GameObject:
   - component: {fileID: 213184031}
   - component: {fileID: 213184032}
   - component: {fileID: 213184033}
+  - component: {fileID: 213184034}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -583,7 +629,7 @@ MonoBehaviour:
   clearObject: {fileID: 528260532}
   coinEffectCreatePoint: {fileID: 1005377274}
   jewelEffectCreatePoint: {fileID: 1060257463}
-  currencyEffectPrefab: {fileID: 2999878689933817713, guid: b6238f02e04af8e49b214d98a0e68d46, type: 3}
+  addCurrencyEffectPool: {fileID: 213184034}
 --- !u!114 &213184031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +677,19 @@ MonoBehaviour:
   vfxObjects:
   - {fileID: 1333540728688398660, guid: 4f4940654bfd8904a92632c9ecf96d32, type: 3}
   - {fileID: 8749302039270916943, guid: 3d1e10d321a761f4785cd7198322efd4, type: 3}
+--- !u!114 &213184034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213184028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4314eb05fa908468445084a78a1f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addCurrencyEffectPrefab: {fileID: 2999878689933817713, guid: b6238f02e04af8e49b214d98a0e68d46, type: 3}
 --- !u!114 &221630511 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2781219236140579087, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
@@ -1102,6 +1161,7 @@ Transform:
   - {fileID: 878804365}
   - {fileID: 526080415}
   - {fileID: 1468679222}
+  - {fileID: 201176822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526080414

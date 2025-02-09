@@ -49,6 +49,7 @@ public class MonsterDataTable : DataTable
 
 
             item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.MonsterPrefabId), typeof(GameObject)));
+            item.PrefabObject.GetComponent<MonsterFSMController>().SetSpriteRenderer();
             //var monsterStatus = item.PrefabObject.GetComponent<MonsterStatus>();
             //monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(item.MoveSpeed);
             //monsterStatus.CurrentValueTable[StatType.HP].SetValue(item.Hp);
