@@ -125,7 +125,7 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         {
             sprite.color = hitEffectColor;
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(hitEffectTime));
+        await UniTask.Delay(TimeSpan.FromSeconds(hitEffectTime), cancellationToken:this.destroyCancellationToken);
 
         if (currentStateType == MonsterStateType.Move || currentStateType == MonsterStateType.Stun)
         {

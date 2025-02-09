@@ -45,12 +45,11 @@ public class MonsterStunState : MonsterBaseState
 
         //stunCoroutine = StartCoroutine(CoStunTime());
 
-        if(stunTimeTask.Status == UniTaskStatus.Pending)
-        {
-            stunCoroutineSource.Cancel(true);
-        }
+        //if(stunTimeTask.Status == UniTaskStatus.Pending)
+        //{
+        //    stunTimeTask.ToCancellationToken();
+        //}
         stunTimeTask = UniTaskStunTime();
-
 
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, true);
     }
@@ -63,7 +62,11 @@ public class MonsterStunState : MonsterBaseState
 
     public override void Exit()
     {
-        stunCoroutineSource.Cancel();
+        if (stunTimeTask.Status == UniTaskStatus.Pending)
+        {
+            stunTimeTask.ToCancellationToken();
+        }
+
         exitStateEvent?.Invoke();
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, false);
     }

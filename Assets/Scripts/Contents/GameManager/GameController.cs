@@ -185,6 +185,7 @@ public class GameController : MonoBehaviour
     public void OnRestart()
     {
         Time.timeScale = 1f;
+        ObjectPoolManager.Instance.ObjectPoolTable.Clear();
         SceneManager.LoadScene(0);
     }
 
