@@ -89,6 +89,9 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnStartAttack()
     {
+        if (charactorFSM.CurrentStateType != CharactorStateType.Attack)
+            return;
+
         var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * reinforcedManager.GetReinforcedLevel(CharactorFSM.CharactorData.CharactorClassType);
 
         if (CharactorFSM.AttackData.AttackType == AttackType.Single)
@@ -129,6 +132,9 @@ public class CharactorAttackState : CharactorBaseState
 
     public void OnCreateVFX()
     {
+        if (charactorFSM.CurrentStateType != CharactorStateType.Attack)
+            return;
+
         attackVFX?.SetActive(true);
         //if (vfxContainerData.VfxContainerTable.ContainsKey(attackData.VFXId))
         //{
