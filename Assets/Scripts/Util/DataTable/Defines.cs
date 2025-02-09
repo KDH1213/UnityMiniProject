@@ -98,6 +98,7 @@ public static class Tags
     public static readonly string GameController = "GameController";
     public static readonly string OverlapCollider = "OverlapCollider";
     public static readonly string ReinforcedManager = "ReinforcedManager";
+    public static readonly string DamagedObjectPool = "DamagedObjectPool";
 }
 
 public static class SortingLayer

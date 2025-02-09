@@ -23,14 +23,21 @@ public class CharactorAttackState : CharactorBaseState
     private bool isTargetDeath = false;
 
     private ReinforcedManager reinforcedManager;
+    private DamagedObjectPool damageObjectPool;
 
     protected override void Awake()
     {
         reinforcedManager = GameObject.FindWithTag(Tags.ReinforcedManager).GetComponent<ReinforcedManager>();
+       // GameObject.FindWithTag(Tags.ReinforcedManager).GetComponent<ReinforcedManager>();
 
         base.Awake();
         stateType = CharactorStateType.Attack;
         attackData = CharactorFSM.AttackData;
+    }
+
+    private void Start()
+    {
+        damageObjectPool = (DamagedObjectPool)ObjectPoolManager.Instance.ObjectPoolTable[Tags.DamagedObjectPool];
     }
 
     public override void Enter()
@@ -98,18 +105,20 @@ public class CharactorAttackState : CharactorBaseState
                 attackTarget.OnDamage(ref damageInfo);
             }
         }
-        else if(CharactorFSM.AttackData.AttackType == AttackType.Area)
+        else
         {
-            var areaAttackObject = Instantiate(CharactorFSM.AttackData.PrefabObject, transform.position, Quaternion.identity);
-            areaAttackObject.GetComponent<DamagedObject>().Damage = damage;
-            areaAttackObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
-            return;
-        }
+            var createObject = damageObjectPool.GetDamagedObject(attackData.AttackType);
+            var damagedObject = createObject.GetComponent<DamagedObject>();
+            damagedObject.SetAttackData(attackData);
+            damagedObject.Damage = damage;
 
-        var createObject = Instantiate(CharactorFSM.AttackData.PrefabObject);
-        createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
-        createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
-        createObject.GetComponent<DamagedObject>().Damage = damage;
+            if (CharactorFSM.AttackData.AttackType == AttackType.Area)
+                damagedObject.transform.position = transform.position;
+            else
+                createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
+
+            damagedObject.StartAttack();    
+        }
     }
 
     public void OnEndAttackAnimation()
