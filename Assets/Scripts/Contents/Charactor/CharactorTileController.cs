@@ -24,6 +24,7 @@ public class CharactorTileController : MonoBehaviour
     {
         ResetPosition();
         characterControllerList.Add(characterController);
+        characterController.AttackDetectionPoint = transform.position;
         characterController.transform.position = transform.position;
 
         CharactorID = characterController.CharactorData.Id;
@@ -35,6 +36,7 @@ public class CharactorTileController : MonoBehaviour
     public void AddCharactor(CharactorFSM characterController)
     {
         characterControllerList.Add(characterController);
+        characterController.AttackDetectionPoint = transform.position;
         ++charactorCount;
     }
 
@@ -117,6 +119,7 @@ public class CharactorTileController : MonoBehaviour
             else
                 ((CharactorMoveState)characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(endCharactorTileObject.transform.position + charactorDeploymentData.deploymentPositionList[i]);
             characterControllerList[i].ChangeState(CharactorStateType.Move);
+            characterControllerList[i].AttackDetectionPoint = endCharactorTileObject.transform.position;
         }
 
         for (int i = 0; i < rightCount; ++i)
@@ -126,6 +129,8 @@ public class CharactorTileController : MonoBehaviour
             else
                 ((CharactorMoveState)endCharactorTileObject.characterControllerList[i].StateTable[CharactorStateType.Move]).OnSetMovePoint(transform.position + charactorDeploymentData.deploymentPositionList[i]);
             endCharactorTileObject.characterControllerList[i].ChangeState(CharactorStateType.Move);
+
+            endCharactorTileObject.characterControllerList[i].AttackDetectionPoint = transform.position;
         }
 
         (characterControllerList, endCharactorTileObject.characterControllerList) = (endCharactorTileObject.characterControllerList, characterControllerList);

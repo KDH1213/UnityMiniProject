@@ -15,6 +15,8 @@ public class CharactorFSM : FSMController<CharactorStateType>
     [field: SerializeField] 
     public CharactorProfile CharactorProfile { get; private set; }
 
+    public Vector2 AttackDetectionPoint { get; set; }
+
     [SerializeField]
     private Transform rendererTransform;
 
