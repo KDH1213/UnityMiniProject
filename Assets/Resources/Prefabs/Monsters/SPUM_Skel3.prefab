@@ -1514,7 +1514,7 @@ Transform:
   m_GameObject: {fileID: 2529311952162329734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.56, z: 0}
+  m_LocalPosition: {x: -0.117, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3513,7 +3513,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
+  m_LocalScale: {x: 3.2, y: 3.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1514751564690168570}
@@ -3846,9 +3846,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 1.5}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
 --- !u!50 &2731758315231471664
 Rigidbody2D:
   serializedVersion: 4
@@ -4376,11 +4376,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3850535619941322886, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3850535619941322886, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_Pivot.x
@@ -4448,7 +4448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.75
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4462,12 +4462,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5542802360951193421, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7438158504749936885, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_Name
       value: HpBar
       objectReference: {fileID: 0}
     - target: {fileID: 8557440790050579764, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030719575399271791, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030719575399271791, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
