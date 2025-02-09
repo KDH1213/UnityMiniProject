@@ -18,7 +18,7 @@ public class UICombinationIcon : MonoBehaviour
     public void SetIconInfo(int item1, bool item2)
     {
         // icon.sprite = Resources.Load<Sprite>()
-
+        icon.sprite = DataTableManager.CharactorDataTable.Get(item1).Icon;
         holdingText.text = item2 ? string.Format(holdingFormat, holding) : string.Format(holdingFormat, none);
     }
 }

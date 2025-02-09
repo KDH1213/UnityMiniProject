@@ -79,7 +79,9 @@ public class UICombinationInfoView : MonoBehaviour
         nameText.gameObject.SetActive(true);
         resultIconImage.gameObject.SetActive(true);
 
-        if(charactorTileManager.IsCreateCombinationCharactor() && persent == 100)
+        resultIconImage.sprite = DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).Icon;
+
+        if (charactorTileManager.IsCreateCombinationCharactor() && persent == 100)
             combinationButton.gameObject.SetActive(true);
         else
             combinationButton.gameObject.SetActive(false);

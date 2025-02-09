@@ -24,6 +24,7 @@ public class CharactorData
     public int AttackInfoID { get; set; }
 
     public GameObject PrefabObject;
+    public Sprite Icon;
     public float RealAttackRange;
 }
 
@@ -34,6 +35,7 @@ public class CharactorDataTable : DataTable
     private Dictionary<int, CharactorData> charactorTable = new Dictionary<int, CharactorData>();
 
     private readonly string assetPath = "Prefabs/Charactors/{0}";
+    private readonly string iconPath = "Sprites/UI/Icon/{0}_ICon";
 
     public override void Load(string filename)
     {
@@ -55,6 +57,7 @@ public class CharactorDataTable : DataTable
         {
 
             item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.PrefabID), typeof(GameObject)));
+            item.Icon = Resources.Load<Sprite>(string.Format(iconPath, item.Id.ToString()));
             if (item.PrefabObject == null)
                 continue;
 

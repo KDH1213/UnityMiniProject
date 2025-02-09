@@ -14,6 +14,7 @@ public class UICombinationSlot : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI persentText;
 
+    [SerializeField]
     private Image slotImage;
 
     public UnityEvent enableEvent;
@@ -31,9 +32,7 @@ public class UICombinationSlot : MonoBehaviour
     public void SetData(CombinationData combinationData)
     {
         this.combinationData = combinationData;
-
-        // TODO :: 캐릭터 아이콘을 데이터 테이블에 따라서 추가 예정
-        // slotImage = Resources.Load<Sprite>(DataTableManager.CharactorDataTable.Get(combinationData.Id).ImageID);
+        slotImage.sprite = DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).Icon;
     }
 
     public void OnSetCombinationPersent(int persent)

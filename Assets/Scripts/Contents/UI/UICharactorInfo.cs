@@ -87,7 +87,9 @@ public class UICharactorInfo : MonoBehaviour
         attackType.text = string.Format(attackTypeFormat, AttackData.AttackType.ToString());
         debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType.ToString());
 
-        if(level == 0)
+        charactorImage.sprite = CharactorData.Icon;
+
+        if (level == 0)
         {
             reinforcedAttackDamage.gameObject.SetActive(false);
         }
