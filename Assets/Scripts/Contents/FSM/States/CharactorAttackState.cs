@@ -70,10 +70,7 @@ public class CharactorAttackState : CharactorBaseState
 
     public override void Exit()
     {
-        if (charactorFSM.Animator != null)
-        {
-            charactorFSM.Animator.ResetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
-        }
+        charactorFSM.Animator.ResetTrigger(DHUtil.CharactorAnimationUtil.hashIsAttack);
     }
 
     public void SetAttackTarget(Collider2D target)
@@ -86,7 +83,6 @@ public class CharactorAttackState : CharactorBaseState
     public void OnStartAttack()
     {
         var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * reinforcedManager.GetReinforcedLevel(CharactorFSM.CharactorData.CharactorClassType);
-
 
         if (CharactorFSM.AttackData.AttackType == AttackType.Single)
         {
@@ -114,7 +110,6 @@ public class CharactorAttackState : CharactorBaseState
         createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
         createObject.transform.localScale = Vector3.one * CharactorFSM.AttackData.RealAttackRange * 0.5f;
         createObject.GetComponent<DamagedObject>().Damage = damage;
-
     }
 
     public void OnEndAttackAnimation()

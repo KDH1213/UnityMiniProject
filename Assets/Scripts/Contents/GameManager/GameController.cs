@@ -1,5 +1,3 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -56,7 +54,7 @@ public class GameController : MonoBehaviour
     private Transform jewelEffectCreatePoint;
 
     [SerializeField]
-    private GameObject currencyEffectPrefab;
+    private AddCurrencyEffectPool addCurrencyEffectPool;
 
     private void Awake()
     {
@@ -87,7 +85,12 @@ public class GameController : MonoBehaviour
 
         currentCoin += coin;
         coinChangeEvent?.Invoke(currentCoin);
-        Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
+         var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
+        addCurrencyEffect.transform.SetParent(coinEffectCreatePoint);
+        // addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
+        addCurrencyEffect.Text.text = coin.ToString();
+        addCurrencyEffect.StartEffect();
+        // Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
     }
 
     public void OnAddJewel(int jowel)
@@ -97,7 +100,12 @@ public class GameController : MonoBehaviour
 
         currentJewel += jowel;
         jewelChangeEvent?.Invoke(currentJewel);
-        Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
+        var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
+        addCurrencyEffect.transform.SetParent(jewelEffectCreatePoint);
+       //  addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
+        addCurrencyEffect.Text.text = jowel.ToString();
+        addCurrencyEffect.StartEffect();
+        // Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
     }
 
     // TODO :: 에디터 상 캐릭터 생성 버튼과 이벤트 연결

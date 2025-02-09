@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -25,6 +27,9 @@ public class UIDamageText : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI damageText;
+
+    private UniTask uiDamageTask;
+    private CancellationTokenSource uiDamageCoroutineSource = new();
 
     private IObjectPool<UIDamageText> uiDamageTextPool;
 
@@ -71,6 +76,28 @@ public class UIDamageText : MonoBehaviour
 
         if(currentTime > time)
             DestroyUIDamageText();
+    }
+
+    private async UniTask CoUIDamageEffect()
+    {
+        float currentTime = 0f;
+
+        Vector3 position = target.position;
+        Vector3 endPosition = target.position + direction * distance;
+        Vector3 scale = target.localScale;
+        Color color = damageText.color;
+
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+            var ratio = currentTime / time;
+            target.position = Vector3.Lerp(position, endPosition, ratio);
+            target.localScale = Vector3.Lerp(scale, targetScale, ratio);
+            damageText.color = Color.Lerp(color, targetColor, ratio);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: this.GetCancellationTokenOnDestroy());
+        }
+
+        DestroyUIDamageText();
     }
 
     private IEnumerator CoEffect()
