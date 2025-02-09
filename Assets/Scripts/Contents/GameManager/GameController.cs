@@ -182,12 +182,12 @@ public class GameController : MonoBehaviour
         gameoverEvent?.Invoke();
     }
 
-    public void OnRestart()
-    {
-        Time.timeScale = 1f;
-        ObjectPoolManager.Instance.ObjectPoolTable.Clear();
-        SceneManager.LoadScene(0);
-    }
+    //public void OnRestart()
+    //{
+    //    Time.timeScale = 1f;
+    //    ObjectPoolManager.Instance.ObjectPoolTable.Clear();
+    //    SceneManager.LoadScene(0);
+    //}
 
     private GameObject OnRandomCreateCharactor()
     {

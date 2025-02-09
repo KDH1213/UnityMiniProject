@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 213184032}
   - component: {fileID: 213184033}
   - component: {fileID: 213184034}
+  - component: {fileID: 213184035}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -614,6 +615,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addCurrencyEffectPrefab: {fileID: 2999878689933817713, guid: b6238f02e04af8e49b214d98a0e68d46, type: 3}
+--- !u!114 &213184035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213184028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285c0fcab497f7c4497f9388852f4cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &221630511 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2781219236140579087, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
@@ -634,9 +647,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 941622150}
     m_Modifications:
     - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 213184030}
+      objectReference: {fileID: 213184035}
+    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchDirectScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneSwitcher, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2742036135281625278, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1243,9 +1268,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 213184030}
+      objectReference: {fileID: 213184035}
+    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchDirectScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneSwitcher, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13028,19 +13065,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 37.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2264421901467271585, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_Name
@@ -14120,15 +14157,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6286602490546872830, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
