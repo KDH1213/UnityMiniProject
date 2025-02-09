@@ -59,6 +59,8 @@ public class InGameUiController : MonoBehaviour
     private TextMeshProUGUI reinforcedLevelCellText;
     [SerializeField]
     private TextMeshProUGUI reinforcedValueCellText;
+    [SerializeField]
+    private TextMeshProUGUI[] reinforcedCellPercentTexts;
 
 
     [SerializeField]
@@ -74,6 +76,7 @@ public class InGameUiController : MonoBehaviour
     private readonly string reinforcedValueFomat = "{0}";
     private readonly string reinforcedLevelValue = "Lv.{0}";
     private readonly string reinforcedMaxFomat = "Max";
+    private readonly string reinforcedCellPercentFomat = "{0:F2}%";
 
     private void Awake()
     {
@@ -82,6 +85,7 @@ public class InGameUiController : MonoBehaviour
         gameController.jewelChangeEvent.AddListener(OnChangeJowel);
 
         monsterCountSlider.value = 0;
+        SetReinforcedCellPercent(0);
     }
 
     public void OnChangeCoinCount(int coin)
@@ -196,5 +200,15 @@ public class InGameUiController : MonoBehaviour
         else
             reinforcedLevelCellText.text = string.Format(reinforcedLevelValue, (currentLevel + 1).ToString());
         // reinforcedValueCellText.text = string.Format(reinforcedValueFomat, currentLevel);
+        SetReinforcedCellPercent(currentLevel);
+    }
+
+    private void SetReinforcedCellPercent(int currentLevel)
+    {
+        var list = DataTableManager.CoinDrawTable.Get(currentLevel).CoinDrawList;
+        for (int i = 0; i < (int)CharactorClassType.End; ++i)
+        {
+            reinforcedCellPercentTexts[i].text = string.Format(reinforcedCellPercentFomat,list[i].ToString());
+        }
     }
 }
