@@ -35,3 +35,28 @@ public class SPUMEditor : Editor
         Debug.Log("Resolution SPUM Prefab Material!");
     }
 }
+
+public class MonsterEditor : Editor
+{
+    [MenuItem("SPUM Editor/Monster Get SpriteRenderers")]
+    private static void ResolutionSPUMPrefabMaterial()
+    {
+        // Load SPUM Character Prefabs
+        string folderPath = "Assets/Resources/Prefabs/Monsters/";
+        string[] prefabGUIDs = AssetDatabase.FindAssets("t:Prefab", new[] { folderPath });
+        for (int i = 0; i < prefabGUIDs.Length; i++)
+        {
+            string prefabGUID = prefabGUIDs[i];
+            string prefabPath = AssetDatabase.GUIDToAssetPath(prefabGUID);
+            var go = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+            if (go.GetComponent<MonsterFSMController>() != null)
+                go.GetComponent<MonsterFSMController>().SetSpriteRenderer();
+        }
+
+        // Save
+        AssetDatabase.SaveAssets();
+
+        Debug.Log("Resolution SPUM Prefab Material!");
+    }
+}
