@@ -79,18 +79,7 @@ public static class DataTableManager
             tables.Add(id, table);
         }
 #else
-        //var table = new StringTable();
-        //var stringTableId = DataTableIds.String[(int)Varibalbes.currentLanguage];
-        //table.Load(stringTableId);
-        //tables.Add(stringTableId, table);
-
-        //  foreach (var id in ItemTableIds.String)
-        //{
-        //    var table = new ItemTable();
-        //    table.Load(id);
-        //    tables.Add(id, table);
-        //}
-          foreach (var id in CoinDrawTableIds.String)
+        foreach (var id in CoinDrawTableIds.String)
         {
             var table = new CoinDrawTable();
             table.Load(id);
@@ -117,7 +106,6 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
-
         foreach (var id in CharactorTableIds.String)
         {
             var table = new CharactorDataTable();
@@ -125,12 +113,20 @@ public static class DataTableManager
             tables.Add(id, table);
         }
 
-          foreach (var id in CombinationTableIds.String)
+        foreach (var id in CharactorSellTableIds.String)
+        {
+            var table = new CharactorSellTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
+        foreach (var id in CombinationTableIds.String)
         {
             var table = new CombinationTable();
             table.Load(id);
             tables.Add(id, table);
         }
+
 
         foreach (var id in ReinforcedTableIds.String)
         {
