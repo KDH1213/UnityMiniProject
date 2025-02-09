@@ -519,7 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2250e5b11ba622e4b8746c12e5d5fde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagedObjectPoolPrefab: {fileID: 0}
 --- !u!1 &213184028
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIDamageTextPrefab: {fileID: 4734904404186430332, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
+  defalutCreateCount: 200
 --- !u!114 &213184033
 MonoBehaviour:
   m_ObjectHideFlags: 0
