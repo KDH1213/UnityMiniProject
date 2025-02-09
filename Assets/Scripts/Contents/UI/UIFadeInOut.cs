@@ -17,8 +17,6 @@ public class UIFadeInOut : MonoBehaviour
 
     private float currentTime;
 
-    private bool isFadeOut = true;
-
     private Color currentColor;
     private Color targetColor;
 
