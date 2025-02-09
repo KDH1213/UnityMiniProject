@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1489090778948234964
 RectTransform:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &537012490666437156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1144,13 +1144,14 @@ GameObject:
   - component: {fileID: 5052154271910591902}
   - component: {fileID: 5221647012180383565}
   - component: {fileID: 7430240796100188883}
+  - component: {fileID: 5608536553290067204}
   m_Layer: 5
   m_Name: BoardDecoL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5052154271910591902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1208,6 +1209,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5608536553290067204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537596680896249798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 7430240796100188883}
+  isUnscale: 1
+  isStartFadeOut: 0
+  fadeOutDuration: 0.5
 --- !u!1 &7540468698799872603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2988106134532301854
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1661,7 +1678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2742036135281625278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1742,7 +1759,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332d4cfe4557a7a45a416a872418c3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resultText: {fileID: 257375963219419179}
+  waveText: {fileID: 4341277984006785097}
   finalWaveText: {fileID: 5174199991508205165}
+  compensationText: {fileID: 6559966869071661287}
+  compensationOnActiveObjects:
+  - {fileID: 7537596680896249798}
+  - {fileID: 9155776434258685243}
+  restartButton: {fileID: 8928742055286965173}
+  endEffectActiveObjects:
+  - {fileID: 9043798575350292692}
   currencyText: {fileID: 0}
 --- !u!1 &8833948863952585771
 GameObject:
@@ -1761,7 +1787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5075155192699943977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1971,7 +1997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6098016503347894458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2097,13 +2123,14 @@ GameObject:
   - component: {fileID: 6064977678394293373}
   - component: {fileID: 8504419987776978047}
   - component: {fileID: 2667023558798808450}
+  - component: {fileID: 2558715079675487376}
   m_Layer: 5
   m_Name: BackLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6064977678394293373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2161,6 +2188,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2558715079675487376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9043798575350292692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 2667023558798808450}
+  isUnscale: 1
+  isStartFadeOut: 1
+  fadeOutDuration: 0.5
 --- !u!1 &9155776434258685243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,13 +2215,14 @@ GameObject:
   - component: {fileID: 6724441422096213731}
   - component: {fileID: 371813943871217444}
   - component: {fileID: 1439616827939612610}
+  - component: {fileID: 1635136972490149193}
   m_Layer: 5
   m_Name: BoardDecoR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6724441422096213731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2236,6 +2280,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1635136972490149193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155776434258685243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 1439616827939612610}
+  isUnscale: 1
+  isStartFadeOut: 0
+  fadeOutDuration: 0.5
 --- !u!1 &9178774633472963381
 GameObject:
   m_ObjectHideFlags: 0

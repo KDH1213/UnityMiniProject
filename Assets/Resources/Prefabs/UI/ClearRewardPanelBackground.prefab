@@ -249,7 +249,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332d4cfe4557a7a45a416a872418c3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resultText: {fileID: 432035123836607179}
+  waveText: {fileID: 750169397215239580}
   finalWaveText: {fileID: 3896619658074555349}
+  compensationText: {fileID: 3037760136356962411}
+  compensationOnActiveObjects:
+  - {fileID: 3696100656923329200}
+  - {fileID: 5545933667623026983}
+  restartButton: {fileID: 5979881729815237674}
+  endEffectActiveObjects:
+  - {fileID: 6425251518485806693}
   currencyText: {fileID: 0}
 --- !u!1 &1156698883999826489
 GameObject:
@@ -629,7 +638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1496168647105123468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1067,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2167660225380818348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1451,7 +1460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4139806228655480056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1526,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1446854334426686706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1661,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8520325343810928888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1793,7 +1802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1865051288139843508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1927,7 +1936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5987421565790274313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1968,7 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2002,7 +2011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2767745509978180426
 RectTransform:
   m_ObjectHideFlags: 0

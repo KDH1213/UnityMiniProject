@@ -498,7 +498,7 @@ MonoBehaviour:
   gameTouchManager: {fileID: 526080416}
   reinforcedManager: {fileID: 1468679223}
   createCoin: 20
-  currentCoin: 500
+  currentCoin: 100
   maxMonsterCount: 100
   changeMonsterEvnet:
     m_PersistentCalls:
@@ -720,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 8751554205794969363, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_Name
       value: CloseRewardPanelBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751554205794969363, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
