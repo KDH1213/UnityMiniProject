@@ -8,7 +8,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1076,Normal,SPUM_Green3,3.6,190,5,0
 1087,Normal,SPUM_Green3,4.1,205,5,0
 1098,Normal,SPUM_Green3,4.5,220,5,0
-2109,Boss,SPUM_GreenBoss,5,6000,100,3
+2109,Boss,SPUM_GreenBoss,1,4500,100,3
 1110,Normal,SPUM_Blue,1,120,5,0
 1121,Normal,SPUM_Blue,1.5,138,5,0
 1132,Normal,SPUM_Blue,1.8,156,5,0
@@ -18,7 +18,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1176,Normal,SPUM_Blue2,3.6,228,5,0
 1187,Normal,SPUM_Blue2,4.1,246,5,0
 1198,Normal,SPUM_Blue2,4.5,264,5,0
-2209,Boss,SPUM_Blue3,5,7200,100,4
+2209,Boss,SPUM_Blue3,1,6000,100,4
 1210,Normal,SPUM_Red,1,144,5,0
 1221,Normal,SPUM_Red,1.5,167,5,0
 1232,Normal,SPUM_Red,1.8,190,5,0
@@ -28,7 +28,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1276,Normal,SPUM_Red2,3.6,282,5,0
 1287,Normal,SPUM_Red2,4.1,305,5,0
 1298,Normal,SPUM_Red2,4.5,328,5,0
-2309,Boss,SPUM_Red3,5,9000,100,5
+2309,Boss,SPUM_Red3,1,6700,100,5
 1310,Normal,SPUM_Yellow,1,173,5,0
 1321,Normal,SPUM_Yellow,1.5,203,5,0
 1332,Normal,SPUM_Yellow,1.8,233,5,0
@@ -38,7 +38,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1376,Normal,SPUM_Yellow2,3.6,353,5,0
 1387,Normal,SPUM_Yellow2,4.1,383,5,0
 1398,Normal,SPUM_Yellow2,4.5,413,5,0
-2409,Boss,SPUM_Yellow3,5,11500,100,6
+2409,Boss,SPUM_Yellow3,1,8300,100,6
 1410,Normal,SPUM_Purple,1,208,5,0
 1421,Normal,SPUM_Purple,1.5,247,5,0
 1432,Normal,SPUM_Purple,1.8,286,5,0
@@ -48,7 +48,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1476,Normal,SPUM_Purple2,3.6,442,5,0
 1487,Normal,SPUM_Purple2,4.1,481,5,0
 1498,Normal,SPUM_Purple2,4.5,520,5,0
-2509,Boss,SPUM_Purple3,5,14500,100,7
+2509,Boss,SPUM_Purple3,1,10500,100,7
 1510,Normal,SPUM_White,1,250,5,0
 1521,Normal,SPUM_White,1.5,300,5,0
 1532,Normal,SPUM_White,1.8,350,5,0
@@ -58,7 +58,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1576,Normal,SPUM_White2,3.6,550,5,0
 1587,Normal,SPUM_White2,4.1,600,5,0
 1598,Normal,SPUM_White2,4.5,650,5,0
-2609,Boss,SPUM_White3,5,18200,100,8
+2609,Boss,SPUM_White3,1,13500,100,8
 1610,Normal,SPUM_Skel,1,300,5,0
 1621,Normal,SPUM_Skel,1.5,363,5,0
 1632,Normal,SPUM_Skel,1.8,426,5,0
@@ -68,7 +68,7 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1676,Normal,SPUM_Skel2,3.6,678,5,0
 1687,Normal,SPUM_Skel2,4.1,741,5,0
 1698,Normal,SPUM_Skel2,4.5,804,5,0
-2709,Boss,SPUM_Skel3,5,24000,100,9
+2709,Boss,SPUM_Skel3,1,16200,100,9
 1710,Normal,SPUM_Green,1,360,5,0
 1721,Normal,SPUM_GreenBoss,1.5,438,5,0
 1732,Normal,SPUM_Blue3,1.8,516,5,0
@@ -78,4 +78,4 @@ Id,MonsterType,MonsterPrefabId,MoveSpeed,Hp,CoinQty,JewelQty
 1776,Normal,SPUM_Yellow3,3.6,828,5,0
 1787,Normal,SPUM_Skel3,4.1,906,5,0
 1798,Normal,SPUM_Skel3,4.5,984,5,0
-2809,Boss,SPUM_SkelBoss,5,30000,100,10
+2809,Boss,SPUM_SkelBoss,1,19800,100,10
