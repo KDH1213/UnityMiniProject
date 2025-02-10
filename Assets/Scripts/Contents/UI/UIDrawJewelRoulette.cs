@@ -50,7 +50,7 @@ public class UIDrawJewelRoulette : MonoBehaviour
     private void Start()
     {
         var gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<GameController>();
-        drawButton.onClick.AddListener(() => gameController.OnStartDrawJewelChractor(drawValue, OnStartRoulette));
+        drawButton.onClick.AddListener(() => gameController.OnStartDrawJewelChractor(coroutine != null, drawValue, OnStartRoulette));
     }
 
     private void OnDisable()

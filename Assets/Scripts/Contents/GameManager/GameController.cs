@@ -126,9 +126,9 @@ public class GameController : MonoBehaviour
         charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());        
     }
 
-    public void OnStartDrawJewelChractor(int jewelValue, UnityAction drawAction)
+    public void OnStartDrawJewelChractor(bool isStart, int jewelValue, UnityAction drawAction)
     {
-        if (isOnJewelDraw || (jewelValue > currentJewel || !charactorTileManager.IsCreateCharactor()))
+        if (isStart || (jewelValue > currentJewel || !charactorTileManager.IsCreateCharactor()))
         {
             createFailEvenet?.Invoke();
             return;
@@ -137,7 +137,6 @@ public class GameController : MonoBehaviour
         currentJewel -= jewelValue;
         jewelChangeEvent?.Invoke(currentJewel);
         drawAction?.Invoke();
-        isOnJewelDraw = true;
     }
 
     public void OnChangeMonsterCount(int count)
