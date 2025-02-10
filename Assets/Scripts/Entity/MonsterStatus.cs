@@ -77,7 +77,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         var damageText = uIDamageObjectTextPool.Get();
        
         damageText.transform.position = transform.position;
-        damageText.SetDamage(damage.ToString());
+        damageText.SetDamage(((int)damage).ToString());
         // Instantiate(uIDamageTextPrefab, transform.position, Quaternion.identity).SetDamage(damage.ToString());
 
         //if (vfxContainerData.VfxContainerTable.ContainsKey(inoutDamageInfo.vfxID))
