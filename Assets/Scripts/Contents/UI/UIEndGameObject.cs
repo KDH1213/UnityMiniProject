@@ -58,6 +58,10 @@ public class UIEndGameObject : MonoBehaviour
         // currencyValueList.Add(waveData.RefreshCurrency);
         // currencyValueList.Add(waveData.RouletteCurrency);
 
+        // 게임 강종 예외처리 해야 함
+        SaveLoadManager.Data.RefreshCurrency += waveData.RefreshCurrency;
+        SaveLoadManager.Data.RouletteCurrency += waveData.RouletteCurrency;
+
         if (endGameEventCoroutine == null)
             endGameEventCoroutine = StartCoroutine(CoEndGameEvent());
     }

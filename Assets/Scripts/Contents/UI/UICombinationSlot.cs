@@ -33,6 +33,9 @@ public class UICombinationSlot : MonoBehaviour
     {
         this.combinationData = combinationData;
         slotImage.sprite = DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).Icon;
+
+        if(!SaveLoadManager.Data.CharactorUnlockTable[combinationData.CharacterID])
+            button.interactable = false;
     }
 
     public void OnSetCombinationPersent(int persent)

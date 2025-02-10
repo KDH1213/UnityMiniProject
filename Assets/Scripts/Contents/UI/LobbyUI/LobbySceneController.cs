@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LobbySceneController : MonoBehaviour
@@ -14,9 +15,61 @@ public class LobbySceneController : MonoBehaviour
     private Sprite seleteSprite;
     [SerializeField]
     private Sprite defaluteSprite;
-    protected void Awake()
+
+    [SerializeField]
+    private int refreshCurrency;
+    [SerializeField]
+    private int rouletteCurrency;
+
+    public UnityEvent<int> changeValueRefreshCurrencyEvent;
+    public UnityEvent<int> changeValueRouletteCurrencyEvent;
+
+    private void Awake()
     {
         battleToggle.onValueChanged?.Invoke(true);
+
+        refreshCurrency = SaveLoadManager.Data.RefreshCurrency;
+        rouletteCurrency = SaveLoadManager.Data.RouletteCurrency;
+    }
+
+    private void Start()
+    {
+        changeValueRefreshCurrencyEvent?.Invoke(refreshCurrency);
+        changeValueRouletteCurrencyEvent?.Invoke(rouletteCurrency);
+    }
+
+    public bool OnUseRefreshCurrency(int value)
+    {
+        if (refreshCurrency < value)
+            return false;
+
+        refreshCurrency -= value;
+        SaveLoadManager.Data.RefreshCurrency = refreshCurrency;
+        changeValueRefreshCurrencyEvent?.Invoke(refreshCurrency);
+
+        SaveLoadManager.Save(0);
+
+        return true;
+    }
+
+    public bool OnUseRouletteCurrency(int value)
+    {
+        if (rouletteCurrency < value)
+            return false;
+        rouletteCurrency -= value;
+        SaveLoadManager.Data.RouletteCurrency = rouletteCurrency;
+        changeValueRouletteCurrencyEvent?.Invoke(rouletteCurrency);
+
+        SaveLoadManager.Save(0);
+
+        return true;
+    }
+
+    public void OnGetCharactor(int charactorID)
+    {
+        Debug.Log(charactorID);
+        SaveLoadManager.Data.CharactorUnlockTable[charactorID] = true;
+        SaveLoadManager.Save(0);
     }
 
     public void IsOnBattle(bool isOn)
