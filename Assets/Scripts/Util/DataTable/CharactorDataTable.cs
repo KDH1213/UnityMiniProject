@@ -78,6 +78,11 @@ public class CharactorDataTable : DataTable
         }
     }
 
+    public List<CharactorData> GetCharactorClassList(CharactorClassType type)
+    {
+        return charactorDataList[(int)type];
+    }
+
     public CharactorData Get(CharactorClassType type, int index)
     {
         if (charactorDataList[(int)type][index] == null)
