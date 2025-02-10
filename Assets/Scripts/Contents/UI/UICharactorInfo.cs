@@ -57,8 +57,8 @@ public class UICharactorInfo : MonoBehaviour
 
     private readonly string debuffNameFormat = "{0}";
     private readonly string debuffTypeFormat = "{0}";
-    private readonly string debuffProbabilityFormat = "{0:f2}";
-    private readonly string debuffTimeFormat = "{0:f2}";
+    private readonly string debuffProbabilityFormat = "{0:f2}%";
+    private readonly string debuffTimeFormat = "{0:f2}√ ";
 
 
     private void Awake()

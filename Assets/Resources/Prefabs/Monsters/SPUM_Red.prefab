@@ -1927,7 +1927,7 @@ GameObject:
   - component: {fileID: 6036945767110651273}
   - component: {fileID: 4867984755929824576}
   - component: {fileID: 7696407519921129705}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: SPUM_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2022,13 @@ MonoBehaviour:
   currentStateType: 2
   previousStateType: 0
   stateTable:
-    _serializedList: []
+    _serializedList:
+    - Key: 2
+      Value: {fileID: 3673580991900001708}
+    - Key: 4
+      Value: {fileID: 6036945767110651273}
+    - Key: 5
+      Value: {fileID: 9105953328179713085}
   animator: {fileID: 3499366660381642941}
   monsterStatus: {fileID: 5340285568916482128}
   spriteRenderers:
