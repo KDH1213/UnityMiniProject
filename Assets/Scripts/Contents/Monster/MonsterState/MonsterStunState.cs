@@ -7,8 +7,6 @@ using System.Threading;
 
 public class MonsterStunState : MonsterBaseState
 {
-    [SerializeField] 
-    private Color stunColor;
     private float stunTime;
     private Coroutine stunCoroutine;
 

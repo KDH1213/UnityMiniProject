@@ -19,8 +19,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     [SerializeField] 
     private Slider hpbar;
-    [SerializeField]
-    private UIDamageText uIDamageTextPrefab;
     public bool IsDead { get; private set; } = false;
 
     public UnityEvent hitEvent;

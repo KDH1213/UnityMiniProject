@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class UICombinationTable : MonoBehaviour
+public class UICombinationTable : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private Transform createParent;
@@ -18,10 +20,19 @@ public class UICombinationTable : MonoBehaviour
 
     private UICombinationSlot currentSeleteSlot;
 
+    public UnityEvent disableEvent;
+    public UnityEvent enableEvent;
+
     private void OnDisable()
     {
         currentSeleteSlot = null;
         CharactorCombinationPanel.SetEmpty();
+        disableEvent?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        enableEvent?.Invoke();
     }
 
 
@@ -61,5 +72,9 @@ public class UICombinationTable : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-    
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        eventData.selectedObject = gameObject;
+    }
 }
