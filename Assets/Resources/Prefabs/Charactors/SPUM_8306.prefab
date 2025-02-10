@@ -294,6 +294,7 @@ MonoBehaviour:
     <AttackSpeed>k__BackingField: 2
     <AttackInfoID>k__BackingField: 72201
     PrefabObject: {fileID: 838086984755350878}
+    Icon: {fileID: 0}
     RealAttackRange: 12
   <AttackData>k__BackingField:
     <Id>k__BackingField: 72201
@@ -4304,6 +4305,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1378210001279039911}
     m_Modifications:
+    - target: {fileID: 5901910902014043149, guid: 261114d93f36c70478760fadc0ea4382, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901910902014043149, guid: 261114d93f36c70478760fadc0ea4382, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901910902014043149, guid: 261114d93f36c70478760fadc0ea4382, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6546702752271923600, guid: 261114d93f36c70478760fadc0ea4382, type: 3}
       propertyPath: m_Name
       value: 72201Ready_attack

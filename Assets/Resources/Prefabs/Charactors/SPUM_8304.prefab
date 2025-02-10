@@ -2560,6 +2560,7 @@ MonoBehaviour:
     <AttackSpeed>k__BackingField: 3
     <AttackInfoID>k__BackingField: 71102
     PrefabObject: {fileID: 6719862552755655001}
+    Icon: {fileID: 0}
     RealAttackRange: 12
   <AttackData>k__BackingField:
     <Id>k__BackingField: 71102
@@ -4306,15 +4307,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4751644228295686250, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 4751644228295686250, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4751644228295686250, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4751644228295686250, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4343,6 +4344,18 @@ PrefabInstance:
     - target: {fileID: 4751644228295686250, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471508635684997866, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
+      propertyPath: lengthInSec
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471508635684997866, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471508635684997866, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8340609207370270718, guid: 5635ad8d7bfb03b4eb2a8730884099d2, type: 3}
       propertyPath: m_Name
