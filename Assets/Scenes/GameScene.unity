@@ -14262,6 +14262,10 @@ PrefabInstance:
       propertyPath: reinforcedManager
       value: 
       objectReference: {fileID: 1468679223}
+    - target: {fileID: 7389790154960546953, guid: 53587d08048343f43a1c523f58a8b57d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7935674421312104164, guid: 53587d08048343f43a1c523f58a8b57d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

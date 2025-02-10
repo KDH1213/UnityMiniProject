@@ -84,8 +84,8 @@ public class UICharactorInfo : MonoBehaviour
         attackDamage.text = string.Format(damageFormat, CharactorData.Damage.ToString());
         attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed.ToString());
 
-        attackType.text = string.Format(attackTypeFormat, AttackData.AttackType.ToString());
-        debuffTypeName.text = string.Format(debuffTypeFormat, AttackData.DebuffType.ToString());
+        attackType.text = string.Format(attackTypeFormat, TypeStringTable.AttackTypeStrings[(int)AttackData.AttackType]);
+        debuffTypeName.text = string.Format(debuffTypeFormat, TypeStringTable.DebuffTypeStrings[(int)AttackData.DebuffType]);
 
         charactorImage.sprite = CharactorData.Icon;
 
@@ -117,7 +117,7 @@ public class UICharactorInfo : MonoBehaviour
         // attackImage;
         // attackSpeedImage;
 
-        attackName.text = string.Format(attackNameFormat, "AttackName");
-        debuffName.text = string.Format(debuffNameFormat, "DebuffName"); 
+        attackName.text = string.Format(attackNameFormat, "공격 타입");
+        debuffName.text = string.Format(debuffNameFormat, "디버프 타입"); 
     }
 }

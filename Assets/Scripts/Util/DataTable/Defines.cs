@@ -101,6 +101,26 @@ public static class Tags
     public static readonly string DamagedObjectPool = "DamagedObjectPool";
 }
 
+
+public static class TypeStringTable
+{
+
+    public static readonly string[] DebuffTypeStrings =
+    {
+        "없음",
+        "스턴",
+        "느려짐"
+    };
+
+    public static readonly string[] AttackTypeStrings =
+ {
+        "단일 공격",
+        "다중 공격",
+        "범위 공격"
+    };
+
+}
+
 public static class SortingLayer
 {
     public static readonly string Defalyle = "Default";
