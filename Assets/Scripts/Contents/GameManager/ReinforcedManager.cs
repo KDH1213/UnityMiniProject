@@ -36,7 +36,7 @@ public class ReinforcedManager : MonoBehaviour
         return currentReinforcedLevelTypes[(int)type];
     }
 
-    public float GetCurrentReinforcedDamageDamagePercent(CharactorClassType type)
+    public float GetCurrentReinforcedDamagePercent(CharactorClassType type)
     {
         return currentReinforcedDamageDamagePercent[(int)type];
     }

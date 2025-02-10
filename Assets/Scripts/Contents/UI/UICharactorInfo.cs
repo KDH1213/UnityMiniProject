@@ -96,7 +96,7 @@ public class UICharactorInfo : MonoBehaviour
         else
         {
             reinforcedAttackDamage.gameObject.SetActive(true);
-            var extraDamage = CharactorData.Damage * reinforcedManager.GetCurrentReinforcedDamageDamagePercent(CharactorData.CharactorClassType);
+            var extraDamage = CharactorData.Damage * (reinforcedManager.GetCurrentReinforcedDamagePercent(CharactorData.CharactorClassType) * 0.01f);
             reinforcedAttackDamage.text = string.Format(reinforcedDamageFormat, extraDamage);
         }
 
