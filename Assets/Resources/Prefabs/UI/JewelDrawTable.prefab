@@ -2291,11 +2291,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4752532538372373183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 220, y: 15}
   m_SizeDelta: {x: 40, y: 40}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1995828589938258723
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3513,7 +3513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537947546951756446, guid: 5141cb15b3547a648af567d818323d29, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4537947546951756446, guid: 5141cb15b3547a648af567d818323d29, type: 3}
       propertyPath: m_SortingLayer
