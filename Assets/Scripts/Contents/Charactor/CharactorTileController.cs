@@ -22,6 +22,11 @@ public class CharactorTileController : MonoBehaviour
 
     public void CreateCharactor(CharactorFSM characterController)
     {
+        if(charactorCount == 0)
+        {
+            charactorTileManager.ChangeUsetTileCount(1);
+        }
+
         ResetPosition();
         characterControllerList.Add(characterController);
         characterController.AttackDetectionPoint = transform.position;
@@ -105,6 +110,8 @@ public class CharactorTileController : MonoBehaviour
         }
         charactorCount -= count;
         characterControllerList.RemoveRange(charactorCount, count);
+        if(charactorCount == 0)
+            charactorTileManager.ChangeUsetTileCount(-1);
     }
 
     public void OnChangeCharactorInfo(CharactorTileController endCharactorTileObject)

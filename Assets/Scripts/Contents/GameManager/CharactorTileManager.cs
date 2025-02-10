@@ -145,7 +145,6 @@ public class CharactorTileManager : MonoBehaviour
         else
         {
             charactorCountTable.Add(charactorID, 1);
-            ++useTileCharactorCount;
         }
 
         ++totalCharactorCount;
@@ -320,5 +319,10 @@ public class CharactorTileManager : MonoBehaviour
 
         var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).PrefabObject); 
         CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+    }
+
+    public void ChangeUsetTileCount(int charactorCount)
+    {
+        useTileCharactorCount += charactorCount;
     }
 }
