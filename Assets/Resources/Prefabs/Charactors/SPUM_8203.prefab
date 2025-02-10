@@ -1539,7 +1539,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: acb3bfd86ae6c41b084245f578292734, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.56078434}
+  m_Color: {r: 0, g: 0.1801535, b: 0.45490196, a: 0.7019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2891,7 +2891,7 @@ MonoBehaviour:
     <AttackSpeed>k__BackingField: 1.5
     <AttackInfoID>k__BackingField: 73202
     PrefabObject: {fileID: 5627346394967066109}
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 7ccff0334d3d8df4d913aed0f6ff9053, type: 3}
     RealAttackRange: 9
   <AttackData>k__BackingField:
     <Id>k__BackingField: 73202
@@ -2901,7 +2901,7 @@ MonoBehaviour:
     <DebuffType>k__BackingField: 0
     <DebuffTime>k__BackingField: 0
     <DebuffProbability>k__BackingField: 0
-    <VFXId>k__BackingField: 73202
+    <VFXId>k__BackingField: 88887
     PrefabObject: {fileID: 7919080240681997631, guid: 0a805e26504003a4799500549067d5c5, type: 3}
     RealAttackRange: 9
   <Animator>k__BackingField: {fileID: 4983483138755339649}
