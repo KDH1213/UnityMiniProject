@@ -1187,6 +1187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearRewardPanelBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 877961279021798927, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4468554259578470891, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12139,7 +12143,15 @@ PrefabInstance:
     - target: {fileID: 988790372725616441, guid: 2062f7eec6853064caa4e0525decc694, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 213184031}
+      objectReference: {fileID: 213184030}
+    - target: {fileID: 988790372725616441, guid: 2062f7eec6853064caa4e0525decc694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 988790372725616441, guid: 2062f7eec6853064caa4e0525decc694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2100532249850730443, guid: 2062f7eec6853064caa4e0525decc694, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

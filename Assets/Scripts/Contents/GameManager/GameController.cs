@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -157,11 +156,6 @@ public class GameController : MonoBehaviour
             var createCharactor = Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor(charactorClassType).PrefabObject);
             charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
         }
-        else
-        {
-
-        }
-
         isOnJewelDraw = false;
     }
 

@@ -16,6 +16,12 @@ public class WaveData
     
     public CurrencyType CurrencyType { get; set; }
     public int WaveStartCurrencyValue { get; set; }
+
+
+    public int RefreshCurrency { get; set; }
+    public int RouletteCurrency { get; set; }
+
+    public List<int> currencyValueList = new List<int>();
     
 
     //public override string ToString()
@@ -44,6 +50,11 @@ public class WaveDataTable : DataTable
             if (item == null)
             {
                 Debug.LogError($"Key Duplicated {item.Id}");
+            }
+            else
+            {
+                item.currencyValueList.Add(item.RefreshCurrency);
+                item.currencyValueList.Add(item.RouletteCurrency);
             }
         }
     }

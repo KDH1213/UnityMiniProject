@@ -123,8 +123,17 @@ public class MonsterSpawnSystem : MonoBehaviour
             }
         }
 
-        if(!isGameOver)
-            GameController.GameClear();
+        if (!isGameOver)
+        {
+            if (bossMonsterCount != 0)
+            {
+                GameController.GameOver();
+            }
+            else
+            {
+                GameController.GameClear();
+            }
+        }       
     }
 
     private async UniTask UniTaskStartSpawn()
