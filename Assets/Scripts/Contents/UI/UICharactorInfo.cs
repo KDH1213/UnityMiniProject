@@ -80,7 +80,7 @@ public class UICharactorInfo : MonoBehaviour
         var level = reinforcedManager.GetReinforcedLevel(CharactorData.CharactorClassType);
 
         charactorType.text = string.Format(charactorTypeFormat, CharactorData.CharactorClassType.ToString());
-        charactorName.text = string.Format(charactorNameFormat, CharactorData.PrefabID);
+        charactorName.text = string.Format(charactorNameFormat, DataTableManager.CharactorDataTable.Get(CharactorData.Id).CharacterName);
         attackDamage.text = string.Format(damageFormat, CharactorData.Damage.ToString());
         attackSpeed.text = string.Format(attackSpeedFormat, CharactorData.AttackSpeed.ToString());
 

@@ -23,6 +23,8 @@ public class CharactorData
     [field: SerializeField] 
     public int AttackInfoID { get; set; }
 
+    public string CharacterName { get; set; }
+
     public GameObject PrefabObject;
     public Sprite Icon;
     public float RealAttackRange;

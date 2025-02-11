@@ -74,7 +74,7 @@ public class UICombinationInfoView : MonoBehaviour
         }
 
         activeGridCount = count;
-        nameText.text = string.Format(nameFormat, DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).PrefabID);
+        nameText.text = string.Format(nameFormat, DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).CharacterName);
 
         nameText.gameObject.SetActive(true);
         resultIconImage.gameObject.SetActive(true);
