@@ -22,6 +22,13 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     private float rouletteValue;
 
     [SerializeField]
+    [Range(0.02f, 0.5f)]
+    private float minRefreshValue = 0.02f;
+    [SerializeField]
+    [Range(0.02f, 0.5f)]
+    private float maxRefreshValue = 0.5f;
+
+    [SerializeField]
     private float defalutRotationTime = 0.5f;
 
     [SerializeField]
@@ -39,7 +46,16 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
 
     private void Awake()
     {
+        // rouletteSlider.value = rouletteValue;
+        failEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => { failEffect.gameObject.SetActive(false); RefreshRoulette(); });
+    }
+
+    private void Start()
+    {
+        rouletteValue = SaveLoadManager.Data.lobbyRouletteValue;
         rouletteSlider.value = rouletteValue;
+        roulette.transform.rotation = Quaternion.Euler(0f, 0f, SaveLoadManager.Data.lobbyRoulettePanelAngle);
+        rouletteSlider.transform.localRotation = Quaternion.Euler(0f, 0f, SaveLoadManager.Data.lobbyRouletteLocalAngle);
     }
 
     public void OnStartDraw(int value)
@@ -69,6 +85,27 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
         failEffect.gameObject.SetActive(false);
     }
 
+
+    private void RefreshRoulette()
+    {
+        var sliderAngle = Random.value * 360f;
+        rouletteValue = Random.Range(minRefreshValue, maxRefreshValue);
+        rouletteSlider.value = rouletteValue;
+        rouletteSlider.transform.rotation = Quaternion.Euler(0f, 0f, sliderAngle);
+
+        SaveLoadManager.Data.lobbyRouletteValue = rouletteValue;
+        SaveLoadManager.Data.lobbyRoulettePanelAngle = roulette.transform.rotation.eulerAngles.z;
+        SaveLoadManager.Data.lobbyRouletteLocalAngle = rouletteSlider.transform.localRotation.eulerAngles.z;
+        SaveLoadManager.Save();
+    }
+
+    public void OnRefreshRoulette(int value)
+    {
+        if (!lobbySceneController.OnUseRefreshCurrency(value))
+            return;
+
+        RefreshRoulette();
+    }
     private IEnumerator CoRatation()
     {
         float currentTime = 0f;
@@ -94,19 +131,18 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
             roulette.transform.rotation = Quaternion.Euler(0f, 0f, startAngle);
             yield return new WaitForEndOfFrame();
         }
-
         float successAngle = rouletteValue * 360f;
-        bool isSuccess = roulette.transform.rotation.eulerAngles.z < successAngle;
-
+        bool isSuccess = (roulette.transform.rotation * rouletteSlider.transform.localRotation).eulerAngles.z < successAngle;
+        Debug.Log(isSuccess);
         if (!isSuccess)
         {
             failEffect.gameObject.SetActive(true);
-            // failEffect.Play();
         }
         else
             SuccessDrawCharactor();
 
         coroutine = null;
+        // RefreshRoulette();
     }
 
     private void SuccessDrawCharactor()

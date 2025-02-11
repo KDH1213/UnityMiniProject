@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,7 +24,6 @@ public class CharactorTileManager : MonoBehaviour
     private int totalCharactorCount = 0;
 
     public UnityEvent<int, int> changeCharatorCountEvent;
-
 
     private void Awake()
     {

@@ -27,14 +27,6 @@ public class UIMiniGameView : MonoBehaviour
 
     }
 
-    public void OnRefreshRoulette(int value)
-    {
-        if(lobbySceneController.OnUseRefreshCurrency(value))
-        {
-
-        }
-    }
-
     public void OnChangeRefreshCurrencyValue(int value)
     {
         refreshCurrencyText.text = value.ToString();
