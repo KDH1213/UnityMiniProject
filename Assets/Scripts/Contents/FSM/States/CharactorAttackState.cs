@@ -92,7 +92,7 @@ public class CharactorAttackState : CharactorBaseState
         if (charactorFSM.CurrentStateType != CharactorStateType.Attack)
             return;
 
-        var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * (reinforcedManager.GetReinforcedLevel(CharactorFSM.CharactorData.CharactorClassType) * 0.01f);
+        var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * (reinforcedManager.GetCurrentReinforcedDamagePercent(CharactorFSM.CharactorData.CharactorClassType) * 0.01f);
 
         if (CharactorFSM.AttackData.AttackType == AttackType.Single)
         {
