@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -55,6 +56,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private AddCurrencyEffectPool addCurrencyEffectPool;
 
+    private List<int> unlockCharactorIdList = new List<int>();
+
     private void Awake()
     {
         spawnSystem.changeWaveEvent.AddListener(inGameUiController.OnChangeWave);
@@ -66,7 +69,15 @@ public class GameController : MonoBehaviour
 
         gameTouchManager.sellCharactorEvnet.AddListener(OnSellCharactor);
 
-        // gameTouchManager.
+        var unlockTable = SaveLoadManager.Data.CharactorUnlockTable;
+
+        foreach (var item in unlockTable)
+        {
+            if(item.Value)
+            {
+                unlockCharactorIdList.Add(item.Key);
+            }
+        }
     }
 
     private void Start()
@@ -208,7 +219,12 @@ public class GameController : MonoBehaviour
             }
         }
 
-        return DataTableManager.CharactorDataTable.GetRandomDrawCharactor((CharactorClassType)(count - 1)).PrefabObject;
+        int indexSize = unlockCharactorIdList.Count;
+
+        if (indexSize == 0)
+            return DataTableManager.CharactorDataTable.GetRandomDrawCharactor((CharactorClassType)(count - 2)).PrefabObject;
+
+        return DataTableManager.CharactorDataTable.Get(Random.Range(0, indexSize)).PrefabObject;
     }
 
     public void OnSellCharactor(CharactorTileController charactorTileController)
