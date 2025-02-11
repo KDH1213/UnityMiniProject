@@ -44,7 +44,7 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
 
     public void OnStartDraw(int value)
     {
-        if (coroutine == null && lobbySceneController.OnUseRefreshCurrency(value))
+        if (coroutine == null && lobbySceneController.OnUseRouletteCurrency(value))
             OnStartRoulette();
     }
 

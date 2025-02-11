@@ -53,8 +53,8 @@ public class WaveDataTable : DataTable
             }
             else
             {
-                item.currencyValueList.Add(item.RefreshCurrency);
                 item.currencyValueList.Add(item.RouletteCurrency);
+                item.currencyValueList.Add(item.RefreshCurrency);
             }
         }
     }

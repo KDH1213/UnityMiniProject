@@ -20,6 +20,13 @@ public class UIMiniGameView : MonoBehaviour
         lobbySceneController.changeValueRouletteCurrencyEvent.AddListener(OnChangeRouletteCurrencyValue);
     }
 
+    private void Start()
+    {
+        refreshCurrencyText.text = SaveLoadManager.Data.RefreshCurrency.ToString();
+        rouletteCurrencyText.text = SaveLoadManager.Data.RouletteCurrency.ToString();
+
+    }
+
     public void OnRefreshRoulette(int value)
     {
         if(lobbySceneController.OnUseRefreshCurrency(value))
