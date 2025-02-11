@@ -11494,6 +11494,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1953394203}
     - target: {fileID: 1121862048429914314, guid: 7c75c9c5af72d5e4fb133279b54b15ff, type: 3}
+      propertyPath: charactorClassType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121862048429914314, guid: 7c75c9c5af72d5e4fb133279b54b15ff, type: 3}
       propertyPath: resultAngleEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
