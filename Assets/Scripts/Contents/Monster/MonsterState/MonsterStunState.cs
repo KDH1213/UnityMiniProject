@@ -35,6 +35,7 @@ public class MonsterStunState : MonsterBaseState
     public override void Enter()
     {
         enterStateEvent?.Invoke();
+        currentStunTime = stunTime;
 
         //if(stunCoroutine != null)
         //{
@@ -47,12 +48,17 @@ public class MonsterStunState : MonsterBaseState
         //{
         //    stunTimeTask.ToCancellationToken();
         //}
-        stunTimeTask = UniTaskStunTime();
+        // stunTimeTask = UniTaskStunTime();
 
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, true);
     }
     public override void ExecuteUpdate()
     {
+        currentStunTime -= Time.deltaTime;
+
+        if (currentStunTime <= 0f)
+            MonsterFSM.ChangeState(MonsterStateType.Move);
+
     }
     public override void ExecuteFixedUpdate()
     {
@@ -60,10 +66,10 @@ public class MonsterStunState : MonsterBaseState
 
     public override void Exit()
     {
-        if (stunTimeTask.Status == UniTaskStatus.Pending)
-        {
-            stunTimeTask.ToCancellationToken();
-        }
+        //if (stunTimeTask.Status == UniTaskStatus.Pending)
+        //{
+        //    stunTimeTask.ToCancellationToken();
+        //}
 
         exitStateEvent?.Invoke();
         monsterFSM.Animator.SetBool(DHUtil.MonsterAnimationUtil.hashIsDebuff, false);

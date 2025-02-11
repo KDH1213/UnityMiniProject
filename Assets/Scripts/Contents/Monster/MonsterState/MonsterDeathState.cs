@@ -10,7 +10,13 @@ public class MonsterDeathState : MonsterBaseState
     [SerializeField] 
     private float deathEffectTime;
 
+    private SpriteRenderer monsterSprite;
+    private Color currentColor;
+
     private UniTask uniTaskDeathEffectTime;
+
+    private float currentTime = 0f;
+   
 
     protected override void Awake()
     {
@@ -28,13 +34,34 @@ public class MonsterDeathState : MonsterBaseState
     {
         enterStateEvent?.Invoke();
         // StartCoroutine(CoDeathEffectTime());
-        uniTaskDeathEffectTime = UniTaskDeathEffectTime();
+        // uniTaskDeathEffectTime = UniTaskDeathEffectTime(); 
+        currentTime = 0f;
 
         monsterFSM.Animator.SetTrigger(DHUtil.MonsterAnimationUtil.hashIsDeath);
         monsterCollider.enabled = false;
+
+        monsterSprite = MonsterFSM.SpriteRenderers[0];
     }
     public override void ExecuteUpdate()
     {
+        currentColor = monsterSprite.color;
+        currentTime += Time.deltaTime;
+        currentColor.a = (deathEffectTime - currentTime) / deathEffectTime;
+
+        foreach (var sprite in MonsterFSM.SpriteRenderers)
+        {
+            sprite.color = currentColor;
+        }
+
+        if (currentTime > deathEffectTime)
+        {
+            monsterFSM.Release();
+
+            foreach (var sprite in MonsterFSM.SpriteRenderers)
+            {
+                sprite.color = Color.white;
+            }
+        }
     }
     public override void ExecuteFixedUpdate()
     {

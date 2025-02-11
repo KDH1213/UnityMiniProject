@@ -78,6 +78,7 @@ public class UIDamageText : MonoBehaviour
             DestroyUIDamageText();
     }
 
+    #region 미사용 코드
     private async UniTask CoUIDamageEffect()
     {
         float currentTime = 0f;
@@ -121,7 +122,7 @@ public class UIDamageText : MonoBehaviour
 
         DestroyUIDamageText();
     }
-
+    #endregion
     public void SetDamage(string damage)
     {
         damageText.text = damage;
