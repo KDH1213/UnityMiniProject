@@ -1,4 +1,7 @@
-﻿/// Credit glennpow, Zarlang
+﻿
+using UnityEngine.Events;
+
+/// Credit glennpow, Zarlang
 /// Sourced from - http://forum.unity3d.com/threads/free-script-particle-systems-in-ui-screen-space-overlay.406862/
 /// Updated by Zarlang with a more robust implementation, including TextureSheet annimation support
 
@@ -10,6 +13,8 @@ namespace UnityEngine.UI.Extensions.FantasyRPG
     [AddComponentMenu("UI/Effects/Extensions/UIParticleSystem")]
     public class UIParticleSystem : MaskableGraphic
     {
+
+        public UnityEvent endEvent;
         [Tooltip("Having this enabled run the system in LateUpdate rather than in Update making it faster but less precise (more clunky)")]
         public bool fixedTime = true;
 
@@ -128,6 +133,11 @@ namespace UnityEngine.UI.Extensions.FantasyRPG
             base.Awake();
             if (!Initialize())
                 enabled = false;
+
+            ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+
+            var psMain = particleSystem.main;
+            psMain.stopAction = ParticleSystemStopAction.Callback;
         }
 
 
@@ -398,6 +408,12 @@ namespace UnityEngine.UI.Extensions.FantasyRPG
         public void PauseParticleEmission()
         {
             pSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        }
+
+
+        public void OnParticleSystemStopped()
+        {
+            endEvent?.Invoke();
         }
     }
 #endif

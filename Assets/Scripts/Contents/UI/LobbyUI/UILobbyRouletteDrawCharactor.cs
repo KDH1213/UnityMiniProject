@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions.FantasyRPG;
 
 public class UILobbyRouletteDrawCharactor : MonoBehaviour
 {
     [SerializeField]
     private LobbySceneController lobbySceneController;
+
+    [SerializeField]
+    private ParticleSystem test;
 
     [SerializeField]
     private ParticleSystem failEffect;
@@ -139,7 +143,10 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
             failEffect.gameObject.SetActive(true);
         }
         else
+        {
             SuccessDrawCharactor();
+            test.gameObject.SetActive(true);
+        }
 
         coroutine = null;
         // RefreshRoulette();
