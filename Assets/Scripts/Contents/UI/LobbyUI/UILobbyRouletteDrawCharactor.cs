@@ -20,10 +20,7 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     private Button refreshButton;
 
     [SerializeField]
-    private GameObject sucesseView;
-
-    [SerializeField]
-    private Image charactorIcon;
+    private UIGetUnlockCharactor sucesseView;
 
     [SerializeField]
     private Button drawButton;
@@ -219,8 +216,9 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
 
         int seleteIndex = Random.Range(0, lockCharactorList.Count);
         lobbySceneController.OnGetCharactor(lockCharactorList[seleteIndex]);
-        charactorIcon.sprite = DataTableManager.CharactorDataTable.Get(lockCharactorList[seleteIndex]).Icon;
-        sucesseView.SetActive(true);
+
+        sucesseView.SetCharactorID(lockCharactorList[seleteIndex]);
+        sucesseView.gameObject.SetActive(true);
         unlockSucesseEffect.gameObject.SetActive(true);
     }
 
