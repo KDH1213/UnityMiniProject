@@ -1632,6 +1632,7 @@ GameObject:
   - component: {fileID: 2167660225380818348}
   - component: {fileID: 1535649645536672876}
   - component: {fileID: 5985993500558724844}
+  - component: {fileID: 6492546582144196605}
   m_Layer: 5
   m_Name: BoardDecoL
   m_TagString: Untagged
@@ -1696,6 +1697,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6492546582144196605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3696100656923329200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 5985993500558724844}
+  isUnscale: 1
+  isStartFadeOut: 0
+  fadeOutDuration: 0.5
 --- !u!1 &3917557162488375254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,6 +2229,7 @@ GameObject:
   - component: {fileID: 4139806228655480056}
   - component: {fileID: 2674239715481335463}
   - component: {fileID: 1768146537489562205}
+  - component: {fileID: 4674806090543986017}
   m_Layer: 5
   m_Name: BoardDecoR
   m_TagString: Untagged
@@ -2276,6 +2294,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4674806090543986017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545933667623026983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 1768146537489562205}
+  isUnscale: 1
+  isStartFadeOut: 0
+  fadeOutDuration: 0.5
 --- !u!1 &5582367211552079514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,6 +2799,7 @@ GameObject:
   - component: {fileID: 5987421565790274313}
   - component: {fileID: 8969607183156247113}
   - component: {fileID: 2983683938535758740}
+  - component: {fileID: 1994787282208637536}
   m_Layer: 5
   m_Name: BackLight
   m_TagString: Untagged
@@ -2829,6 +2864,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1994787282208637536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425251518485806693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0d4159c767e4043a91681bfa1b6506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInOutImage: {fileID: 2983683938535758740}
+  isUnscale: 1
+  isStartFadeOut: 1
+  fadeOutDuration: 0.5
 --- !u!1 &7080215377002175959
 GameObject:
   m_ObjectHideFlags: 0

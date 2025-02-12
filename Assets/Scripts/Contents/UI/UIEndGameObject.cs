@@ -102,6 +102,7 @@ public class UIEndGameObject : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         restartButton.SetActive(true);
+        skipButton.gameObject.SetActive(false);
 
         foreach (var endActiveGameObject in endEffectActiveObjects)
         {
