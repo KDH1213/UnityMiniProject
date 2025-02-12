@@ -22,6 +22,8 @@ public class UIEndGameObject : MonoBehaviour
 
     [SerializeField]
     private GameObject restartButton;
+    [SerializeField]
+    private GameObject skipButton;
 
     [SerializeField]
     private GameObject[] endEffectActiveObjects;
@@ -105,5 +107,36 @@ public class UIEndGameObject : MonoBehaviour
         {
             endActiveGameObject.SetActive(true);
         }
+    }
+
+    public void OnSkip()
+    {
+        resultText.gameObject.SetActive(true);
+        waveText.gameObject.SetActive(true);
+        finalWaveText.gameObject.SetActive(true);
+
+        compensationText.gameObject.SetActive(true);
+
+        for (int i = 0; i < currencyValueList.Count; i++)
+        {
+            if (currencyValueList[i] == 0)
+                continue;
+
+            currencySlots[i].SetActive(true);
+            currencyText[i].text = currencyValueList[i].ToString();
+        }
+
+        foreach (var compensationGameObject in compensationOnActiveObjects)
+        {
+            compensationGameObject.SetActive(true);
+        }
+        restartButton.SetActive(true);
+
+        foreach (var endActiveGameObject in endEffectActiveObjects)
+        {
+            endActiveGameObject.SetActive(true);
+        }
+
+        skipButton.gameObject.SetActive(false);
     }
 }
