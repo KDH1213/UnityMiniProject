@@ -23,11 +23,13 @@ public class UICombinationEffect : MonoBehaviour
     private void Awake()
     {
         animationSequence = DOTween.Sequence();
+        animationSequence.SetAutoKill(false);
         animationTarget.transform.localScale = Vector3.zero;
 
-        animationSequence.Append(animationTarget.transform.DOScale(Vector3.one, 1f)).SetAutoKill(false);
-        animationSequence.Append(animationTarget.transform.DOScale(Vector3.zero, 1f)).SetAutoKill(false);
-        animationSequence.onComplete += () => { EndAnimation(); };
+        animationSequence.Append(animationTarget.transform.DOScale(Vector3.one, 1f))
+            .AppendInterval(0.5f)
+            .Append(animationTarget.transform.DOScale(Vector3.zero, 1f))
+            .onComplete += () => { EndAnimation(); };
     }
 
     public void OnStartAnimation(int charactorID)
