@@ -29,11 +29,6 @@ public class UICombinationSlot : MonoBehaviour
 
     private readonly string persentFormat = "{0}%";
 
-    private void OnEnable()
-    {
-        enableEvent?.Invoke();
-    }
-
     public void SetData(CombinationData combinationData)
     {
         this.combinationData = combinationData;

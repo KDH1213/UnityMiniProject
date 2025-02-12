@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class UICombinationTable : MonoBehaviour, IPointerClickHandler
 {
@@ -25,8 +24,6 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
     public UnityEvent enableEvent;
 
     private List<UICombinationSlot> slotList = new List<UICombinationSlot>();
-    private List<UICombinationSlot> tempList = new List<UICombinationSlot>();
-    private int slotCount = 0;
 
     private void OnDisable()
     {
@@ -43,8 +40,16 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
         {
             slot.enableEvent?.Invoke();
         }
-        //tempList.Sort(comparisons);
-        //UpdateSlots(tempList);
+        slotList.Sort(comparisons);
+
+        foreach (var slot in slotList)
+        {
+            slot.transform.parent = null;
+        }
+        foreach (var slot in slotList)
+        {
+            slot.transform.parent = createParent;
+        }
     }
 
 
@@ -53,16 +58,6 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
         CreateCombinationSlot();
         CharactorCombinationPanel.CreateButton.onClick.AddListener(OnClickCreateButton);
     }
-
-    //private void UpdateSlots(List<UICombinationSlot> slots)
-    //{
-    //    for (int i = 0; i < slotCount; ++i)
-    //    {
-    //        slotList[i].SetData(slots[i].CombinationData);
-    //        slotList[i].OnSetCombinationPersent(slots[i].Persent);
-    //    }
-    //}
-
     private void CreateCombinationSlot()
     {
         var list = DataTableManager.CombinationTable.CombinationList;
@@ -74,11 +69,8 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
             slot.enableEvent.AddListener(() => { slot.OnSetCombinationPersent(charactorTileManager.GetHoldingsStatusPercent(item)); });
             slot.Button.onClick.AddListener(() => { currentSeleteSlot = slot; OnClickCombinationSlot(); });
             slot.enableEvent?.Invoke();
-            //slotList.Add(slot);
-            //tempList.Add(slot);
+            slotList.Add(slot);
         }
-
-        // slotCount = slotList.Count;
     }
 
     private void OnClickCombinationSlot()
@@ -108,8 +100,8 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
         int result = lhs.Button.interactable.CompareTo(rhs.Button.interactable);
         if (result != 0)
         {
-            return result;
+            return -result;
         }
-        return lhs.Persent.CompareTo(rhs.Persent); 
+        return -lhs.Persent.CompareTo(rhs.Persent); 
     };
 }
