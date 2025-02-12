@@ -78,6 +78,7 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
             unlockSucesseEffect.gameObject.SetActive(false);
             drawButton.interactable = true;
             refreshButton.interactable = true;
+            RefreshRoulette(false);
         });
 
         allUnlockSucesseEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => 
@@ -85,6 +86,7 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
             allUnlockSucesseEffect.gameObject.SetActive(false);
             drawButton.interactable = true;
             refreshButton.interactable = true;
+            RefreshRoulette(false);
         });
         failEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => 
         { 
