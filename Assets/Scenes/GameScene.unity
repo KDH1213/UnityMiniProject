@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000af06a03e8b70abd405c9a66f8972f4d0e37c2565eb2a25c347b5882d074a30de
+  m_ApplyToSortingLayers: af06a03e000000008b70abd405c9a66f8972f4d0eb2a25c347b5882de37c2565074a30de831ecc34
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -16354,12 +16354,12 @@ MonoBehaviour:
   - {fileID: 1537102668}
   nextPageButton: {fileID: 2102909136}
   previousPageButton: {fileID: 314129607}
-  disableEvent:
+  enableEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 213184031}
         m_TargetAssemblyTypeName: GlobalOption, Assembly-CSharp
-        m_MethodName: OnRestart
+        m_MethodName: OnPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16369,12 +16369,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  enableEvent:
+  disableEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 213184031}
         m_TargetAssemblyTypeName: GlobalOption, Assembly-CSharp
-        m_MethodName: OnPause
+        m_MethodName: OnRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20533,6 +20533,10 @@ PrefabInstance:
     - target: {fileID: 7664181453279860922, guid: 35c8d99d8c6ea6947b42974a333ec8fd, type: 3}
       propertyPath: m_Name
       value: CharactorInfoUIPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664181453279860922, guid: 35c8d99d8c6ea6947b42974a333ec8fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8803143531013178966, guid: 35c8d99d8c6ea6947b42974a333ec8fd, type: 3}
       propertyPath: m_Pivot.x

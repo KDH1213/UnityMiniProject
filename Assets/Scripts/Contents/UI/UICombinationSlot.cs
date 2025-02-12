@@ -25,6 +25,8 @@ public class UICombinationSlot : MonoBehaviour
     private CombinationData combinationData;
     public CombinationData CombinationData { get { return combinationData; } }
 
+    public int Persent { get; private set; }
+
     private readonly string persentFormat = "{0}%";
 
     private void OnEnable()
@@ -41,13 +43,14 @@ public class UICombinationSlot : MonoBehaviour
         {
             button.interactable = false;
             slotImage.color = Color.white * 0.5f;
-            persentText.color =  Color.white * 0.5f;
+            persentText.color = Color.white * 0.5f;
             lockImage.gameObject.SetActive(true);
         }
     }
 
     public void OnSetCombinationPersent(int persent)
     {
+        Persent = persent;
         persentText.text = string.Format(persentFormat, persent.ToString());
     }
 }
