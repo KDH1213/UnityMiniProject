@@ -120,6 +120,10 @@ public class MonsterSpawnSystem : MonoBehaviour
                 yield return new WaitForEndOfFrame();
                 currentTime -= Time.deltaTime;
                 changeWaveTimeEvent?.Invoke(currentTime);
+
+                if (isActive && monsterManager.CurrentMonsterCount == 0)
+                    break;
+
             }
         }
 
