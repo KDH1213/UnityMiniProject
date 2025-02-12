@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIQuestionView : MonoBehaviour
@@ -18,6 +19,19 @@ public class UIQuestionView : MonoBehaviour
 
     private int currentPageIndex;
     private int maxPageCount;
+
+    public UnityEvent enableEvent;
+    public UnityEvent disableEvent;
+
+    private void OnEnable()
+    {
+        enableEvent?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        disableEvent?.Invoke();
+    }
 
     private void Awake()
     {

@@ -5630,21 +5630,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 941622150}
     m_Modifications:
     - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 213184035}
-    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchDirectScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 614604055156482015, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 2742036135281625278, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5724,6 +5712,18 @@ PrefabInstance:
     - target: {fileID: 2742036135281625278, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462847153820014907, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_Name
+      value: skipButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540839415772692622, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740668826878642986, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8751554205794969363, guid: 2e1d08539d54d7a409c5a2dc85deb05f, type: 3}
       propertyPath: m_Name
@@ -6170,10 +6170,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearRewardPanelBackground
       objectReference: {fileID: 0}
-    - target: {fileID: 877961279021798927, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4468554259578470891, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6255,21 +6251,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 213184035}
-    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchDirectScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908576691744018321, guid: d549ce5b993cae64986b3e13e6699136, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16370,6 +16354,36 @@ MonoBehaviour:
   - {fileID: 1537102668}
   nextPageButton: {fileID: 2102909136}
   previousPageButton: {fileID: 314129607}
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 213184031}
+        m_TargetAssemblyTypeName: GlobalOption, Assembly-CSharp
+        m_MethodName: OnRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 213184031}
+        m_TargetAssemblyTypeName: GlobalOption, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1594388462
 MonoBehaviour:
   m_ObjectHideFlags: 0
