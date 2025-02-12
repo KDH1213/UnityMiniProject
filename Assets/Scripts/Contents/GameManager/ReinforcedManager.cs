@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class ReinforcedManager : MonoBehaviour
     private GameController gameController;
     [SerializeField]
     private InGameUiController inGameUiController;
+
+    [SerializeField]
+    private ParticleSystem[] upgradeEffects;
 
     private ReinforcedTable reinforcedTable;
 
@@ -63,6 +67,9 @@ public class ReinforcedManager : MonoBehaviour
         }
 
         ++currentReinforcedLevelTypes[index];
+        upgradeEffects[index].Stop();
+        upgradeEffects[index].gameObject.SetActive(true);
+        upgradeEffects[index].Play();
         currentReinforcedDamageDamagePercent[index] = DataTableManager.ReinforcedTable.GetKeyData(type).damagePercentList[currentReinforcedLevelTypes[index]];
 
         switch (type)
@@ -89,6 +96,9 @@ public class ReinforcedManager : MonoBehaviour
             return;
 
         gameController.OnAddCoin(-value);
+        upgradeEffects[3].Stop();
+        upgradeEffects[3].gameObject.SetActive(true);
+        upgradeEffects[3].Play();
         ++currentReinforcedLevelTypeCall;
         reinforcedLevelTypeCellEvent?.Invoke(currentReinforcedLevelTypeCall);
     }

@@ -19,7 +19,6 @@ public class CharactorAttackState : CharactorBaseState
 
     private Vector2 attackPoint;
 
-    private float attackTime = 0.5f;
     private bool isTargetDeath = false;
 
     private ReinforcedManager reinforcedManager;

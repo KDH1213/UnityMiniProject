@@ -15,9 +15,6 @@ public class MonsterSpawnSystem : MonoBehaviour
     private List<MonsterSpawner> monsterSpawnerList;
     private List<WaveData> waveDataList = new List<WaveData>();
 
-    [SerializeField] 
-    private bool useAutoStart = false;
-
     public UnityEvent<int, int> changeWaveEvent;
     public UnityEvent<float> changeWaveTimeEvent;
     public UnityEvent bossWaveEvnet;

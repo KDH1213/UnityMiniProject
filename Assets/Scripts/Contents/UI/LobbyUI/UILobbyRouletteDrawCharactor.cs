@@ -59,9 +59,6 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     [SerializeField]
     private float resultTime = 0.1f;
 
-    [SerializeField]
-    private int drawValue = 1;
-
     Coroutine coroutine;
 
     private float targetAngle;

@@ -40,8 +40,6 @@ public class GameController : MonoBehaviour
     public UnityEvent createFailEvenet;
     public UnityEvent drawJewelEvent;
 
-    private bool isOnJewelDraw = false;
-
     // TODO :: 임시 게임 종료, 클리어 오브젝트 추가, UI, 보상 시스템 기획서 나올시 수정
     [SerializeField] 
     private GameObject gameoverObject;
@@ -167,7 +165,6 @@ public class GameController : MonoBehaviour
             var createCharactor = Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor(charactorClassType).PrefabObject);
             charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
         }
-        isOnJewelDraw = false;
     }
 
     public void GameClear()

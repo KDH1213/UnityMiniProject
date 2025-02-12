@@ -18,6 +18,9 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private CharactorTileManager charactorTileManager;
 
+    [SerializeField]
+    private UICombinationEffect uICombinationEffect;
+
     private UICombinationSlot currentSeleteSlot;
 
     public UnityEvent disableEvent;
@@ -42,13 +45,9 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
         }
         slotList.Sort(comparisons);
 
-        foreach (var slot in slotList)
+        for (int i = 0; i < slotList.Count; i++)
         {
-            slot.transform.parent = null;
-        }
-        foreach (var slot in slotList)
-        {
-            slot.transform.parent = createParent;
+            slotList[i].transform.SetSiblingIndex(i);
         }
     }
 
@@ -61,7 +60,6 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
     private void CreateCombinationSlot()
     {
         var list = DataTableManager.CombinationTable.CombinationList;
-        int a = 0;
         foreach (var item in list)
         {
             var slot = Instantiate(scrollSlotPrefab, createParent).GetComponent<UICombinationSlot>();
@@ -86,6 +84,7 @@ public class UICombinationTable : MonoBehaviour, IPointerClickHandler
     private void OnClickCreateButton()
     {
         charactorTileManager.OnCreateCombinationCharactor(currentSeleteSlot.CombinationData);
+        uICombinationEffect.OnStartAnimation(currentSeleteSlot.CombinationData.CharacterID);
 
         gameObject.SetActive(false);
     }
