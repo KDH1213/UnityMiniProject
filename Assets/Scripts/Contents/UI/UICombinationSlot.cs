@@ -17,10 +17,15 @@ public class UICombinationSlot : MonoBehaviour
     [SerializeField]
     private Image slotImage;
 
+    [SerializeField]
+    private Image lockImage;
+
     public UnityEvent enableEvent;
 
     private CombinationData combinationData;
     public CombinationData CombinationData { get { return combinationData; } }
+
+    public int Persent { get; private set; }
 
     private readonly string persentFormat = "{0}%";
 
@@ -35,11 +40,17 @@ public class UICombinationSlot : MonoBehaviour
         slotImage.sprite = DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).Icon;
 
         if(!SaveLoadManager.Data.CharactorUnlockTable[combinationData.CharacterID])
+        {
             button.interactable = false;
+            slotImage.color = Color.white * 0.5f;
+            persentText.color = Color.white * 0.5f;
+            lockImage.gameObject.SetActive(true);
+        }
     }
 
     public void OnSetCombinationPersent(int persent)
     {
+        Persent = persent;
         persentText.text = string.Format(persentFormat, persent.ToString());
     }
 }

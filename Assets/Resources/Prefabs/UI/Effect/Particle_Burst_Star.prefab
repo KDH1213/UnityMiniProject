@@ -49,7 +49,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4876,6 +4876,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &1526750906894032832
@@ -4940,7 +4943,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -9786,6 +9789,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 0
   use3dRotation: 0
 --- !u!1 &1921472595161163043
@@ -9841,7 +9847,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -14861,6 +14867,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &1921472595231272482
@@ -14916,7 +14925,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -19936,6 +19945,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &2238048823898470274
@@ -19987,7 +19999,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -25007,6 +25019,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &2238048823960157315
@@ -25058,7 +25073,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -30078,6 +30093,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &3490612869248003362
@@ -30129,7 +30147,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -35149,6 +35167,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &3878849699737089154
@@ -35204,7 +35225,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -40224,6 +40245,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &5474691383949039688
@@ -40275,7 +40299,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -45178,6 +45202,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &5474691384021504841
@@ -45229,7 +45256,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -50132,6 +50159,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &6177000697052648446
@@ -50183,7 +50213,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -55203,6 +55233,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &6246649056643753619
@@ -55254,7 +55287,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -60108,6 +60141,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &7242917036779866601
@@ -60159,7 +60195,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -65062,6 +65098,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &8777109256693921586
@@ -65113,7 +65152,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -69967,6 +70006,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &8777109256766389299
@@ -70018,7 +70060,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -74872,6 +74914,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &8847071934676207966
@@ -74923,7 +74968,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -79943,6 +79988,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fixedTime: 1
   use3dRotation: 0
 --- !u!1 &8847071934746640991
@@ -79994,7 +80042,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -85012,6 +85060,9 @@ MonoBehaviour:
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  endEvent:
     m_PersistentCalls:
       m_Calls: []
   fixedTime: 1
