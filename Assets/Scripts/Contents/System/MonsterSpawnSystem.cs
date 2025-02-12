@@ -11,6 +11,9 @@ public class MonsterSpawnSystem : MonoBehaviour
     [field: SerializeField]
     public GameController GameController { get; private set; }
 
+    [SerializeField]
+    private UIBossAppearedEffect bossEffect;
+
     [SerializeField] 
     private List<MonsterSpawner> monsterSpawnerList;
     private List<WaveData> waveDataList = new List<WaveData>();
@@ -188,5 +191,6 @@ public class MonsterSpawnSystem : MonoBehaviour
     public void OnAddBossMonster()
     {
         ++bossMonsterCount;
+        bossEffect.OnStartEffect();
     }
 }
