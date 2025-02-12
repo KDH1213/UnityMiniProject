@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
     private AddCurrencyEffectPool addCurrencyEffectPool;
 
     private List<int> unlockCharactorIdList = new List<int>();
+    public List<int> UnlockCharactorIdList {  get { return unlockCharactorIdList; } }
 
     private void Awake()
     {

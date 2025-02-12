@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,9 @@ public class CharactorTileManager : MonoBehaviour
 {
     [SerializeField]
     private GameController gameController;
+
+    [SerializeField]
+    private TextMeshProUGUI combinationCharactorCount;
 
     [SerializeField]
     private List<CharactorTileController> charactorTileObjects = new List<CharactorTileController>();
@@ -24,6 +28,7 @@ public class CharactorTileManager : MonoBehaviour
     private int totalCharactorCount = 0;
 
     public UnityEvent<int, int> changeCharatorCountEvent;
+    private List<int> combinationIdList = new List<int>();
 
     private void Awake()
     {
@@ -34,6 +39,14 @@ public class CharactorTileManager : MonoBehaviour
     private void Start()
     {
         changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
+
+        var list = DataTableManager.CombinationTable.CombinationList;
+
+        foreach (var item in list)
+        {
+            if (SaveLoadManager.Data.CharactorUnlockTable[item.CharacterID])
+                combinationIdList.Add(item.Id);
+        }
     }
 
     public void StartSortcharactorTiles()
@@ -53,6 +66,9 @@ public class CharactorTileManager : MonoBehaviour
 
     public void CreateCharactor(CharactorFSM createCharactor)
     {
+
+        OnCheckCombinationCharactor();
+
         if (((CharactorClassTypeMask)(1 << (int)createCharactor.CharactorData.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) != 0
             && IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
         {
@@ -94,6 +110,7 @@ public class CharactorTileManager : MonoBehaviour
         totalCharactorCount -= 1;
         changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
 
+        OnCheckCombinationCharactor();
         if ((((CharactorClassTypeMask)(1 << (int)charactorTileController.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) == 0))
             return;
 
@@ -134,6 +151,7 @@ public class CharactorTileManager : MonoBehaviour
         }
         AddCharactorTable(createCharactor.CharactorData.Id);
         changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
+        OnCheckCombinationCharactor();
     }
 
     private void AddCharactorTable(int charactorID)
@@ -322,5 +340,23 @@ public class CharactorTileManager : MonoBehaviour
     public void ChangeUsetTileCount(int charactorCount)
     {
         useTileCharactorCount += charactorCount;
+    }
+
+    public void OnCheckCombinationCharactor()
+    {
+        int count = 0;
+        foreach (var combinationId in combinationIdList)
+        {
+            if (GetHoldingsStatusPercent(DataTableManager.CombinationTable.GetKeyData(combinationId)) == 100)
+                ++count;
+        }
+
+        if(count == 0)
+            combinationCharactorCount.gameObject.SetActive(false);
+        else
+        {
+            combinationCharactorCount.gameObject.SetActive(true);
+            combinationCharactorCount.text = count.ToString();
+        }
     }
 }

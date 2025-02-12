@@ -46,8 +46,6 @@ public class CombinationTable : DataTable
 
             combinationDictionoary.Add(item.Id, item);
         }
-
-        combinationDictionoary.Clear();
     }
 
     public CombinationData GetKeyData(int key)
