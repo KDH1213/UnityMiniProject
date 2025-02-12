@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class UIDrawJewelRoulette : MonoBehaviour
 {
     [SerializeField]
+    private ParticleSystem successEffect;
+
+    [SerializeField]
     private ParticleSystem failEffect;
 
     [SerializeField]
@@ -70,6 +73,9 @@ public class UIDrawJewelRoulette : MonoBehaviour
 
         failEffect.Stop();
         failEffect.gameObject.SetActive(false);
+
+        successEffect.Stop();
+        successEffect.gameObject.SetActive(false);
     }
 
     private IEnumerator CoRatation()
@@ -105,7 +111,10 @@ public class UIDrawJewelRoulette : MonoBehaviour
         if(!isSuccess)
         {
             failEffect.gameObject.SetActive(true);
-            // failEffect.Play();
+        }
+        else
+        {
+            successEffect.gameObject.SetActive(true);
         }
         resultAngleEvent?.Invoke(isSuccess, charactorClassType);
         coroutine = null;

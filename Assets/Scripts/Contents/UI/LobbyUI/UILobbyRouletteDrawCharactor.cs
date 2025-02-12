@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UI.Extensions.FantasyRPG;
 
 public class UILobbyRouletteDrawCharactor : MonoBehaviour
 {
@@ -10,10 +9,24 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     private LobbySceneController lobbySceneController;
 
     [SerializeField]
-    private ParticleSystem test;
+    private ParticleSystem unlockSucesseEffect;
+    [SerializeField]
+    private ParticleSystem allUnlockSucesseEffect;
 
     [SerializeField]
     private ParticleSystem failEffect;
+
+    [SerializeField]
+    private Button refreshButton;
+
+    [SerializeField]
+    private GameObject sucesseView;
+
+    [SerializeField]
+    private Image charactorIcon;
+
+    [SerializeField]
+    private Button drawButton;
 
     [SerializeField]
     private Image roulette;
@@ -28,9 +41,18 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     [SerializeField]
     [Range(0.02f, 0.5f)]
     private float minRefreshValue = 0.02f;
+
     [SerializeField]
-    [Range(0.02f, 0.5f)]
+    [Range(0.02f, 0.1f)]
     private float maxRefreshValue = 0.5f;
+
+    [SerializeField]
+    [Range(0.1f, 0.5f)]
+    private float minUseValueRefreshValue = 0.1f;
+
+    [SerializeField]
+    [Range(0.1f, 0.5f)]
+    private float maxUseValueRefreshValue = 0.5f;
 
     [SerializeField]
     private float defalutRotationTime = 0.5f;
@@ -51,7 +73,25 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
     private void Awake()
     {
         // rouletteSlider.value = rouletteValue;
-        failEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => { failEffect.gameObject.SetActive(false); RefreshRoulette(); });
+        unlockSucesseEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() =>
+        {
+            unlockSucesseEffect.gameObject.SetActive(false);
+            drawButton.interactable = true;
+            refreshButton.interactable = true;
+        });
+
+        allUnlockSucesseEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => 
+        {
+            allUnlockSucesseEffect.gameObject.SetActive(false);
+            drawButton.interactable = true;
+            refreshButton.interactable = true;
+        });
+        failEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => 
+        { 
+            failEffect.gameObject.SetActive(false);
+            drawButton.interactable = true;
+            refreshButton.interactable = true;
+        });
     }
 
     private void Start()
@@ -87,13 +127,19 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
 
         failEffect.Stop();
         failEffect.gameObject.SetActive(false);
+
+        RefreshRoulette(false);
     }
 
 
-    private void RefreshRoulette()
+    private void RefreshRoulette(bool useValue)
     {
         var sliderAngle = Random.value * 360f;
-        rouletteValue = Random.Range(minRefreshValue, maxRefreshValue);
+        if (useValue)
+            rouletteValue = Random.Range(minUseValueRefreshValue, maxUseValueRefreshValue); 
+        else
+            rouletteValue = Random.Range(minRefreshValue, maxRefreshValue);
+
         rouletteSlider.value = rouletteValue;
         rouletteSlider.transform.rotation = Quaternion.Euler(0f, 0f, sliderAngle);
 
@@ -108,7 +154,7 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
         if (!lobbySceneController.OnUseRefreshCurrency(value))
             return;
 
-        RefreshRoulette();
+        RefreshRoulette(true);
     }
     private IEnumerator CoRatation()
     {
@@ -145,7 +191,6 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
         else
         {
             SuccessDrawCharactor();
-            test.gameObject.SetActive(true);
         }
 
         coroutine = null;
@@ -165,14 +210,22 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
         }
 
         if (lockCharactorList.Count == 0)
+        {
+            allUnlockSucesseEffect.gameObject.SetActive(true);
             return;
+        }
 
         int seleteIndex = Random.Range(0, lockCharactorList.Count);
         lobbySceneController.OnGetCharactor(lockCharactorList[seleteIndex]);
+        charactorIcon.sprite = DataTableManager.CharactorDataTable.Get(lockCharactorList[seleteIndex]).Icon;
+        sucesseView.SetActive(true);
+        unlockSucesseEffect.gameObject.SetActive(true);
     }
 
     public void OnStartRoulette()
     {
         coroutine = StartCoroutine(CoRatation());
+        drawButton.interactable = false;
+        refreshButton.interactable = false;
     }
 }
