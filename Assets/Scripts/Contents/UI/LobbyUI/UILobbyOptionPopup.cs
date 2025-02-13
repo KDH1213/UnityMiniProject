@@ -6,6 +6,9 @@ using UnityEngine;
 public class UILobbyOptionPopup : MonoBehaviour
 {
     [SerializeField]
+    private SoundManager soundManager;
+
+    [SerializeField]
     private TextMeshProUGUI soundText;
 
     private readonly string soundMuteString = "»ç¿îµå ²ô±â";
@@ -21,5 +24,6 @@ public class UILobbyOptionPopup : MonoBehaviour
             soundText.text = soundOnString;
 
         isMute = !isMute;
+        soundManager.OnSound(isMute);
     }
 }

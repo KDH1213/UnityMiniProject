@@ -5,7 +5,8 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private AudioMixer masterMixer;
+    [SerializeField] 
+    private AudioMixer masterMixer;
 
 
     private readonly string masterName = "Master";
@@ -17,6 +18,11 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        masterMixer.GetFloat(masterName, out masterVolume);
+        if(masterVolume == 0f)
+        {
+            isOnSound = false;
+        }
         //masterMixer.GetFloat(masterName, out masterVolume);
 
         //masterMixer.GetFloat(effectName, out float effectSoundValue);
@@ -28,9 +34,9 @@ public class SoundManager : MonoBehaviour
         isOnSound = useSound;
 
         if (!isOnSound)
-            masterMixer.SetFloat(masterName, Mathf.Log10(0f) * 20f);
+            masterMixer.SetFloat(masterName, -80f);
         else
-            masterMixer.SetFloat(masterName, Mathf.Log10(masterVolume) * 20f);
+            masterMixer.SetFloat(masterName, 0f);
     }
 
     public void OnValueChangedEffectVolume(float volume)
