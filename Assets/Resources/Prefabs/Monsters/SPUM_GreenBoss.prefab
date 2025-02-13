@@ -2828,7 +2828,6 @@ MonoBehaviour:
   monsterFSMController: {fileID: 7981363760413120883}
   monseterVFXHitPoint: {fileID: 8514720425480384252}
   hpbar: {fileID: 5755420801159913255}
-  uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2973,7 +2972,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  stunColor: {r: 1, g: 0.9128059, b: 0, a: 1}
 --- !u!58 &4359752402268540762
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4376,11 +4374,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3850535619941322886, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3850535619941322886, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910366305429714540, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910366305429714540, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_Pivot.x
@@ -4464,7 +4470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5542802360951193421, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7438158504749936885, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_Name

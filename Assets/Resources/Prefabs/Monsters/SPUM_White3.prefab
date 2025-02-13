@@ -2416,7 +2416,6 @@ MonoBehaviour:
   monsterFSMController: {fileID: 8752379658526076658}
   monseterVFXHitPoint: {fileID: 2532854209452122779}
   hpbar: {fileID: 566762509640114162}
-  uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2561,7 +2560,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  stunColor: {r: 1, g: 0.9128059, b: 0, a: 1}
 --- !u!58 &5883957305431846586
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4381,6 +4379,14 @@ PrefabInstance:
     - target: {fileID: 3850535619941322886, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910366305429714540, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910366305429714540, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4981532801410682501, guid: bb5c07f9ee506a64db32917d94aed26c, type: 3}
       propertyPath: m_Pivot.x

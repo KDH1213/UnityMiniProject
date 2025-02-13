@@ -58039,6 +58039,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1001 &2074354293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 897466774584191266, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897466774584191266, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107816891223789512, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932981758293709855, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070819857935393850, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
+      propertyPath: m_Name
+      value: SPUM_GreenBoss
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56ed32c4aa44d574aa566d068ecf4247, type: 3}
 --- !u!1001 &2082790327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106527,3 +106596,4 @@ SceneRoots:
   - {fileID: 556862949}
   - {fileID: 576110554}
   - {fileID: 931422062}
+  - {fileID: 2074354293}
