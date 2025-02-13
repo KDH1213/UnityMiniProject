@@ -14,7 +14,7 @@ public class UILobbyOptionPopup : MonoBehaviour
     private readonly string soundMuteString = "사운드 끄기";
     private readonly string soundOnString = "사운드 켜기";
 
-    private bool isMute = false;
+    private bool isMute = true;
 
     public void OnSoundMute()
     {

@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] 
     private AudioMixer masterMixer;
 
+    private const string masterName = "Master";
+    private const string effectName = "SFX";
+    private const string bgmName = "BGM";
 
-    private readonly string masterName = "Master";
-    private readonly string effectName = "SFX";
-    private readonly string bgmName = "Music";
+    private float masterVolume = 0.5f;
+    public bool isOnSound = true;
 
-    private float masterVolume;
-    private bool isOnSound = true;
 
-    private void Awake()
+    private void Start()
     {
-        masterMixer.GetFloat(masterName, out masterVolume);
-        if(masterVolume == 0f)
-        {
-            isOnSound = false;
-        }
-        //masterMixer.GetFloat(masterName, out masterVolume);
+        masterMixer.SetFloat(masterName, Mathf.Log10(masterVolume) * 20);
+        masterMixer.SetFloat(bgmName, Mathf.Log10(masterVolume) * 20);
+        masterMixer.SetFloat(effectName, Mathf.Log10(masterVolume) * 20);
 
-        //masterMixer.GetFloat(effectName, out float effectSoundValue);
-        //masterMixer.GetFloat(bgmName, out float bgmSoundValue);
+        OnSound(isOnSound);
     }
 
     public void OnSound(bool useSound)
@@ -34,9 +30,9 @@ public class SoundManager : MonoBehaviour
         isOnSound = useSound;
 
         if (!isOnSound)
-            masterMixer.SetFloat(masterName, -80f);
+            masterMixer.SetFloat(masterName, Mathf.Log10(-80f) * 20f);
         else
-            masterMixer.SetFloat(masterName, 0f);
+            masterMixer.SetFloat(masterName, Mathf.Log10(masterVolume) * 20f);
     }
 
     public void OnValueChangedEffectVolume(float volume)
