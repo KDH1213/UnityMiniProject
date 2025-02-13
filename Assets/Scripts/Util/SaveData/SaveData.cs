@@ -10,8 +10,8 @@ public abstract class SaveData
 public class SaveDataV1 : SaveData
 {
     public Dictionary<int, bool> CharactorUnlockTable = new Dictionary<int, bool>();
-    public int RefreshCurrency;
-    public int RouletteCurrency;
+    public int RefreshCurrency = 100;
+    public int RouletteCurrency = 5;
 
     public SaveDataV1()
     {
