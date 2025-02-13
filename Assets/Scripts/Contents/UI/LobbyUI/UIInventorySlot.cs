@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
+public class UIInventorySlot : MonoBehaviour
 {
     [SerializeField]
     private Color unlockColor;
@@ -41,6 +41,17 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    private void Awake()
+    {
+        seleteToggle.onValueChanged.AddListener((b) =>
+        {
+            if (!b)
+                return;
+            uIInventoryInfoView.SetData(charactorData);
+            uIInventoryInfoView.gameObject.SetActive(true);
+        });
+    }
+
     public void SetData(CharactorData item)
     {
         charactorData = item;
@@ -62,11 +73,5 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
     public void SetUIInventoryViewInfo(UIInventoryInfoView uIInventoryInfoView)
     {
         this.uIInventoryInfoView = uIInventoryInfoView;
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        uIInventoryInfoView.SetData(charactorData);
-        uIInventoryInfoView.gameObject.SetActive(true);
     }
 }
