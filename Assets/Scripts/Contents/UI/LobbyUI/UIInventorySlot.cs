@@ -22,7 +22,10 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
 
     private void OnEnable()
     {
-        if(charactorData != null)
+        seleteToggle.isOn = false;
+        seleteToggle.onValueChanged?.Invoke(seleteToggle.isOn);
+
+        if (charactorData != null)
         {
             bool isUnlock = SaveLoadManager.Data.CharactorUnlockTable[charactorData.Id];
             lockImageObject.SetActive(!isUnlock);
@@ -36,11 +39,6 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
                 charactorIcon.color = Color.white;
             }
         }
-    }
-
-    private void OnDisable()
-    {
-        seleteToggle.isOn = false;
     }
 
     public void SetData(CharactorData item)

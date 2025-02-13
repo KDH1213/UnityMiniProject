@@ -81,12 +81,14 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
             drawButton.interactable = true;
             refreshButton.interactable = true;
             RefreshRoulette(false);
+            lobbySceneController.OnPopupNoCoin();
         });
         failEffect.GetComponent<ParticleSystemCallbackListener>()?.endEvent.AddListener(() => 
         { 
             failEffect.gameObject.SetActive(false);
             drawButton.interactable = true;
             refreshButton.interactable = true;
+            lobbySceneController.OnPopupNoCoin();
         });
     }
 
@@ -224,5 +226,18 @@ public class UILobbyRouletteDrawCharactor : MonoBehaviour
         coroutine = StartCoroutine(CoRatation());
         drawButton.interactable = false;
         refreshButton.interactable = false;
+    }
+
+    public void OnClickButton()
+    {
+        if (!drawButton.interactable)
+        {
+            unlockSucesseEffect.gameObject.SetActive(false);
+            drawButton.interactable = true;
+            refreshButton.interactable = true;
+            RefreshRoulette(false);
+
+            lobbySceneController.OnPopupNoCoin();
+        }
     }
 }

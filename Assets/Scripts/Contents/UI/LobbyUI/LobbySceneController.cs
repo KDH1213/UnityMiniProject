@@ -17,6 +17,9 @@ public class LobbySceneController : MonoBehaviour
     private Sprite defaluteSprite;
 
     [SerializeField]
+    private GameObject popUpRoulette;
+
+    [SerializeField]
     private int refreshCurrency;
     [SerializeField]
     private int rouletteCurrency;
@@ -36,6 +39,11 @@ public class LobbySceneController : MonoBehaviour
     {
         changeValueRefreshCurrencyEvent?.Invoke(refreshCurrency);
         changeValueRouletteCurrencyEvent?.Invoke(rouletteCurrency);
+
+        if (rouletteCurrency == 0)
+        {
+            popUpRoulette.SetActive(true);
+        }
     }
 
     public bool OnUseRefreshCurrency(int value)
@@ -106,6 +114,14 @@ public class LobbySceneController : MonoBehaviour
         {
             miniGameToggle.image.sprite = defaluteSprite;
         }
+    }
+
+    public void OnPopupNoCoin()
+    {
+        if (rouletteCurrency == 0)
+            popUpRoulette.SetActive(true);
+        else
+            popUpRoulette.SetActive(false);
     }
 
 }
