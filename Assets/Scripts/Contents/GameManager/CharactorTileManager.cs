@@ -9,6 +9,8 @@ public class CharactorTileManager : MonoBehaviour
     private GameController gameController;
 
     [SerializeField]
+    private GameObject combinationFrame;
+    [SerializeField]
     private TextMeshProUGUI combinationCharactorCount;
 
     [SerializeField]
@@ -352,10 +354,12 @@ public class CharactorTileManager : MonoBehaviour
         }
 
         if(count == 0)
-            combinationCharactorCount.gameObject.SetActive(false);
+        {
+            combinationFrame.SetActive(false);
+        }
         else
         {
-            combinationCharactorCount.gameObject.SetActive(true);
+            combinationFrame.SetActive(true);
             combinationCharactorCount.text = count.ToString();
         }
     }
