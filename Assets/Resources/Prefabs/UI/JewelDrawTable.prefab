@@ -735,7 +735,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
-  m_LayoutPriority: 1
+  m_LayoutPriority: 0
 --- !u!1 &1747241627061226766
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4
 --- !u!114 &8410722666208507114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4
 --- !u!114 &1192062127710701391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,6 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52bc688f68b94f45bc9a8ec8e711f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  successEffect: {fileID: 0}
   failEffect: {fileID: 0}
   roulette: {fileID: 2911692932058780452}
   drawButton: {fileID: 5182697523590614851}
@@ -2006,7 +2007,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4
 --- !u!114 &5384984843275011466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,6 +2046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52bc688f68b94f45bc9a8ec8e711f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  successEffect: {fileID: 0}
   failEffect: {fileID: 0}
   roulette: {fileID: 2017600781509419391}
   drawButton: {fileID: 6778578249747861000}
