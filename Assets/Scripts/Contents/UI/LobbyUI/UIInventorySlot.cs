@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIInventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class UIInventorySlot : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
     private Color unlockColor;
@@ -16,21 +16,9 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private CharactorData charactorData;
 
     [SerializeField]
-    private TextMeshProUGUI nameText;
+    private Toggle seleteToggle;
     [SerializeField]
-    private TextMeshProUGUI attackTypeText;
-    [SerializeField]
-    private TextMeshProUGUI attackDamageText;
-    [SerializeField]
-    private TextMeshProUGUI attackSpeedText;
-    [SerializeField]
-    private TextMeshProUGUI classText;
-
-    [SerializeField]
-    private Image[] ingredientImages;
-
-    [SerializeField]
-    private GameObject infoView;
+    private UIInventoryInfoView uIInventoryInfoView;
 
     private void OnEnable()
     {
@@ -50,6 +38,11 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
     }
 
+    private void OnDisable()
+    {
+        seleteToggle.isOn = false;
+    }
+
     public void SetData(CharactorData item)
     {
         charactorData = item;
@@ -66,36 +59,16 @@ public class UIInventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             charactorIcon.color = Color.white;
         }
+    }
 
-
-        nameText.text = charactorData.CharacterName;
-        attackTypeText.text = TypeStringTable.AttackTypeStrings[((int)DataTableManager.AttackDataTable.Get(charactorData.AttackInfoID).AttackType)];
-        attackDamageText.text = charactorData.Damage.ToString();
-        classText.text = "S";
-        attackSpeedText.text = charactorData.AttackSpeed.ToString();
-
-        var list = DataTableManager.CombinationTable.CombinationList;
-        
-        foreach (var comb in list)
-        {
-            if(comb.CharacterID == item.Id)
-            {
-                for (int i = 0; i < comb.IngredientList.Count; ++i)
-                {
-                    ingredientImages[i].sprite = DataTableManager.CharactorDataTable.Get(comb.IngredientList[i]).Icon;
-                }
-            }
-        }
-
+    public void SetUIInventoryViewInfo(UIInventoryInfoView uIInventoryInfoView)
+    {
+        this.uIInventoryInfoView = uIInventoryInfoView;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        infoView.SetActive(true);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        infoView.SetActive(false);
+        uIInventoryInfoView.SetData(charactorData);
+        uIInventoryInfoView.gameObject.SetActive(true);
     }
 }
