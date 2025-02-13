@@ -17,10 +17,10 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        masterMixer.GetFloat(masterName, out masterVolume);
+        //masterMixer.GetFloat(masterName, out masterVolume);
 
-        masterMixer.GetFloat(effectName, out float effectSoundValue);
-        masterMixer.GetFloat(bgmName, out float bgmSoundValue);
+        //masterMixer.GetFloat(effectName, out float effectSoundValue);
+        //masterMixer.GetFloat(bgmName, out float bgmSoundValue);
     }
 
     public void OnSound(bool useSound)

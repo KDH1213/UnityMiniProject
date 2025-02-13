@@ -363,4 +363,16 @@ public class CharactorTileManager : MonoBehaviour
             combinationCharactorCount.text = count.ToString();
         }
     }
+
+    public void OnPlayReinforcedEffect(CharactorClassType charactorClassType)
+    {
+        foreach (var charactorTileController in charactorTileObjects)
+        {
+            if(charactorTileController.CharactorClassType == charactorClassType)
+            {
+                charactorTileController.OnPlayReinforcedEffect();
+            }
+
+        }
+    }
 }

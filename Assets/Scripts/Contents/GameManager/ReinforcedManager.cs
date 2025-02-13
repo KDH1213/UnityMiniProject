@@ -68,7 +68,7 @@ public class ReinforcedManager : MonoBehaviour
         upgradeEffects[index].gameObject.SetActive(true);
         upgradeEffects[index].Play();
         currentReinforcedDamageDamagePercent[index] = DataTableManager.ReinforcedTable.GetKeyData(type).damagePercentList[currentReinforcedLevelTypes[index]];
-
+        gameController.CharactorTileManager.OnPlayReinforcedEffect(type);
         switch (type)
         {
             case CharactorClassType.N:

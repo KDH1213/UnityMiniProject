@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     private CharactorTileManager charactorTileManager;
+    public CharactorTileManager CharactorTileManager { get { return charactorTileManager; } }
+
     [SerializeField]
     private MonsterManager monsterManager;
     [SerializeField]
@@ -18,6 +20,9 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private ReinforcedManager reinforcedManager;
+
+    [SerializeField]
+    private UICombinationEffect uICombinationEffect;
 
     [SerializeField]
     private int createCoin = 20;
@@ -165,6 +170,11 @@ public class GameController : MonoBehaviour
         {
             var createCharactor = Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor(charactorClassType).PrefabObject);
             charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+
+            if(charactorClassType == CharactorClassType.S)
+            {
+                uICombinationEffect.OnStartAnimation(createCharactor.GetComponent<CharactorFSM>().CharactorData.Id);
+            }
         }
     }
 

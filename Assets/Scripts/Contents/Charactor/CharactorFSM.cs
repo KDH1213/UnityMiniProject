@@ -18,7 +18,15 @@ public class CharactorFSM : FSMController<CharactorStateType>
     public Vector2 AttackDetectionPoint { get; set; }
 
     [SerializeField]
+    private ParticleSystem reinforcedVFX;
+
+    [SerializeField]
     private Transform rendererTransform;
+
+    private void OnDisable()
+    {
+        reinforcedVFX.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -36,4 +44,11 @@ public class CharactorFSM : FSMController<CharactorStateType>
     {
         return rendererTransform.localScale.x > 0f ? false : true;
     }
+
+    public void OnPlayReinforcedEffect()
+    {
+        reinforcedVFX.gameObject.SetActive(true);
+        reinforcedVFX.Play();
+    }
+
 }

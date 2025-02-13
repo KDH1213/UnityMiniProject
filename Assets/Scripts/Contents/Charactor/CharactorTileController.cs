@@ -145,4 +145,12 @@ public class CharactorTileController : MonoBehaviour
         (CharactorClassType, endCharactorTileObject.CharactorClassType) = (endCharactorTileObject.CharactorClassType, CharactorClassType);
         (CharactorID, endCharactorTileObject.CharactorID) = (endCharactorTileObject.CharactorID, CharactorID);
     }
+
+    public void OnPlayReinforcedEffect()
+    {
+        foreach (var characterController in characterControllerList)
+        {
+            characterController.OnPlayReinforcedEffect();
+        }
+    }
 }

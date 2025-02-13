@@ -5855,6 +5855,7 @@ MonoBehaviour:
   inGameUiController: {fileID: 878804366}
   gameTouchManager: {fileID: 526080416}
   reinforcedManager: {fileID: 1468679223}
+  uICombinationEffect: {fileID: 112714037}
   createCoin: 20
   currentCoin: 100
   maxMonsterCount: 100
@@ -21112,19 +21113,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 37.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2206596028811518426, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2305188329332828600, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -22276,15 +22277,15 @@ PrefabInstance:
       objectReference: {fileID: 1953394201}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9174172641776339999, guid: 769a7bcb1b1a2a04bbb0095183f0aa67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
