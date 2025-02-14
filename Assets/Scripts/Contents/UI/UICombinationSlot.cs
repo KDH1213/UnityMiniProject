@@ -29,11 +29,6 @@ public class UICombinationSlot : MonoBehaviour
 
     private readonly string persentFormat = "{0}%";
 
-    private void Awake()
-    {
-        button.onClick.AddListener(() => { SoundManager.Instance.OnSFXPlay(1000); });
-    }
-
     public void SetData(CombinationData combinationData)
     {
         this.combinationData = combinationData;
