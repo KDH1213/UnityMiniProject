@@ -5,8 +5,9 @@ public class ReinforcedManager : MonoBehaviour
 {
     [SerializeField]
     private GameController gameController;
-    [SerializeField]
-    private InGameUiController inGameUiController;
+
+    [field: SerializeField]
+    public UIReinforcedView ReinforcedView { get; private set; }
 
     [SerializeField]
     private ParticleSystem[] upgradeEffects;
@@ -26,10 +27,10 @@ public class ReinforcedManager : MonoBehaviour
 
     private void Awake()
     {
-        reinforcedLevelTypeNEvent.AddListener(inGameUiController.OnChangeCharactorClassReinforced);
-        reinforcedLevelTypeAEvent.AddListener(inGameUiController.OnChangeCharactorClassReinforced);
-        reinforcedLevelTypeSEvent.AddListener(inGameUiController.OnChangeCharactorClassReinforced);
-        reinforcedLevelTypeCellEvent.AddListener(inGameUiController.OnChangeCoinDrawLevel);
+        reinforcedLevelTypeNEvent.AddListener(ReinforcedView.OnChangeCharactorClassReinforced);
+        reinforcedLevelTypeAEvent.AddListener(ReinforcedView.OnChangeCharactorClassReinforced);
+        reinforcedLevelTypeSEvent.AddListener(ReinforcedView.OnChangeCharactorClassReinforced);
+        reinforcedLevelTypeCellEvent.AddListener(ReinforcedView.OnChangeCoinDrawLevel);
     }
 
     public int GetReinforcedLevel(CharactorClassType type)
