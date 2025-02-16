@@ -21,6 +21,7 @@ public class ReinforcedManager : MonoBehaviour
 
     private int[] currentReinforcedLevelTypes = new int[(int)CharactorClassType.End];
     private float[] currentReinforcedDamageDamagePercent = new float[(int)CharactorClassType.End];
+    public float[] CurrentReinforcedDamageDamagePercent { get { return currentReinforcedDamageDamagePercent; } }
 
     private int currentReinforcedLevelTypeCall = 0;
     public int CurrentReinforcedLevelTypeCall { get { return currentReinforcedLevelTypeCall; } }
@@ -69,13 +70,13 @@ public class ReinforcedManager : MonoBehaviour
         upgradeEffects[index].gameObject.SetActive(true);
         upgradeEffects[index].Play();
         currentReinforcedDamageDamagePercent[index] = DataTableManager.ReinforcedTable.GetKeyData(type).damagePercentList[currentReinforcedLevelTypes[index]];
-        gameController.CharactorTileManager.OnPlayReinforcedEffect(type);
+        gameController.CharactorTileManager.OnSetReinforcedLevel(type, currentReinforcedDamageDamagePercent[index]);
         switch (type)
         {
             case CharactorClassType.N:
                 reinforcedLevelTypeNEvent?.Invoke(type, currentReinforcedLevelTypes[index]);
                 break;
-            case CharactorClassType.A:
+            case CharactorClassType.A: 
                 reinforcedLevelTypeAEvent?.Invoke(type, currentReinforcedLevelTypes[index]);
                 break;
             case CharactorClassType.S:

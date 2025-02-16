@@ -37,6 +37,11 @@ public class ReinforcedTable : DataTable
                 item.valueList = item.Value.Split('_').Select(p => int.Parse(p)).ToList();
                 item.damagePercentList = item.DamagePercent.Split('_').Select(p => float.Parse(p)).ToList();
 
+                for (int i = 0; i < item.valueList.Count; ++i)
+                {
+                    item.damagePercentList[i] = item.damagePercentList[i] * 0.01f;
+                }
+
                 reinforcedDictionoary.Add(item.CharactorClassType, item);
             }
             else

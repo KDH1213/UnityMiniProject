@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private ReinforcedManager reinforcedManager;
+    public ReinforcedManager ReinforcedManager { get { return reinforcedManager; } }
 
     [SerializeField]
     private UICombinationEffect uICombinationEffect;

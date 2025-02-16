@@ -335,8 +335,9 @@ public class CharactorTileManager : MonoBehaviour
             }
         }
 
-        var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).PrefabObject); 
-        CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+        var createCharactor = Instantiate(DataTableManager.CharactorDataTable.Get(combinationData.CharacterID).PrefabObject).GetComponent<CharactorFSM>();
+        createCharactor.SetReinforcedDamage(gameController.ReinforcedManager.CurrentReinforcedDamageDamagePercent[(int)createCharactor.CharactorData.CharactorClassType]);
+        CreateCharactor(createCharactor);
     }
 
     public void ChangeUsetTileCount(int charactorCount)
@@ -364,13 +365,13 @@ public class CharactorTileManager : MonoBehaviour
         }
     }
 
-    public void OnPlayReinforcedEffect(CharactorClassType charactorClassType)
+    public void OnSetReinforcedLevel(CharactorClassType charactorClassType, float damagePersent)
     {
         foreach (var charactorTileController in charactorTileObjects)
         {
             if(charactorTileController.CharactorClassType == charactorClassType)
             {
-                charactorTileController.OnPlayReinforcedEffect();
+                charactorTileController.OnSetReinforcedLevel(damagePersent);
             }
 
         }

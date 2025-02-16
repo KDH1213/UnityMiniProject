@@ -21,14 +21,10 @@ public class CharactorAttackState : CharactorBaseState
 
     private bool isTargetDeath = false;
 
-    private ReinforcedManager reinforcedManager;
     private DamagedObjectPool damageObjectPool;
 
     protected override void Awake()
     {
-        reinforcedManager = GameObject.FindWithTag(Tags.ReinforcedManager).GetComponent<ReinforcedManager>();
-       // GameObject.FindWithTag(Tags.ReinforcedManager).GetComponent<ReinforcedManager>();
-
         base.Awake();
         stateType = CharactorStateType.Attack;
         attackData = CharactorFSM.AttackData;
@@ -91,7 +87,7 @@ public class CharactorAttackState : CharactorBaseState
         if (charactorFSM.CurrentStateType != CharactorStateType.Attack)
             return;
 
-        var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.CharactorData.Damage * (reinforcedManager.GetCurrentReinforcedDamagePercent(CharactorFSM.CharactorData.CharactorClassType) * 0.01f);
+        var damage = CharactorFSM.CharactorData.Damage + CharactorFSM.reinforcedDamage;
 
         if (CharactorFSM.AttackData.AttackType == AttackType.Single)
         {

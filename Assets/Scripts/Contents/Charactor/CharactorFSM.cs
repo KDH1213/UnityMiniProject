@@ -23,6 +23,9 @@ public class CharactorFSM : FSMController<CharactorStateType>
     [SerializeField]
     private Transform rendererTransform;
 
+    [SerializeField]
+    public float reinforcedDamage;
+
     private void OnDisable()
     {
         reinforcedVFX.gameObject.SetActive(false);
@@ -43,6 +46,11 @@ public class CharactorFSM : FSMController<CharactorStateType>
     public bool IsFlip()
     {
         return rendererTransform.localScale.x > 0f ? false : true;
+    }
+
+    public void SetReinforcedDamage(float persent)
+    {
+        reinforcedDamage = persent;
     }
 
     public void OnPlayReinforcedEffect()

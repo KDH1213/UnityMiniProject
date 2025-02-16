@@ -11,7 +11,7 @@ public class CharactorTileController : MonoBehaviour
     public CharactorDeploymentData CharactorDeploymentData { get { return charactorDeploymentData; } }
 
 
-    public CharactorClassType CharactorClassType { get; private set; }
+    public CharactorClassType CharactorClassType { get; private set; } = CharactorClassType.End;
     public int CharactorID { get; private set; } = -1;
 
     private List<CharactorFSM> characterControllerList = new List<CharactorFSM>();
@@ -146,10 +146,12 @@ public class CharactorTileController : MonoBehaviour
         (CharactorID, endCharactorTileObject.CharactorID) = (endCharactorTileObject.CharactorID, CharactorID);
     }
 
-    public void OnPlayReinforcedEffect()
+    public void OnSetReinforcedLevel(float damagePersent)
     {
+        float reinforcedDamage = damagePersent * characterControllerList[0].CharactorData.Damage;
         foreach (var characterController in characterControllerList)
         {
+            characterController.SetReinforcedDamage(reinforcedDamage);
             characterController.OnPlayReinforcedEffect();
         }
     }
