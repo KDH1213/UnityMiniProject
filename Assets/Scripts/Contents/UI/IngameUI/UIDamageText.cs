@@ -8,30 +8,16 @@ using UnityEngine.Pool;
 public class UIDamageText : MonoBehaviour
 {
     [SerializeField]
+    private DamageTextEffectData damageEffectData;
+
+    [SerializeField]
     private RectTransform target;
-
-    [SerializeField]
-    private Vector3 direction;
-    [SerializeField]
-    private Vector3 offsetPosition;
-
-    [SerializeField]
-    private float distance;
-
-    [SerializeField]
-    private float time;
-
-    [SerializeField]
-    private float targetScaleSize;
-
-    [SerializeField]
-    private Color targetColor;
 
     [SerializeField]
     private TextMeshProUGUI damageText;
 
-    private UniTask uiDamageTask;
-    private CancellationTokenSource uiDamageCoroutineSource = new();
+    //private UniTask uiDamageTask;
+    //private CancellationTokenSource uiDamageCoroutineSource = new();
 
     private IObjectPool<UIDamageText> uiDamageTextPool;
 
@@ -56,7 +42,7 @@ public class UIDamageText : MonoBehaviour
     {
         color = damageText.color;
         startScale = transform.localScale;
-        targetScale = startScale * targetScaleSize;
+        targetScale = startScale * damageEffectData.TargetScaleSize;
     }
 
     private void OnEnable()
@@ -68,59 +54,59 @@ public class UIDamageText : MonoBehaviour
     private void Update()
     {
         currentTime += Time.deltaTime;
-        var ratio = currentTime / time;
+        var ratio = currentTime / damageEffectData.Duration;
         target.position = Vector3.Lerp(position, endPosition, ratio);
         target.localScale = Vector3.Lerp(scale, targetScale, ratio);
-        damageText.color = Color.Lerp(color, targetColor, ratio);
+        damageText.color = Color.Lerp(color, damageEffectData.TargetColor, ratio);
 
-        if(currentTime > time)
+        if(currentTime > damageEffectData.Duration)
             DestroyUIDamageText();
     }
 
     #region 미사용 코드
-    private async UniTask CoUIDamageEffect()
-    {
-        float currentTime = 0f;
+    //private async UniTask CoUIDamageEffect()
+    //{
+    //    float currentTime = 0f;
 
-        Vector3 position = target.position;
-        Vector3 endPosition = target.position + direction * distance;
-        Vector3 scale = target.localScale;
-        Color color = damageText.color;
+    //    Vector3 position = target.position;
+    //    Vector3 endPosition = target.position + direction * distance;
+    //    Vector3 scale = target.localScale;
+    //    Color color = damageText.color;
 
-        while (currentTime < time)
-        {
-            currentTime += Time.deltaTime;
-            var ratio = currentTime / time;
-            target.position = Vector3.Lerp(position, endPosition, ratio);
-            target.localScale = Vector3.Lerp(scale, targetScale, ratio);
-            damageText.color = Color.Lerp(color, targetColor, ratio);
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: this.GetCancellationTokenOnDestroy());
-        }
+    //    while (currentTime < time)
+    //    {
+    //        currentTime += Time.deltaTime;
+    //        var ratio = currentTime / time;
+    //        target.position = Vector3.Lerp(position, endPosition, ratio);
+    //        target.localScale = Vector3.Lerp(scale, targetScale, ratio);
+    //        damageText.color = Color.Lerp(color, targetColor, ratio);
+    //        await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: this.GetCancellationTokenOnDestroy());
+    //    }
 
-        DestroyUIDamageText();
-    }
+    //    DestroyUIDamageText();
+    //}
 
-    private IEnumerator CoEffect()
-    {
-        float currentTime = 0f;
+    //private IEnumerator CoEffect()
+    //{
+    //    float currentTime = 0f;
 
-        Vector3 position = target.position;
-        Vector3 endPosition = target.position + direction * distance;
-        Vector3 scale = target.localScale;
-        Color color = damageText.color;
+    //    Vector3 position = target.position;
+    //    Vector3 endPosition = target.position + direction * distance;
+    //    Vector3 scale = target.localScale;
+    //    Color color = damageText.color;
 
-        while (currentTime < time)
-        {
-            currentTime += Time.deltaTime;
-            var ratio = currentTime / time;
-            target.position = Vector3.Lerp(position, endPosition, ratio);
-            target.localScale = Vector3.Lerp(scale, targetScale, ratio);
-            damageText.color = Color.Lerp(color, targetColor, ratio);
-            yield return new WaitForEndOfFrame();
-        }
+    //    while (currentTime < time)
+    //    {
+    //        currentTime += Time.deltaTime;
+    //        var ratio = currentTime / time;
+    //        target.position = Vector3.Lerp(position, endPosition, ratio);
+    //        target.localScale = Vector3.Lerp(scale, targetScale, ratio);
+    //        damageText.color = Color.Lerp(color, targetColor, ratio);
+    //        yield return new WaitForEndOfFrame();
+    //    }
 
-        DestroyUIDamageText();
-    }
+    //    DestroyUIDamageText();
+    //}
     #endregion
     public void SetDamage(int damage)
     {
@@ -130,8 +116,8 @@ public class UIDamageText : MonoBehaviour
             damageText.text = damage.ToString();
         }
 
-        position = target.position + offsetPosition;
-        endPosition = target.position + direction * distance;
+        position = target.position + damageEffectData.OffsetPosition;
+        endPosition = target.position + damageEffectData.Direction * damageEffectData.Distance;
     }
 
     public void SetPool(IObjectPool<UIDamageText> uiDamageTextPool)

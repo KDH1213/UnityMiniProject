@@ -115,6 +115,9 @@ public class MonsterSpawnSystem : MonoBehaviour
             StartSpawn();
 
             currentTime += waveDataList[currentWaveLevel++].SpawnTime;
+            if (currentTime < waveDataList[currentWaveLevel++].SpawnInterval * waveDataList[currentWaveLevel++].SpawnCount)
+                currentTime = waveDataList[currentWaveLevel++].SpawnInterval * waveDataList[currentWaveLevel++].SpawnCount;
+
             while (currentTime > 0f)
             {
                 yield return new WaitForEndOfFrame();
