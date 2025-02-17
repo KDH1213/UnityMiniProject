@@ -12,6 +12,8 @@ public class UIDamageText : MonoBehaviour
 
     [SerializeField]
     private Vector3 direction;
+    [SerializeField]
+    private Vector3 offsetPosition;
 
     [SerializeField]
     private float distance;
@@ -128,7 +130,7 @@ public class UIDamageText : MonoBehaviour
             damageText.text = damage.ToString();
         }
 
-        position = target.position;
+        position = target.position + offsetPosition;
         endPosition = target.position + direction * distance;
     }
 
