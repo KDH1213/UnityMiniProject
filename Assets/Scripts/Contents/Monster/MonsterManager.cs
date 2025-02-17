@@ -5,10 +5,7 @@ using UnityEngine.Events;
 
 public class MonsterManager : MonoBehaviour
 {
-    [SerializeField]
     private List<MonsterFSMController> currentMonsterList = new List<MonsterFSMController>();
-
-    [SerializeField]
     private List<MonsterFSMController> startDeathMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> deathMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> destroyMonsterList = new List<MonsterFSMController>();
@@ -33,17 +30,17 @@ public class MonsterManager : MonoBehaviour
 
     public void OnAddMonster(MonsterFSMController monsterFSMController)
     {
-        //if (currentMonsterList.Contains(monsterFSMController))
-        //    return;
-        
+        if (currentMonsterList.Contains(monsterFSMController))
+            return;
+
         currentMonsterList.Add(monsterFSMController);
         changeMonsterCount?.Invoke(CurrentMonsterCount);
     }
 
     public void OnDeathMonster(MonsterFSMController monsterFSMController)
     {
-        //if (!currentMonsterList.Contains(monsterFSMController))
-        //    return;
+        if (!currentMonsterList.Contains(monsterFSMController))
+            return;
 
         startDeathMonsterList.Add(monsterFSMController);
         isDeathMonster = true;

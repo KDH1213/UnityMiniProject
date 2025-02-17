@@ -13,6 +13,7 @@ public class CombinationData
     public string Ingredient { get; set; }
 
     public Dictionary<int, int> IngredientTable { get; private set; } = new Dictionary<int, int>();
+    
     public List<int> IngredientList { get; private set; } = new List<int>();
 }
 
@@ -21,6 +22,7 @@ public class CombinationTable : DataTable
     private Dictionary<int, CombinationData> combinationDictionoary = new Dictionary<int, CombinationData>();
     private List<CombinationData> combinationList = new List<CombinationData>();
 
+    // public Dictionary<int, List<CombinationData>> table;
     public List<CombinationData> CombinationList { get { return combinationList; } }
 
     public override void Load(string filename)
@@ -47,6 +49,11 @@ public class CombinationTable : DataTable
             combinationDictionoary.Add(item.Id, item);
         }
     }
+
+    //public List<CombinationData> GetID(int key)
+    //{
+
+    //}
 
     public CombinationData GetKeyData(int key)
     {

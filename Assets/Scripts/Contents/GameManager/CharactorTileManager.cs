@@ -273,7 +273,6 @@ public class CharactorTileManager : MonoBehaviour
                 continue;
             }
 
-
             int holdingCount = charactorCountTable[item.Key];
              
             if(DataTableManager.CharactorDataTable.Get(item.Key).CharactorClassType == CharactorClassType.N)

@@ -46,12 +46,6 @@ public class GameController : MonoBehaviour
     public UnityEvent createFailEvenet;
     public UnityEvent drawJewelEvent;
 
-    // TODO :: 임시 게임 종료, 클리어 오브젝트 추가, UI, 보상 시스템 기획서 나올시 수정
-    [SerializeField] 
-    private GameObject gameoverObject;
-    [SerializeField] 
-    private GameObject clearObject;
-
     [SerializeField]
     private Transform coinEffectCreatePoint;
     [SerializeField]
@@ -97,14 +91,11 @@ public class GameController : MonoBehaviour
         if (coin == 0)
             return;
 
-
         currentCoin += coin;
         coinChangeEvent?.Invoke(currentCoin);
          var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
         addCurrencyEffect.transform.SetParent(coinEffectCreatePoint);
-        // addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
         addCurrencyEffect.StartEffect(coin);
-        // Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
     }
 
     public void OnAddJewel(int jowel)
@@ -116,9 +107,7 @@ public class GameController : MonoBehaviour
         jewelChangeEvent?.Invoke(currentJewel);
         var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
         addCurrencyEffect.transform.SetParent(jewelEffectCreatePoint);
-       //  addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
         addCurrencyEffect.StartEffect(jowel);
-        // Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
     }
 
     // TODO :: 에디터 상 캐릭터 생성 버튼과 이벤트 연결
@@ -181,15 +170,12 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        clearObject.SetActive(true);
-
         gameClearEvent?.Invoke();
     }
     public void GameOver()
     {
         Time.timeScale = 0f;
 
-        gameoverObject.SetActive(true);
         gameoverEvent?.Invoke();
     }
 

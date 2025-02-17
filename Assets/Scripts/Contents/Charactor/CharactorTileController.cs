@@ -146,9 +146,9 @@ public class CharactorTileController : MonoBehaviour
         (CharactorID, endCharactorTileObject.CharactorID) = (endCharactorTileObject.CharactorID, CharactorID);
     }
 
-    public void OnSetReinforcedLevel(float damagePersent)
+    public void OnSetReinforcedLevel(float damagePercent)
     {
-        float reinforcedDamage = damagePersent * characterControllerList[0].CharactorData.Damage;
+        float reinforcedDamage = damagePercent * characterControllerList[0].CharactorData.Damage;
         foreach (var characterController in characterControllerList)
         {
             characterController.SetReinforcedDamage(reinforcedDamage);
