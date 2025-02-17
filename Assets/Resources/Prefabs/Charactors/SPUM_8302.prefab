@@ -175,12 +175,12 @@ MonoBehaviour:
     <Id>k__BackingField: 8302
     <PrefabID>k__BackingField: SPUM_8302
     <CharactorClassType>k__BackingField: 2
-    <Damage>k__BackingField: 35
+    <Damage>k__BackingField: 45
     <AttackRange>k__BackingField: 3
     <AttackSpeed>k__BackingField: 3
     <AttackInfoID>k__BackingField: 72212
     PrefabObject: {fileID: 183208161253796081}
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: 74b7da1950833bd44815694dc2bd6b07, type: 3}
     RealAttackRange: 12
   <AttackData>k__BackingField:
     <Id>k__BackingField: 72212
@@ -190,13 +190,14 @@ MonoBehaviour:
     <DebuffType>k__BackingField: 1
     <DebuffTime>k__BackingField: 1.5
     <DebuffProbability>k__BackingField: 50
-    <VFXId>k__BackingField: 72212
+    <VFXId>k__BackingField: 88887
     PrefabObject: {fileID: 7919080240681997631, guid: 06f91a5a62e6d2e4d8d920f188fe4d7e, type: 3}
     RealAttackRange: 9
   <Animator>k__BackingField: {fileID: 1098601925821460631}
   <CharactorProfile>k__BackingField: {fileID: 11400000, guid: 23721d512eff65c4a9dc52b260f65d0c, type: 2}
   reinforcedVFX: {fileID: 5831372776036650919}
   rendererTransform: {fileID: 6692324674921233075}
+  reinforcedDamage: 0
 --- !u!1 &428730597377066947
 GameObject:
   m_ObjectHideFlags: 0

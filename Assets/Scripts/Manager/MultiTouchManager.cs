@@ -48,16 +48,16 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
 
         TouchCount = Input.touchCount;
 
-        foreach (var touch in Input.touches)
+        for (int i = 0; i < TouchCount; i++)
         {
-            switch (touch.phase)
+             switch (Input.touches[i].phase)
             {
                 case TouchPhase.Began:
                     if (primaryFingerId == -1)
                     {
                         IsTouchBegan = true;
-                        primaryFingerId = touch.fingerId;
-                        primaryFingerTouchStart = touch.position;
+                        primaryFingerId = Input.touches[i].fingerId;
+                        primaryFingerTouchStart = Input.touches[i].position;
                         startTouchTime = Time.time;
                         ++currentTapCount;
                     }
@@ -67,9 +67,9 @@ public class MultiTouchManager : Singleton<MultiTouchManager>
                     break;
                 case TouchPhase.Ended:
                 case TouchPhase.Canceled:
-                    if (TouchCount == 1 && primaryFingerId == touch.fingerId)
+                    if (TouchCount == 1 && primaryFingerId == Input.touches[i].fingerId)
                     {
-                        if ((touch.position - primaryFingerTouchStart).magnitude > minSwipeDistance)
+                        if ((Input.touches[i].position - primaryFingerTouchStart).magnitude > minSwipeDistance)
                         {
                             currentTapCount = 0;
                             SetSwipeDirection();

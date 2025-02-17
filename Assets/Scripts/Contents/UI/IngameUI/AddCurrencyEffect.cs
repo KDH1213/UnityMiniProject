@@ -31,6 +31,13 @@ public class AddCurrencyEffect : MonoBehaviour
     private UniTask currencyEffectUniTask;
     private IObjectPool<AddCurrencyEffect> addCurrencyEffectPool;
 
+    private Vector3 position;
+    private Vector3 endPosition;
+    private Vector3 scale;
+    private Color color;
+    private float currentTime;
+    private int currentValue;
+
     private void Awake()
     {
         startScale = transform.localScale;
@@ -46,11 +53,36 @@ public class AddCurrencyEffect : MonoBehaviour
     {
         text.color = Color.white;
         transform.localScale = startScale;
+        currentTime = 0f;
     }
 
-    public void StartEffect()
+    public void StartEffect(int value)
     {
-        currencyEffectUniTask = CoCurrencyEffect();
+        // currencyEffectUniTask = CoCurrencyEffect();
+
+        if(currentValue != value)
+        {
+            currentValue = value;
+            text.text = value.ToString();
+        }
+
+        transform.localPosition = Vector3.zero;
+        position = transform.localPosition;
+        endPosition = position + direction * distance;
+        scale = transform.localScale;
+        color = text.color;
+    }
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+        var ratio = currentTime / time;
+        transform.localPosition = Vector2.Lerp(position, endPosition, ratio);
+        transform.localScale = Vector2.Lerp(scale, targetScale, ratio);
+        text.color = Color.Lerp(color, targetColor, ratio);
+
+        if(currentTime >= time)
+            DestroyUIDamageText();
     }
 
     private IEnumerator CoEffect()

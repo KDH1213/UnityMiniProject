@@ -42,6 +42,7 @@ public class UIDamageText : MonoBehaviour
     private Vector3 scale;
     private Color color;
     private float currentTime;
+    private int currentDamage;
 
     private void OnDisable()
     {
@@ -61,10 +62,6 @@ public class UIDamageText : MonoBehaviour
         scale = target.localScale;
         currentTime = 0f;
     }
-    //private void Start()
-    //{
-    //    StartCoroutine(CoEffect());
-    //}
 
     private void Update()
     {
@@ -123,9 +120,13 @@ public class UIDamageText : MonoBehaviour
         DestroyUIDamageText();
     }
     #endregion
-    public void SetDamage(string damage)
+    public void SetDamage(int damage)
     {
-        damageText.text = damage;
+        if(currentDamage != damage)
+        {
+            currentDamage = damage;
+            damageText.text = damage.ToString();
+        }
 
         position = target.position;
         endPosition = target.position + direction * distance;

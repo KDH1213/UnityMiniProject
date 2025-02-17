@@ -41,8 +41,8 @@ public class MonsterFSMController : FSMController<MonsterStateType>
         originColor = spriteRenderers[0].color;
 
         monsterStatus.deathEvent.AddListener(() => ChangeState(MonsterStateType.Death));
-        monsterStatus.debuffEvent.AddListener((time)
-            => ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time));
+        monsterStatus.debuffEvent.AddListener((debuffType, time)
+            => { if (debuffType == DebuffType.Stun) ((MonsterStunState)StateTable[MonsterStateType.Stun]).SetStunTime(time); });
 
         monsterStatus.damegedEvent.AddListener(() =>
             {

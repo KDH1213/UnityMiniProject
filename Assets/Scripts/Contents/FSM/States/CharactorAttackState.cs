@@ -23,6 +23,8 @@ public class CharactorAttackState : CharactorBaseState
 
     private DamagedObjectPool damageObjectPool;
 
+    private DamageInfo damageInfo = new DamageInfo();
+
     protected override void Awake()
     {
         base.Awake();
@@ -95,7 +97,6 @@ public class CharactorAttackState : CharactorBaseState
             {
                 var attackInfo = CharactorFSM.AttackData;
 
-                var damageInfo = new DamageInfo();
                 damageInfo.damage = damage;
                 damageInfo.debuffType = attackInfo.DebuffType;
                 damageInfo.debuffTime = attackInfo.DebuffTime;
@@ -106,16 +107,15 @@ public class CharactorAttackState : CharactorBaseState
         else
         {
             var createObject = damageObjectPool.GetDamagedObject(attackData.AttackType);
-            var damagedObject = createObject.GetComponent<DamagedObject>();
-            damagedObject.SetAttackData(attackData);
-            damagedObject.Damage = damage;
+            createObject.SetAttackData(attackData);
+            createObject.Damage = damage;
 
             if (CharactorFSM.AttackData.AttackType == AttackType.Area)
-                damagedObject.transform.position = transform.position;
+                createObject.transform.position = transform.position;
             else
                 createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
 
-            damagedObject.StartAttack();    
+            createObject.StartAttack();    
         }
     }
 

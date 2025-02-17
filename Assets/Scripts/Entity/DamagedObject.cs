@@ -35,6 +35,8 @@ public class DamagedObject : MonoBehaviour
     protected float time = 0.5f;
     protected float currentTime = 0f;
 
+    DamageInfo damageInfo = new DamageInfo();
+
     private void Awake()
     {
         overlapCollider = GameObject.FindWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
@@ -50,7 +52,6 @@ public class DamagedObject : MonoBehaviour
         var hitColliders = overlapCollider.HitColliderList;
         GameObject hitObject;
 
-        DamageInfo damageInfo = new DamageInfo();
         damageInfo.damage = Damage;
         damageInfo.debuffType = attackData.DebuffType;
         damageInfo.debuffTime = attackData.DebuffTime;

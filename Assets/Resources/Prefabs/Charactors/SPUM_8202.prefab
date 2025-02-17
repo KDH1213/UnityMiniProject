@@ -2465,7 +2465,7 @@ MonoBehaviour:
     <Id>k__BackingField: 8202
     <PrefabID>k__BackingField: SPUM_8202
     <CharactorClassType>k__BackingField: 1
-    <Damage>k__BackingField: 10
+    <Damage>k__BackingField: 33
     <AttackRange>k__BackingField: 2
     <AttackSpeed>k__BackingField: 1.5
     <AttackInfoID>k__BackingField: 72211
@@ -2487,6 +2487,7 @@ MonoBehaviour:
   <CharactorProfile>k__BackingField: {fileID: 11400000, guid: 23721d512eff65c4a9dc52b260f65d0c, type: 2}
   reinforcedVFX: {fileID: 2606107464846814111}
   rendererTransform: {fileID: 4238184666844367059}
+  reinforcedDamage: 0
 --- !u!1 &5571021874886208618
 GameObject:
   m_ObjectHideFlags: 0

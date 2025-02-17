@@ -103,8 +103,7 @@ public class GameController : MonoBehaviour
          var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
         addCurrencyEffect.transform.SetParent(coinEffectCreatePoint);
         // addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
-        addCurrencyEffect.Text.text = coin.ToString();
-        addCurrencyEffect.StartEffect();
+        addCurrencyEffect.StartEffect(coin);
         // Instantiate(currencyEffectPrefab, coinEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = coin.ToString();
     }
 
@@ -118,8 +117,7 @@ public class GameController : MonoBehaviour
         var addCurrencyEffect = addCurrencyEffectPool.AddCurrencyEffectObjectPool.Get();
         addCurrencyEffect.transform.SetParent(jewelEffectCreatePoint);
        //  addCurrencyEffect.RectTransform.localPosition = Vector3.zero;
-        addCurrencyEffect.Text.text = jowel.ToString();
-        addCurrencyEffect.StartEffect();
+        addCurrencyEffect.StartEffect(jowel);
         // Instantiate(currencyEffectPrefab, jewelEffectCreatePoint).GetComponent<TextMeshProUGUI>().text = jowel.ToString();
     }
 

@@ -3841,7 +3841,6 @@ MonoBehaviour:
   monsterFSMController: {fileID: 3692728188667347217}
   monseterVFXHitPoint: {fileID: 8259031337377263876}
   hpbar: {fileID: 1184856438394402744}
-  uIDamageTextPrefab: {fileID: 5381100106266058318, guid: e1769713e7d58454db347ab0c3a924d6, type: 3}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3986,7 +3985,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  stunColor: {r: 1, g: 0.9128059, b: 0, a: 1}
 --- !u!58 &5801785861895673436
 CircleCollider2D:
   m_ObjectHideFlags: 0
