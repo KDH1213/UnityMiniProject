@@ -114,9 +114,11 @@ public class MonsterSpawnSystem : MonoBehaviour
             GameController.AddCurrencyType(waveDataList[currentWaveLevel].CurrencyType, waveDataList[currentWaveLevel].WaveStartCurrencyValue);
             StartSpawn();
 
-            currentTime += waveDataList[currentWaveLevel++].SpawnTime;
-            if (currentTime < waveDataList[currentWaveLevel++].SpawnInterval * waveDataList[currentWaveLevel++].SpawnCount)
-                currentTime = waveDataList[currentWaveLevel++].SpawnInterval * waveDataList[currentWaveLevel++].SpawnCount;
+            currentTime += waveDataList[currentWaveLevel].SpawnTime;
+            if (currentTime < waveDataList[currentWaveLevel].SpawnInterval * waveDataList[currentWaveLevel].SpawnCount)
+                currentTime = waveDataList[currentWaveLevel].SpawnInterval * waveDataList[currentWaveLevel].SpawnCount;
+
+            ++currentWaveLevel;
 
             while (currentTime > 0f)
             {
