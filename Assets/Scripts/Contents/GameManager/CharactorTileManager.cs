@@ -24,10 +24,12 @@ public class CharactorTileManager : MonoBehaviour
     private readonly int maxCharactorCount = 20;
 
     private Dictionary<int, int> charactorCountTable = new Dictionary<int, int>();
+    private Dictionary<int, int> currentCombinationPersentTable = new Dictionary<int, int>();
 
     private int tileControllerCount;
     private int useTileCharactorCount = 0;
     private int totalCharactorCount = 0;
+    private int combinationPossibleCount = 0;
 
     public UnityEvent<int, int> changeCharatorCountEvent;
     private List<int> combinationIdList = new List<int>();
@@ -48,6 +50,8 @@ public class CharactorTileManager : MonoBehaviour
         {
             if (SaveLoadManager.Data.CharactorUnlockTable[item.CharacterID])
                 combinationIdList.Add(item.Id);
+
+            currentCombinationPersentTable.Add(item.Id, 0);
         }
     }
 
@@ -68,8 +72,8 @@ public class CharactorTileManager : MonoBehaviour
 
     public void CreateCharactor(CharactorFSM createCharactor)
     {
-
-        OnCheckCombinationCharactor();
+        // OnCheckCombinationCharactor();
+        OnCheckCombinationCharactor(createCharactor.CharactorData.Id, createCharactor.CharactorData.CharactorClassType, createCharactor.CharactorData.CharactorClassType != CharactorClassType.S);
 
         if (((CharactorClassTypeMask)(1 << (int)createCharactor.CharactorData.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) != 0
             && IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
@@ -112,7 +116,7 @@ public class CharactorTileManager : MonoBehaviour
         totalCharactorCount -= 1;
         changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
 
-        OnCheckCombinationCharactor();
+        OnCheckCombinationCharactor(charactorTileController.CharactorID, charactorTileController.CharactorClassType, false);
         if ((((CharactorClassTypeMask)(1 << (int)charactorTileController.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) == 0))
             return;
 
@@ -137,6 +141,7 @@ public class CharactorTileManager : MonoBehaviour
         int charactorCount = charactorTileController.CharactorCount;
         charactorCountTable[charactorTileController.CharactorID] -= charactorCount;
         totalCharactorCount -= charactorCount;
+        OnCheckCombinationCharactor(charactorTileController.CharactorID, charactorTileController.CharactorClassType, false);
 
         var synthesisCharactor = gameController.GetCreateSynthesisCharactor(charactorTileController.CharactorClassType);
         var createCharactor = synthesisCharactor.GetComponent<CharactorFSM>();
@@ -153,7 +158,7 @@ public class CharactorTileManager : MonoBehaviour
         }
         AddCharactorTable(createCharactor.CharactorData.Id);
         changeCharatorCountEvent?.Invoke(totalCharactorCount, maxCharactorCount);
-        OnCheckCombinationCharactor();
+        OnCheckCombinationCharactor(createCharactor.CharactorData.Id, createCharactor.CharactorData.CharactorClassType, true);
     }
 
     private void AddCharactorTable(int charactorID)
@@ -364,11 +369,66 @@ public class CharactorTileManager : MonoBehaviour
         }
     }
 
+    public void OnCheckCombinationCharactor(int charactorID, CharactorClassType charactorClassType, bool isAdd)
+    {
+        switch (charactorClassType)
+        {
+            case CharactorClassType.N:
+            case CharactorClassType.A:
+                var combinationList = DataTableManager.CombinationTable.GetCombinationList(charactorID);
+
+                foreach (var combinationId in combinationList)
+                {
+                    if(isAdd)
+                    {
+                        if (currentCombinationPersentTable[combinationId] != 100)
+                        {
+                            currentCombinationPersentTable[combinationId] = GetHoldingsStatusPercent(DataTableManager.CombinationTable.GetKeyData(combinationId));
+                            if (currentCombinationPersentTable[combinationId] == 100)
+                                ++combinationPossibleCount;
+                        }    
+
+                    }
+                    else
+                    {
+                        if (currentCombinationPersentTable[combinationId] == 100)
+                        {
+                            currentCombinationPersentTable[combinationId] = GetHoldingsStatusPercent(DataTableManager.CombinationTable.GetKeyData(combinationId));
+                            if (currentCombinationPersentTable[combinationId] != 100)
+                                --combinationPossibleCount;
+                        }
+                    }
+                }                
+                    break;
+            case CharactorClassType.S:
+                var list = DataTableManager.CombinationTable.GetKeyData(charactorID).IngredientList;
+                foreach (var Id in list)
+                {
+                    OnCheckCombinationCharactor(Id, CharactorClassType.N, false);
+                }
+                break;
+            case CharactorClassType.End:
+                break;
+            default:
+                break;
+        }
+
+        if (combinationPossibleCount == 0)
+        {
+            combinationFrame.SetActive(false);
+        }
+        else
+        {
+            combinationFrame.SetActive(true);
+            combinationCharactorCount.text = combinationPossibleCount.ToString();
+        }
+    }
+
     public void OnSetReinforcedLevel(CharactorClassType charactorClassType, float damagePersent)
     {
         foreach (var charactorTileController in charactorTileObjects)
         {
-            if(charactorTileController.CharactorClassType == charactorClassType)
+            if(charactorTileController.CharactorCount != 0 && charactorTileController.CharactorClassType == charactorClassType)
             {
                 charactorTileController.OnSetReinforcedLevel(damagePersent);
             }

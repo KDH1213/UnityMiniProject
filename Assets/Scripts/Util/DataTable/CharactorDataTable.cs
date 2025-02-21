@@ -57,8 +57,7 @@ public class CharactorDataTable : DataTable
 
         foreach (var item in list)
         {
-
-            item.PrefabObject = (GameObject)(Resources.Load(string.Format(assetPath, item.PrefabID), typeof(GameObject)));
+            item.PrefabObject = Resources.Load<GameObject>(string.Format(assetPath, item.PrefabID));
             item.Icon = Resources.Load<Sprite>(string.Format(iconPath, item.Id.ToString()));
             if (item.PrefabObject == null)
                 continue;

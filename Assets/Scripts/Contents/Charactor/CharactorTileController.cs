@@ -111,7 +111,9 @@ public class CharactorTileController : MonoBehaviour
         charactorCount -= count;
         characterControllerList.RemoveRange(charactorCount, count);
         if(charactorCount == 0)
-            charactorTileManager.ChangeUsetTileCount(-1);
+        {
+            charactorTileManager.ChangeUsetTileCount(-1); 
+        }
     }
 
     public void OnChangeCharactorInfo(CharactorTileController endCharactorTileObject)

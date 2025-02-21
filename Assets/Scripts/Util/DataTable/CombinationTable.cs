@@ -20,6 +20,7 @@ public class CombinationData
 public class CombinationTable : DataTable
 {
     private Dictionary<int, CombinationData> combinationDictionoary = new Dictionary<int, CombinationData>();
+    private Dictionary<int, List<int>> charactorResultTable = new Dictionary<int, List<int>>();
     private List<CombinationData> combinationList = new List<CombinationData>();
 
     // public Dictionary<int, List<CombinationData>> table;
@@ -44,6 +45,15 @@ public class CombinationTable : DataTable
                     ++item.IngredientTable[ingredient];
 
                 item.IngredientList.Add(ingredient);
+
+                if(!charactorResultTable.ContainsKey(ingredient))
+                {
+                    charactorResultTable.Add(ingredient, new List<int>{ item.Id });
+                }
+                else
+                {
+                    charactorResultTable[ingredient].Add(item.Id);
+                }
             }
 
             combinationDictionoary.Add(item.Id, item);
@@ -75,5 +85,13 @@ public class CombinationTable : DataTable
         }
 
         return combinationList[index];
+    }
+
+    public List<int> GetCombinationList(int charactorID)
+    {
+        if(!charactorResultTable.ContainsKey(charactorID))
+            return default;
+        else
+            return charactorResultTable[charactorID];
     }
 }
