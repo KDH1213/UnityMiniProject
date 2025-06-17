@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SoundPool
@@ -51,6 +52,18 @@ public class SoundManager : Singleton<SoundManager>
     private float masterVolume = 0.5f;
     public bool isOnSound = true;
 
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        playSoundTable.Clear();
+        playSoundTable = new Dictionary<int, SoundPool>();
+
+        masterMixer.SetFloat(masterName, Mathf.Log10(masterVolume) * 20);
+        masterMixer.SetFloat(bgmName, Mathf.Log10(masterVolume) * 20);
+        masterMixer.SetFloat(effectName, Mathf.Log10(masterVolume * 0.5f) * 20);
+
+        OnSound(isOnSound);
+    }
+
 
     private void Start()
     {
@@ -63,6 +76,8 @@ public class SoundManager : Singleton<SoundManager>
 
         
         OnSound(isOnSound);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void OnSound(bool useSound)
