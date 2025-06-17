@@ -31,6 +31,12 @@ public class CharactorFSM : FSMController<CharactorStateType>
         reinforcedVFX.gameObject.SetActive(false);
     }
 
+    protected override void Awake()
+    {
+        var gameController = GameObject.FindWithTag(Tags.GameController).GetComponent<GameController>();
+        SetReinforcedDamage(gameController.ReinforcedManager.GetCurrentReinforcedDamagePercent(CharactorData.CharactorClassType));
+    }
+
     private void Update()
     {
         StateTable[currentStateType].ExecuteUpdate();

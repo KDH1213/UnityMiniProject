@@ -125,7 +125,8 @@ public class GameController : MonoBehaviour
         changeCreateCoinValueEvnet?.Invoke(createCoin);
 
         var createCharactor = Instantiate(OnRandomCreateCharactor());
-        charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());        
+        var createCharactorFSM = createCharactor.GetComponent<CharactorFSM>();
+        charactorTileManager.CreateCharactor(createCharactorFSM);
     }
 
     public void OnStartDrawJewelChractor(bool isStart, int jewelValue, UnityAction drawAction)
@@ -157,12 +158,15 @@ public class GameController : MonoBehaviour
         if(isSuccess)
         {
             var createCharactor = Instantiate(DataTableManager.CharactorDataTable.GetRandomDrawCharactor(charactorClassType).PrefabObject);
-            charactorTileManager.CreateCharactor(createCharactor.GetComponent<CharactorFSM>());
+            var createCharactorFSM = createCharactor.GetComponent<CharactorFSM>();
+            charactorTileManager.CreateCharactor(createCharactorFSM);
 
             if(charactorClassType == CharactorClassType.S)
             {
                 uICombinationEffect.OnStartAnimation(createCharactor.GetComponent<CharactorFSM>().CharactorData.Id);
             }
+
+
         }
     }
 
