@@ -73,13 +73,13 @@ public class CharactorTileManager : MonoBehaviour
     public void CreateCharactor(CharactorFSM createCharactor)
     {
         // OnCheckCombinationCharactor();
-        OnCheckCombinationCharactor(createCharactor.CharactorData.Id, createCharactor.CharactorData.CharactorClassType, createCharactor.CharactorData.CharactorClassType != CharactorClassType.S);
 
         if (((CharactorClassTypeMask)(1 << (int)createCharactor.CharactorData.CharactorClassType) & CharactorDeploymentData.OverlappingClassTypeMask) != 0
             && IsFindDeploymentTile(ref createCharactor, out var charactorTileController))
         {
             charactorTileController.CreateCharactor(createCharactor);
             AddCharactorTable(createCharactor.CharactorData.Id);
+            OnCheckCombinationCharactor(createCharactor.CharactorData.Id, createCharactor.CharactorData.CharactorClassType, createCharactor.CharactorData.CharactorClassType != CharactorClassType.S);
             return;
         }
 
@@ -95,6 +95,8 @@ public class CharactorTileManager : MonoBehaviour
                 break;
             }
         }
+
+        OnCheckCombinationCharactor(createCharactor.CharactorData.Id, createCharactor.CharactorData.CharactorClassType, createCharactor.CharactorData.CharactorClassType != CharactorClassType.S);
     }
 
     public bool IsCreateCharactor()
