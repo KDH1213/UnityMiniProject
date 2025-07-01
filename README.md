@@ -3,7 +3,7 @@
 
 - **개발 기간**: 2025.01.21 ~ 2025.02.14 (1개월)
 
-**팀 구성**
+💂‍♂️ **팀 구성**
 - **개발** : 김동현
 - **기획** : 박소현
 ## 🎮 프로젝트 소개
@@ -19,7 +19,7 @@
 ### 🎥 시연 영상
 https://www.youtube.com/watch?v=ruhvsN1xAys
 
-### 스크린샷
+### 📷 스크린샷
 <img width="293" alt="2번" src="https://github.com/user-attachments/assets/c955fc38-f4c8-42f3-999a-5c0476375d5c" />
 <img width="293" alt="4" src="https://github.com/user-attachments/assets/bbee4967-5a0d-491a-bbb2-da803a468bd5" />
 <img width="293" alt="2" src="https://github.com/user-attachments/assets/af0d8a40-fc6f-467d-863e-ee4abf37769c" />
