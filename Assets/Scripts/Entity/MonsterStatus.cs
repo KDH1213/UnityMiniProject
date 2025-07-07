@@ -31,6 +31,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     public UnityAction<int> JewelQtyAction;
 
     private IObjectPool<UIDamageText> uIDamageObjectTextPool;
+    private IObjectPool<UIDamageTextMeshRenderer> uIDamageObjectTextMeshRendererPool;
     private VFXObjectPool vFXObjectPool;
 
     private void Awake()
@@ -72,7 +73,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
         hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
 
-        var damageText = uIDamageObjectTextPool.Get();
+        var damageText = uIDamageObjectTextMeshRendererPool.Get();
        
         damageText.transform.position = transform.position;
         damageText.SetDamage(((int)damage));
@@ -132,7 +133,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     public void SetUIDamageObjectTextPool(UIDamageObjectTextPool uIDamageObjectTextPool)
     {
-        this.uIDamageObjectTextPool = uIDamageObjectTextPool.UiDamageTextPool;
+        this.uIDamageObjectTextMeshRendererPool = uIDamageObjectTextPool.UiDamageTextMeshRendererPool;
     }
 
     public void SetVFXObjectPool(VFXObjectPool vFXObjectPool)
