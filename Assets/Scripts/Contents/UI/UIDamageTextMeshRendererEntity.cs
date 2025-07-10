@@ -1,25 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public struct UIDamageTextEntity : IComponentData
-{
-    public DamageTextEffectInfo damageEffectInfo;
-    // public RectTransform target;
-    // public TextMeshPro damageText;
-    public Vector3 position;
-    public Vector3 endPosition;
-    public Vector3 startScale;
-    public Vector3 targetScale;
-    public Vector3 scale;
-    public Color color;
-    public float currentTime;
-    public int currentDamage;
-}
-
-
-public class UIDamageTextMeshRenderer : MonoBehaviour
+public class UIDamageTextMeshRendererEntity : MonoBehaviour
 {
     [SerializeField]
     private DamageTextEffectData damageEffectData;
@@ -29,8 +15,6 @@ public class UIDamageTextMeshRenderer : MonoBehaviour
 
     [SerializeField]
     private TextMeshPro damageText;
-
-    private IObjectPool<UIDamageTextMeshRenderer> uiDamageTextPool;
 
     private Vector3 position;
     private Vector3 endPosition;
@@ -43,9 +27,9 @@ public class UIDamageTextMeshRenderer : MonoBehaviour
     private float currentTime;
     private int currentDamage;
 
-    class Baker : Baker<UIDamageTextMeshRenderer>
+    class Baker : Baker<UIDamageTextMeshRendererEntity>
     {
-        public override void Bake(UIDamageTextMeshRenderer src)
+        public override void Bake(UIDamageTextMeshRendererEntity src)
         {
             var data = new UIDamageTextEntity()
             {
@@ -87,18 +71,6 @@ public class UIDamageTextMeshRenderer : MonoBehaviour
         currentTime = 0f;
     }
 
-
-    private void Update()
-    {
-        currentTime += Time.deltaTime;
-        var ratio = currentTime / damageEffectData.Duration;
-        target.position = Vector3.Lerp(position, endPosition, ratio);
-        target.localScale = Vector3.Lerp(scale, targetScale, ratio);
-        damageText.color = Color.Lerp(color, damageEffectData.TargetColor, ratio);
-
-        if (currentTime > damageEffectData.Duration)
-            DestroyUIDamageText();
-    }
     public void SetDamage(int damage)
     {
         if (currentDamage != damage)
@@ -109,20 +81,5 @@ public class UIDamageTextMeshRenderer : MonoBehaviour
 
         position = target.position + damageEffectData.OffsetPosition;
         endPosition = target.position + damageEffectData.Direction * damageEffectData.Distance;
-    }
-
-    public void SetPool(IObjectPool<UIDamageTextMeshRenderer> uiDamageTextPool)
-    {
-        this.uiDamageTextPool = uiDamageTextPool;
-    }
-
-    public IObjectPool<UIDamageTextMeshRenderer> GetObjectPool()
-    {
-        return uiDamageTextPool;
-    }
-
-    public void DestroyUIDamageText()
-    {
-        uiDamageTextPool.Release(this);
     }
 }

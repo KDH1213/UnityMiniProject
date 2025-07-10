@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Threading;
 using TMPro;
+using Unity.Burst;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -51,6 +52,8 @@ public class UIDamageText : MonoBehaviour
         currentTime = 0f;
     }
 
+
+    [BurstCompile]
     private void Update()
     {
         currentTime += Time.deltaTime;

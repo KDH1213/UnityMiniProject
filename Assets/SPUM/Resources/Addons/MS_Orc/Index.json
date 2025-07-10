@@ -2,7 +2,7 @@
     "Name": "MS_Orc",
     "Path": "Assets/SPUM/Resources/Addons",
     "Version": "",
-    "CreationDate": "2025-02-03 12:00:49",
+    "CreationDate": "2025-06-23 16:35:01",
     "SpumAnimationData": [],
     "SpumTextureData": [
         {
@@ -209,7 +209,7 @@
             "Name": "Orc_Armor_01",
             "UnitType": "Unit",
             "PartType": "Armor",
-            "SubType": "Body",
+            "SubType": "Left",
             "PartSubType": "",
             "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_01"
         },
@@ -217,17 +217,9 @@
             "Name": "Orc_Armor_01",
             "UnitType": "Unit",
             "PartType": "Armor",
-            "SubType": "Left",
-            "PartSubType": "",
-            "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_01"
-        },
-        {
-            "Name": "Orc_Armor_02",
-            "UnitType": "Unit",
-            "PartType": "Armor",
             "SubType": "Body",
             "PartSubType": "",
-            "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_02"
+            "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_01"
         },
         {
             "Name": "Orc_Armor_02",
@@ -246,10 +238,18 @@
             "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_02"
         },
         {
-            "Name": "Orc_Armor_03",
+            "Name": "Orc_Armor_02",
             "UnitType": "Unit",
             "PartType": "Armor",
             "SubType": "Body",
+            "PartSubType": "",
+            "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_02"
+        },
+        {
+            "Name": "Orc_Armor_03",
+            "UnitType": "Unit",
+            "PartType": "Armor",
+            "SubType": "Left",
             "PartSubType": "",
             "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_03"
         },
@@ -257,7 +257,7 @@
             "Name": "Orc_Armor_03",
             "UnitType": "Unit",
             "PartType": "Armor",
-            "SubType": "Left",
+            "SubType": "Body",
             "PartSubType": "",
             "Path": "Addons/MS_Orc/0_Unit/0_Sprite/5_Armor/Orc_Armor_03"
         },

@@ -2,7 +2,7 @@
     "Name": "Ver121",
     "Path": "Assets/SPUM/Resources/Addons",
     "Version": "",
-    "CreationDate": "2025-02-03 12:00:49",
+    "CreationDate": "2025-06-23 16:35:02",
     "SpumAnimationData": [],
     "SpumTextureData": [
         {
@@ -129,14 +129,6 @@
             "Name": "Normal_Cloth1",
             "UnitType": "Unit",
             "PartType": "Cloth",
-            "SubType": "Body",
-            "PartSubType": "",
-            "Path": "Addons/Ver121/0_Unit/0_Sprite/2_Cloth/Normal_Cloth1"
-        },
-        {
-            "Name": "Normal_Cloth1",
-            "UnitType": "Unit",
-            "PartType": "Cloth",
             "SubType": "Left",
             "PartSubType": "",
             "Path": "Addons/Ver121/0_Unit/0_Sprite/2_Cloth/Normal_Cloth1"
@@ -146,6 +138,14 @@
             "UnitType": "Unit",
             "PartType": "Cloth",
             "SubType": "Right",
+            "PartSubType": "",
+            "Path": "Addons/Ver121/0_Unit/0_Sprite/2_Cloth/Normal_Cloth1"
+        },
+        {
+            "Name": "Normal_Cloth1",
+            "UnitType": "Unit",
+            "PartType": "Cloth",
+            "SubType": "Body",
             "PartSubType": "",
             "Path": "Addons/Ver121/0_Unit/0_Sprite/2_Cloth/Normal_Cloth1"
         },
@@ -177,14 +177,6 @@
             "Name": "Normal_Armor1",
             "UnitType": "Unit",
             "PartType": "Armor",
-            "SubType": "Body",
-            "PartSubType": "",
-            "Path": "Addons/Ver121/0_Unit/0_Sprite/5_Armor/Normal_Armor1"
-        },
-        {
-            "Name": "Normal_Armor1",
-            "UnitType": "Unit",
-            "PartType": "Armor",
             "SubType": "Left",
             "PartSubType": "",
             "Path": "Addons/Ver121/0_Unit/0_Sprite/5_Armor/Normal_Armor1"
@@ -194,6 +186,14 @@
             "UnitType": "Unit",
             "PartType": "Armor",
             "SubType": "Right",
+            "PartSubType": "",
+            "Path": "Addons/Ver121/0_Unit/0_Sprite/5_Armor/Normal_Armor1"
+        },
+        {
+            "Name": "Normal_Armor1",
+            "UnitType": "Unit",
+            "PartType": "Armor",
+            "SubType": "Body",
             "PartSubType": "",
             "Path": "Addons/Ver121/0_Unit/0_Sprite/5_Armor/Normal_Armor1"
         },
