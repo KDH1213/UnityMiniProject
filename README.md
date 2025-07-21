@@ -20,8 +20,6 @@
 https://www.youtube.com/watch?v=ruhvsN1xAys
 
 ### 📷 스크린샷
-<img width="293" alt="2번" src="https://github.com/user-attachments/assets/c955fc38-f4c8-42f3-999a-5c0476375d5c" />
-<img width="293" alt="4" src="https://github.com/user-attachments/assets/bbee4967-5a0d-491a-bbb2-da803a468bd5" />
 <img width="293" alt="2" src="https://github.com/user-attachments/assets/af0d8a40-fc6f-467d-863e-ee4abf37769c" />
 <img width="293" alt="160" src="https://github.com/user-attachments/assets/b8a0f9a9-c839-477b-b4df-80007f1485b0" />
 <img width="293" alt="103" src="https://github.com/user-attachments/assets/49d2b50a-705c-40d1-a760-2fc557d1e939" />
