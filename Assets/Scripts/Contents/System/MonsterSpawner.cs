@@ -12,6 +12,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     private MonsterObjectPool monsterObjectPool;
 
     [SerializeField]
+    private UIHpBarObjectPool uIHpBarObjectPool;
+
+    [SerializeField]
     private Transform startPoint;
     [SerializeField]
     private Transform[] movePoints;
@@ -192,6 +195,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         monsterStatus.CurrentValueTable[StatType.JewelQty].SetValue(monsterData.JewelQty);
 
         monsterStatus.DeathEvent.AddListener(() => deathMonsterAction.Invoke(monsterController));
+
+        var hpbar = uIHpBarObjectPool.GetHpBar();
+        hpbar.SetTarget(monsterStatus);
 
         if (ReferenceEquals(monsterController.MonsterSpawner, null))
         {

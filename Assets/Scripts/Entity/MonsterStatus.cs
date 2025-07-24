@@ -16,9 +16,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
     private MonsterFSMController monsterFSMController;
     [SerializeField]
     private Transform monseterVFXHitPoint;
-
-    [SerializeField] 
-    private Slider hpbar;
+    
     public bool IsDead { get; private set; } = false;
 
     public UnityEvent hitEvent;
@@ -29,6 +27,7 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
     public UnityAction<int> CoinQtyAction;
     public UnityAction<int> JewelQtyAction;
+    public UnityEvent<float> onChangeHpEvnet;
 
     private IObjectPool<UIDamageText> uIDamageObjectTextPool;
     private IObjectPool<UIDamageTextMeshRenderer> uIDamageObjectTextMeshRendererPool;
@@ -47,12 +46,10 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         //    currentValues[item.Key].ValueCopy(item.Value);
         //}
 
-        hpbar.value = 1f;
     }
 
     private void OnEnable()
     {
-        hpbar.value = 1f;
         IsDead = false;
     }
 
@@ -68,10 +65,8 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             inoutDamageInfo.targetDeath = false;
             return false;
         }
-        hpbar.gameObject.SetActive(true);
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
-        hpbar.value = currentHp / currentValues[StatType.HP].MaxValue;
 
         //var damageText = uIDamageObjectTextMeshRendererPool.Get();
 
@@ -102,7 +97,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
             IsDead = true;
             inoutDamageInfo.targetDeath = IsDead;
 
-            hpbar.gameObject.SetActive(false);
             deathEvent?.Invoke();
 
             CoinQtyAction.Invoke((int)currentValues[StatType.CoinQty].Value);
@@ -119,7 +113,17 @@ public class MonsterStatus : MonoBehaviour, IDamageable
 
         return true;
     }
+    public void OnChangeHp() //*HP °»½Å
+    {
+        var hpValue = currentValues[StatType.HP];
 
+        onChangeHpEvnet?.Invoke(hpValue.PersentValue);
+
+        if (hpValue.Value <= 0f)
+        {
+            IsDead = true;
+        }
+    }
     private float DamageCalculate(ref DamageInfo inoutDamageInfo)
     {
         float damage = inoutDamageInfo.damage;// - currentValues[StatType.Defense].Value;
