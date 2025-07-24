@@ -106,7 +106,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         {
             currentSpawnTime += Time.deltaTime;
 
-            if(currentSpawnTime >= spawnTime)
+            while(currentSpawnTime >= spawnTime && currentSpawnCount < waveData.SpawnCount)
             {
                 ISpawn();
                 currentSpawnTime -= spawnTime;

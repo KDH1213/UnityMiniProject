@@ -27,7 +27,11 @@ public class MonsterDeathState : MonsterBaseState
 
     private void OnDisable()
     {
-        monsterCollider.enabled = true;
+        if(monsterCollider != null)
+        {
+            monsterCollider.enabled = true;
+
+        }
     }
 
     public override void Enter()
