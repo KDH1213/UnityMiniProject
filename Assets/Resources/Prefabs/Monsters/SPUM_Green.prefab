@@ -2517,8 +2517,6 @@ GameObject:
   - component: {fileID: 322827555785833903}
   - component: {fileID: 3565858687209657970}
   - component: {fileID: 124157658450080294}
-  - component: {fileID: 6552106765275231114}
-  - component: {fileID: 4295380320707369587}
   m_Layer: 7
   m_Name: SPUM_Green
   m_TagString: Untagged
@@ -2561,30 +2559,33 @@ MonoBehaviour:
       Value:
         statusInfoType: 3
         value: 5
-        maxValue: 5
-        minValue: 0
+        minMaxValue:
+          min: 0
+          max: 0
     - Key: 14
       Value:
         statusInfoType: 14
         value: 0
-        maxValue: 0
-        minValue: 0
+        minMaxValue:
+          min: 0
+          max: 0
     - Key: 13
       Value:
         statusInfoType: 13
         value: 5
-        maxValue: 0
-        minValue: 0
+        minMaxValue:
+          min: 0
+          max: 0
     - Key: 1
       Value:
         statusInfoType: 1
         value: 100
-        maxValue: 100
-        minValue: 0
+        minMaxValue:
+          min: 0
+          max: 0
   vfxContainerData: {fileID: 11400000, guid: 36945b9020ee5314aa635c8f9ad8834e, type: 2}
   monsterFSMController: {fileID: 1951750111265124657}
   monseterVFXHitPoint: {fileID: 3346698005321509468}
-  hpbar: {fileID: 0}
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2595,6 +2596,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   debuffEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onChangeHpEvnet:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1951750111265124657
@@ -2729,68 +2733,6 @@ MonoBehaviour:
   exitStateEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!58 &6552106765275231114
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421836908134799780}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!50 &4295380320707369587
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421836908134799780}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &4479175880807750515
 GameObject:
   m_ObjectHideFlags: 0

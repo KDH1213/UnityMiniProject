@@ -7,6 +7,8 @@ public class MonsterManager : MonoBehaviour
 {
     private List<MonsterFSMController> currentMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> startDeathMonsterList = new List<MonsterFSMController>();
+
+    public List<MonsterFSMController> CurrentMonsterList { get { return currentMonsterList; } }
     private List<MonsterFSMController> deathMonsterList = new List<MonsterFSMController>();
     private List<MonsterFSMController> destroyMonsterList = new List<MonsterFSMController>();
 
@@ -17,7 +19,7 @@ public class MonsterManager : MonoBehaviour
     private bool isDestroyMonster = false;
     private void Awake()
     {
-        currentMonsterList.Capacity = 80;
+        currentMonsterList.Capacity = 1000;
         startDeathMonsterList.Capacity = 20;
         deathMonsterList.Capacity = 40;
         destroyMonsterList.Capacity = 20;

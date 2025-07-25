@@ -10,6 +10,7 @@ public class CharactorIdleState : CharactorBaseState
     private AttackData attackData;
 
     private OverlapCollider OverlapCollider;
+    private FindMonster findMonster;
 
     private float attackTime = 0f;
 
@@ -27,6 +28,7 @@ public class CharactorIdleState : CharactorBaseState
     private void Start()
     {
         OverlapCollider = GameObject.FindGameObjectWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
+        findMonster = GameObject.FindGameObjectWithTag("FindMonster").GetComponent<FindMonster>();
     }
 
     public override void Enter()
@@ -119,33 +121,36 @@ public class CharactorIdleState : CharactorBaseState
 
     private void FindAttackTaget()
     {
-        int count = OverlapCollider.StartOverlapCircle(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
+        var targetList = findMonster.FindAttackTarget(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f);
+
+
+        int count = targetList.Count;// OverlapCollider.StartOverlapCircle(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
         if (count == 0)
             return;
 
-        switch (attackData.AttackType)
-        {
-            case AttackType.Single:
-            case AttackType.Multiple:
-                {
-                    var hitTarget = OverlapCollider.HitColliderList;
-                    int targetIndex = FindeTarget(ref hitTarget, count);
+        //switch (attackData.AttackType)
+        //{
+        //    case AttackType.Single:
+        //    case AttackType.Multiple:
+        //        {
+        //            var hitTarget = targetList;
+        //            int targetIndex = FindeTarget(ref hitTarget, count);
 
-                    if (targetIndex == -1)
-                        return;
+        //            if (targetIndex == -1)
+        //                return;
 
-                    ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(hitTarget[targetIndex]);
-                }
-                break;
-            case AttackType.Area:
+        //            ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(hitTarget[targetIndex]);
+        //        }
+        //        break;
+        //    case AttackType.Area:
 
-                ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(OverlapCollider.HitColliderList[0]);
-                break;
-            default:
-                break;
-        }
+        //        ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(OverlapCollider.HitColliderList[0]);
+        //        break;
+        //    default:
+        //        break;
+        //}
 
-        StartCoroutine(CoAttackReload());
-        CharactorFSM.ChangeState(CharactorStateType.Attack);
+        //StartCoroutine(CoAttackReload());
+        //CharactorFSM.ChangeState(CharactorStateType.Attack);
     }
 }
