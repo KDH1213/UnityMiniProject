@@ -121,12 +121,21 @@ public class CharactorIdleState : CharactorBaseState
 
     private void FindAttackTaget()
     {
-        var targetList = findMonster.FindAttackTarget(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f);
+        var target = findMonster.FindAttackTarget(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f);
 
+        // var targetList = findMonster.FindAttackTargets(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f);
 
-        int count = targetList.Count;// OverlapCollider.StartOverlapCircle(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
-        if (count == 0)
-            return;
+        if(target != null)
+        {
+            ((CharactorAttackState)CharactorFSM.StateTable[CharactorStateType.Attack]).SetAttackTarget(target);
+
+            StartCoroutine(CoAttackReload());
+            CharactorFSM.ChangeState(CharactorStateType.Attack);
+        }
+
+        //int count = targetList.Count;// OverlapCollider.StartOverlapCircle(CharactorFSM.AttackDetectionPoint, charactorFSM.CharactorData.RealAttackRange * 0.5f, hitLayerMasks);
+        //if (count == 0)
+        //    return;
 
         //switch (attackData.AttackType)
         //{
@@ -148,7 +157,7 @@ public class CharactorIdleState : CharactorBaseState
         //        break;
         //    default:
         //        break;
-        //}
+        ////}
 
         //StartCoroutine(CoAttackReload());
         //CharactorFSM.ChangeState(CharactorStateType.Attack);

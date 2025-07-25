@@ -12,37 +12,68 @@ public class FindMonster : MonoBehaviour
 
     private List<GameObject> gameObjectList = new List<GameObject>();
 
-    public List<GameObject> FindAttackTarget(Vector3 targetPosition, float attackRange)
+    public GameObject FindAttackTarget(Vector3 targetPosition, float attackRange)
+    {
+        var currentMonsterList = monsterManager.CurrentMonsterList;
+
+        int monsterCount = currentMonsterList.Count;
+
+        if(monsterCount == 0)
+        {
+            return null;
+        }
+
+        NativeList<FindMonsterInfo> findMonsterInfoList = new NativeList<FindMonsterInfo>(monsterCount, Allocator.TempJob);
+
+        SortJob<FindMonsterInfo, FindMonsterInfoComparer> sortJob = findMonsterInfoList.SortJob(new FindMonsterInfoComparer { });
+        JobHandle sortHandle = sortJob.Schedule();
+
+        FindMonsterJob findMonsterJob = new FindMonsterJob
+        {
+            monsterPositions = monsterManager.MonsterPositions,
+            monsterRadiuss = monsterManager.MonsterRadiuss,
+            targetPostion = targetPosition,
+            findDistance = attackRange * attackRange,
+            findMonsterInfoList = findMonsterInfoList,
+        };
+
+        JobHandle findHandle = findMonsterJob.Schedule(monsterCount, 50);
+        findHandle.Complete();
+
+        var targetObject = currentMonsterList[0] != null ? currentMonsterList[0].gameObject : null;
+
+        findMonsterInfoList.Dispose();
+
+        return targetObject;
+    }
+
+    public List<GameObject> FindAttackTargets(Vector3 targetPosition, float attackRange)
     {
         gameObjectList.Clear();
         var currentMonsterList = monsterManager.CurrentMonsterList;
 
         int monsterCount = currentMonsterList.Count;
 
-        NativeArray<float3> monsterPositions = new NativeArray<float3>(monsterCount, Allocator.Persistent);
-        NativeArray<float> monsterRadiuss = new NativeArray<float>(monsterCount, Allocator.Persistent);
-        NativeList<FindMonsterInfo> findMonsterInfoList = new NativeList<FindMonsterInfo>();
-
-
-        for (int i = 0; i < monsterCount; ++i)
+        if (monsterCount == 0)
         {
-            monsterPositions[i] = currentMonsterList[i].transform.localPosition;
-            monsterRadiuss[i] = currentMonsterList[i].transform.localScale.x;
+            return null;
         }
 
-        // SortJob<float3, AxisXComparer> sortJob = TargetPositions.SortJob(new AxisXComparer { });
-        // JobHandle sortHandle = sortJob.Schedule();
+        NativeList<FindMonsterInfo> findMonsterInfoList = new NativeList<FindMonsterInfo>(monsterCount, Allocator.TempJob);
+
+        SortJob<FindMonsterInfo, FindMonsterInfoComparer> sortJob = findMonsterInfoList.SortJob(new FindMonsterInfoComparer { });
+        JobHandle sortHandle = sortJob.Schedule();
 
         FindMonsterJob findMonsterJob = new FindMonsterJob
         {
-            monsterPositions = monsterPositions,
-            monsterRadiuss = monsterRadiuss,
+            monsterPositions = monsterManager.MonsterPositions,
+            monsterRadiuss = monsterManager.MonsterRadiuss,
             targetPostion = targetPosition,
             findDistance = attackRange,
             findMonsterInfoList = findMonsterInfoList,
         };
 
-        JobHandle findHandle = findMonsterJob.Schedule(monsterCount, 100);
+        JobHandle findHandle = findMonsterJob.Schedule(monsterCount, 50);
         findHandle.Complete();
 
         foreach (var findMonsterInfo in findMonsterInfoList)
@@ -50,9 +81,6 @@ public class FindMonster : MonoBehaviour
             gameObjectList.Add(currentMonsterList[findMonsterInfo.index].gameObject);
         }
 
-
-        monsterPositions.Dispose();
-        monsterRadiuss.Dispose();
         findMonsterInfoList.Dispose();
 
         return gameObjectList;

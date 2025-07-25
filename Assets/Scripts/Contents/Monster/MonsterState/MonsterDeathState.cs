@@ -42,7 +42,11 @@ public class MonsterDeathState : MonsterBaseState
         currentTime = 0f;
 
         monsterFSM.Animator.SetTrigger(DHUtil.MonsterAnimationUtil.hashIsDeath);
-        monsterCollider.enabled = false;
+
+        if(monsterCollider != null)
+        {
+            monsterCollider.enabled = false;
+        }
 
         monsterSprite = MonsterFSM.SpriteRenderers[0];
     }

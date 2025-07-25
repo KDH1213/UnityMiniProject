@@ -28,16 +28,16 @@ public struct FindMonsterInfoComparer : IComparer<FindMonsterInfo>
 public partial struct FindMonsterJob : IJobParallelFor
 {
     [ReadOnly]
-    public NativeArray<float3> monsterPositions;
+    public NativeList<float3> monsterPositions;
     [ReadOnly]
-    public NativeArray<float> monsterRadiuss;
+    public NativeList<float> monsterRadiuss;
 
     [ReadOnly]
     public float3 targetPostion;
 
     [ReadOnly]
     public float findDistance;
-
+    [ReadOnly]
     public NativeList<FindMonsterInfo> findMonsterInfoList;
     public void Execute(int index)
     {
@@ -45,10 +45,10 @@ public partial struct FindMonsterJob : IJobParallelFor
 
         var distance = math.distancesq(targetPostion, monsterPositions[index]);
 
-        if (distance < findDistance + monsterRadiuss[index])
+        if (distance < findDistance *  + monsterRadiuss[index])
         {
             findMonsterInfoList.Add(new FindMonsterInfo(distance, index));
-            findMonsterInfoList.Sort(new FindMonsterInfoComparer { });
+            // findMonsterInfoList.Sort(new FindMonsterInfoComparer { });
         }
     }
 

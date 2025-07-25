@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +19,16 @@ public class MonsterManager : MonoBehaviour
     
     private bool isDeathMonster = false;
     private bool isDestroyMonster = false;
+
+    [SerializeField]
+    private bool isJob = true;
+
+    private NativeList<float3> monsterPositions;
+    public NativeList<float3> MonsterPositions { get { return monsterPositions; } }
+
+    private NativeList<float> monsterRadiuss;
+    public NativeList<float> MonsterRadiuss { get { return monsterRadiuss; } }
+
     private void Awake()
     {
         currentMonsterList.Capacity = 1000;
@@ -28,6 +40,21 @@ public class MonsterManager : MonoBehaviour
     private void Start()
     {
         changeMonsterCount?.Invoke(0);
+
+        if(isJob)
+        {
+            monsterPositions = new NativeList<float3>(10000, Allocator.Persistent);
+            monsterRadiuss = new NativeList<float>(10000, Allocator.Persistent);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (isJob)
+        {
+            monsterPositions.Dispose();
+            monsterRadiuss.Dispose();
+        }
     }
 
     public void OnAddMonster(MonsterFSMController monsterFSMController)
@@ -86,9 +113,28 @@ public class MonsterManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (var monster in currentMonsterList)
+        if(isJob)
         {
-            monster.ExcuteUpdate();
+            monsterPositions.Clear();
+            monsterRadiuss.Clear();
+
+            foreach (var monster in currentMonsterList)
+            {
+                monster.ExcuteUpdate();
+
+                if(monster.CurrentStateType != MonsterStateType.Death)
+                {
+                    monsterPositions.Add(monster.transform.position);
+                    monsterRadiuss.Add(2f);
+                }               
+            }
+        }
+        else
+        {
+            foreach (var monster in currentMonsterList)
+            {
+                monster.ExcuteUpdate();
+            }
         }
 
         foreach (var monster in deathMonsterList)

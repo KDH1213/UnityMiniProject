@@ -13,7 +13,8 @@ public class CharactorAttackState : CharactorBaseState
     [SerializeField] 
     private AttackType attackType;
 
-    private Collider2D attackTargetCollider;
+    private Transform attackTargetTransform;
+
     private IDamageable attackTarget;
     private AttackData attackData;
 
@@ -40,7 +41,7 @@ public class CharactorAttackState : CharactorBaseState
     public override void Enter()
     {
 
-        var direction = attackTargetCollider.transform.position - transform.position;
+        var direction = attackTargetTransform.transform.position - transform.position;
         if (direction.x < 0f && charactorFSM.IsFlip())
         {
             charactorFSM.OnFlip();
@@ -65,9 +66,9 @@ public class CharactorAttackState : CharactorBaseState
     {
         if(attackTarget != null && attackTarget.IsDead)
         {
-            attackPoint = attackTargetCollider.transform.position;
+            attackPoint = attackTargetTransform.transform.position;
             attackTarget = null;
-            attackTargetCollider = null;
+            attackTargetTransform = null;
             isTargetDeath = true;
         }
     }
@@ -80,7 +81,14 @@ public class CharactorAttackState : CharactorBaseState
     public void SetAttackTarget(Collider2D target)
     {
         attackTarget = target.GetComponent<IDamageable>();
-        attackTargetCollider = target;
+        attackTargetTransform = target.transform;
+        isTargetDeath = false;
+    }
+
+    public void SetAttackTarget(GameObject target)
+    {
+        attackTarget = target.GetComponent<IDamageable>();
+        attackTargetTransform = target.transform;
         isTargetDeath = false;
     }
 
@@ -113,7 +121,7 @@ public class CharactorAttackState : CharactorBaseState
             if (CharactorFSM.AttackData.AttackType == AttackType.Area)
                 createObject.transform.position = transform.position;
             else
-                createObject.transform.position = isTargetDeath ? attackPoint : attackTargetCollider.transform.position;
+                createObject.transform.position = isTargetDeath ? attackPoint : attackTargetTransform.transform.position;
 
             createObject.StartAttack();    
         }
