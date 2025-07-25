@@ -67,7 +67,6 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         }
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
-
         //var damageText = uIDamageObjectTextMeshRendererPool.Get();
 
         //damageText.transform.position = transform.position;

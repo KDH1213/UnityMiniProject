@@ -28,7 +28,6 @@ public class UIHpBarObjectPool : MonoBehaviour
         Instantiate(hpBarPrefab, createPoint).TryGetComponent(out UIHpBar uIHpBar);
         uIHpBar.SetPool(HpBarObjectPool);
         uIHpBar.gameObject.SetActive(true);
-        // uIHpBar.gameObject.GetComponent<UITargetFollower>().SetCanvas(hpBarCanvasRectTransform);
 
         return uIHpBar;
     }

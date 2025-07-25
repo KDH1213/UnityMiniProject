@@ -51,6 +51,7 @@ public class StatusValue
     public float MinValue { get { return minMaxValue.min; } }
 
     public System.Action<float> OnChangeValue;
+    public System.Action<float> OnChangeValuePerscent;
 
     public float PersentValue { get { return value / minMaxValue.max; } }
 
@@ -59,6 +60,7 @@ public class StatusValue
         this.minMaxValue.max = statusValue.MaxValue;
         this.value = statusValue.Value > this.minMaxValue.max ? this.minMaxValue.max : statusValue.Value;
         OnChangeValue?.Invoke(value);
+        OnChangeValuePerscent?.Invoke(PersentValue);
     }
 
     public float AddValue(float addValue)
@@ -66,6 +68,7 @@ public class StatusValue
         this.value += addValue;
         this.value = Mathf.Clamp(value, minMaxValue.min, minMaxValue.max);
         OnChangeValue?.Invoke(value);
+        OnChangeValuePerscent?.Invoke(PersentValue);
 
         return this.value;
     }

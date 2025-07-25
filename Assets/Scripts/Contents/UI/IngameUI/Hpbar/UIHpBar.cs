@@ -35,10 +35,9 @@ public class UIHpBar : MonoBehaviour
     public void SetTarget(MonsterStatus charactorStats)
     {
         var hpStat = charactorStats.CurrentValueTable[StatType.HP];
-        hpStat.OnChangeValue += OnChangeHpBar;
+        hpStat.OnChangeValuePerscent += OnChangeHpBar;
         OnChangeHpBar(hpStat.PersentValue);
 
-        charactorStats.onChangeHpEvnet.AddListener(OnChangeHpBar);
         targetStats = charactorStats;
         targetTransform = targetStats.transform;
     }
@@ -50,13 +49,9 @@ public class UIHpBar : MonoBehaviour
         transform.position = screenPos;
     }
 
-    private void OnDisable()
-    {
-        // targetStats.CurrentStatTable[StatType.HP].OnChangeValue -= OnChangeHpBar;
-    }
-
     public void Release()
     {
+        targetStats.CurrentValueTable[StatType.HP].OnChangeValuePerscent -= OnChangeHpBar;
         hpBarObjectPool.Release(this);
     }
 
