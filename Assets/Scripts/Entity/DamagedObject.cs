@@ -37,19 +37,61 @@ public class DamagedObject : MonoBehaviour
 
     DamageInfo damageInfo = new DamageInfo();
 
+    [SerializeField]
+    private FindMonster findMonster;
+
     private void Awake()
     {
         overlapCollider = GameObject.FindWithTag(Tags.OverlapCollider).GetComponent<OverlapCollider>();
+        findMonster = GameObject.FindWithTag("FindMonster").GetComponent<FindMonster>();
     }
+
+    //protected virtual void AttackHit()
+    //{
+    //    int count = overlapCollider.StartOverlapCircle(transform.position, attackData.RealAttackRange * 0.5f, hitLayerMasks);
+
+    //    if (count == 0)
+    //        return;
+
+    //    var hitColliders = overlapCollider.HitColliderList;
+    //    GameObject hitObject;
+
+    //    damageInfo.damage = Damage;
+    //    damageInfo.debuffType = attackData.DebuffType;
+    //    damageInfo.debuffTime = attackData.DebuffTime;
+    //    damageInfo.debuffProbability = attackData.DebuffProbability;
+    //    damageInfo.vfxID = attackData.VFXId;
+
+    //    for (int i = 0; i < count; ++i)
+    //    {
+    //        hitObject = hitColliders[i].gameObject;
+
+    //        if (((1 << hitObject.layer) & hitLayerMasks) == 0)
+    //            continue;
+
+    //        var damageable = hitObject.GetComponent<IDamageable>();
+            
+    //        if(damageable == null)
+    //            continue;
+
+    //        hitObjectList.Add(hitObject);
+      
+    //        damageable.OnDamage(ref damageInfo);
+    //        hitEvent?.Invoke();
+    //    }
+    //}
 
     protected virtual void AttackHit()
     {
-        int count = overlapCollider.StartOverlapCircle(transform.position, attackData.RealAttackRange * 0.5f, hitLayerMasks);
+        var targetList = findMonster.FindAttackTargets(transform.position, attackData.RealAttackRange * 0.5f);
+
+        int count = targetList != null ? targetList.Count : 0;
 
         if (count == 0)
+        {
             return;
+        }
 
-        var hitColliders = overlapCollider.HitColliderList;
         GameObject hitObject;
 
         damageInfo.damage = Damage;
@@ -60,21 +102,21 @@ public class DamagedObject : MonoBehaviour
 
         for (int i = 0; i < count; ++i)
         {
-            hitObject = hitColliders[i].gameObject;
+            hitObject = targetList[i].gameObject;
 
             if (((1 << hitObject.layer) & hitLayerMasks) == 0)
                 continue;
 
             var damageable = hitObject.GetComponent<IDamageable>();
-            
-            if(damageable == null)
+
+            if (damageable == null)
                 continue;
 
             hitObjectList.Add(hitObject);
-      
+
             damageable.OnDamage(ref damageInfo);
             hitEvent?.Invoke();
-        }
+        }       
     }
 
     public virtual void StartAttack()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Burst;
 using Unity.Collections;
@@ -25,7 +26,7 @@ public struct FindMonsterInfoComparer : IComparer<FindMonsterInfo>
 }
 
 [BurstCompile]
-public partial struct FindMonsterJob : IJobParallelFor
+public partial struct FindMonsterJobParallelFor : IJobParallelFor
 {
     [ReadOnly]
     public NativeList<float3> monsterPositions;
@@ -37,37 +38,54 @@ public partial struct FindMonsterJob : IJobParallelFor
 
     [ReadOnly]
     public float findDistance;
-    [ReadOnly]
-    public NativeList<FindMonsterInfo> findMonsterInfoList;
+
+    public NativeQueue<FindMonsterInfo>.ParallelWriter findMonsterInfoQueue;
+
+    // public NativeList<FindMonsterInfo>.ParallelWriter findMonsterInfoList;
     public void Execute(int index)
     {
-        int lenght = monsterPositions.Length;
+        if(index >= monsterPositions.Length)
+        {
+            return;
+        }
 
         var distance = math.distancesq(targetPostion, monsterPositions[index]);
 
-        if (distance < findDistance *  + monsterRadiuss[index])
+        if (distance < (findDistance * findDistance + monsterRadiuss[index]))
         {
-            findMonsterInfoList.Add(new FindMonsterInfo(distance, index));
-            // findMonsterInfoList.Sort(new FindMonsterInfoComparer { });
+            findMonsterInfoQueue.Enqueue(new FindMonsterInfo(distance, index));
+            // findMonsterInfoList.AddNoResize(new FindMonsterInfo(distance, index));
         }
     }
+}
 
-    //public void Execute(int index)
-    //{
-    //    int lenght = TargetPositions.Length;
+[BurstCompile]
+public partial struct FindMonsterJob : IJob
+{
+    [ReadOnly]
+    public NativeList<float3> monsterPositions;
+    [ReadOnly]
+    public NativeList<float> monsterRadiuss;
 
-    //    float3 seekerPosition = SeekerPositions[index];
-    //    float nearestDistanceSq = float.MaxValue;
-    //    for (int j = 0; j < lenght; j++)
-    //    {
-    //        float3 targetPos = TargetPositions[j];
-    //        float distanceSq = math.distancesq(seekerPosition, targetPos);
-    //        if (distanceSq < nearestDistanceSq)
-    //        {
-    //            nearestDistanceSq = distanceSq;
-    //            NearestTargetPositions[index] = targetPos;
-    //        }
-    //    }
-    //}
+    [ReadOnly]
+    public float3 targetPostion;
 
+    [ReadOnly]
+    public float findDistance;
+
+    public NativeList<FindMonsterInfo> findMonsterInfoList;
+    public void Execute()
+    {
+        int lenght = monsterPositions.Length;
+
+        for (int i = 0; i < lenght; ++i)
+        {
+            var distance = math.distancesq(targetPostion, monsterPositions[i]);
+
+            if (distance < (findDistance * findDistance + monsterRadiuss[i]))
+            {
+                findMonsterInfoList.Add(new FindMonsterInfo(distance, i));
+            }
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class VFXObjectPool : MonoBehaviour
         {
             if(!vfxObjectPoolTable.ContainsKey(vfxObject.ID))
             {
-                vfxObjectPoolTable.Add(vfxObject.ID, new ObjectPool<VFXObject>(OnCreateVFX, OnGetVFX, OnReleaseVFX, OnDestroyVFX, true, 1000));
+                vfxObjectPoolTable.Add(vfxObject.ID, new ObjectPool<VFXObject>(OnCreateVFX, OnGetVFX, OnReleaseVFX, OnDestroyVFX, true, 2000));
             }
         }
     }

@@ -44,7 +44,7 @@ public class MonsterObjectPool : MonoBehaviour
 
         if (!monsterPoolTable.ContainsKey(CreateMonsterID))
         {
-            monsterPoolTable.Add(CreateMonsterID, new ObjectPool<MonsterFSMController>(OnCreateMonster, OnGetMonster, OnReleaseMonster, OnDestroyMonster, true, 100));
+            monsterPoolTable.Add(CreateMonsterID, new ObjectPool<MonsterFSMController>(OnCreateMonster, OnGetMonster, OnReleaseMonster, OnDestroyMonster, true, 1000));
         }
     }
 }
