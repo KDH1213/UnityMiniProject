@@ -35,17 +35,19 @@ public class MonsterManager : MonoBehaviour
         startDeathMonsterList.Capacity = 20;
         deathMonsterList.Capacity = 40;
         destroyMonsterList.Capacity = 20;
+
+
+
+        if (isJob)
+        {
+            monsterPositions = new NativeList<float3>(10000, Allocator.Persistent);
+            monsterRadiuss = new NativeList<float>(10000, Allocator.Persistent);
+        }
     }
 
     private void Start()
     {
         changeMonsterCount?.Invoke(0);
-
-        if(isJob)
-        {
-            monsterPositions = new NativeList<float3>(10000, Allocator.Persistent);
-            monsterRadiuss = new NativeList<float>(10000, Allocator.Persistent);
-        }
     }
 
     private void OnDestroy()

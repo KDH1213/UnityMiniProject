@@ -189,7 +189,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         spawnEvent?.Invoke(monsterController);
 
         var monsterStatus = monsterController.GetComponent<MonsterStatus>();
-        monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(monsterData.MoveSpeed);
+        monsterStatus.CurrentValueTable[StatType.MovementSpeed].SetValue(5);
         monsterStatus.CurrentValueTable[StatType.HP].SetValue(monsterData.Hp);
         monsterStatus.CurrentValueTable[StatType.CoinQty].SetValue(monsterData.CoinQty);
         monsterStatus.CurrentValueTable[StatType.JewelQty].SetValue(monsterData.JewelQty);

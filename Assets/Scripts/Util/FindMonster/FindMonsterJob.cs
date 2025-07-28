@@ -50,8 +50,9 @@ public partial struct FindMonsterJobParallelFor : IJobParallelFor
         }
 
         var distance = math.distancesq(targetPostion, monsterPositions[index]);
+        var targetDistance = findDistance - monsterRadiuss[index];
 
-        if (distance < (findDistance * findDistance + monsterRadiuss[index]))
+        if (distance < targetDistance)
         {
             findMonsterInfoQueue.Enqueue(new FindMonsterInfo(distance, index));
             // findMonsterInfoList.AddNoResize(new FindMonsterInfo(distance, index));
@@ -81,8 +82,9 @@ public partial struct FindMonsterJob : IJob
         for (int i = 0; i < lenght; ++i)
         {
             var distance = math.distancesq(targetPostion, monsterPositions[i]);
+            var targetDistance = findDistance - monsterRadiuss[i];
 
-            if (distance < (findDistance * findDistance + monsterRadiuss[i]))
+            if (distance < targetDistance)
             {
                 findMonsterInfoList.Add(new FindMonsterInfo(distance, i));
             }
