@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -45,8 +46,11 @@ public class UIHpBar : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
-        screenPos.z = 0f;
-        transform.position = screenPos;
+        if(!transform.position.Equals(screenPos))
+        {
+            transform.position = screenPos;
+        }
+       
     }
 
     public void Release()

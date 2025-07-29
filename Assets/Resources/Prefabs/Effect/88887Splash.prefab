@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4582810065851087220}
   - component: {fileID: 9010430521290390375}
   - component: {fileID: 1333540728688398660}
+  - component: {fileID: -5003492238088216656}
   m_Layer: 0
   m_Name: 88887Splash
   m_TagString: Untagged
@@ -4914,3 +4915,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ID>k__BackingField: 88887
+--- !u!114 &-5003492238088216656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793203776946660585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d308f19c637c74a8697cfa962c1395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

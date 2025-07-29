@@ -85,8 +85,18 @@ public class MonsterStatus : MonoBehaviour, IDamageable
         if (inoutDamageInfo.vfxID != 0)
         {
             var createTransform = vFXObjectPool.GetVFX(inoutDamageInfo.vfxID).transform;
-            createTransform.SetParent(monseterVFXHitPoint);
-            createTransform.localPosition = Vector3.zero;
+
+            var followTarget = createTransform.GetComponent<FollowTarget>();
+
+            if (followTarget != null)
+            {
+                followTarget.SetTarget(transform);
+            }
+            else
+            {
+                createTransform.SetParent(monseterVFXHitPoint);
+                createTransform.localPosition = Vector3.zero;
+            }
         }
 
         hitEvent?.Invoke();
