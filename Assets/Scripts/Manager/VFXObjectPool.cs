@@ -19,6 +19,17 @@ public class VFXObjectPool : MonoBehaviour
             if(!vfxObjectPoolTable.ContainsKey(vfxObject.ID))
             {
                 vfxObjectPoolTable.Add(vfxObject.ID, new ObjectPool<VFXObject>(OnCreateVFX, OnGetVFX, OnReleaseVFX, OnDestroyVFX, true, 10000));
+
+                var list = new List<VFXObject>();
+                for (int i = 0; i < 10000; ++i)
+                {
+                    list.Add(GetVFX(vfxObject.ID));
+                }
+
+                foreach (var @object in list)
+                {
+                    @object.gameObject.SetActive(false);
+                }
             }
         }
     }

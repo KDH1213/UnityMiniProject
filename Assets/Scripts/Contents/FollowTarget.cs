@@ -9,6 +9,7 @@ public class FollowTarget : MonoBehaviour
     public void SetTarget(Transform tatget)
     {
         targetTransform = tatget;
+        transform.position = targetTransform.position;
     }
 
     private void Update()
