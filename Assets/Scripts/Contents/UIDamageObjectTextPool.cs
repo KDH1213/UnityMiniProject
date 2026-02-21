@@ -15,18 +15,18 @@ public class UIDamageObjectTextPool : MonoBehaviour
 
     private void Awake()
     {
-        UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
-        List<UIDamageText> list = new List<UIDamageText>();
+        //UiDamageTextPool = new ObjectPool<UIDamageText>(OnCreateDamageText, OnGetDamageText, OnReleaseDamageText, OnDestroyDamageText, true, 1000);
+        //List<UIDamageText> list = new List<UIDamageText>();
 
-        for (int i = 0; i < defalutCreateCount; ++i)
-        {
-            list.Add(UiDamageTextPool.Get());
-        }
+        //for (int i = 0; i < defalutCreateCount; ++i)
+        //{
+        //    list.Add(UiDamageTextPool.Get());
+        //}
 
-        foreach (var @object in list)
-        {
-            @object.DestroyUIDamageText();
-        }
+        //foreach (var @object in list)
+        //{
+        //    @object.DestroyUIDamageText();
+        //}
     }
 
     private UIDamageText OnCreateDamageText()
